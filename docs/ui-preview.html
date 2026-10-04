@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Metawispr — workspace design</title>
+  <style>
+    :root { color-scheme:light; --canvas:#f5f3ec; --surface:#fff; --ink:#242722; --muted:#62675d; --line:#dedfd5; --accent:#b6482e; --soft:#f8ede7; }
+    * { box-sizing:border-box; }
+    body { margin:0; background:var(--canvas); color:var(--ink); font:16px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif; }
+    button,input,textarea { font:inherit; }
+    button { cursor:pointer; }
+    button:disabled { cursor:default; }
+    a { color:var(--accent); }
+    :focus-visible { outline:3px solid var(--accent); outline-offset:4px; }
+    .layout { display:grid; grid-template-columns:224px minmax(0,1fr); min-height:100vh; }
+    .rail { background:#eeeee5; padding:32px 22px; border-right:1px solid var(--line); display:flex; flex-direction:column; gap:48px; }
+    .brand { display:flex; align-items:center; gap:10px; font-weight:750; font-size:21px; letter-spacing:-.7px; }
+    .mark { display:flex; align-items:center; gap:3px; width:28px; height:30px; }
+    .mark i { display:block; width:4px; background:var(--accent); border-radius:3px; height:15px; }
+    .mark i:nth-child(2) { height:26px; } .mark i:nth-child(3) { height:20px; } .mark i:nth-child(4) { height:10px; }
+    .nav { display:grid; gap:7px; }
+    .nav span { padding:12px 14px; border-radius:9px; color:var(--muted); font-size:14px; }
+    .nav .active { background:#fff; color:var(--ink); box-shadow:0 1px 3px #24272208; font-weight:600; }
+    .rail-note { margin-top:auto; color:var(--muted); font-size:12px; line-height:1.8; }
+    main { min-width:0; padding:30px 48px 48px; }
+    .top { display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--line); padding-bottom:23px; font-size:13px; color:var(--muted); }
+    .preview-tag { border:1px solid var(--line); padding:5px 10px; border-radius:30px; color:var(--ink); font-size:11px; letter-spacing:.4px; }
+    .content { max-width:1160px; margin:0 auto; }
+    .hero { padding:45px 0 30px; max-width:680px; }
+    .eyebrow { text-transform:uppercase; font-size:11px; font-weight:650; letter-spacing:1.8px; color:var(--accent); }
+    h1 { font:normal clamp(36px,4.1vw,54px)/1.1 Georgia,"Times New Roman",serif; letter-spacing:-1.6px; margin:15px 0 17px; }
+    .hero p { color:var(--muted); max-width:550px; margin:0; line-height:1.75; }
+    .grid { display:grid; grid-template-columns:minmax(0,1.55fr) minmax(260px,1fr); gap:24px; align-items:start; }
+    .card { background:var(--surface); border:1px solid var(--line); border-radius:18px; padding:28px; }
+    .card-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:24px; }
+    h2 { margin:0; font-size:17px; letter-spacing:-.3px; font-weight:650; }
+    .small { font-size:12px; color:var(--muted); }
+    .drop { border:1.5px dashed #c5c8bb; border-radius:12px; padding:30px 20px; background:#fbfbf7; text-align:center; }
+    .upload-icon { width:43px; height:43px; margin:0 auto 16px; display:grid; place-items:center; border:1px solid var(--line); border-radius:11px; background:white; color:var(--accent); }
+    .drop strong { display:block; font-size:15px; font-weight:600; }
+    .drop p { color:var(--muted); font-size:12px; margin:7px 0 19px; }
+    .choose { display:inline-block; background:var(--ink); color:white; padding:10px 18px; border:0; border-radius:8px; font-size:13px; font-weight:600; }
+    .format { font-size:11px; margin-top:16px; color:var(--muted); }
+    .field { display:grid; gap:8px; margin-top:22px; font-size:12px; font-weight:600; }
+    input[type=text],textarea { width:100%; padding:12px 13px; border:1px solid var(--line); border-radius:8px; color:var(--ink); background:#fff; font-size:13px; }
+    textarea { resize:vertical; min-height:85px; }
+    input::placeholder,textarea::placeholder { color:#70756a; }
+    details { margin:18px 0; font-size:12px; color:var(--muted); }
+    summary { cursor:pointer; padding:4px 0; }
+    .submit { width:100%; border:0; border-radius:9px; padding:13px; background:#eceee6; color:#62675d; font-size:13px; font-weight:650; }
+    .footnote { color:var(--muted); font-size:11px; margin:12px 0 0; text-align:center; }
+    .side-title { color:var(--muted); text-transform:uppercase; font-size:10px; letter-spacing:1.4px; margin:1px 0 21px; }
+    .benefit { display:grid; grid-template-columns:30px 1fr; gap:12px; padding-bottom:22px; }
+    .benefit:last-child { padding-bottom:0; }
+    .number { font-family:Georgia,serif; color:#878b7d; font-size:19px; line-height:1.2; }
+    .benefit h3 { font-size:13px; margin:0 0 6px; font-weight:650; }
+    .benefit p { color:var(--muted); font-size:12px; line-height:1.7; margin:0; }
+    .callout { margin-top:20px; padding:22px 24px; border:1px solid #e8d8cb; border-radius:14px; background:var(--soft); }
+    .callout strong { font-size:12px; font-weight:650; }
+    .callout p { font-size:12px; color:#6a554c; margin:7px 0 0; line-height:1.7; }
+    .flow { display:grid; grid-template-columns:repeat(3,1fr); margin-top:25px; padding:22px 0; border-top:1px solid var(--line); border-bottom:1px solid var(--line); gap:18px; }
+    .flow div { color:var(--muted); font-size:11px; }
+    .flow b { display:block; color:var(--ink); font-size:12px; font-weight:600; margin:6px 0 4px; }
+    footer { display:flex; justify-content:space-between; gap:24px; padding:22px 0 0; font-size:10px; color:var(--muted); }
+    #filename { overflow-wrap:anywhere; }
+    @media(max-width:1100px) { main { padding:26px 28px; } .grid { gap:18px; } .card { padding:23px; } }
+    @media(max-width:900px) { .layout { display:block; } .rail { padding:18px 24px; border-right:0; border-bottom:1px solid var(--line); flex-direction:row; justify-content:space-between; align-items:center; gap:16px; } .nav,.rail-note { display:none; } .grid { grid-template-columns:1fr; } main { padding:23px 24px; } .hero { padding-top:32px; } .right { display:grid; grid-template-columns:1fr 1fr; gap:18px; } .callout { margin:0; align-self:start; } }
+    @media(max-width:560px) { main { padding:20px 16px; } .rail { padding:18px 16px; } .hero { padding:28px 0; } .right { display:block; } .callout { margin-top:16px; } .card { padding:22px 19px; } .flow { gap:12px; } footer { flex-direction:column; gap:6px; } .top { font-size:11px; } }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <aside class="rail" aria-label="Workspace navigation">
+      <div class="brand"><span class="mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>metawispr<span style="color:#878b7d;font-size:12px">/</span></div>
+      <nav class="nav" aria-label="Design navigation"><span class="active" aria-current="page">↗ &nbsp; New meeting</span><span>☰ &nbsp; Meeting library</span></nav>
+      <div class="rail-note">A little less note-taking.<br>A little more being present.<br><br>Recorded meetings · English</div>
+    </aside>
+    <main><div class="content">
+      <header class="top"><span>Your meeting workspace</span><span class="preview-tag">DESIGN PREVIEW · PHASE 1</span></header>
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="eyebrow">From conversation to clarity</div>
+        <h1 id="hero-title">Good conversations deserve<br>a clear next step.</h1>
+        <p>Bring your meeting recording. Leave with a readable record of what was discussed, what was agreed, and what happens next.</p>
+      </section>
+      <div class="grid">
+        <section class="card" aria-labelledby="upload-title">
+          <div class="card-header"><h2 id="upload-title">Start with a recording</h2><span class="small">01 / Upload</span></div>
+          <div class="drop">
+            <div class="upload-icon" aria-hidden="true"><svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 16V4m-4 4 4-4 4 4M5 15v5h14v-5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <strong id="filename">Choose your meeting audio</strong><p>One recording. All the important details.</p>
+            <button class="choose" id="choose" type="button">Browse recording <span aria-hidden="true">↗</span></button>
+            <input id="file" type="file" accept=".wav,.mp3,.m4a,.flac,.ogg,.webm,audio/*" hidden aria-label="Meeting recording">
+            <div class="format">WAV, MP3, M4A, FLAC, OGG, WEBM · up to 200 MB</div>
+          </div>
+          <label class="field" for="title">Meeting title <span class="small">Optional</span><input id="title" type="text" placeholder="Give this conversation a name"></label>
+          <details><summary>Add terminology or names <span class="small">Optional</span></summary><label class="field" for="glossary">Terms to preserve<textarea id="glossary" placeholder="One term per line, such as a product name or technical acronym"></textarea></label></details>
+          <button class="submit" type="button" disabled aria-describedby="preview-note">Create meeting record <span aria-hidden="true">→</span></button>
+          <p class="footnote" id="preview-note">Visual preview only. Processing connects in later phases.</p>
+        </section>
+        <aside class="right" aria-label="What the workflow produces">
+          <section class="card"><div class="side-title">A record you can follow</div>
+            <div class="benefit"><span class="number">01</span><div><h3>The conversation, preserved</h3><p>Raw and refined transcripts, with terminology changes visible.</p></div></div>
+            <div class="benefit"><span class="number">02</span><div><h3>Decisions with their context</h3><p>Agreed outcomes linked to the words that support them.</p></div></div>
+            <div class="benefit"><span class="number">03</span><div><h3>Next steps, clearly stated</h3><p>Tasks, owners and deadlines when they were actually mentioned.</p></div></div>
+          </section>
+          <div class="callout"><strong>Keep the source close.</strong><p>Every decision and task will let you return to its supporting transcript and recording.</p></div>
+        </aside>
+      </div>
+      <div class="flow" aria-label="Three ordered processing stages">
+        <div>01 <b>Transcribe</b>Capture what was said.</div><div>02 <b>Refine</b>Check the terminology.</div><div>03 <b>Document</b>Organize the follow-through.</div>
+      </div>
+      <footer><span>Designed for uploaded English meeting recordings.</span><span>Metawispr · Design v0.1</span></footer>
+    </div></main>
+  </div>
+  <script>
+    const input = document.querySelector('#file');
+    document.querySelector('#choose').addEventListener('click', () => input.click());
+    input.addEventListener('change', () => {
+      const selected = input.files[0];
+      document.querySelector('#filename').textContent = selected ? selected.name : 'Choose your meeting audio';
+    });
+  </script>
+</body>
+</html>

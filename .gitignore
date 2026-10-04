@@ -1,0 +1,16 @@
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.env
+.env.*
+!.env.example
+data/
+models/
+tools/ollama/
+frontend/node_modules/
+frontend/dist/
+.pytest_cache/
+.cache/
+.DS_Store
+*.log

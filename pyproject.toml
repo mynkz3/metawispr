@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=75"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "metawispr"
+version = "0.1.0"
+description = "Evidence-linked notes, decisions, and tasks from English meeting recordings"
+readme = "README.md"
+requires-python = ">=3.11,<3.14"
+dependencies = [
+  "fastapi>=0.115,<1",
+  "uvicorn>=0.30,<1",
+  "pydantic>=2.10,<3",
+  "python-multipart>=0.0.20,<1",
+  "numpy>=2,<3",
+  "soundfile>=0.13,<1",
+  "sherpa-onnx>=1.12.0,<2",
+  "imageio-ffmpeg>=0.6,<1",
+  "httpx>=0.28,<1",
+]
+
+[tool.setuptools.packages.find]
+where = ["backend"]
+
+[tool.setuptools.package-data]
+metawispr = ["prompts/*.txt"]
