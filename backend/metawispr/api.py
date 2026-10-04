@@ -6,6 +6,7 @@ from uuid import UUID
 
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.responses import FileResponse, JSONResponse, Response
+from fastapi.staticfiles import StaticFiles
 from starlette.datastructures import UploadFile
 from starlette.exceptions import HTTPException as StarletteHTTPException
 from starlette.formparsers import MultiPartException
@@ -62,7 +63,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         finally:
             app.state.jobs.close()
 
-    app = FastAPI(title="Metawispr", version="0.3.0", lifespan=lifespan)
+    app = FastAPI(title="Metawispr", version="0.4.0", lifespan=lifespan)
     app.add_middleware(UploadLimit, max_bytes=settings.max_upload_bytes)
 
     def get_meeting(request, meeting_id):
@@ -212,6 +213,16 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         headers = {"Content-Disposition": f'attachment; filename="{meeting.id}-{format}"'}
         media = "application/zip" if format.endswith(".zip") else "application/json" if format.endswith(".json") else "text/plain"
         return Response(artifacts[format], media_type=media, headers=headers)
+
+    # API routes stay ahead of the static mount. Selection uses query parameters,
+    # so there is no catch-all HTML rewrite for unknown API paths or assets.
+    if (settings.ui_dir / "index.html").is_file():
+        app.mount("/", StaticFiles(directory=settings.ui_dir, html=True), name="workspace")
+    else:
+        @app.get("/", include_in_schema=False)
+        def frontend_setup():
+            return JSONResponse({"detail": "Build the workspace with npm ci and npm run build in frontend/; then restart this server.",
+                                 "api_docs": "/docs"}, status_code=503)
 
     return app
 

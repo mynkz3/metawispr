@@ -24,6 +24,7 @@ class SetupError(RuntimeError):
 @dataclass(frozen=True)
 class Settings:
     data_dir: Path = Path("data")
+    ui_dir: Path = Path("frontend/dist")
     model_dir: Path = Path("models") / MODEL_PACKAGE
     max_upload_bytes: int = 200 * 1024 * 1024
     max_audio_seconds: int = 7200
@@ -63,6 +64,7 @@ class Settings:
 
         return cls(
             data_dir=Path(os.getenv("METAWISPR_DATA_DIR", "data")).resolve(),
+            ui_dir=Path(os.getenv("METAWISPR_UI_DIR", "frontend/dist")).resolve(),
             model_dir=Path(os.getenv("METAWISPR_ASR_DIR", str(Path("models") / MODEL_PACKAGE))).resolve(),
             max_upload_bytes=integer("MAX_UPLOAD_MB", 200) * 1024 * 1024,
             max_audio_seconds=integer("MAX_AUDIO_SECONDS", 7200),

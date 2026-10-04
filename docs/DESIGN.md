@@ -58,7 +58,7 @@ Verified primary sources:
 
 The development machine was observed to have an RTX 4060 Laptop GPU with 8 GB VRAM. This does not establish end-to-end speed or memory requirements. Run LLM roles sequentially and unload between stages. Use an 8,192-token configured context initially, with bounded input groups and output reserves; do not allocate a model's advertised maximum context by default. Ollama may offload to CPU. Do not promise that both LLMs fit together on the GPU.
 
-Record ASR file SHA-256 hashes, package/runtime versions, requested LLM tag, resolved LLM digest, generation options, prompt version/hash, input hashes, call duration and completion state per meeting. `uv.lock` is committed after genuine Windows runtime verification. Matching sherpa-onnx and Windows binary-package versions prevent use of an incompatible system ONNX Runtime DLL. Commit the frontend lockfile in Phase 4. Model downloads remain outside Git. Quantized checkpoints require quality measurement.
+Record ASR file SHA-256 hashes, package/runtime versions, requested LLM tag, resolved LLM digest, generation options, prompt version/hash, input hashes, call duration and completion state per meeting. `uv.lock` is committed after genuine Windows runtime verification. Matching sherpa-onnx and Windows binary-package versions prevent use of an incompatible system ONNX Runtime DLL. The frontend lockfile records the Phase 4 build and browser-check dependencies. Model downloads remain outside Git. Quantized checkpoints require quality measurement.
 
 ## 4. Architecture
 
@@ -85,7 +85,7 @@ The initial server runs with one process and one inference job at a time. Bound 
 
 ### Modules
 
-`schemas.py` defines contracts; `config.py` holds local settings; `audio.py` validates/decodes/transcribes; `models.py` installs the exact ONNX export; `pipeline.py` coordinates persisted stages; `llm.py` handles local Ollama and call checkpoints; `documentation.py` handles edit guards, evidence and chronological consolidation; `exports.py` renders validated artifacts; `api.py` exposes the workflow; `__main__.py` supplies the CLI. Phase 4 adds a small `frontend/` review workspace.
+`schemas.py` defines contracts; `config.py` holds local settings; `audio.py` validates/decodes/transcribes; `models.py` installs the exact ONNX export; `pipeline.py` coordinates persisted stages; `llm.py` handles local Ollama and call checkpoints; `documentation.py` handles edit guards, evidence and chronological consolidation; `exports.py` renders validated artifacts; `api.py` exposes the workflow; `__main__.py` supplies the CLI. The `frontend/` review workspace uses React/TypeScript, ordinary hooks/fetch and plain CSS. Vite builds static assets served after API routes; `METAWISPR_UI_DIR` configures the build directory. Local record links use `?meeting=UUID`, so unknown API/asset paths keep their real errors without an HTML fallback.
 
 ### API
 
@@ -146,7 +146,7 @@ Markdown, JSON and ZIP render from the same validated record. ZIP includes both 
 
 Visual direction: a quiet editorial workspace, warm ivory background, charcoal typography, muted coral accent, fine borders and generous whitespace. The record should feel readable, not like a developer console. Use system sans-serif typography with a restrained serif heading; no remote font request is required.
 
-Initial tokens: canvas `#f5f3ec`, surface `#ffffff`, text `#242722`, secondary text `#62675d`, border `#dedfd5`, accent `#b6482e`; 8-pixel spacing base; 16-pixel body text; 12–20-pixel corner radii. Use a 224-pixel desktop rail and a content width capped near 1,160 pixels. Stack the layout below 900 pixels. The [static preview](ui-preview.html) illustrates the upload state and must remain labeled as a design artifact until it is wired to genuine processing.
+Initial tokens: canvas `#f5f3ec`, surface `#ffffff`, text `#242722`, secondary text `#62675d`, border `#dedfd5`, accent `#b6482e`; 8-pixel spacing base; 16-pixel body text; 12–20-pixel corner radii. Use a 224-pixel desktop rail and a content width capped near 1,160 pixels. Stack the layout below 900 pixels. The working Phase 4 workspace follows these tokens and is wired to genuine processing. The [earlier static preview](ui-preview.html) remains a labelled design artifact; [PHASE4.md](PHASE4.md) records the production UI verification.
 
 - Desktop: compact navigation rail, a central meeting workspace, and a source panel when an evidence link is selected.
 - Empty state: a clear upload surface, supported-format/size guidance, optional title and glossary, and a visible explanation of the three stages.
