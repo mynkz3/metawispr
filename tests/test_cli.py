@@ -9,7 +9,7 @@ import unittest
 from metawispr.__main__ import main
 from metawispr.config import Settings
 from metawispr.pipeline import Runner
-from support import FixtureASR, wav_bytes
+from support import FixtureASR, FixtureLLM, wav_bytes
 
 
 class CliTests(unittest.TestCase):
@@ -73,6 +73,23 @@ class CliTests(unittest.TestCase):
         self.assertIn("not a readable tar.bz2", error)
         self.assertNotIn("Traceback", error)
         self.assertFalse(self.settings.model_dir.exists())
+
+    def test_process_and_export_use_the_full_pipeline(self):
+        recording = self.root / "fixture.wav"
+        recording.write_bytes(wav_bytes())
+        runner = Runner(self.settings)
+        runner.asr, runner.llm = FixtureASR(), FixtureLLM(self.settings)
+        with patch("metawispr.__main__.Runner", return_value=runner):
+            result, output, error = self.invoke(["process", str(recording), "--glossary", "Docker"])
+            self.assertEqual((result, error), (0, ""))
+            meeting = json.loads(output)["meeting"]
+            self.assertEqual((meeting["stage"], meeting["target"]), ("complete", "complete"))
+            target = self.root / "exports"
+            result, output, error = self.invoke(["export", meeting["id"], "--output", str(target)])
+            self.assertEqual((result, error), (0, ""))
+            self.assertTrue((target / "bundle.zip").is_file())
+            self.assertEqual(json.loads((target / "meeting.json").read_text())["record"],
+                             runner.store.document(meeting["id"]).record.model_dump())
 
 
 if __name__ == "__main__":

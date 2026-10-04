@@ -3,6 +3,7 @@
 from dataclasses import dataclass
 from pathlib import Path
 import os
+from urllib.parse import urlsplit
 
 
 MODEL_ID = "nvidia/parakeet-tdt-0.6b-v2"
@@ -30,14 +31,30 @@ class Settings:
     chunk_seconds: int = 30
     decode_timeout_seconds: int = 180
     max_pending_jobs: int = 3
+    ollama_url: str = "http://127.0.0.1:11434"
+    refiner_model: str = "qwen3.5:4b"
+    documenter_model: str = "qwen3.5:9b"
+    llm_context: int = 8192
+    llm_output_tokens: int = 2048
+    llm_timeout_seconds: int = 300
 
     def __post_init__(self):
         for name in ("max_upload_bytes", "max_audio_seconds", "asr_threads", "chunk_seconds",
-                     "decode_timeout_seconds", "max_pending_jobs"):
+                     "decode_timeout_seconds", "max_pending_jobs", "llm_context",
+                     "llm_output_tokens", "llm_timeout_seconds"):
             if type(getattr(self, name)) is not int or getattr(self, name) <= 0:
                 raise ValueError(f"{name} must be a positive integer")
         if not 1 <= self.asr_threads <= 32 or not 1 <= self.chunk_seconds <= 120:
             raise ValueError("ASR threads must be 1–32 and chunk seconds 1–120")
+        if self.llm_context < 4096 or self.llm_output_tokens >= self.llm_context // 2:
+            raise ValueError("LLM context must be at least 4096; output must be less than half the context")
+        endpoint = urlsplit(self.ollama_url)
+        if (endpoint.scheme != "http" or endpoint.hostname not in {"localhost", "127.0.0.1", "::1"}
+                or endpoint.username or endpoint.password or endpoint.query or endpoint.fragment
+                or endpoint.path not in {"", "/"}):
+            raise ValueError("Ollama must use a local HTTP endpoint, without credentials or a path")
+        if not self.refiner_model.strip() or not self.documenter_model.strip() or self.refiner_model == self.documenter_model:
+            raise ValueError("Refinement and documentation require two distinct installed model tags")
 
     @classmethod
     def from_env(cls):
@@ -53,4 +70,10 @@ class Settings:
             chunk_seconds=integer("CHUNK_SECONDS", 30),
             decode_timeout_seconds=integer("DECODE_TIMEOUT_SECONDS", 180),
             max_pending_jobs=integer("MAX_PENDING_JOBS", 3),
+            ollama_url=os.getenv("METAWISPR_OLLAMA_URL", "http://127.0.0.1:11434").rstrip("/"),
+            refiner_model=os.getenv("METAWISPR_REFINER_MODEL", "qwen3.5:4b"),
+            documenter_model=os.getenv("METAWISPR_DOCUMENTER_MODEL", "qwen3.5:9b"),
+            llm_context=integer("LLM_CONTEXT", 8192),
+            llm_output_tokens=integer("LLM_OUTPUT_TOKENS", 2048),
+            llm_timeout_seconds=integer("LLM_TIMEOUT_SECONDS", 300),
         )

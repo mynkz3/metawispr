@@ -1,19 +1,21 @@
-"""Local HTTP interface for phase 2. One server process only."""
+"""Local recorded-meeting HTTP interface. One server process only."""
 
 from contextlib import asynccontextmanager
 from hashlib import sha256
 from uuid import UUID
 
 from fastapi import FastAPI, HTTPException, Request
-from fastapi.responses import FileResponse, JSONResponse, PlainTextResponse
+from fastapi.responses import FileResponse, JSONResponse, Response
 from starlette.datastructures import UploadFile
 from starlette.exceptions import HTTPException as StarletteHTTPException
 from starlette.formparsers import MultiPartException
 
 from .audio import readiness
-from .config import InputError, Settings
-from .pipeline import Jobs, raw_text
+from .config import InputError, Settings, SetupError
+from .pipeline import Jobs
 from .schemas import MeetingView
+from .exports import FORMATS, export_files
+from .llm import llm_readiness
 
 
 class UploadLimit:
@@ -60,7 +62,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         finally:
             app.state.jobs.close()
 
-    app = FastAPI(title="Metawispr", version="0.2.0", lifespan=lifespan)
+    app = FastAPI(title="Metawispr", version="0.3.0", lifespan=lifespan)
     app.add_middleware(UploadLimit, max_bytes=settings.max_upload_bytes)
 
     def get_meeting(request, meeting_id):
@@ -71,7 +73,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
 
     @app.get("/api/health")
     def health():
-        return {"status": "ok", "phase": "audio-and-transcription", **readiness(settings),
+        return {"status": "ok", "phase": "meeting-documentation", **readiness(settings), **llm_readiness(settings),
                 "limits": {"upload_bytes": settings.max_upload_bytes,
                            "audio_seconds": settings.max_audio_seconds,
                            "pending_jobs": settings.max_pending_jobs}}
@@ -145,18 +147,25 @@ def create_app(settings: Settings | None = None) -> FastAPI:
     @app.get("/api/meetings/{meeting_id}", response_model=MeetingView)
     def detail(request: Request, meeting_id: UUID):
         meeting = get_meeting(request, meeting_id)
-        return MeetingView(meeting=meeting, raw=request.app.state.jobs.runner.store.raw(meeting.id))
+        store = request.app.state.jobs.runner.store
+        try:
+            return MeetingView(meeting=meeting, raw=store.raw(meeting.id), refined=store.refined(meeting.id),
+                               document=store.document(meeting.id))
+        except (SetupError, ValueError) as exc:
+            raise HTTPException(409, f"Saved artifact failed validation: {exc}") from exc
 
-    @app.post("/api/meetings/{meeting_id}/retry", status_code=202)
-    def retry(request: Request, meeting_id: UUID):
+    def resume(request, meeting_id, document_existing=False):
         jobs = request.app.state.jobs
         with jobs.lock:
             meeting = get_meeting(request, meeting_id)
-            if meeting.id in jobs.active or meeting.stage != "failed" or not meeting.retryable:
+            eligible = meeting.stage == "transcribed" if document_existing else meeting.stage == "failed" and meeting.retryable
+            if meeting.id in jobs.active or not eligible:
                 raise HTTPException(409, "This recording is not eligible for retry")
             if not jobs.slots.acquire(blocking=False):
                 raise HTTPException(429, "The local processing queue is full")
             try:
+                if document_existing:
+                    meeting.target = "complete"
                 meeting.stage, meeting.error, meeting.failed_stage = "queued", None, None
                 jobs.runner.store.put(meeting)
             except Exception:
@@ -169,6 +178,14 @@ def create_app(settings: Settings | None = None) -> FastAPI:
             raise
         return meeting
 
+    @app.post("/api/meetings/{meeting_id}/retry", status_code=202)
+    def retry(request: Request, meeting_id: UUID):
+        return resume(request, meeting_id)
+
+    @app.post("/api/meetings/{meeting_id}/document", status_code=202)
+    def document_existing(request: Request, meeting_id: UUID):
+        return resume(request, meeting_id, document_existing=True)
+
     @app.get("/api/meetings/{meeting_id}/audio")
     def audio(request: Request, meeting_id: UUID):
         meeting = get_meeting(request, meeting_id)
@@ -180,15 +197,21 @@ def create_app(settings: Settings | None = None) -> FastAPI:
     @app.get("/api/meetings/{meeting_id}/export/{format}")
     def export(request: Request, meeting_id: UUID, format: str):
         meeting = get_meeting(request, meeting_id)
-        raw = request.app.state.jobs.runner.store.raw(meeting.id)
-        if format not in {"raw.txt", "raw.json"}:
-            raise HTTPException(404, "Phase 2 provides raw.txt and raw.json exports")
-        if raw is None:
-            raise HTTPException(409, "The raw transcript is not available yet")
+        if format not in FORMATS:
+            raise HTTPException(404, "Unknown export format")
+        store = request.app.state.jobs.runner.store
+        try:
+            raw = store.raw(meeting.id)
+            refined = store.refined(meeting.id) if not format.startswith("raw.") else None
+            document = store.document(meeting.id) if format in {"meeting.md", "meeting.json", "provenance.json", "bundle.zip"} else None
+            artifacts = export_files(meeting, raw, refined, document, include_bundle=format == "bundle.zip")
+        except (SetupError, ValueError) as exc:
+            raise HTTPException(409, f"Saved artifact failed validation: {exc}") from exc
+        if format not in artifacts:
+            raise HTTPException(409, "This artifact is not available yet")
         headers = {"Content-Disposition": f'attachment; filename="{meeting.id}-{format}"'}
-        if format == "raw.txt":
-            return PlainTextResponse(raw_text(raw), headers=headers)
-        return JSONResponse(raw.model_dump(mode="json"), headers=headers)
+        media = "application/zip" if format.endswith(".zip") else "application/json" if format.endswith(".json") else "text/plain"
+        return Response(artifacts[format], media_type=media, headers=headers)
 
     return app
 

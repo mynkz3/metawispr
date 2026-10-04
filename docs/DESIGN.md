@@ -1,6 +1,6 @@
 # Metawispr design
 
-Version 0.2 · 4 October 2026 · implementation specification
+Version 0.3 · 5 October 2026 · implementation specification
 
 This document separates the problem statement's requirements from our engineering choices. The first release serves the recorded English meeting task. Mainstream open-source distribution is a later release goal; present architecture should be understandable and reproducible without building that future platform now.
 
@@ -40,8 +40,8 @@ See [PHASES.md](PHASES.md) for current status. Commit after each phase and each 
 | Role | Initial exact selection | Execution | Decision status |
 | --- | --- | --- | --- |
 | Speech recognition | `nvidia/parakeet-tdt-0.6b-v2`, sherpa-onnx v2 INT8 export | sherpa-onnx CPU runtime initially; 4 threads; 16 kHz input | Provisional primary ASR; must pass real-audio checks |
-| Terminology refinement | `Qwen/Qwen3.5-4B`; Ollama `qwen3.5:4b` | Local structured JSON generation; thinking disabled | Smaller distinct checkpoint for constrained span edits; not yet evaluated |
-| Meeting documentation | `Qwen/Qwen3.5-9B`; Ollama `qwen3.5:9b` | Local structured JSON generation; thinking disabled | Larger distinct checkpoint for extraction and consolidation; not yet evaluated |
+| Terminology refinement | `Qwen/Qwen3.5-4B`; Ollama `qwen3.5:4b` | Local structured JSON generation; thinking disabled | Genuine compatibility/terminology probe passed; representative quality pending |
+| Meeting documentation | `Qwen/Qwen3.5-9B`; Ollama `qwen3.5:9b` | Local structured JSON generation; thinking disabled | Genuine synthetic record passed manual compatibility review; representative quality pending |
 | ASR evaluation baseline | Whisper `large-v3` via faster-whisper | Separate benchmark, not a second production ASR | Comparison only, no automatic dual-model ensemble |
 
 This is a deliberate local default, not a claim that these are universally best. A hosted quality profile is a future decision if local extraction fails the quality gate. The application must not silently change models or fall back to fabricated output.
@@ -58,7 +58,7 @@ Verified primary sources:
 
 The development machine was observed to have an RTX 4060 Laptop GPU with 8 GB VRAM. This does not establish end-to-end speed or memory requirements. Run LLM roles sequentially and unload between stages. Use an 8,192-token configured context initially, with bounded input groups and output reserves; do not allocate a model's advertised maximum context by default. Ollama may offload to CPU. Do not promise that both LLMs fit together on the GPU.
 
-Record ASR file SHA-256 hashes, package/runtime versions, requested LLM tag, resolved LLM digest, generation options, prompt version/hash, input hashes, stage duration and completion state per meeting. Before closing Phase 2, resolve and commit `uv.lock`; it is currently absent because dependency downloads are blocked. Commit the frontend lockfile in Phase 4. Model downloads remain outside Git. Quantized checkpoints are deployment choices that require quality measurement.
+Record ASR file SHA-256 hashes, package/runtime versions, requested LLM tag, resolved LLM digest, generation options, prompt version/hash, input hashes, call duration and completion state per meeting. `uv.lock` is committed after genuine Windows runtime verification. Matching sherpa-onnx and Windows binary-package versions prevent use of an incompatible system ONNX Runtime DLL. Commit the frontend lockfile in Phase 4. Model downloads remain outside Git. Quantized checkpoints require quality measurement.
 
 ## 4. Architecture
 
@@ -85,7 +85,7 @@ The initial server runs with one process and one inference job at a time. Bound 
 
 ### Modules
 
-`schemas.py` defines contracts; `config.py` holds local settings/model identifiers; `audio.py` validates/decodes/transcribes using the standard-library WAV reader; `models.py` installs the exact ONNX export; `pipeline.py` coordinates persisted stages and exports; `api.py` exposes the workflow; `__main__.py` supplies setup/transcription CLI commands. Phase 3 adds `llm.py` for the local runtime and prompt policies. Phase 4 adds a small `frontend/` review workspace. Split modules only when a real responsibility requires it.
+`schemas.py` defines contracts; `config.py` holds local settings; `audio.py` validates/decodes/transcribes; `models.py` installs the exact ONNX export; `pipeline.py` coordinates persisted stages; `llm.py` handles local Ollama and call checkpoints; `documentation.py` handles edit guards, evidence and chronological consolidation; `exports.py` renders validated artifacts; `api.py` exposes the workflow; `__main__.py` supplies the CLI. Phase 4 adds a small `frontend/` review workspace.
 
 ### API
 
@@ -94,6 +94,7 @@ The initial server runs with one process and one inference job at a time. Bound 
 - `GET /api/meetings`: recent local recordings and stage state.
 - `GET /api/meetings/{id}`: metadata, stage status, available transcripts, record, warnings.
 - `POST /api/meetings/{id}/retry`: resume from valid saved checkpoints; reject duplicate execution.
+- `POST /api/meetings/{id}/document`: continue an existing ASR-only meeting through both LLM stages.
 - `GET /api/meetings/{id}/audio`: prepared audio with browser range support.
 - `GET /api/meetings/{id}/export/{format}`: current canonical artifacts; no LLM call during export.
 
@@ -113,15 +114,21 @@ A segment contains `id`, `start`, `end`, and `text`. IDs remain stable across re
 
 ### Refinement
 
-LLM 1 receives bounded transcript groups, surrounding context and an optional glossary. The transcript is untrusted data, not instructions. Return JSON edits with segment ID, character offsets, exact original span, replacement and reason. Zero edits is valid.
+LLM 1 receives bounded chronological transcript groups, meeting title and an optional glossary. The transcript is untrusted data, not instructions. Return JSON proposals with segment ID, exact original span, canonical replacement and reason. Python computes character offsets only when the original anchor occurs exactly once in that input segment. Reject absent or repeated anchors without guessing. A genuine Qwen probe exposed inaccurate model-computed offsets, motivating this deterministic resolution. Final accepted edits still retain original character offsets. Zero edits is valid.
 
 Require exact span matches and reject invalid/overlapping edits. Preserve digits, negation and obvious commitment markers mechanically; constrain term corrections to supplied glossary entries initially. Flag rejected edits and retain original text. Guard checks cannot certify meaning, dates or names. The glossary improves precision but does not prove ambiguous audio; user review remains necessary.
+
+The glossary uses one canonical term per line, optionally `alias => canonical`. An explicit alias or plausible spelling similarity is required; unrelated rewrites are rejected. Conflicting aliases fail input validation. Without a glossary, the refinement model still executes, but no terminology changes can be accepted.
 
 Save raw transcript, refined transcript, accepted edits, rejected edits and reasons. Refinement is not summarization, rewriting or adding details. A failed refinement must not silently bypass a required LLM stage.
 
 ### Documentation and long meetings
 
-LLM 2 extracts facts from bounded segment groups, then consolidates when multiple groups exist. Evidence passes forward, and the consolidation prompt must account for later withdrawal, disagreement or reassignment. Multi-call execution still uses the same distinct documentation checkpoint.
+LLM 2 extracts facts from bounded segment groups, then reconciles adjacent groups when multiple groups exist. A typed response must give every candidate decision/task exactly one disposition: keep, retire or replace. Changes require explicit later evidence; identical replacements preserve the original. A separate notes-only call writes summary/topics/uncertainties while Python copies the resolved current decisions/tasks into the canonical record. Multi-call execution uses the same distinct documentation checkpoint.
+
+Intermediate batches carry a meeting record plus evidence-backed revision signals, including changes whose earlier targets are outside the current group. Adjacent chronological batches consolidate in a hierarchy. Consolidation may only quote evidence supplied by its inputs, compacted into a deduplicated quote table. Revision signals and original/later resolution quotes remain in a separate `revision_audit` for review, rather than becoming current tasks or uncertainties. This carries later changes forward; interpreting them correctly remains a model/human quality check.
+
+Inputs use a conservative UTF-8 byte bound for the selected byte-level tokenizers, reserving the configured output tokens and chat framing. It may underuse available context, but prevents silent truncation. A single oversized segment, glossary or consolidation fails explicitly. Increasing context or using a shorter recording is required when all final decisions/tasks plus evidence cannot fit; the 120-minute audio ceiling is not a guarantee that arbitrary information density fits an 8,192-token generation. Output exhaustion or invalid responses get at most two attempts.
 
 The record contains an evidence-backed summary, topic minutes, decisions, tasks and unresolved ambiguities. Each factual item includes exact source quotes and segment IDs. Task owner and deadline fields are nullable. Preserve relative deadline wording; do not resolve it against the upload date. Do not turn a suggestion into agreement, or an unnamed speaker into an owner. A withdrawn decision must not remain a current decision merely because it appeared in an earlier group.
 
@@ -130,6 +137,8 @@ Evidence validation requires referenced segments to exist and quoted text to mat
 ### Canonical storage and exports
 
 Each meeting stores original audio, prepared audio, status/metadata, raw JSON/text, refined JSON/text, edit history, model provenance, documentation JSON and timing information in its own local directory. Writes are atomic. Failed LLM responses may be saved locally for debugging, never committed automatically.
+
+Successful structured calls are saved under `refining/calls/` and `documenting/calls/`, keyed by input, prompt, schema, model digest, runtime and generation settings. Resume validates and reuses those calls. Stage artifacts are `refined.json` and `document.json`; transcript text and audit downloads render from them. Saved raw/refined/documented source hashes must agree. Configuration/prompt changes cannot silently overwrite a completed stage. Completed stages can be read and exported without a running LLM server.
 
 Markdown, JSON and ZIP render from the same validated record. ZIP includes both transcripts, correction history, meeting JSON and meeting Markdown. Use identical decisions and tasks in all formats; show null owner/deadline as `Unspecified`. Escape export/HTML presentation appropriately. Raw transcript exports remain available even if a downstream stage fails.
 

@@ -31,8 +31,15 @@ class Edit(Contract):
     reason: str = Field(min_length=1)
 
 
+class EditProposal(Contract):
+    segment_id: str
+    original: str = Field(min_length=1)
+    replacement: str = Field(min_length=1)
+    reason: str = Field(min_length=1)
+
+
 class EditBatch(Contract):
-    edits: list[Edit]
+    edits: list[EditProposal]
 
 
 class Evidence(Contract):
@@ -61,6 +68,92 @@ class MeetingRecord(Contract):
     decisions: list[Fact]
     tasks: list[Task]
     uncertainties: list[str]
+
+
+class DocumentationBatch(Contract):
+    record: MeetingRecord
+    revisions: list[Fact]
+
+
+class ResolvedItem(Contract):
+    kind: Literal["decision", "task"]
+    text: str = Field(min_length=1)
+    owner: str | None
+    deadline: str | None
+    evidence: list[Evidence] = Field(min_length=1)
+
+
+class Resolution(Contract):
+    candidate_id: str
+    disposition: Literal["keep", "retire", "replace"]
+    replacement: ResolvedItem | None
+    evidence: list[Evidence] = Field(min_length=1)
+    reason: str = Field(min_length=1)
+
+
+class ResolutionBatch(Contract):
+    resolutions: list[Resolution]
+
+
+class ConsolidatedNotes(Contract):
+    summary: list[Fact]
+    topics: list[Topic]
+    uncertainties: list[str]
+
+
+class LLMModel(Contract):
+    tag: str
+    digest: str = Field(pattern=r"^(sha256:)?[a-f0-9]{64}$")
+    runtime_version: str
+    parameter_size: str
+    quantization: str
+
+
+class LLMCall(Contract):
+    key: str
+    model: LLMModel
+    prompt_sha256: str
+    input_sha256: str
+    schema_sha256: str
+    context: int
+    output_tokens: int
+    temperature: float = 0.0
+    seed: int = 0
+    thinking: Literal[False] = False
+    presence_penalty: float = 0.0
+    repeat_penalty: float = 1.0
+    elapsed_seconds: float = Field(ge=0)
+    prompt_tokens: int = Field(ge=0)
+    generated_tokens: int = Field(ge=0)
+    attempts: int = Field(ge=1, le=2)
+
+
+class RejectedEdit(Contract):
+    edit: Edit | EditProposal
+    rejection: str
+
+
+class RefinedTranscript(Contract):
+    schema_version: Literal["1.0"] = "1.0"
+    source_sha256: str
+    policy_sha256: str
+    created_at: str
+    segments: list[Segment] = Field(min_length=1)
+    accepted: list[Edit]
+    rejected: list[RejectedEdit]
+    calls: list[LLMCall] = Field(min_length=1)
+    warnings: list[str]
+
+
+class DocumentedMeeting(Contract):
+    schema_version: Literal["1.0"] = "1.0"
+    source_sha256: str
+    policy_sha256: str
+    created_at: str
+    record: MeetingRecord
+    revision_audit: list[Fact] = Field(default_factory=list)
+    calls: list[LLMCall] = Field(min_length=1)
+    warnings: list[str]
 
 
 Stage = Literal[
@@ -123,8 +216,14 @@ class Meeting(Contract):
     failed_stage: Stage | None = None
     error: str | None = None
     retryable: bool = False
+    target: Literal["transcribed", "complete"] = "complete"
+    llm_completed_calls: int = Field(default=0, ge=0)
+    refined_at: str | None = None
+    documented_at: str | None = None
 
 
 class MeetingView(Contract):
     meeting: Meeting
     raw: RawTranscript | None
+    refined: RefinedTranscript | None = None
+    document: DocumentedMeeting | None = None

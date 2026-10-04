@@ -8,6 +8,10 @@ import numpy as np
 from metawispr.audio import file_sha256, inspect_pcm
 from metawispr.schemas import ModelInfo, RawTranscript, Segment
 import wave
+import json
+
+from metawispr.llm import Ollama
+from metawispr.schemas import LLMModel
 
 
 def wav_bytes(seconds=0.25, silent=False, rate=16000, channels=1):
@@ -41,3 +45,45 @@ class FixtureASR:
                             runtime_version="0", provider="cpu", num_threads=1, file_sha256={}),
             load_seconds=0.0, decode_seconds=0.0, created_at=created_at,
         )
+
+
+class FixtureLLM(Ollama):
+    """Exercises the real adapter/checkpoint code with explicitly fabricated responses."""
+
+    def __init__(self, settings):
+        super().__init__(settings)
+        self.requests = []
+        self.unloaded = []
+        self.fail_document = False
+
+    def models(self):
+        return tuple(LLMModel(tag=tag, digest=character * 64, runtime_version="test-double",
+                              parameter_size="test-double", quantization="test-double")
+                     for tag, character in ((self.settings.refiner_model, "a"), (self.settings.documenter_model, "b")))
+
+    def request(self, method, path, body=None, timeout=None):
+        from metawispr.config import SetupError
+        self.requests.append((path, body))
+        if self.fail_document and body["model"] == self.settings.documenter_model:
+            raise SetupError("Explicit test-double documentation failure")
+        payload = json.loads(body["messages"][1]["content"])
+        if body["model"] == self.settings.refiner_model:
+            output = {"edits": []}
+        else:
+            record = {"summary": [], "topics": [], "decisions": [], "tasks": [], "uncertainties": []}
+            if "segments" in payload:
+                segment = payload["segments"][0]
+                record["summary"] = [{"text": "Explicit test-double summary", "evidence": [
+                    {"segment_id": segment["id"], "quote": segment["text"]}]}]
+            else:
+                for batch in payload["chronological_batches"]:
+                    for fact in batch["record"]["summary"]:
+                        record["summary"].append({"text": fact["text"],
+                                                   "evidence": [payload["evidence"][index] for index in fact["evidence_ids"]]})
+            output = ({key: record[key] for key in ("summary", "topics", "uncertainties")}
+                      if "resolved_current" in payload else {"record": record, "revisions": []})
+        return {"done": True, "done_reason": "stop", "message": {"content": json.dumps(output)},
+                "prompt_eval_count": 1, "eval_count": 1}
+
+    def unload(self, model):
+        self.unloaded.append(model.tag)

@@ -1,4 +1,4 @@
-"""Per-meeting checkpoints and one bounded local transcription worker."""
+"""Per-meeting checkpoints and one bounded local inference worker."""
 
 from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime, timezone
@@ -10,10 +10,13 @@ import logging
 import os
 import tempfile
 import time
+import gc
 
 from .audio import Parakeet, file_sha256, inspect_pcm, prepare_audio
 from .config import InputError, Settings, SetupError, SUPPORTED_SUFFIXES
-from .schemas import Meeting, RawTranscript
+from .schemas import Meeting, RawTranscript, RefinedTranscript, DocumentedMeeting
+from .llm import Ollama, digest
+from .documentation import Documentation, apply_edits, validate_record, refinement_policy, documentation_policy, glossary_terms
 
 
 def now() -> str:
@@ -72,6 +75,7 @@ class Store:
         title = title.strip() or Path(filename).stem or "Untitled meeting"
         if len(title) > 200 or len(glossary) > 10000:
             raise InputError("Title is limited to 200 characters and terminology to 10,000 characters.")
+        glossary_terms(glossary)
         identifier = str(uuid4())
         self.directory(identifier).mkdir()
         meeting = Meeting(id=identifier, title=title, filename=filename,
@@ -105,12 +109,46 @@ class Store:
             atomic_write(directory / "raw.json", raw.model_dump_json(indent=2))
             atomic_write(directory / "raw.txt", raw_text(raw))
 
+    def read_json(self, meeting_id, filename):
+        with self.io_lock:
+            path = self.directory(meeting_id) / filename
+            return json.loads(path.read_text(encoding="utf-8")) if path.exists() else None
+
+    def write_json(self, meeting_id, filename, value):
+        with self.io_lock:
+            atomic_write(self.directory(meeting_id) / filename, json.dumps(value, ensure_ascii=False, indent=2))
+
+    def refined(self, meeting_id):
+        saved = self.read_json(meeting_id, "refined.json")
+        if saved is None:
+            return None
+        result = RefinedTranscript.model_validate(saved)
+        raw, meeting = self.raw(meeting_id), self.get(meeting_id)
+        if raw is None or result.source_sha256 != digest(raw.model_dump()):
+            raise SetupError("Refined checkpoint does not match the raw transcript.")
+        segments, accepted, rejected = apply_edits(raw.segments, result.accepted, meeting.glossary)
+        if rejected or accepted != result.accepted or segments != result.segments:
+            raise SetupError("Refined checkpoint fails edit validation.")
+        return result
+
+    def document(self, meeting_id):
+        saved = self.read_json(meeting_id, "document.json")
+        if saved is None:
+            return None
+        result = DocumentedMeeting.model_validate(saved)
+        refined = self.refined(meeting_id)
+        if refined is None or result.source_sha256 != digest(refined.model_dump()):
+            raise SetupError("Documentation checkpoint does not match the refined transcript.")
+        validate_record(result.record, refined.segments, result.revision_audit)
+        return result
+
 
 class Runner:
     def __init__(self, settings: Settings):
         self.settings = settings
         self.store = Store(settings)
         self.asr = Parakeet(settings)
+        self.llm = Ollama(settings)
 
     def run(self, meeting_id: str):
         meeting = self.store.get(meeting_id)
@@ -123,35 +161,82 @@ class Runner:
             if existing:
                 if existing.input_sha256 != meeting.input_sha256:
                     raise InputError("The saved transcript belongs to a different recording.")
+                prepared = directory / "prepared.wav"
+                if not prepared.is_file() or file_sha256(prepared) != existing.audio_sha256:
+                    raise InputError("The prepared audio is missing or changed. Upload the original as a new meeting.")
                 atomic_write(directory / "raw.txt", raw_text(existing))
                 meeting.stage = "transcribed"
                 meeting.transcribed_at = existing.created_at
+                meeting.duration_seconds = existing.duration_seconds
                 meeting.processed_audio_seconds = existing.duration_seconds
                 meeting.error, meeting.failed_stage, meeting.retryable = None, None, False
                 self.store.put(meeting)
-                return
-            meeting.stage = "preparing"
-            meeting.error, meeting.failed_stage, meeting.retryable = None, None, False
-            self.store.put(meeting)
-            prepared = directory / "prepared.wav"
-            started = time.perf_counter()
-            if prepared.exists():
-                meeting.duration_seconds = inspect_pcm(prepared, self.settings.max_audio_seconds)
             else:
-                meeting.duration_seconds = prepare_audio(source, prepared, self.settings)
-                meeting.prepare_seconds = time.perf_counter() - started
-            meeting.stage = "transcribing"
-            meeting.processed_audio_seconds = 0.0
-            self.store.put(meeting)
-
-            def progress(seconds):
-                meeting.processed_audio_seconds = seconds
+                meeting.stage = "preparing"
+                meeting.error, meeting.failed_stage, meeting.retryable = None, None, False
+                self.store.put(meeting)
+                prepared = directory / "prepared.wav"
+                started = time.perf_counter()
+                if prepared.exists():
+                    meeting.duration_seconds = inspect_pcm(prepared, self.settings.max_audio_seconds)
+                else:
+                    meeting.duration_seconds = prepare_audio(source, prepared, self.settings)
+                    meeting.prepare_seconds = time.perf_counter() - started
+                meeting.stage = "transcribing"
+                meeting.processed_audio_seconds = 0.0
                 self.store.put(meeting)
 
-            raw = self.asr.transcribe(prepared, meeting.input_sha256, now(), progress)
-            self.store.save_raw(meeting_id, raw)
-            meeting.stage = "transcribed"
-            meeting.transcribed_at = raw.created_at
+                def progress(seconds):
+                    meeting.processed_audio_seconds = seconds
+                    self.store.put(meeting)
+
+                raw = self.asr.transcribe(prepared, meeting.input_sha256, now(), progress)
+                self.store.save_raw(meeting_id, raw)
+                meeting.stage = "transcribed"
+                meeting.transcribed_at = raw.created_at
+                self.store.put(meeting)
+            if meeting.target == "transcribed":
+                return
+            # Release native ASR weights before loading either LLM.
+            if isinstance(self.asr, Parakeet):
+                self.asr.recognizer = None
+                gc.collect()
+            raw = self.store.raw(meeting_id)
+            worker = Documentation(self.settings, self.store, self.llm)
+
+            def llm_progress(count):
+                meeting.llm_completed_calls = count
+                self.store.put(meeting)
+
+            meeting.stage = "refining"
+            meeting.llm_completed_calls = 0
+            self.store.put(meeting)
+            refined = self.store.refined(meeting_id)
+            models = None
+            if refined is None:
+                models = self.llm.models()
+                refined = worker.refine(meeting, raw, models[0], llm_progress)
+                self.store.write_json(meeting_id, "refined.json", refined.model_dump())
+            elif refined.policy_sha256 != refinement_policy(self.settings, meeting.glossary):
+                raise SetupError("Refinement policy changed. Restore its model/glossary/prompt settings or submit a new meeting.")
+            meeting.refined_at = refined.created_at
+            meeting.stage = "documenting"
+            meeting.llm_completed_calls = 0
+            self.store.put(meeting)
+            document = self.store.document(meeting_id)
+            if document is None:
+                models = models or self.llm.models()
+                if any(call.model.digest.removeprefix("sha256:") == models[1].digest.removeprefix("sha256:")
+                       for call in refined.calls):
+                    raise SetupError("Documentation weights match the saved refinement weights; use a distinct model.")
+                document = worker.document(meeting, refined, models[1], llm_progress)
+                self.store.write_json(meeting_id, "document.json", document.model_dump())
+            elif document.policy_sha256 != documentation_policy(self.settings):
+                raise SetupError("Documentation policy changed. Restore its model/prompt settings or submit a new meeting.")
+            meeting.documented_at = document.created_at
+            meeting.llm_completed_calls = len(document.calls)
+            meeting.stage = "complete"
+            meeting.error, meeting.failed_stage, meeting.retryable = None, None, False
             self.store.put(meeting)
         except Exception as exc:
             failed_stage = meeting.stage
@@ -174,7 +259,7 @@ class Jobs:
         self.lock = Lock()
         self.active = set()
         for meeting in self.runner.store.list(limit=10**9):
-            if meeting.stage in {"queued", "preparing", "transcribing"}:
+            if meeting.stage in {"queued", "preparing", "transcribing", "refining", "documenting"}:
                 meeting.failed_stage, meeting.stage = meeting.stage, "failed"
                 meeting.retryable = (self.runner.store.directory(meeting.id) / meeting.source_name).is_file()
                 meeting.error = "Processing was interrupted. Retry to resume saved stages."
