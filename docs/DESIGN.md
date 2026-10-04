@@ -1,6 +1,6 @@
 # Metawispr design
 
-Version 0.1 · 4 October 2026 · implementation specification
+Version 0.2 · 4 October 2026 · implementation specification
 
 This document separates the problem statement's requirements from our engineering choices. The first release serves the recorded English meeting task. Mainstream open-source distribution is a later release goal; present architecture should be understandable and reproducible without building that future platform now.
 
@@ -58,7 +58,7 @@ Verified primary sources:
 
 The development machine was observed to have an RTX 4060 Laptop GPU with 8 GB VRAM. This does not establish end-to-end speed or memory requirements. Run LLM roles sequentially and unload between stages. Use an 8,192-token configured context initially, with bounded input groups and output reserves; do not allocate a model's advertised maximum context by default. Ollama may offload to CPU. Do not promise that both LLMs fit together on the GPU.
 
-Record ASR file SHA-256 hashes, package/runtime versions, requested LLM tag, resolved LLM digest, generation options, prompt version/hash, input hashes, stage duration and completion state per meeting. Install reproducible Python dependencies using the committed `uv.lock`; commit the frontend lockfile. Model downloads remain outside Git. Quantized checkpoints are deployment choices that require quality measurement.
+Record ASR file SHA-256 hashes, package/runtime versions, requested LLM tag, resolved LLM digest, generation options, prompt version/hash, input hashes, stage duration and completion state per meeting. Before closing Phase 2, resolve and commit `uv.lock`; it is currently absent because dependency downloads are blocked. Commit the frontend lockfile in Phase 4. Model downloads remain outside Git. Quantized checkpoints are deployment choices that require quality measurement.
 
 ## 4. Architecture
 
@@ -81,11 +81,11 @@ flowchart TD
 
 The React frontend replaces the earlier tentative Streamlit choice because audio evidence navigation and the requested visual quality benefit from direct control over interaction and layout. FastAPI provides typed endpoints, upload streaming and same-origin static frontend hosting. Use ordinary Python functions and one bounded executor; no orchestration framework is necessary for an ordered local pipeline.
 
-The initial server runs with one process and one inference job at a time. Bound the number of queued jobs. Heavy inference never runs on the request event loop. Checkpoint writes use temporary files followed by atomic replacement. Restart recovery marks interrupted jobs as retryable instead of presenting them as successful. Multi-process deployment would require a shared job store and queue; it is outside this release.
+The initial server runs with one process and one inference job at a time. Bound uploads plus queued/active work to three reservations by default. Heavy inference never runs on the request event loop. Checkpoint writes use temporary files followed by atomic replacement; reads and writes share a process-local lock because Windows disallows replacement while a reader holds the destination open. Restart recovery marks interrupted jobs as retryable instead of presenting them as successful. Multi-process deployment would require a shared job store and queue; it is outside this release. The CLI uses the same pipeline independently and must not write to an actively served data directory.
 
 ### Modules
 
-`schemas.py` defines contracts; `audio.py` validates/decodes/transcribes; `llm.py` calls the local runtime and applies prompt policies; `pipeline.py` coordinates persisted stages and exports; `api.py` exposes the workflow. A small `frontend/` contains the review workspace. Split modules only when a real responsibility requires it.
+`schemas.py` defines contracts; `config.py` holds local settings/model identifiers; `audio.py` validates/decodes/transcribes using the standard-library WAV reader; `models.py` installs the exact ONNX export; `pipeline.py` coordinates persisted stages and exports; `api.py` exposes the workflow; `__main__.py` supplies setup/transcription CLI commands. Phase 3 adds `llm.py` for the local runtime and prompt policies. Phase 4 adds a small `frontend/` review workspace. Split modules only when a real responsibility requires it.
 
 ### API
 
@@ -105,7 +105,7 @@ The initial UI supports source inspection, not direct mutation of transcripts. F
 
 Accept common WAV, MP3, M4A, FLAC, OGG and WEBM recordings, with successful decoder validation rather than trusting the extension. Defaults: 200 MB upload and 120-minute duration ceiling. Reject empty/undecodable input, limit conversion time, disable network protocols during decoding, and reject silence/no useful transcript with a clear outcome. Preserve the original file; normalize a working copy to 16 kHz mono PCM. Keep duration and original offsets. Do not apply aggressive denoising by default.
 
-Use bounded non-overlapping audio windows initially, selecting cuts near low-energy pauses and recording offsets. This avoids duplicating overlap text; boundary cuts remain an explicitly measured quality risk. A proper VAD path is an upgrade only if boundary/memory evaluation requires it. Windows are not speaker turns. Do not label identities that have not been established.
+Use bounded non-overlapping audio windows initially, selecting cuts near low-energy pauses and recording offsets. Phase 2 defaults to 30 seconds, searching the final three seconds for the quietest 200 ms and cutting at its midpoint. Skip only exact digital silence. This avoids duplicating overlap text; boundary cuts remain a quality risk that needs real evaluation. A proper VAD path is an upgrade only if boundary/memory evaluation requires it. Windows are not speaker turns. Do not label identities that have not been established.
 
 ### Raw transcript
 
@@ -152,7 +152,7 @@ Do not place model parameters, infrastructure jargon or benchmark claims in the 
 
 ## 7. Errors, recovery and bounded execution
 
-Stages are `queued`, `preparing`, `transcribing`, `refining`, `documenting`, `complete`, or `failed`, with a recorded failed stage and user-facing explanation. An interrupted server restart becomes `failed` with a retry action. Saved valid stages are reused; export and UI polling do not run inference.
+Stages are `queued`, `preparing`, `transcribing`, `transcribed`, `refining`, `documenting`, `complete`, or `failed`, with a recorded failed stage and user-facing explanation. Phase 2 stops at `transcribed`, which must not be displayed as full documentation completion. An interrupted server restart becomes `failed` with a retry action. Saved valid stages are reused; export and UI polling do not run inference.
 
 Allow two structured-generation attempts per group. Retry validation failures with a compact explanation; bound network and audio timeouts. A missing model is a setup error, not a reason to silently select a smaller model. Isolate meeting directories and bound uploads, duration, job queue and prompt size. Never pass user filenames through shell interpolation.
 
