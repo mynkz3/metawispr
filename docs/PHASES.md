@@ -5,8 +5,8 @@ Statuses describe actual work, not an estimate of model quality. Each phase has 
 | Phase | Deliverable | Exit gate | Status |
 | --- | --- | --- | --- |
 | 1. Design and contracts | This plan, complete design, model decisions, validated schemas, visual preview, repository conventions | Requirement traceability reviewed; contract checks pass; dependency specification recorded | Complete |
-| 2. Audio and transcription | Dependency locks, bounded upload, FFmpeg preparation, timed ASR segments, saved raw transcript | Runtime installed/locked; invalid audio rejected; timing preserved; real Parakeet smoke test recorded | Application implementation and 35 tests complete; runtime/lock, real conversion and real ASR checks blocked by downloads |
-| 3. Refinement and documentation | Separate LLM checkpoints/prompts, edit guards, evidence validation, canonical exports, recoverable jobs | Semantic guard and API tests pass; genuine model execution is reported separately | Planned |
+| 2. Audio and transcription | Dependency locks, bounded upload, FFmpeg preparation, timed ASR segments, saved raw transcript | Runtime installed/locked; invalid audio rejected; timing preserved; real Parakeet smoke test recorded | Complete; installed/locked runtime, real FFmpeg conversion and genuine Parakeet compatibility run recorded in PHASE2.md |
+| 3. Refinement and documentation | Separate LLM checkpoints/prompts, edit guards, evidence validation, canonical exports, recoverable jobs | Semantic guard and API tests pass; genuine model execution is reported separately | Implementing; 58 automated checks pass, real Qwen checks underway |
 | 4. Review workspace | Responsive, accessible upload/results UI, audio evidence navigation, progress, errors, exports | Production build passes; desktop and narrow viewport inspected | Planned |
 | 5. Verification and delivery | Reproducible setup, sharable sample, actual outputs, evaluation report and demonstration | Real three-stage run; held-out English meeting checks; export consistency; documentation complete | Planned |
 
