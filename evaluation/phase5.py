@@ -3,6 +3,7 @@
 import argparse
 from dataclasses import replace
 from datetime import datetime, timezone
+from importlib.metadata import version
 from io import BytesIO
 import json
 from pathlib import Path
@@ -14,8 +15,8 @@ import time
 import xml.etree.ElementTree as ET
 from zipfile import ZipFile
 
-from metawispr.audio import file_sha256
-from metawispr.config import Settings
+from metawispr.audio import asr_profile_matches, file_sha256
+from metawispr.config import ASR_VARIANTS, Settings
 from metawispr.documentation import facts, documentation_policy, refinement_policy
 from metawispr.exports import export_files
 from metawispr.llm import digest, prompt
@@ -105,6 +106,12 @@ def main():
     identity = {"meeting": args.meeting, "split": args.split, "input_sha256": file_sha256(source),
                 "manual_sha256": file_sha256(args.root / "manual.json"),
                 "reference_sha256": file_sha256(args.root / "reference.json"), "glossary": glossary,
+                "asr_profile": {"requested_provider": settings.asr_provider,
+                                "precision": settings.asr_precision,
+                                "package": ASR_VARIANTS[settings.asr_precision][0],
+                                "runtime_version": version("sherpa-onnx"),
+                                "file_sha256": {name: file_sha256(settings.model_dir / name)
+                                                for name in ASR_VARIANTS[settings.asr_precision][1]}},
                 "models": [m.model_dump() for m in models], "context": settings.llm_context,
                 "output_tokens": settings.llm_output_tokens,
                 "prompts": {name: digest(prompt(name)) for name in ["refine", "document", "review", "notes", "reconcile", "consolidate"]},
@@ -147,6 +154,9 @@ def main():
         previous_report = read(args.resume_report)
         if previous_report["identity"]["input_sha256"] != identity["input_sha256"] or previous_report["identity"]["meeting"] != args.meeting:
             parser.error("Resume report belongs to another recording")
+        prior_raw = runner.store.raw(previous_report["meeting_id"])
+        if prior_raw and not asr_profile_matches(prior_raw.model, settings):
+            parser.error("Resumed ASR checkpoint differs from the requested provider, precision, runtime or weights")
         meeting = runner.store.get(previous_report["meeting_id"])
         meeting.target = "transcribed" if args.asr_only else "complete"
         runner.store.put(meeting)
@@ -175,10 +185,8 @@ def main():
             prepared = args.reuse_asr.parent / "prepared.wav"
             if cached.input_sha256 != identity["input_sha256"] or file_sha256(prepared) != cached.audio_sha256:
                 parser.error("Reused ASR source/prepared-audio hashes do not match this recording")
-            if cached.model.model_id != "nvidia/parakeet-tdt-0.6b-v2" or cached.model.runtime != "sherpa-onnx" or cached.model.num_threads != settings.asr_threads:
-                parser.error("Reused ASR metadata differs from the real configured Parakeet profile")
-            if any(file_sha256(settings.model_dir / name) != checksum for name, checksum in cached.model.file_sha256.items()):
-                parser.error("Reused ASR weights differ from the installed checkpoint")
+            if not asr_profile_matches(cached.model, settings):
+                parser.error("Reused ASR checkpoint differs from the requested provider, precision, runtime or weights")
             shutil.copyfile(prepared, runner.store.directory(meeting.id) / "prepared.wav")
             runner.store.save_raw(meeting.id, cached)
             report["asr_checkpoint_reused"] = {"path": str(args.reuse_asr), "raw_sha256": file_sha256(args.reuse_asr),

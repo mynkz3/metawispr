@@ -10,6 +10,11 @@ MODEL_ID = "nvidia/parakeet-tdt-0.6b-v2"
 MODEL_PACKAGE = "sherpa-onnx-nemo-parakeet-tdt-0.6b-v2-int8"
 MODEL_FILES = ("encoder.int8.onnx", "decoder.int8.onnx", "joiner.int8.onnx", "tokens.txt")
 MODEL_URL = f"https://github.com/k2-fsa/sherpa-onnx/releases/download/asr-models/{MODEL_PACKAGE}.tar.bz2"
+ASR_VARIANTS = {
+    "int8": (MODEL_PACKAGE, MODEL_FILES),
+    "fp16": ("sherpa-onnx-nemo-parakeet-tdt-0.6b-v2-fp16",
+             ("encoder.fp16.onnx", "decoder.fp16.onnx", "joiner.fp16.onnx", "tokens.txt")),
+}
 SUPPORTED_SUFFIXES = {".wav", ".mp3", ".m4a", ".flac", ".ogg", ".webm"}
 
 
@@ -29,6 +34,8 @@ class Settings:
     max_upload_bytes: int = 200 * 1024 * 1024
     max_audio_seconds: int = 7200
     asr_threads: int = 4
+    asr_provider: str = "cpu"
+    asr_precision: str = "int8"
     chunk_seconds: int = 30
     decode_timeout_seconds: int = 180
     max_pending_jobs: int = 3
@@ -47,6 +54,8 @@ class Settings:
                 raise ValueError(f"{name} must be a positive integer")
         if not 1 <= self.asr_threads <= 32 or not 1 <= self.chunk_seconds <= 120:
             raise ValueError("ASR threads must be 1–32 and chunk seconds 1–120")
+        if self.asr_provider not in {"cpu", "cuda"} or self.asr_precision not in ASR_VARIANTS:
+            raise ValueError("ASR provider must be cpu/cuda and precision must be int8/fp16")
         if self.llm_context < 4096 or self.llm_output_tokens >= self.llm_context // 2:
             raise ValueError("LLM context must be at least 4096; output must be less than half the context")
         endpoint = urlsplit(self.ollama_url)
@@ -62,13 +71,18 @@ class Settings:
         def integer(name, default):
             return int(os.getenv(f"METAWISPR_{name}", str(default)))
 
+        precision = os.getenv("METAWISPR_ASR_PRECISION", "int8")
+        if precision not in ASR_VARIANTS:
+            raise ValueError("ASR precision must be int8 or fp16")
         return cls(
             data_dir=Path(os.getenv("METAWISPR_DATA_DIR", "data")).resolve(),
             ui_dir=Path(os.getenv("METAWISPR_UI_DIR", "frontend/dist")).resolve(),
-            model_dir=Path(os.getenv("METAWISPR_ASR_DIR", str(Path("models") / MODEL_PACKAGE))).resolve(),
+            model_dir=Path(os.getenv("METAWISPR_ASR_DIR", str(Path("models") / ASR_VARIANTS[precision][0]))).resolve(),
             max_upload_bytes=integer("MAX_UPLOAD_MB", 200) * 1024 * 1024,
             max_audio_seconds=integer("MAX_AUDIO_SECONDS", 7200),
             asr_threads=integer("ASR_THREADS", 4),
+            asr_provider=os.getenv("METAWISPR_ASR_PROVIDER", "cpu"),
+            asr_precision=precision,
             chunk_seconds=integer("CHUNK_SECONDS", 30),
             decode_timeout_seconds=integer("DECODE_TIMEOUT_SECONDS", 180),
             max_pending_jobs=integer("MAX_PENDING_JOBS", 3),

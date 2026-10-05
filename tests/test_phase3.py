@@ -1,4 +1,5 @@
 from io import BytesIO
+from dataclasses import replace
 from pathlib import Path
 from tempfile import TemporaryDirectory
 from unittest.mock import patch
@@ -169,6 +170,28 @@ class Phase3Tests(unittest.TestCase):
         self.assertEqual(len(refine_calls), 1)
         self.assertEqual(runner.llm.unloaded, [self.settings.refiner_model, self.settings.documenter_model,
                                               self.settings.documenter_model])
+
+    def test_cuda_request_does_not_reuse_a_saved_cpu_parakeet_transcript(self):
+        settings = replace(self.settings, asr_provider="cuda")
+        runner = Runner(settings)
+        meeting = runner.store.begin("fixture.wav")
+        directory = runner.store.directory(meeting.id)
+        source = directory / meeting.source_name
+        source.write_bytes(wav_bytes())
+        meeting.input_sha256 = file_sha256(source)
+        runner.store.put(meeting)
+        (directory / "prepared.wav").write_bytes(source.read_bytes())
+        raw = FixtureASR().transcribe(source, meeting.input_sha256, "fixture")
+        raw.model = raw.model.model_copy(update={"model_id": "nvidia/parakeet-tdt-0.6b-v2",
+                                                 "package": "sherpa-onnx-nemo-parakeet-tdt-0.6b-v2-int8",
+                                                 "runtime": "sherpa-onnx", "provider": "cpu"})
+        runner.store.save_raw(meeting.id, raw)
+        before = (directory / "raw.json").read_bytes()
+        runner.run(meeting.id)
+        state = runner.store.get(meeting.id)
+        self.assertEqual(state.stage, "failed")
+        self.assertIn("ASR profile", state.error)
+        self.assertEqual((directory / "raw.json").read_bytes(), before)
 
     def test_legacy_serialized_provenance_hash_remains_readable_without_invented_options(self):
         runner, meeting = self.runner_and_meeting()

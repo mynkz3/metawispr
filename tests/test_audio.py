@@ -8,8 +8,8 @@ import wave
 
 import numpy as np
 
-from metawispr.audio import Parakeet, audio_windows, file_sha256, inspect_pcm, prepare_audio
-from metawispr.config import InputError, Settings, SetupError
+from metawispr.audio import Parakeet, asr_profile_matches, audio_windows, file_sha256, inspect_pcm, prepare_audio
+from metawispr.config import MODEL_FILES, InputError, Settings, SetupError
 from support import FixtureASR, wav_bytes
 
 
@@ -105,6 +105,46 @@ class AudioTests(unittest.TestCase):
         self.source.write_bytes(wav_bytes())
         with self.assertRaisesRegex(SetupError, "files are missing"):
             Parakeet(self.settings).transcribe(self.source, file_sha256(self.source), "test-time")
+
+    def test_cuda_rejects_cpu_only_sherpa_before_native_provider_fallback(self):
+        for name in MODEL_FILES:
+            (self.root / name).write_bytes(b"fixture")
+        settings = Settings(model_dir=self.root, asr_provider="cuda")
+        with patch("metawispr.audio.version", return_value="1.13.8"):
+            with self.assertRaisesRegex(SetupError, "CUDA-enabled"):
+                Parakeet(settings).load()
+
+    def test_cuda_records_selected_provider_and_fp16_file_hashes(self):
+        names = ("encoder.fp16.onnx", "decoder.fp16.onnx", "joiner.fp16.onnx", "tokens.txt")
+        for name in names:
+            (self.root / name).write_bytes(name.encode())
+        settings = Settings(model_dir=self.root, asr_provider="cuda", asr_precision="fp16")
+        with patch("metawispr.audio.version", return_value="1.13.8+cuda12.cudnn9"), patch(
+            "sherpa_onnx.OfflineRecognizer.from_transducer", return_value=object()
+        ) as factory:
+            adapter = Parakeet(settings)
+            adapter.load()
+        self.assertEqual(factory.call_args.kwargs["provider"], "cuda")
+        self.assertEqual(factory.call_args.kwargs["encoder"], str(self.root / names[0]))
+        self.assertEqual(adapter.model_info.provider, "cuda")
+        self.assertEqual(adapter.model_info.package, "sherpa-onnx-nemo-parakeet-tdt-0.6b-v2-fp16")
+        self.assertEqual(adapter.model_info.file_sha256[names[0]], file_sha256(self.root / names[0]))
+
+    def test_gpu_run_cannot_reuse_cpu_or_different_precision_asr(self):
+        names = ("encoder.fp16.onnx", "decoder.fp16.onnx", "joiner.fp16.onnx", "tokens.txt")
+        for name in names:
+            (self.root / name).write_bytes(name.encode())
+        settings = Settings(model_dir=self.root, asr_provider="cuda", asr_precision="fp16")
+        with patch("metawispr.audio.version", return_value="1.13.8+cuda12.cudnn9"), patch(
+            "sherpa_onnx.OfflineRecognizer.from_transducer", return_value=object()
+        ):
+            model = Parakeet(settings)
+            model.load()
+            self.assertTrue(asr_profile_matches(model.model_info, settings))
+            self.assertFalse(asr_profile_matches(model.model_info.model_copy(update={"provider": "cpu"}), settings))
+            self.assertFalse(asr_profile_matches(model.model_info.model_copy(update={"package": "other"}), settings))
+            (self.root / names[0]).write_bytes(b"changed weights")
+            self.assertFalse(asr_profile_matches(model.model_info, settings))
 
     def test_recognizer_text_and_global_window_offsets_are_preserved(self):
         self.source.write_bytes(wav_bytes(seconds=2.5))

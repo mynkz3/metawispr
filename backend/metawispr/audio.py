@@ -12,7 +12,7 @@ import wave
 
 import numpy as np
 
-from .config import MODEL_FILES, MODEL_ID, MODEL_PACKAGE, InputError, Settings, SetupError
+from .config import ASR_VARIANTS, MODEL_ID, InputError, Settings, SetupError
 from .schemas import ModelInfo, RawTranscript, Segment
 
 
@@ -148,32 +148,36 @@ class Parakeet:
     def load(self):
         if self.recognizer is not None:
             return
-        missing = [name for name in MODEL_FILES if not (self.settings.model_dir / name).is_file()]
+        package, files = ASR_VARIANTS[self.settings.asr_precision]
+        missing = [name for name in files if not (self.settings.model_dir / name).is_file()]
         if missing:
             raise SetupError("Parakeet files are missing. Run: python -m metawispr download-model")
         try:
             import sherpa_onnx
         except ImportError as exc:
             raise SetupError("Install the sherpa-onnx runtime with uv sync before transcription.") from exc
+        runtime_version = version("sherpa-onnx")
+        if self.settings.asr_provider == "cuda" and "+cuda" not in runtime_version:
+            raise SetupError("CUDA-enabled sherpa-onnx is required: the installed CPU build silently falls back to CPU.")
         started = time.perf_counter()
         try:
             recognizer = sherpa_onnx.OfflineRecognizer.from_transducer(
-                encoder=str(self.settings.model_dir / MODEL_FILES[0]),
-                decoder=str(self.settings.model_dir / MODEL_FILES[1]),
-                joiner=str(self.settings.model_dir / MODEL_FILES[2]),
-                tokens=str(self.settings.model_dir / MODEL_FILES[3]),
+                encoder=str(self.settings.model_dir / files[0]),
+                decoder=str(self.settings.model_dir / files[1]),
+                joiner=str(self.settings.model_dir / files[2]),
+                tokens=str(self.settings.model_dir / files[3]),
                 num_threads=self.settings.asr_threads, sample_rate=SAMPLE_RATE,
-                feature_dim=80, model_type="nemo_transducer", provider="cpu",
+                feature_dim=80, model_type="nemo_transducer", provider=self.settings.asr_provider,
                 decoding_method="greedy_search",
             )
             info = ModelInfo(
-                model_id=MODEL_ID, package=MODEL_PACKAGE, runtime="sherpa-onnx",
-                runtime_version=version("sherpa-onnx"), provider="cpu",
+                model_id=MODEL_ID, package=package, runtime="sherpa-onnx",
+                runtime_version=runtime_version, provider=self.settings.asr_provider,
                 num_threads=self.settings.asr_threads,
-                file_sha256={name: file_sha256(self.settings.model_dir / name) for name in MODEL_FILES},
+                file_sha256={name: file_sha256(self.settings.model_dir / name) for name in files},
             )
         except Exception as exc:
-            raise SetupError("Parakeet could not be loaded. Verify the matching model files and runtime.") from exc
+            raise SetupError(f"Parakeet {self.settings.asr_provider} provider failed to load: {exc}") from exc
         self.load_seconds = time.perf_counter() - started
         self.model_info, self.recognizer = info, recognizer
 
@@ -207,6 +211,17 @@ class Parakeet:
         )
 
 
+def asr_profile_matches(model: ModelInfo, settings: Settings) -> bool:
+    """A reused transcript must come from the requested runtime, graph and weights."""
+    package, files = ASR_VARIANTS[settings.asr_precision]
+    return (model.model_id == MODEL_ID and model.package == package
+            and model.runtime == "sherpa-onnx" and model.runtime_version == version("sherpa-onnx")
+            and model.provider == settings.asr_provider and model.num_threads == settings.asr_threads
+            and set(model.file_sha256) == set(files)
+            and all((settings.model_dir / name).is_file()
+                    and model.file_sha256[name] == file_sha256(settings.model_dir / name) for name in files))
+
+
 def readiness(settings: Settings) -> dict:
     try:
         ffmpeg_executable()
@@ -214,12 +229,17 @@ def readiness(settings: Settings) -> dict:
     except SetupError:
         conversion_ready = False
     runtime = importlib.util.find_spec("sherpa_onnx") is not None
-    missing = [name for name in MODEL_FILES if not (settings.model_dir / name).is_file()]
+    package, files = ASR_VARIANTS[settings.asr_precision]
+    missing = [name for name in files if not (settings.model_dir / name).is_file()]
+    gpu_runtime = runtime and "+cuda" in version("sherpa-onnx")
     return {
-        "transcription_ready": runtime and not missing,
+        "transcription_ready": runtime and not missing and (settings.asr_provider != "cuda" or gpu_runtime),
         "conversion_ready": conversion_ready,
         "normalized_wav_ready": True,
         "model_id": MODEL_ID,
+        "model_package": package,
+        "requested_provider": settings.asr_provider,
+        "cuda_runtime_installed": gpu_runtime,
         "missing_model_files": missing,
         "sherpa_onnx_installed": runtime,
         "setup_commands": ["uv sync", "python -m metawispr download-model"],

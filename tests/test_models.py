@@ -70,6 +70,23 @@ class ModelArchiveTests(unittest.TestCase):
             install_archive(self.archive, self.destination)
         self.assertEqual(marker.read_text(), "existing data")
 
+    def test_fp16_variant_records_distinct_package_and_rejects_int8_archive(self):
+        package = "sherpa-onnx-nemo-parakeet-tdt-0.6b-v2-fp16"
+        destination = self.root / "models" / package
+        self.write_archive()
+        with self.assertRaisesRegex(InputError, "Unexpected or unsafe path"):
+            install_archive(self.archive, destination, precision="fp16")
+        with tarfile.open(self.archive, "w:bz2") as archive:
+            for name in ("encoder.fp16.onnx", "decoder.fp16.onnx", "joiner.fp16.onnx", "tokens.txt"):
+                data = b"fp16 fixture"
+                member = tarfile.TarInfo(f"{package}/{name}")
+                member.size = len(data)
+                archive.addfile(member, BytesIO(data))
+        result = install_archive(self.archive, destination, file_sha256(self.archive), precision="fp16")
+        self.assertEqual(result["package"], package)
+        self.assertEqual(result["archive_sha256"], file_sha256(self.archive))
+        self.assertEqual(result["file_sha256"]["encoder.fp16.onnx"], file_sha256(destination / "encoder.fp16.onnx"))
+
 
 if __name__ == "__main__":
     unittest.main()

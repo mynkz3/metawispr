@@ -12,7 +12,7 @@ import tempfile
 import time
 import gc
 
-from .audio import Parakeet, file_sha256, inspect_pcm, prepare_audio
+from .audio import Parakeet, asr_profile_matches, file_sha256, inspect_pcm, prepare_audio
 from .config import InputError, Settings, SetupError, SUPPORTED_SUFFIXES
 from .schemas import Meeting, RawTranscript, RefinedTranscript, DocumentedMeeting
 from .llm import Ollama, digest
@@ -162,6 +162,8 @@ class Runner:
             if existing:
                 if existing.input_sha256 != meeting.input_sha256:
                     raise InputError("The saved transcript belongs to a different recording.")
+                if (existing.model.runtime == "sherpa-onnx" or self.settings.asr_provider == "cuda") and not asr_profile_matches(existing.model, self.settings):
+                    raise SetupError("Saved ASR profile differs from the requested provider, precision, runtime or weights. Keep this checkpoint or submit a new meeting.")
                 prepared = directory / "prepared.wav"
                 if not prepared.is_file() or file_sha256(prepared) != existing.audio_sha256:
                     raise InputError("The prepared audio is missing or changed. Upload the original as a new meeting.")

@@ -232,7 +232,7 @@ class ModelInfo(Contract):
     package: str
     runtime: str
     runtime_version: str
-    provider: Literal["cpu"]
+    provider: Literal["cpu", "cuda"]
     num_threads: int = Field(ge=1)
     file_sha256: dict[str, str]
 

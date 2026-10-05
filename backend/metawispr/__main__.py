@@ -19,7 +19,7 @@ def main(argv=None):
     commands = parser.add_subparsers(dest="command", required=True)
     doctor = commands.add_parser("doctor", help="Report runtime/model readiness without downloading anything")
     doctor.add_argument("--asr-only", action="store_true", help="Check only transcription dependencies")
-    download = commands.add_parser("download-model", help="Install the documented Parakeet v2 INT8 package")
+    download = commands.add_parser("download-model", help="Install the selected Parakeet v2 export (INT8 or FP16)")
     download.add_argument("--archive", type=Path, help="Install an already downloaded .tar.bz2 archive offline")
     download.add_argument("--sha256", help="Optional expected archive checksum from a trusted source")
     transcribe = commands.add_parser("transcribe", help="Save a recording and run genuine ASR")
@@ -44,7 +44,8 @@ def main(argv=None):
             print(json.dumps(report, indent=2))
             return 0 if report["transcription_ready"] and report["conversion_ready"] and (args.asr_only or report["llm_ready"]) else 2
         if args.command == "download-model":
-            print(json.dumps(download_model(settings.model_dir, args.archive, args.sha256), indent=2))
+            print(json.dumps(download_model(settings.model_dir, args.archive, args.sha256,
+                                            settings.asr_precision), indent=2))
             return 0
         runner = Runner(settings)
         if args.command == "export":
