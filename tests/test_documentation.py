@@ -312,7 +312,7 @@ class DocumentationTests(unittest.TestCase):
         decisions, tasks, audit = resolve_candidates(result, candidates, segments, {("s1", quote)})
         self.assertEqual(decisions, [])
         self.assertEqual(tasks[0].owner, "Maya")
-        self.assertEqual(audit[0].evidence, fact.evidence)
+        self.assertEqual(audit, [])  # correcting extraction category is not meeting history
 
 
 if __name__ == "__main__":

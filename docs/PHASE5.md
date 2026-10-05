@@ -137,3 +137,14 @@ No speaker/name is inferred. These changes follow the existing requirement for
 unspecified ownership. 86 backend tests pass, including repeat deduplication,
 anonymous ownership and preservation of original model output. No held-out LLM
 output was used; the source/LLM freeze is amended before its first generation.
+
+
+ES2002a policy 14 completed with 106 exact source references and matching exports,
+but classified brief constraints as decisions and proposals as tasks. It also
+exposed a software bug: correcting a candidate's extraction category was being
+shown as meeting revision history. Policy 15 keeps those processing explanations
+in resolution checkpoints instead; only actual source-supported temporal changes
+can populate that audit. The existing reclassification test now asserts an empty
+meeting audit, while cancellation/reassignment tests retain their source history.
+This development-only fix precedes all held-out LLM generation. Semantic accuracy
+failures remain failures; category/history separation is not an accuracy claim.

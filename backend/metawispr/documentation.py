@@ -12,7 +12,7 @@ from .schemas import (ConsolidatedNotes, DocumentationBatch, DocumentedMeeting, 
 
 
 REFINEMENT_POLICY_VERSION = 9
-POLICY_VERSION = 14
+POLICY_VERSION = 15
 PROTECTED = re.compile(
     r"(?<!\w)[+-]?\d+(?:[.,:/-]\d+)*(?:%|\b)|\b(?:zero|one|two|three|four|five|six|seven|eight|nine|ten|"
     r"eleven|twelve|thirteen|fourteen|fifteen|sixteen|seventeen|eighteen|nineteen|twenty|thirty|forty|fifty|"
@@ -342,7 +342,7 @@ def resolve_candidates(output, candidates, segments, allowed):
                 raise ValueError("Recategorization needs the original supporting quote")
             audit_evidence = list(original.evidence)
             audit_evidence.extend(item for item in resolution.evidence if item not in audit_evidence)
-            if current != original:
+            if current != original and not reclassified:
                 revisions.append(Fact(text=resolution.reason, evidence=audit_evidence))
             if resolution.disposition == "retire":
                 if resolution.replacement is not None:
