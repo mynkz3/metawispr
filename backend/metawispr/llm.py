@@ -40,8 +40,16 @@ def generation_schema(contract, payload):
             properties = definition.get("properties", {})
             if "evidence_ids" in properties:
                 properties["evidence_ids"]["items"] = {"$ref": "#/$defs/SourceID"}
+            for field in ("fact_ids", "summary_ids"):
+                if field in properties:
+                    properties[field]["items"] = {"$ref": "#/$defs/SourceID"}
             if "segment_id" in properties:
                 properties["segment_id"]["enum"] = ids
+    if "uncertainty_ids" in schema.get("properties", {}):
+        ids = [item["id"] for item in payload.get("uncertainties", [])]
+        schema["properties"]["uncertainty_ids"]["items"] = {"type": "string", "enum": ids} if ids else {"type": "string"}
+        if not ids:
+            schema["properties"]["uncertainty_ids"]["maxItems"] = 0
     return schema
 
 
@@ -108,7 +116,8 @@ class Ollama:
                    "num_predict": self.settings.llm_output_tokens, "presence_penalty": 0,
                    "repeat_penalty": 1}
         identity = {"model": model.model_dump(), "prompt": system, "schema": schema,
-                    "input": payload, "options": options, "think": False, "policy": 4}
+                    "input": payload, "options": options, "think": False,
+                    "policy": 5 if stage == "documenting" else 4}
         key = digest(identity)
         filename = f"{stage}/calls/{key}.json"
         saved = store.read_json(meeting_id, filename)

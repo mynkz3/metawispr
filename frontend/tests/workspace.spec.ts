@@ -199,7 +199,7 @@ test('genuine saved record and browser upload through installed models', async (
   expect(result.document.record.decisions).toHaveLength(1);
   expect(result.document.record.tasks).toHaveLength(1);
   expect(result.document.record.tasks[0].owner).toBe('Maya');
-  expect(result.document.record.tasks[0].deadline).toBe('Friday');
+  expect(result.document.record.tasks[0].deadline).toBe('by Friday');
   await page.locator('.exports summary').click();
   const downloaded = page.waitForEvent('download'); await page.getByRole('link', { name: 'Meeting record · JSON' }).click();
   const download = await downloaded;

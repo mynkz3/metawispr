@@ -87,7 +87,7 @@ class ResolvedItem(Contract):
 
 class Resolution(Contract):
     candidate_id: str
-    disposition: Literal["keep", "retire", "replace"]
+    disposition: Literal["keep", "retire", "replace", "discard"]
     replacement: ResolvedItem | None
     evidence: list[Evidence] = Field(min_length=1)
     reason: str = Field(min_length=1)
@@ -124,6 +124,17 @@ class SourceNotes(Contract):
     uncertainties: list[str]
 
 
+class SelectedTopic(Contract):
+    title: str = Field(min_length=1, max_length=80)
+    fact_ids: list[str] = Field(min_length=1, max_length=3)
+
+
+class SelectedNotes(Contract):
+    summary_ids: list[str] = Field(max_length=3)
+    topics: list[SelectedTopic] = Field(max_length=5)
+    uncertainty_ids: list[str] = Field(max_length=8)
+
+
 class SourceRecord(SourceNotes):
     decisions: list[SourceFact]
     tasks: list[SourceTask]
@@ -146,7 +157,7 @@ class SourceItem(SourceTask):
 
 class SourceResolution(Contract):
     candidate_id: str
-    disposition: Literal["keep", "retire", "replace"]
+    disposition: Literal["keep", "retire", "replace", "discard"]
     replacement: SourceItem | None
     evidence_ids: list[str] = Field(min_length=1)
     reason: str = Field(min_length=1, max_length=240)

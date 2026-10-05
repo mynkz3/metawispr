@@ -72,15 +72,14 @@ class FixtureLLM(Ollama):
         payload = json.loads(body["messages"][1]["content"])
         if refining:
             output = {"edits": []}
+        elif "summary_ids" in body["format"]["properties"]:
+            output = {"summary_ids": [key for batch in payload["chronological_batches"] for key in batch["summary_ids"]][:3],
+                      "topics": [], "uncertainty_ids": []}
         else:
             record = {"summary": [], "topics": [], "decisions": [], "tasks": [], "uncertainties": []}
             if "segments" in payload:
                 segment = payload["segments"][0]
                 record["summary"] = [{"text": "Explicit test-double summary", "evidence_ids": [segment["id"]]}]
-            else:
-                for batch in payload["chronological_batches"]:
-                    for fact in batch["record"]["summary"]:
-                        record["summary"].append(fact)
             properties = body["format"]["properties"]
             output = ({"decisions": record["decisions"], "tasks": record["tasks"], "revisions": []}
                       if "decisions" in properties else

@@ -8,10 +8,11 @@ from .config import InputError, SetupError
 from .llm import digest, prompt
 from .schemas import (ConsolidatedNotes, DocumentationBatch, DocumentedMeeting, Edit, EditBatch,
                       Evidence, Fact, MeetingRecord, RefinedTranscript, RejectedEdit, ResolutionBatch,
-                      SourceActions, SourceBatch, SourceNotes, SourceRecord, SourceResolutions, Task)
+                      SelectedNotes, SourceActions, SourceBatch, SourceNotes, SourceRecord, SourceResolutions, Task, Topic)
 
 
-POLICY_VERSION = 8
+REFINEMENT_POLICY_VERSION = 9
+POLICY_VERSION = 12
 PROTECTED = re.compile(
     r"(?<!\w)[+-]?\d+(?:[.,:/-]\d+)*(?:%|\b)|\b(?:zero|one|two|three|four|five|six|seven|eight|nine|ten|"
     r"eleven|twelve|thirteen|fourteen|fifteen|sixteen|seventeen|eighteen|nineteen|twenty|thirty|forty|fifty|"
@@ -105,6 +106,13 @@ def validate_record(record, segments, revisions=(), allowed=None):
     for fact in [*facts(record), *revisions]:
         if not fact.text.strip():
             raise ValueError("Fact text must not be blank")
+        quotes = " ".join(item.quote for item in fact.evidence)
+        for claimed in ("revenue", "profit"):
+            if (re.search(r"\b" + claimed + r"s?\b", fact.text, re.I) and
+                    not re.search(r"\b" + claimed + r"s?\b", quotes, re.I) and
+                    not re.search(r"\b(?:unspecified|unknown|unclear|uncertain)\b|not stated", fact.text, re.I)):
+                raise ValueError(f"Unsupported financial label {claimed!r}: it is not stated in the cited source. "
+                                 "Cite its explicit label or describe the stated financial target without guessing profit/revenue.")
         for evidence in fact.evidence:
             if not evidence.quote.strip() or evidence.segment_id not in source or evidence.quote not in source[evidence.segment_id]:
                 raise ValueError(f"Evidence does not match segment {evidence.segment_id}")
@@ -151,10 +159,8 @@ def source_units(segments):
     units, sources = [], {}
     for segment in segments:
         # These are immutable text spans, not speaker turns or word/audio alignment.
-        spans = [(0, len(segment.text), segment.text)]
-        if len(segment.text.encode("utf-8")) > 3500:
-            spans = [(match.start(), match.end(), match.group()) for match in
-                     re.finditer(r"\S.*?(?:[.!?](?=\s|$)|$)", segment.text, re.S)]
+        spans = [(match.start(), match.end(), match.group()) for match in
+                 re.finditer(r"\S.*?(?:[.!?](?=\s|$)|$)", segment.text, re.S)]
         for index, (start, end, text) in enumerate(spans):
             identifier = f"{segment.id}:u{index:03d}"
             units.append(segment.model_copy(update={"id": identifier, "text": text}))
@@ -164,7 +170,23 @@ def source_units(segments):
 
 
 def document_input(title, items):
-    return {"title": title, "segments": [{"id": item.id, "text": item.text} for item in items]}
+    return {"title": title, "segments": [{"id": item.id, "text": item.text,
+                                          "parent_id": item.id.rsplit(":u", 1)[0]} for item in items]}
+
+
+def document_groups(meeting, segments, llm):
+    units, sources = source_units(segments)
+    positions = {item.id: index for index, item in enumerate(units)}
+    def payload(items):
+        value = document_input(meeting.title, items)
+        value["glossary"] = meeting.glossary
+        start = positions[items[0].id]
+        value["context"] = document_input(meeting.title, units[max(0, start - 6):start])["segments"]
+        return value
+    batches = groups(units, payload, lambda value: llm.fits("document", SourceActions, value)
+                     and (len(value["segments"]) == 1 or
+                          sum(len(item["text"].encode("utf-8")) for item in value["segments"]) <= 3500))
+    return sources, batches, payload
 
 
 def attach_evidence(output, contract, sources):
@@ -217,8 +239,45 @@ def source_payload(value, sources, include_text=True):
 
 
 def refinement_policy(settings, glossary):
-    return digest({"version": POLICY_VERSION, "prompt": prompt("refine"), "glossary": glossary,
+    return digest({"version": REFINEMENT_POLICY_VERSION, "prompt": prompt("refine"), "glossary": glossary,
                    "model": settings.refiner_model})
+
+
+def selection_input(title, batches, decisions, tasks):
+    """Consolidation selects whole facts; text and citations never separate."""
+    catalogue, uncertainties = {}, {}
+    def add(fact):
+        fact = Fact(text=fact.text, evidence=fact.evidence)
+        identifier = next((key for key, value in catalogue.items() if value == fact), None)
+        if identifier is None:
+            identifier = f"f{len(catalogue):04d}"
+            catalogue[identifier] = fact
+        return identifier
+    chronological = []
+    for batch in batches:
+        record = batch.record
+        chronological.append({"summary_ids": [add(fact) for fact in record.summary],
+                              "topics": [{"title": topic.title, "fact_ids": [add(fact) for fact in topic.points]} for topic in record.topics]})
+        for text in record.uncertainties:
+            if text not in uncertainties.values():
+                uncertainties[f"u{len(uncertainties):04d}"] = text
+    payload = {"title": title, "chronological_batches": chronological,
+               "resolved_current": {"decisions": [add(fact) for fact in decisions], "tasks": [add(fact) for fact in tasks]},
+               "sources": [{"id": key, "text": fact.text} for key, fact in catalogue.items()],
+               "uncertainties": [{"id": key, "text": text} for key, text in uncertainties.items()]}
+    return payload, catalogue, uncertainties
+
+
+def expand_selection(selected, catalogue, uncertainties):
+    def select(ids):
+        if len(ids) != len(set(ids)) or any(key not in catalogue for key in ids):
+            raise ValueError("Select distinct supplied fact IDs only")
+        return [catalogue[key].model_copy(deep=True) for key in ids]
+    if len(selected.uncertainty_ids) != len(set(selected.uncertainty_ids)) or any(key not in uncertainties for key in selected.uncertainty_ids):
+        raise ValueError("Select distinct supplied uncertainty IDs only")
+    return ConsolidatedNotes(summary=select(selected.summary_ids),
+                             topics=[Topic(title=topic.title, points=select(topic.fact_ids)) for topic in selected.topics],
+                             uncertainties=[uncertainties[key] for key in selected.uncertainty_ids])
 
 
 def documentation_policy(settings):
@@ -243,6 +302,12 @@ def resolve_candidates(output, candidates, segments, allowed):
         original = candidate["fact"]
         validate_record(MeetingRecord(summary=[], topics=[], decisions=[], tasks=[], uncertainties=[]), segments,
                         [Fact(text=resolution.reason, evidence=resolution.evidence)], allowed)
+        if resolution.disposition == "discard":
+            if resolution.replacement is not None or not any(old == new for old in original.evidence for new in resolution.evidence):
+                raise ValueError("Discard needs original evidence and no replacement")
+            # An extraction error is not a withdrawal made in the meeting.
+            # Its explanation remains in the saved resolution call, not minutes.
+            continue
         if resolution.disposition == "keep":
             if resolution.replacement is not None or not any(old == new for old in original.evidence for new in resolution.evidence):
                 raise ValueError("Keep must preserve original evidence and have no replacement")
@@ -326,23 +391,13 @@ class Documentation:
                                  warnings=["Automatic edit guards cannot establish meaning. Review accepted and rejected edits."])
 
     def document(self, meeting, refined, model, progress):
-        units, sources = source_units(refined.segments)
+        sources, batches, payload = document_groups(meeting, refined.segments, self.llm)
         identifiers = {evidence_key(item): identifier for identifier, item in sources.items()}
-        positions = {item.id: index for index, item in enumerate(units)}
-        def payload(items):
-            value = document_input(meeting.title, items)
-            start = positions[items[0].id]
-            value["context"] = document_input(meeting.title, units[max(0, start - 6):start])["segments"]
-            return value
-        # A large configured context is not a reason to give a small model an
-        # entire meeting at once. Keep action extraction focused; consolidation
-        # can use the remaining context for already-extracted facts.
-        batches = groups(units, payload, lambda value: self.llm.fits("document", SourceActions, value)
-                         and (len(value["segments"]) == 1 or
-                              sum(len(item["text"].encode("utf-8")) for item in value["segments"]) <= 3500))
         outputs, calls = [], []
         try:
-            for batch in batches:
+            index = 0
+            while index < len(batches):
+                batch = batches[index]
                 value = payload(batch)
                 batch_sources = {item["id"]: sources[item["id"]] for item in [*value["segments"], *value["context"]]}
                 active = {item.id for item in batch}
@@ -357,15 +412,31 @@ class Documentation:
                     if draft:
                         for task in expanded.record.tasks:
                             task.owner = task.deadline = None
+                    else:
+                        for task in expanded.record.tasks:
+                            for field in ("owner", "deadline"):
+                                literal = getattr(task, field)
+                                if literal and not any(re.search(r"(?<!\w)" + re.escape(literal) + r"(?!\w)", ev.quote) for ev in task.evidence):
+                                    matches = [key for key, ev in batch_sources.items() if
+                                               re.search(r"(?<!\w)" + re.escape(literal) + r"(?!\w)", ev.quote, re.I)]
+                                    raise ValueError(f"Task {field} {literal!r} needs literal text and its source ID. "
+                                                     f"Matching available IDs: {matches[:4]}. Cite applicable sources or use null.")
                     validate_record(expanded.record, refined.segments, expanded.revisions)
                 selected, call = self.llm.generate(model, "document", SourceActions, value, self.store,
                                                   meeting.id, "documenting", lambda result: validate_batch(result, draft=True))
                 calls.append(call)
                 progress(len(calls))
+                review_input = {**value, "draft": selected.model_dump()}
+                if not self.llm.fits("review", SourceActions, review_input):
+                    if len(batch) == 1:
+                        raise SetupError("One source unit plus its extraction draft exceeds the review context. Increase METAWISPR_LLM_CONTEXT or submit a shorter recording.")
+                    middle = len(batch) // 2
+                    batches[index:index + 1] = [batch[:middle], batch[middle:]]
+                    continue
                 # The first answer is a proposal. A focused second pass checks
                 # every assignment against the same source before canonicalizing.
                 reviewed, call = self.llm.generate(model, "review", SourceActions,
-                                                   {**value, "draft": selected.model_dump()}, self.store,
+                                                   review_input, self.store,
                                                    meeting.id, "documenting", validate_batch)
                 output = attach_evidence(action_batch(reviewed), DocumentationBatch, batch_sources)
                 calls.append(call)
@@ -383,11 +454,12 @@ class Documentation:
                                             "revisions": revisions}, batch_sources)
                     ids.update(item["id"] for item in value.pop("sources"))
                     value["segments"] = [{"id": identifier, "text": item.quote} for identifier, item in batch_sources.items() if identifier in ids]
+                    value["context"] = payload(items)["context"]
                     return value
                 note_groups = groups(batch, notes_payload, lambda value: self.llm.fits("notes", SourceNotes, value))
                 for note_group in note_groups:
                     value = notes_payload(note_group)
-                    note_sources = {item["id"]: batch_sources[item["id"]] for item in value["segments"]}
+                    note_sources = {item["id"]: batch_sources[item["id"]] for item in [*value["segments"], *value["context"]]}
                     def validate_local_notes(result):
                         notes = attach_evidence(result, ConsolidatedNotes, note_sources)
                         validate_record(MeetingRecord(**notes.model_dump(), decisions=[], tasks=[]), refined.segments)
@@ -400,6 +472,7 @@ class Documentation:
                     calls.append(call)
                     progress(len(calls))
                 outputs.append(output)
+                index += 1
             # Pair adjacent chronological groups. Revisions remain available until
             # the last pass so a cancellation in a later group can reach its target.
             while len(outputs) > 1:
@@ -426,30 +499,31 @@ class Documentation:
                         progress(len(calls))
                     else:
                         decisions, tasks, revisions = [], [], []
-                    value = source_payload({"title": meeting.title,
-                                            "chronological_batches": [{"record": {
-                                                "summary": batch.record.model_dump()["summary"],
-                                                "topics": batch.record.model_dump()["topics"],
-                                                "uncertainties": batch.record.uncertainties},
-                                                "revisions": [item.model_dump() for item in batch.revisions]} for batch in pair],
-                                            "resolved_current": {"decisions": [item.model_dump() for item in decisions],
-                                                                 "tasks": [item.model_dump() for item in tasks]}}, sources, include_text=False)
-                    # Notes cannot overwrite the separately resolved canonical arrays.
-                    allowed_sources = {item["id"]: sources[item["id"]] for item in value["sources"]}
-                    def validate_notes(selected):
-                        notes = attach_evidence(selected, ConsolidatedNotes, allowed_sources)
-                        record = MeetingRecord(**notes.model_dump(), decisions=decisions, tasks=tasks)
-                        validate_record(record, refined.segments, allowed=allowed)
-                    selected, call = self.llm.generate(model, "consolidate", SourceNotes, value, self.store,
-                                                      meeting.id, "documenting", validate_notes)
-                    notes = attach_evidence(selected, ConsolidatedNotes, allowed_sources)
+                    def consolidate_notes(batches):
+                        value, catalogue, ambiguities = selection_input(meeting.title, batches, decisions, tasks)
+                        def validate_notes(selected):
+                            notes = expand_selection(selected, catalogue, ambiguities)
+                            validate_record(MeetingRecord(**notes.model_dump(), decisions=[], tasks=[]),
+                                            refined.segments, allowed=allowed)
+                        selected, call = self.llm.generate(model, "consolidate", SelectedNotes, value,
+                                                          self.store, meeting.id, "documenting", validate_notes)
+                        calls.append(call)
+                        progress(len(calls))
+                        return expand_selection(selected, catalogue, ambiguities)
+                    value, _, _ = selection_input(meeting.title, pair, decisions, tasks)
+                    if not self.llm.fits("consolidate", SelectedNotes, value):
+                        # Explicit selection of existing facts compresses notes.
+                        # Original text/evidence remain coupled; actions stay in Python.
+                        for batch in pair:
+                            notes = consolidate_notes([batch])
+                            batch.record.summary, batch.record.topics = notes.summary, notes.topics
+                            batch.record.uncertainties = notes.uncertainties
+                    notes = consolidate_notes(pair)
                     record = MeetingRecord(**notes.model_dump(), decisions=decisions, tasks=tasks)
                     carried = [item for batch in pair for item in batch.revisions]
                     carried.extend(item for item in revisions if item not in carried)
                     output = DocumentationBatch(record=record, revisions=carried)
                     merged.append(output)
-                    calls.append(call)
-                    progress(len(calls))
                 outputs = merged
         finally:
             self.llm.unload(model)

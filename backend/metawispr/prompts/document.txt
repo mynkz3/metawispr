@@ -7,6 +7,9 @@ Every item selects supplied segment IDs in evidence_ids. Never write quotes or o
 context is earlier speech for interpreting new segments. Do not extract context-only
 items again; every new item must cite at least one ID from segments.
 Select all IDs needed for action, owner and deadline support across segments.
+Units sharing parent_id continue the same original transcript window. Read them
+together. A heading in one unit can govern work in the next. Glossary vocabulary
+may clarify a role or term; it does not create assignments or supply missing speech.
 Decisions require explicit agreement or a final choice. Facts, budgets, requirements,
 proposals, questions and possible future behavior are not agreed decisions.
 A factual budget or "X, not Y" does not establish approval or a correction history.

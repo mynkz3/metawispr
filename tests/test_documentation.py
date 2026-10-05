@@ -3,9 +3,9 @@ from tempfile import TemporaryDirectory
 import unittest
 
 from metawispr.config import Settings, SetupError
-from metawispr.documentation import Documentation, apply_edits, validate_record, resolve_candidates, candidate_items, attach_evidence, source_payload, source_units
+from metawispr.documentation import Documentation, apply_edits, validate_record, resolve_candidates, candidate_items, attach_evidence, source_payload, source_units, selection_input, expand_selection
 from metawispr.pipeline import Runner
-from metawispr.schemas import DocumentationBatch, Edit, Evidence, Fact, MeetingRecord, ResolvedItem, Resolution, ResolutionBatch, Segment, SourceRecord, Task
+from metawispr.schemas import DocumentationBatch, Edit, Evidence, Fact, MeetingRecord, ResolvedItem, Resolution, ResolutionBatch, Segment, SourceRecord, Task, SelectedNotes
 from support import FixtureASR, FixtureLLM, wav_bytes
 from metawispr.audio import file_sha256
 
@@ -116,6 +116,36 @@ class DocumentationTests(unittest.TestCase):
         value.tasks[0].deadline = None
         validate_record(value, [self.segment])
 
+    def test_extraction_discard_is_not_fabricated_meeting_history(self):
+        quote = "The production cost cap is twelve fifty."
+        segment = Segment(id="s1", start=0.0, end=1.0, text=quote)
+        batch = DocumentationBatch(record=record(), revisions=[])
+        batch.record.decisions = [Fact(text="Approve cost cap", evidence=[Evidence(segment_id="s1", quote=quote)])]
+        candidates = candidate_items([batch])
+        result = ResolutionBatch(resolutions=[Resolution(candidate_id=candidates[0]["candidate_id"],
+                                disposition="discard", replacement=None, reason="A budget fact is not meeting approval",
+                                evidence=batch.record.decisions[0].evidence)])
+        self.assertEqual(resolve_candidates(result, candidates, [segment], {("s1", quote)}), ([], [], []))
+
+    def test_profit_revenue_substitution_and_anonymous_owners_are_rejected(self):
+        segment = Segment(id="s1", start=0.0, end=1.0, text="Profit aim is fifty million. You will check the invoice.")
+        value = record()
+        value.summary = [Fact(text="Revenue aim is fifty million", evidence=[Evidence(segment_id="s1", quote=segment.text)])]
+        with self.assertRaisesRegex(ValueError, "financial label"):
+            validate_record(value, [segment])
+        value.summary = []
+        value.tasks = [Task(text="Check invoice", owner="You", deadline=None,
+                           evidence=[Evidence(segment_id="s1", quote=segment.text)])]
+        with self.assertRaisesRegex(ValueError, "pronouns"):
+            validate_record(value, [segment])
+        ambiguous = Segment(id="s1", start=0.0, end=1.0, text="We aim to make fifty million Euro.")
+        value = record()
+        value.summary = [Fact(text="Profit target is fifty million Euro", evidence=[Evidence(segment_id="s1", quote=ambiguous.text)])]
+        with self.assertRaisesRegex(ValueError, "financial label"):
+            validate_record(value, [ambiguous])
+        value.summary[0].text = "Financial target is fifty million Euro"
+        validate_record(value, [ambiguous])
+
     def test_immutable_units_preserve_decimal_text_and_distinguish_repeated_quotes(self):
         segment = Segment(id="s1", start=0.0, end=10.0,
                           text="Filler. " * 450 + "  Budget 12.50 Euro. Maya will send it. Maya will send it.  ")
@@ -144,6 +174,22 @@ class DocumentationTests(unittest.TestCase):
         value.summary.append(Fact(text="fixture", evidence=[Evidence(segment_id="s1", quote="Maya")]))
         with self.assertRaisesRegex(ValueError, "outside"):
             validate_record(value, [self.segment], allowed={("s1", "Use dock her")})
+
+    def test_selection_keeps_financial_text_with_financial_evidence(self):
+        value = record()
+        value.summary = [Fact(text="The dog is friendly", evidence=[Evidence(segment_id="dog", quote="Friendly dog.")]),
+                         Fact(text="Production cost is twelve fifty", evidence=[Evidence(segment_id="cost", quote="Cost is twelve fifty.")])]
+        payload, catalogue, uncertainties = selection_input("Meeting", [DocumentationBatch(record=value, revisions=[])], [], [])
+        selected = SelectedNotes(summary_ids=[payload["sources"][1]["id"]], topics=[], uncertainty_ids=[])
+        result = expand_selection(selected, catalogue, uncertainties)
+        self.assertEqual(result.summary, [value.summary[1]])
+        result.summary[0].evidence[0].quote = "Changed"
+        self.assertEqual(value.summary[1].evidence[0].quote, "Cost is twelve fifty.")
+        selected.summary_ids = ["invented"]
+        with self.assertRaisesRegex(ValueError, "supplied fact"):
+            expand_selection(selected, catalogue, uncertainties)
+        with self.assertRaises(ValueError):
+            SelectedNotes.model_validate({"summary_ids": [], "topics": [], "uncertainty_ids": [], "text": "Invented financial claim"})
 
     def test_owner_cannot_be_a_fragment_of_a_different_name(self):
         value = record()

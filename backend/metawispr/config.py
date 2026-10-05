@@ -35,8 +35,8 @@ class Settings:
     ollama_url: str = "http://127.0.0.1:11434"
     refiner_model: str = "qwen3.5:4b"
     documenter_model: str = "qwen3.5:4b"
-    llm_context: int = 8192
-    llm_output_tokens: int = 2048
+    llm_context: int = 16384
+    llm_output_tokens: int = 3072
     llm_timeout_seconds: int = 300
 
     def __post_init__(self):
@@ -75,7 +75,7 @@ class Settings:
             ollama_url=os.getenv("METAWISPR_OLLAMA_URL", "http://127.0.0.1:11434").rstrip("/"),
             refiner_model=os.getenv("METAWISPR_REFINER_MODEL", "qwen3.5:4b"),
             documenter_model=os.getenv("METAWISPR_DOCUMENTER_MODEL", "qwen3.5:4b"),
-            llm_context=integer("LLM_CONTEXT", 8192),
-            llm_output_tokens=integer("LLM_OUTPUT_TOKENS", 2048),
+            llm_context=integer("LLM_CONTEXT", 16384),
+            llm_output_tokens=integer("LLM_OUTPUT_TOKENS", 3072),
             llm_timeout_seconds=integer("LLM_TIMEOUT_SECONDS", 300),
         )

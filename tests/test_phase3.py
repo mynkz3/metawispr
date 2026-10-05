@@ -25,6 +25,83 @@ class Phase3Tests(unittest.TestCase):
         self.addCleanup(self.folder.cleanup)
         self.settings = Settings(data_dir=Path(self.folder.name) / "data")
 
+    def test_bounded_notes_compression_preserves_canonical_task_and_source(self):
+        runner, meeting = self.runner_and_meeting()
+        raw = FixtureASR().transcribe(runner.store.directory(meeting.id) / meeting.source_name,
+                                      meeting.input_sha256, "fixture")
+        raw.duration_seconds = 20.0
+        raw.segments = [Segment(id="s1", start=0.0, end=10.0, text="Maya will send the report by Friday."),
+                        Segment(id="s2", start=10.0, end=20.0, text="Production cost is twelve fifty.")]
+        llm = runner.llm
+        worker = Documentation(self.settings, runner.store, llm)
+        refined = worker.refine(meeting, raw, llm.models()[0], lambda count: None)
+        brief_calls = []
+        def request(method, path, body=None, timeout=None):
+            payload = json.loads(body["messages"][1]["content"])
+            properties = body["format"]["properties"]
+            if "segments" in payload:
+                source = payload["segments"][0]
+                evidence = [source["id"]]
+                if "tasks" in properties:
+                    tasks = ([{"text": "Send the report", "owner": "Maya", "deadline": "Friday",
+                               "evidence_ids": evidence}] if source["id"] == "s1:u000" else [])
+                    output = {"tasks": tasks, "decisions": [], "revisions": []}
+                else:
+                    output = {"summary": [{"text": f"Explicit long fixture point {i}", "evidence_ids": evidence}
+                                           for i in range(3)], "topics": [], "uncertainties": []}
+                    if source["id"] == "s2:u000":
+                        output["summary"][0]["text"] = "Production cost is twelve fifty."
+            elif "candidates" in payload:
+                output = {"resolutions": [{"candidate_id": item["candidate_id"], "disposition": "keep",
+                                           "replacement": None, "reason": "Still assigned",
+                                           "evidence_ids": item["fact"]["evidence_ids"]}
+                                          for item in payload["candidates"]]}
+            else:
+                if len(payload["chronological_batches"]) == 1:
+                    brief_calls.append(payload)
+                output = {"summary_ids": [batch["summary_ids"][0] for batch in payload["chronological_batches"]],
+                          "topics": [], "uncertainty_ids": []}
+            return {"done": True, "done_reason": "stop", "message": {"content": json.dumps(output)}}
+        original_fits = llm.fits
+        def fits(name, contract, payload, feedback=""):
+            if name == "document" and len(payload.get("segments", [])) > 1:
+                return False
+            if (name == "consolidate" and len(payload["chronological_batches"]) > 1 and
+                    any(len(batch["summary_ids"]) > 1 for batch in payload["chronological_batches"])):
+                return False
+            return original_fits(name, contract, payload, feedback)
+        with patch.object(llm, "request", side_effect=request), patch.object(llm, "fits", side_effect=fits):
+            result = worker.document(meeting, refined, llm.models()[1], lambda count: None)
+        self.assertEqual(len(brief_calls), 2)
+        self.assertEqual(len(result.record.tasks), 1)
+        self.assertEqual((result.record.tasks[0].owner, result.record.tasks[0].deadline), ("Maya", "Friday"))
+        self.assertEqual(result.record.tasks[0].evidence[0].quote, raw.segments[0].text)
+        self.assertEqual(raw.segments[0].text, "Maya will send the report by Friday.")
+        self.assertEqual(result.record.summary[1].text, "Production cost is twelve fifty.")
+        self.assertEqual(result.record.summary[1].evidence[0].quote, raw.segments[1].text)
+
+    def test_oversized_review_draft_splits_source_without_dropping_any_unit(self):
+        runner, meeting = self.runner_and_meeting()
+        raw = FixtureASR().transcribe(runner.store.directory(meeting.id) / meeting.source_name,
+                                      meeting.input_sha256, "fixture")
+        raw.duration_seconds = 20.0
+        raw.segments = [Segment(id="s1", start=0.0, end=10.0, text="First source window."),
+                        Segment(id="s2", start=10.0, end=20.0, text="Second source window.")]
+        llm = runner.llm
+        worker = Documentation(self.settings, runner.store, llm)
+        refined = worker.refine(meeting, raw, llm.models()[0], lambda count: None)
+        original_fits = llm.fits
+        def fits(name, contract, payload, feedback=""):
+            return not (name == "review" and len(payload["segments"]) > 1) and original_fits(name, contract, payload, feedback)
+        with patch.object(llm, "fits", side_effect=fits):
+            result = worker.document(meeting, refined, llm.models()[1], lambda count: None)
+        quotes = {ev.quote for fact in result.record.summary for ev in fact.evidence}
+        self.assertEqual(quotes, {segment.text for segment in raw.segments})
+        reviews = [json.loads(body["messages"][1]["content"]) for _, body in llm.requests
+                   if "draft" in json.loads(body["messages"][1]["content"])]
+        self.assertEqual(len(reviews), 2)
+        self.assertTrue(all(len(payload["segments"]) == 1 for payload in reviews))
+
     def runner_and_meeting(self):
         runner = Runner(self.settings)
         runner.asr, runner.llm = FixtureASR(), FixtureLLM(self.settings)
@@ -215,7 +292,7 @@ class Phase3Tests(unittest.TestCase):
                 if attempts[0] == 1:
                     raise SetupError("Explicit interrupted consolidation fixture")
                 return {"done": True, "done_reason": "stop", "message": {"content": json.dumps(
-                    {key: value[key] for key in ("summary", "topics", "uncertainties")})}}
+                    {"summary_ids": [], "topics": [], "uncertainty_ids": []})}}
             return {"done": True, "done_reason": "stop", "message": {"content": json.dumps(
                 {"decisions": value["decisions"], "tasks": value["tasks"], "revisions": revisions})}}
         original_fits = llm.fits
@@ -230,8 +307,7 @@ class Phase3Tests(unittest.TestCase):
         self.assertEqual(document.record.decisions, [])
         self.assertEqual(reconciliation_inputs[0]["candidates"][0]["fact"]["text"], "We agree to deploy Friday.")
         self.assertEqual(consolidation_inputs[0]["resolved_current"]["decisions"], [])
-        self.assertEqual(consolidation_inputs[0]["chronological_batches"][1]["revisions"][0]["text"],
-                         "Cancel the Friday deployment.")
+        self.assertIn("Friday deployment cancelled", [fact.text for fact in document.revision_audit])
 
 
 if __name__ == "__main__":

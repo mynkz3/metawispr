@@ -72,3 +72,45 @@ assignment (2/3 closing tasks), classified ten finance/brief statements as decis
 and called the 50-million profit aim revenue. These are semantic failures despite
 successful pipeline completion. This checkpoint does not close milestones 5.2-5.5.
 The full measured output is retained as `full-es2002a-development-v8.json`.
+
+## Context recovery and coupled consolidation (development)
+
+The v9 ES2002a run hit a measured 18,385-byte consolidation reservation against
+16,384 context. v10 reused verified ASR, refinement and 15 completed calls,
+then finished with notes compression; its two tasks still missed the interface
+assignment, and financial facts were lost. v11 completed but redistributed
+summary citations onto unrelated speech. A finance-only appended ledger also
+included unsupported interpretations and is removed.
+
+The current reducer selects existing fact IDs; Python carries each selected
+fact's text and evidence together. It cannot generate a new factual sentence or
+redistribute its citations. Topic titles remain generated labels. Extraction
+and interpretation accuracy still require source review. Dense review drafts
+are split into chronological source groups before generation; no text is
+silently truncated. Input enums, sentence character ranges, literal metadata
+and unsupported profit/revenue-label checks remain enforced. Refinement and
+ documentation policies have separate versions so a documentation-only fix
+can reuse a verified refinement checkpoint.
+
+The first genuine browser upload on this development version failed its task
+count assertion: extraction found Maya's task, but review dropped it. Its
+budget summary also invented a past correction. The original failed run is
+preserved locally; it is not a browser pass. Review instructions are shortened
+to preserve supported drafts, and notes now distinguish contrast from history.
+
+
+84 backend tests and the WER counter examples pass. All six Playwright tests
+pass, including genuine browser-created meeting
+`a8c103e9-9b94-4210-84d4-de488bc5a75f`: real ASR, shared 4B stage provenance,
+one Docker decision, Maya's reporting task, exact Docker quote/audio and JSON
+matching the canonical record. The deadline assertion now expects the exact
+source wording **by Friday**; the earlier format-only failure is retained.
+Five other browser checks use labeled API fixtures. Desktop output was visually
+inspected. This authored short recording is compatibility evidence, not AMI
+meeting accuracy. The frontend build and offline dependency-lock check pass.
+
+The passing browser compatibility run still invents a previous $50 budget in
+its summary even though the recording only says "$15, not $50". It is a
+semantic failure, and the compatibility pass does not close the history or
+unsupported-claim gate. The frozen AMI candidate will be measured without
+claiming release readiness.

@@ -199,3 +199,14 @@ Future work: live buffered capture with end-of-meeting reconciliation, validated
 
 
 Phase 5 implementation adds focused action extraction before notes and a source-based review pass using the same shared weights. Source IDs are constrained by the actual input schema; Python attaches immutable quotation ranges. Owner/deadline capitalization can be restored from selected literal source text, while unidentified pronouns are rejected as owners. These guards verify provenance and shape, not semantic accuracy. Current genuine development failures are recorded in PHASE5.md.
+
+
+Long-meeting note consolidation selects existing fact IDs instead of rewriting
+factual sentences. Python carries the selected text and evidence together;
+current actions and chronological revision audits remain separate. Source
+checkpoints retain omitted notes. A dense review draft triggers chronological
+source splitting. A dense notes pair triggers explicit selection of child
+facts, then consolidation; capacity failures remain visible. This prevents
+citation redistribution but does not prove the original extracted fact true.
+The locally tested default is 16,384 context and 3,072 output tokens; this is
+a tested profile, not a minimum hardware guarantee.
