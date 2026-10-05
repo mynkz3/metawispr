@@ -80,3 +80,62 @@ before/after calls on Windows and includes unrelated applications. No minimum
 hardware specification follows from either observation. Latencies are single-pass
 cold component observations; they are not repeated medians for identical recordings
 or end-to-end meeting turnaround times.
+
+## AMI ES2002a comparison
+
+`ami.py` reads official NXT annotations directly with Python's standard library.
+It preserves every annotated word exactly once, retains real overlapping segment
+times, and adds no speaker labels or hidden reference summaries to model text.
+Download the official files into the ignored cache (PowerShell example):
+
+```powershell
+New-Item -ItemType Directory -Force .cache/ami/es2002a | Out-Null
+curl.exe --fail --location --output .cache/ami/ami_public_manual_1.6.2.zip https://groups.inf.ed.ac.uk/ami/AMICorpusAnnotations/ami_public_manual_1.6.2.zip
+curl.exe --fail --location --output .cache/ami/es2002a/ES2002a.Mix-Headset.wav https://groups.inf.ed.ac.uk/ami/AMICorpusMirror/amicorpus/ES2002a/audio/ES2002a.Mix-Headset.wav
+.venv/Scripts/python.exe evaluation/ami.py prepare
+.venv/Scripts/python.exe evaluation/check_ami.py
+.venv/Scripts/python.exe evaluation/ami.py asr
+.venv/Scripts/python.exe evaluation/ami.py run --model qwen3.5:4b --output .cache/ami/es2002a/qwen4-32k/results.json
+.venv/Scripts/python.exe evaluation/ami.py run --model qwen3.5:9b --output .cache/ami/es2002a/qwen9-32k/results.json
+.venv/Scripts/python.exe evaluation/ami.py run --model metawispr-granite4-h-micro:q4_k_m --output .cache/ami/es2002a/granite-32k/results.json
+```
+
+Run models sequentially. All models receive the same manual-documentation input
+and the same genuine Parakeet raw input. The second arm runs the selected weights
+in refinement, then documentation through component functions; it does not alter
+the application's distinct-weight Runner policy. A failed refinement prevents its
+documentation stage. The official abstract/actions/decisions/problems and source
+links are reference-only. The predeclared `ami-es2002a-rubric.json` governs review;
+do not send it to a model or mistake literal quote matching for semantic correctness.
+
+The default evaluation profile is **32K context, 4K output**, temperature/seed zero,
+thinking disabled and two attempts. This is deliberately separate from the app's
+8K/2K default. The conservative byte guard would split the manual transcript into
+44 groups at that default, versus two groups in this profile. Models unload before
+and after each stage, not between a stage's grouped calls. Checkpoints and rejected
+responses are preserved. Changing settings/weights/inputs requires a new output
+path; resumed checkpoint timings are not fresh-run timings.
+
+The [AMI corpus](https://groups.inf.ed.ac.uk/ami/corpus/) and its official v1.6.2
+annotations/signals are released under
+[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). Credit the AMI Project
+and preserve source attribution for derived transcripts/reference annotations.
+Keep WAV files and original annotation ZIPs outside Git. ES2002a is one selected
+public scenario meeting; it cannot establish corpus-wide accuracy or guarantee
+absence from model pretraining.
+
+The completed [ES2002a report](../docs/AMI_ES2002A_EVALUATION.md) also records an
+adaptive matched **48K/8K** follow-up, fixed before that condition's inference.
+Repeat all three `run` commands with `--context 49152 --tokens 8192`, using new
+`qwen4-48k`, `qwen9-48k` and `granite-48k` output directories. Inputs are unchanged;
+there is no filler or prompt adjustment. Both inputs fit a single documentation
+group in this condition. Run the saved-artifact verifier after all comparisons:
+
+```powershell
+.venv/Scripts/python.exe evaluation/verify_ami.py
+```
+
+Public inputs, actual model responses and the semantic review are in
+[results/ami-es2002a](results/ami-es2002a/). One Qwen 9B manual record is nonempty
+and validated but misses the assigned tasks. The validated Granite record is empty.
+Neither should be presented as a complete-quality meeting result.

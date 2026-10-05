@@ -1,0 +1,6 @@
+{
+  "rubric_sha256": "bb4d090011007bac12c3fa0603159bab08e6813d88b09acfb8ebf76978db83f6",
+  "manual_input_sha256": "e7905d3c8586b780b6ac392f3e382ee5cf269f38e4eb420b89e9c5a8c6f43e8c",
+  "reference_sha256": "b7e041b3a620e60f7e09c909f5dbc9fb0e13b79312326ca053911d6f7256871d",
+  "frozen_before_inference": true
+}

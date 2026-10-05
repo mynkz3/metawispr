@@ -160,6 +160,12 @@ It is not a demonstrated universal winner, and the corpus does not establish
 that two weights outperform one. Keep the current default while testing an optional
 single-4B profile; do not declare that profile release-ready from these cases.
 
+The subsequent [AMI ES2002a study](AMI_ES2002A_EVALUATION.md) tests genuine public
+meeting audio and manual annotations. It does not validate the single-4B
+preference: Qwen 9B alone produces nonempty validated manual notes, but omits the
+assigned tasks, and no model meets complete meeting-record requirements. Keep
+the authored-case recommendation scoped to this regression study.
+
 Before changing the default, address explicit-deadline omissions, semantic task
 duplication and consolidation capacity, then evaluate representative recordings
 with reviewed references. Enabling the shared-weight production profile also

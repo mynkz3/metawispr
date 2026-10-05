@@ -1,0 +1,32 @@
+{
+  "meeting": "ES2002a",
+  "scope": "Predeclared semantic review against official AMI v1.6.2 annotations. One public scenario meeting; no independent human adjudication or corpus-wide accuracy estimate.",
+  "protocol": {
+    "context": 32768,
+    "output_tokens": 4096,
+    "temperature": 0,
+    "seed": 0,
+    "thinking": false,
+    "attempts_maximum": 2,
+    "arms": ["manual transcript to documentation", "shared Parakeet raw transcript to each model's refinement and documentation"],
+    "reference_in_requests": false,
+    "prompts": "Unmodified production prompts and validation guards; cold start per component stage; models run sequentially."
+  },
+  "required_reference_items": [
+    {"id": "selling-price", "source": "ES2002a.rdhillon.s.7", "expected": "Selling price 25 Euro, as a project-brief requirement; preserve amount and currency."},
+    {"id": "international-sales", "source": "ES2002a.rdhillon.s.8", "expected": "International sales, as a project-brief requirement."},
+    {"id": "production-cap", "source": "ES2002a.rdhillon.s.9", "expected": "Production cost cannot exceed 12.50 Euro, not an exact spend commitment."},
+    {"id": "industrial-design-task", "source": "ES2002a.rdhillon.s.4", "expected": "Industrial designer works on the working design."},
+    {"id": "interface-task", "source": "ES2002a.rdhillon.s.5", "expected": "User interface designer works on technical functions."},
+    {"id": "marketing-task", "source": "ES2002a.rdhillon.s.6", "expected": "Marketing executive determines product requirements."},
+    {"id": "scope-unresolved", "source": "ES2002a.rdhillon.s.10", "expected": "TV-only versus additional functionality remains unresolved; brainstorming does not finalize features."}
+  ],
+  "additional_checks": [
+    {"id": "financial-target", "manual_segment": "m0080", "expected": "50 million Euro target, if included, remains a target; do not replace it with 50 million units."},
+    {"id": "task-deadlines", "manual_segments": ["m0202", "m0204"], "expected": "Next meeting in thirty minutes, about ten to twelve by the speaker's watch; work inbetween now and then. Literal relative deadline or null with omission noted; no invented calendar date."},
+    {"id": "owner-fidelity", "manual_segments": ["m0003", "m0006", "m0008", "m0009", "m0010", "m0202", "m0204"], "expected": "Laura project manager, David industrial designer, Craig user interface, Andrew marketing. Credit correct role owners or correctly linked names; distinguish null omission from fabricated owners."},
+    {"id": "feature-proposals", "expected": "LCD/touchscreen, combining devices, rechargeable batteries and other discussed features remain suggestions unless supported by agreement."},
+    {"id": "current-tasks", "expected": "Completed introductions/drawing exercise do not become remaining action items; duplicate role assignments count once."}
+  ],
+  "assessment": "Inspect summaries, topic minutes, decisions, tasks, evidence entailment, protected facts, accepted/rejected edits and failed responses. Schema/evidence validation is a separate outcome, not proof of semantic correctness. Official abstract annotations are a concise reference, not an exhaustive list of every valid item. Record paraphrases, compound rows and additional supported items rather than treating them automatically as hallucinations."
+}

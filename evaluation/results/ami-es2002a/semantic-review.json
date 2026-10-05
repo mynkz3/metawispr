@@ -1,0 +1,59 @@
+{
+  "reviewer": "Codex inspection of saved outputs against AMI official annotations; no independent human rating",
+  "scope": "One public scenario meeting, production non-thinking prompts/guards, two matched resource profiles; reference is not an exhaustive fact inventory",
+  "recommendation": "Qwen 9B is the strongest validated narrative-documentation candidate here. No model/profile meets complete meeting-record requirements; no production defaults changed.",
+  "reference_actions": 3,
+  "jobs": 18,
+  "genuine_chat_requests": 26,
+  "completed_artifacts": 8,
+  "failed_documentation_jobs": 10,
+  "rejected_responses": 18,
+  "findings": {
+    "qwen4": {
+      "validated_documentation_jobs": 0,
+      "documentation_jobs": 4,
+      "refinement": "One accepted role expansion in each profile; reason falsely claims an explicit alias. Other unsupported/no-op proposals blocked. This is not demonstrated recognition-error recovery.",
+      "manual_48k": "First rejected response has the three correct responsibilities and names, with insufficient owner evidence. Retry drops UI task and still misquotes the assignment.",
+      "asr": "Wrong segment IDs and changed/cross-segment quotes prevent accepted documentation in both profiles."
+    },
+    "qwen9": {
+      "validated_documentation_jobs": 1,
+      "documentation_jobs": 4,
+      "manual_48k": {
+        "summary_points": 9,
+        "topics": 6,
+        "selling_price": "25 Euro preserved",
+        "production_cost_cap": "12.50 Euro preserved as cap",
+        "financial_target": "50 million Euro preserved as target",
+        "international_scope": "International-market discussion covered; direct scope appears in supporting quotes rather than a standalone extracted requirement",
+        "tv_only_scope": "Unresolved, preserved",
+        "reference_task_coverage": "0 of 3 assigned responsibilities in tasks; individual work is only described generally in notes",
+        "owners_deadlines": "Task fields unavailable because tasks is empty; closing role-specific assignments and deadline not extracted",
+        "decisions": "Empty; commercial requirements are external project-brief facts, so container difference is not itself a hallucination",
+        "clock_wording": "10 to 12 paraphrase is less clear than original ten to twelve",
+        "speaker_boundary": "expert. belongs to Andrew in AMI source map (speaker D, m0010), but output attaches expert to Craig. Main roles otherwise preserved."
+      },
+      "asr": "Both profiles fail exact source quotation after two attempts.",
+      "refinement": "No proposed/accepted edits; no comparative terminology-repair conclusion."
+    },
+    "granite": {
+      "validated_documentation_jobs": 1,
+      "documentation_jobs": 4,
+      "accepted_32k_asr": "Empty summary/topics/decisions/tasks; uncertainty What did you get?; structurally validated but not useful",
+      "rejected_48k": "Unsupported meeting timestamp 2025-08-27T10:00:00, copied excluded Kubernetes calibration example, touchless-control invention, broad discussion promoted to decisions, completed activities treated as tasks, and string null assignment fields."
+    }
+  },
+  "application_issue": "Primary manual invalid quotes need feedback, but grouping consumed the conservative byte allowance. Retry feedback did not fit, so only one actual request was made in each primary manual job. Secondary single-group inputs remove this capacity failure without fixing task omissions or citation errors.",
+  "next_work": [
+    "Reserve retry-feedback budget and reduce unnecessary context fragmentation",
+    "Extract/review assignments and their role owners/deadlines before narrative generation",
+    "Improve exact single/adjacent-segment citation handling without silently fabricating evidence",
+    "Retest this development meeting and additional meetings with reviewed references"
+  ],
+  "limitations": [
+    "Manual reference covers main meeting, while full WAV/ASR also includes surrounding chatter",
+    "Public meeting may have appeared in model pretraining",
+    "No independent human adjudication, corpus-wide accuracy, repeat latency benchmark, official AMI WER or full CPU LLM run",
+    "Shared-weight component chain does not execute or compare the app mixed-weight Runner baseline"
+  ]
+}

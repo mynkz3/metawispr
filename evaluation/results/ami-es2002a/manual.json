@@ -1,0 +1,1423 @@
+{
+  "origin": "AMI manual orthographic transcription v1.6.2; no ASR inference",
+  "meeting": "ES2002a",
+  "speaker_labels_in_model_text": false,
+  "segments": [
+    {
+      "id": "m0001",
+      "start": 50.163,
+      "end": 51.198,
+      "text": "Okay."
+    },
+    {
+      "id": "m0002",
+      "start": 53.487,
+      "end": 54.269,
+      "text": "Right."
+    },
+    {
+      "id": "m0003",
+      "start": 55.415,
+      "end": 77.456,
+      "text": "Um well this is the kick-off meeting for our our project. Um and um this is just what we're gonna be doing over the next twenty five minutes. Um so first of all, just to kind of make sure that we all know each other, I'm Laura and I'm the project manager. Do you want to introduce yourself again?"
+    },
+    {
+      "id": "m0004",
+      "start": 66.942,
+      "end": 67.755,
+      "text": "Mm-hmm."
+    },
+    {
+      "id": "m0005",
+      "start": 74.71,
+      "end": 75.413,
+      "text": "Great."
+    },
+    {
+      "id": "m0006",
+      "start": 77.408,
+      "end": 80.955,
+      "text": "Hi, I'm David and I'm supposed to be an industrial designer."
+    },
+    {
+      "id": "m0007",
+      "start": 80.736,
+      "end": 81.296,
+      "text": "Okay."
+    },
+    {
+      "id": "m0008",
+      "start": 81.575,
+      "end": 84.576,
+      "text": "And I'm Andrew and I'm uh our marketing"
+    },
+    {
+      "id": "m0009",
+      "start": 85.509,
+      "end": 88.982,
+      "text": "Um I'm Craig and I'm User Interface."
+    },
+    {
+      "id": "m0010",
+      "start": 86.048,
+      "end": 86.912,
+      "text": "expert."
+    },
+    {
+      "id": "m0011",
+      "start": 89.28,
+      "end": 102.283,
+      "text": "Great. Okay. Um so we're designing a new remote control and um Oh I have to record who's here actually. So that's David, Andrew and Craig, isn't it?"
+    },
+    {
+      "id": "m0012",
+      "start": 104.864,
+      "end": 106.64,
+      "text": "And you all arrived on time."
+    },
+    {
+      "id": "m0013",
+      "start": 108.672,
+      "end": 132.57,
+      "text": "Um yeah so des uh design a new remote control. Um, as you can see it's supposed to be original, trendy and user friendly. Um so that's kind of our our brief, as it were. Um and so there are three different stages to the design. Um I'm not really sure what what you guys have already received um in your emails. What did you get?"
+    },
+    {
+      "id": "m0014",
+      "start": 132.38,
+      "end": 142.056,
+      "text": "Um, I just got the project announcement about what the project is. Designing a remote control. That's about it, didn't get anything else. Did you get the same thing?"
+    },
+    {
+      "id": "m0015",
+      "start": 135.056,
+      "end": 135.472,
+      "text": "Mm-hmm."
+    },
+    {
+      "id": "m0016",
+      "start": 136.827,
+      "end": 137.648,
+      "text": "Mm-hmm."
+    },
+    {
+      "id": "m0017",
+      "start": 138.631,
+      "end": 140.773,
+      "text": "Mm-hmm. Yeah, that's that's it."
+    },
+    {
+      "id": "m0018",
+      "start": 139.896,
+      "end": 167.393,
+      "text": "Is that what everybody got? Okay. Um. So we're gonna have like individual work and then a meeting about it. And repeat that process three times. Um and at this point we get try out the whiteboard over there. Um. So uh you get to draw your favourite animal and sum up your favourite characteristics of it. So who would like to go first?"
+    },
+    {
+      "id": "m0019",
+      "start": 140.216,
+      "end": 141.067,
+      "text": "Yeah."
+    },
+    {
+      "id": "m0020",
+      "start": 141.776,
+      "end": 142.064,
+      "text": "Yeah."
+    },
+    {
+      "id": "m0021",
+      "start": 166.485,
+      "end": 168.368,
+      "text": "I will go. That's fine."
+    },
+    {
+      "id": "m0022",
+      "start": 167.824,
+      "end": 169.072,
+      "text": "Very good."
+    },
+    {
+      "id": "m0023",
+      "start": 173.936,
+      "end": 176.816,
+      "text": "Alright. So"
+    },
+    {
+      "id": "m0024",
+      "start": 181.36,
+      "end": 182.576,
+      "text": "This one here, right?"
+    },
+    {
+      "id": "m0025",
+      "start": 182.994,
+      "end": 184.513,
+      "text": "Mm-hmm."
+    },
+    {
+      "id": "m0026",
+      "start": 183.728,
+      "end": 188.384,
+      "text": "Okay. Very nice. Alright. My favourite animal"
+    },
+    {
+      "id": "m0027",
+      "start": 189.968,
+      "end": 192.021,
+      "text": "is like"
+    },
+    {
+      "id": "m0028",
+      "start": 203.23,
+      "end": 204.304,
+      "text": "A beagle."
+    },
+    {
+      "id": "m0029",
+      "start": 211.712,
+      "end": 242.464,
+      "text": "Um charac favourite characteristics of it? Is that right? Uh, right, well basically um high priority for any animal for me is that they be willing to take a lot of physical affection from their family. And, yeah that they have lots of personality and uh be fit and in robust good health. So this is blue. Blue beagle. My family's beagle."
+    },
+    {
+      "id": "m0030",
+      "start": 215.784,
+      "end": 216.968,
+      "text": "Yeah. Yeah."
+    },
+    {
+      "id": "m0031",
+      "start": 243.376,
+      "end": 245.744,
+      "text": "Right. Lovely."
+    },
+    {
+      "id": "m0032",
+      "start": 254.613,
+      "end": 257.68,
+      "text": "Well, my favourite animal would be a monkey."
+    },
+    {
+      "id": "m0033",
+      "start": 267.717,
+      "end": 274.048,
+      "text": "Then they're small cute and furry, and uh when planet of the apes becomes real, I'm gonna be up there with them."
+    },
+    {
+      "id": "m0034",
+      "start": 275.648,
+      "end": 276.24,
+      "text": "Right."
+    },
+    {
+      "id": "m0035",
+      "start": 275.672,
+      "end": 276.227,
+      "text": "Cool."
+    },
+    {
+      "id": "m0036",
+      "start": 280.439,
+      "end": 282.696,
+      "text": "There's too much gear."
+    },
+    {
+      "id": "m0037",
+      "start": 285.936,
+      "end": 293.408,
+      "text": "You can take as long over this as you like, because we haven't got an awful lot to discuss. Ok oh we do we do. Don't feel like you're in a rush, anyway."
+    },
+    {
+      "id": "m0038",
+      "start": 293.138,
+      "end": 294.656,
+      "text": "Okay."
+    },
+    {
+      "id": "m0039",
+      "start": 295.68,
+      "end": 301.248,
+      "text": "I coulda told you a whole lot more about beagles. Boy, let me tell you."
+    },
+    {
+      "id": "m0040",
+      "start": 297.92,
+      "end": 300.658,
+      "text": "Ach why not We might have to get you up again then."
+    },
+    {
+      "id": "m0041",
+      "start": 300.658,
+      "end": 303.875,
+      "text": "I don't know what mine is. I'm gonna have to think on the spot now."
+    },
+    {
+      "id": "m0042",
+      "start": 306.976,
+      "end": 307.936,
+      "text": "Impressionist."
+    },
+    {
+      "id": "m0043",
+      "start": 309.36,
+      "end": 311.028,
+      "text": "Can't draw."
+    },
+    {
+      "id": "m0044",
+      "start": 311.952,
+      "end": 315.6,
+      "text": "Is that a whale?"
+    },
+    {
+      "id": "m0045",
+      "start": 311.996,
+      "end": 312.95,
+      "text": "Um."
+    },
+    {
+      "id": "m0046",
+      "start": 312.95,
+      "end": 313.579,
+      "text": "Yeah."
+    },
+    {
+      "id": "m0047",
+      "start": 318.564,
+      "end": 331.677,
+      "text": "Um, well anyway, I don't know, it's just the first animal I can think off the top of my head. Um. Yes. Big reason is 'cause I'm allergic to most animals. Allergic to animal fur, so um fish was a natural choice."
+    },
+    {
+      "id": "m0048",
+      "start": 327.744,
+      "end": 328.643,
+      "text": "Ah."
+    },
+    {
+      "id": "m0049",
+      "start": 331.677,
+      "end": 338.036,
+      "text": "Um, yeah, and I kind of like whales. They come in and go eat everything in sight."
+    },
+    {
+      "id": "m0050",
+      "start": 337.987,
+      "end": 339.16,
+      "text": "Alright."
+    },
+    {
+      "id": "m0051",
+      "start": 338.036,
+      "end": 341.735,
+      "text": "And they're quite harmless and mild and interesting."
+    },
+    {
+      "id": "m0052",
+      "start": 341.808,
+      "end": 342.256,
+      "text": "Mm."
+    },
+    {
+      "id": "m0053",
+      "start": 342.4,
+      "end": 346.88,
+      "text": "Okay. God, I still don't know what I'm gonna write about. Um."
+    },
+    {
+      "id": "m0054",
+      "start": 349.632,
+      "end": 350.896,
+      "text": "Superb sketch, by the way."
+    },
+    {
+      "id": "m0055",
+      "start": 351.686,
+      "end": 355.385,
+      "text": "Tail's a bit big, I think."
+    },
+    {
+      "id": "m0056",
+      "start": 354.256,
+      "end": 364.96,
+      "text": "I was gonna choose a dog as well. But I'll just draw a different kind of dog. M my favourite animal is my own dog at home. Um"
+    },
+    {
+      "id": "m0057",
+      "start": 359.6,
+      "end": 360.0,
+      "text": "Yep."
+    },
+    {
+      "id": "m0058",
+      "start": 366.992,
+      "end": 368.672,
+      "text": "That doesn't really look like him, actually."
+    },
+    {
+      "id": "m0059",
+      "start": 372.922,
+      "end": 374.752,
+      "text": "He looks more like a pig, actually."
+    },
+    {
+      "id": "m0060",
+      "start": 375.609,
+      "end": 376.512,
+      "text": "Ah well."
+    },
+    {
+      "id": "m0061",
+      "start": 378.432,
+      "end": 380.176,
+      "text": "I see a dog in there. Yep."
+    },
+    {
+      "id": "m0062",
+      "start": 379.504,
+      "end": 381.008,
+      "text": "Do you? Oh that's very good of you."
+    },
+    {
+      "id": "m0063",
+      "start": 382.8,
+      "end": 383.712,
+      "text": "Now I see a rooster."
+    },
+    {
+      "id": "m0064",
+      "start": 388.224,
+      "end": 389.14,
+      "text": "Uh."
+    },
+    {
+      "id": "m0065",
+      "start": 393.376,
+      "end": 394.336,
+      "text": "What kind is it?"
+    },
+    {
+      "id": "m0066",
+      "start": 394.352,
+      "end": 413.936,
+      "text": "Um he's a mixture of uh various things. Um and what do I like about him, um That's just to suggest that his tail wags. Um he's very friendly and cheery and always pleased to see you, and very kind of affectionate and um"
+    },
+    {
+      "id": "m0067",
+      "start": 413.936,
+      "end": 422.256,
+      "text": "uh and he's quite quite wee as well so you know he can doesn't take up too much space. Um"
+    },
+    {
+      "id": "m0068",
+      "start": 425.419,
+      "end": 431.78,
+      "text": "and uh And he does a funny thing where he chases his tail as well, which is quite amusing, so"
+    },
+    {
+      "id": "m0069",
+      "start": 431.248,
+      "end": 433.472,
+      "text": "Is he aware that th it's his own cha tail he's chasing?"
+    },
+    {
+      "id": "m0070",
+      "start": 433.808,
+      "end": 442.012,
+      "text": "It is. I think it is. He only does it after he's had his dinner and um he'll just all of a sudden just get up and start chasing his tail 'round the living room."
+    },
+    {
+      "id": "m0071",
+      "start": 440.059,
+      "end": 440.675,
+      "text": "Hmm."
+    },
+    {
+      "id": "m0072",
+      "start": 440.382,
+      "end": 443.264,
+      "text": "It's an after dinner dog then."
+    },
+    {
+      "id": "m0073",
+      "start": 443.552,
+      "end": 445.502,
+      "text": "Yeah, so uh"
+    },
+    {
+      "id": "m0074",
+      "start": 444.032,
+      "end": 448.784,
+      "text": "Probably when he was little he got lots of attention for doing it and has forever been conditioned."
+    },
+    {
+      "id": "m0075",
+      "start": 447.055,
+      "end": 448.165,
+      "text": "Yeah, maybe."
+    },
+    {
+      "id": "m0076",
+      "start": 448.976,
+      "end": 453.696,
+      "text": "Maybe. Right, um where did you find this? Just down here? Yeah."
+    },
+    {
+      "id": "m0077",
+      "start": 455.424,
+      "end": 456.875,
+      "text": "Okay."
+    },
+    {
+      "id": "m0078",
+      "start": 458.294,
+      "end": 463.024,
+      "text": "Um what are we doing next? Uh um."
+    },
+    {
+      "id": "m0079",
+      "start": 465.488,
+      "end": 470.72,
+      "text": "Okay, uh we now need to discuss the project finance. Um"
+    },
+    {
+      "id": "m0080",
+      "start": 472.0,
+      "end": 495.072,
+      "text": "so according to the brief um we're gonna be selling this remote control for twenty five Euro, um and we're aiming to make fifty million Euro. Um so we're gonna be selling this on an international scale. And uh we don't want it to cost any more than uh twelve fifty Euros, so fifty percent of the selling price."
+    },
+    {
+      "id": "m0081",
+      "start": 488.347,
+      "end": 489.05,
+      "text": "'Kay."
+    },
+    {
+      "id": "m0082",
+      "start": 496.0,
+      "end": 497.696,
+      "text": "Um, can we just go over that again?"
+    },
+    {
+      "id": "m0083",
+      "start": 497.968,
+      "end": 498.496,
+      "text": "Sure."
+    },
+    {
+      "id": "m0084",
+      "start": 499.136,
+      "end": 504.18,
+      "text": "Uh, so bas at twel Alright, yeah. Okay."
+    },
+    {
+      "id": "m0085",
+      "start": 505.264,
+      "end": 514.032,
+      "text": "So cost like production cost is twelve fifty, but selling price is is that wholesale or retail? Like on the shelf."
+    },
+    {
+      "id": "m0086",
+      "start": 508.0,
+      "end": 509.632,
+      "text": "All together."
+    },
+    {
+      "id": "m0087",
+      "start": 514.256,
+      "end": 519.003,
+      "text": "Um I dunno. I imagine That's a good question."
+    },
+    {
+      "id": "m0088",
+      "start": 518.288,
+      "end": 522.608,
+      "text": "Our sale our sale anyway. Yeah, okay okay."
+    },
+    {
+      "id": "m0089",
+      "start": 519.648,
+      "end": 522.96,
+      "text": "I imagine it probably is our sale actually because it's probably up to the"
+    },
+    {
+      "id": "m0090",
+      "start": 524.192,
+      "end": 530.24,
+      "text": "the um the retailer to uh sell it for whatever price they want. Um."
+    },
+    {
+      "id": "m0091",
+      "start": 526.768,
+      "end": 527.088,
+      "text": "Okay."
+    },
+    {
+      "id": "m0092",
+      "start": 528.864,
+      "end": 529.184,
+      "text": "Mm-hmm."
+    },
+    {
+      "id": "m0093",
+      "start": 531.456,
+      "end": 531.84,
+      "text": "Alright."
+    },
+    {
+      "id": "m0094",
+      "start": 531.619,
+      "end": 538.304,
+      "text": "But I I don't know, I mean do you think the fact that it's going to be sold internationally will have a bearing on how we design it at all?"
+    },
+    {
+      "id": "m0095",
+      "start": 538.752,
+      "end": 539.424,
+      "text": "Yes."
+    },
+    {
+      "id": "m0096",
+      "start": 539.175,
+      "end": 542.208,
+      "text": "Think it will? Um."
+    },
+    {
+      "id": "m0097",
+      "start": 540.656,
+      "end": 540.992,
+      "text": "Mm-hmm."
+    },
+    {
+      "id": "m0098",
+      "start": 543.808,
+      "end": 544.16,
+      "text": "Mm-hmm."
+    },
+    {
+      "id": "m0099",
+      "start": 544.544,
+      "end": 546.512,
+      "text": "Hmm."
+    },
+    {
+      "id": "m0100",
+      "start": 548.256,
+      "end": 565.629,
+      "text": "Well right away I'm wondering if there's um th th uh, like with D_V_D_ players, if there are zones. Um f frequencies or something um as well as uh characters, um different uh keypad styles and s symbols."
+    },
+    {
+      "id": "m0101",
+      "start": 553.712,
+      "end": 558.096,
+      "text": "Oh yeah, regions and stuff, yeah. Yeah. Okay."
+    },
+    {
+      "id": "m0102",
+      "start": 564.961,
+      "end": 571.04,
+      "text": "Yeah. Well for a remote control, do you think that will be I suppose it's depends on how complicated our remote control is."
+    },
+    {
+      "id": "m0103",
+      "start": 564.988,
+      "end": 565.506,
+      "text": "Hmm."
+    },
+    {
+      "id": "m0104",
+      "start": 565.629,
+      "end": 566.8,
+      "text": "Um."
+    },
+    {
+      "id": "m0105",
+      "start": 568.416,
+      "end": 568.88,
+      "text": "I don't know."
+    },
+    {
+      "id": "m0106",
+      "start": 571.128,
+      "end": 571.868,
+      "text": "Yeah."
+    },
+    {
+      "id": "m0107",
+      "start": 571.68,
+      "end": 580.249,
+      "text": "It does make sense from maybe the design point of view 'cause you have more complicated characters like European languages, then you need more buttons."
+    },
+    {
+      "id": "m0108",
+      "start": 580.4,
+      "end": 584.224,
+      "text": "Yeah, yeah. Okay."
+    },
+    {
+      "id": "m0109",
+      "start": 580.64,
+      "end": 580.976,
+      "text": "Yeah."
+    },
+    {
+      "id": "m0110",
+      "start": 581.099,
+      "end": 582.774,
+      "text": "So, possibly."
+    },
+    {
+      "id": "m0111",
+      "start": 582.109,
+      "end": 588.88,
+      "text": "Yeah. And then a and then al the other thing international is on top of the price. I'm thinking"
+    },
+    {
+      "id": "m0112",
+      "start": 590.976,
+      "end": 596.832,
+      "text": "the price might might appeal to a certain market in one region, whereas in another it'll be different, so"
+    },
+    {
+      "id": "m0113",
+      "start": 597.433,
+      "end": 603.794,
+      "text": "What, just like in terms of like the wealth of the country? Like how much money people have to spend on things like?"
+    },
+    {
+      "id": "m0114",
+      "start": 598.24,
+      "end": 600.064,
+      "text": "Just a chara just a characteristic of the"
+    },
+    {
+      "id": "m0115",
+      "start": 600.901,
+      "end": 601.845,
+      "text": "Just"
+    },
+    {
+      "id": "m0116",
+      "start": 602.848,
+      "end": 616.976,
+      "text": "Or just like, basic product podi positioning, the twenty five Euro remote control might be a big hit in London, might not be such a big hit in Greece, who knows, something like that, yeah."
+    },
+    {
+      "id": "m0117",
+      "start": 615.094,
+      "end": 617.312,
+      "text": "Aye, I see what you mean, yeah."
+    },
+    {
+      "id": "m0118",
+      "start": 618.48,
+      "end": 625.024,
+      "text": "Marketing. Good marketing thoughts. Oh gosh, I should be writing all this down. Um."
+    },
+    {
+      "id": "m0119",
+      "start": 620.167,
+      "end": 620.833,
+      "text": "Yep."
+    },
+    {
+      "id": "m0120",
+      "start": 655.045,
+      "end": 669.2,
+      "text": "Right away I'm making some kind of assumptions about what what information we're given here, thinking, 'kay trendy probably means something other than just basic, something other than just standard. Um"
+    },
+    {
+      "id": "m0121",
+      "start": 660.634,
+      "end": 661.337,
+      "text": "Mm."
+    },
+    {
+      "id": "m0122",
+      "start": 665.209,
+      "end": 665.875,
+      "text": "Yeah."
+    },
+    {
+      "id": "m0123",
+      "start": 670.288,
+      "end": 677.852,
+      "text": "so I'm wondering right away, is selling twenty five Euros, is that sort of the thi is this gonna to be like the premium product kinda thing or"
+    },
+    {
+      "id": "m0124",
+      "start": 676.784,
+      "end": 680.576,
+      "text": "Yeah, yeah. Like how much does, you know, a remote control cost."
+    },
+    {
+      "id": "m0125",
+      "start": 680.496,
+      "end": 680.848,
+      "text": "Uh-huh."
+    },
+    {
+      "id": "m0126",
+      "start": 681.439,
+      "end": 683.856,
+      "text": "Well twenty five Euro, I mean that's um"
+    },
+    {
+      "id": "m0127",
+      "start": 684.88,
+      "end": 691.719,
+      "text": "that's about like eighteen pounds or something, isn't it? Or no, is it as much as that? Sixteen seventeen eighteen pounds."
+    },
+    {
+      "id": "m0128",
+      "start": 687.392,
+      "end": 688.284,
+      "text": "Mm-hmm."
+    },
+    {
+      "id": "m0129",
+      "start": 689.468,
+      "end": 690.064,
+      "text": "Yep."
+    },
+    {
+      "id": "m0130",
+      "start": 691.136,
+      "end": 692.016,
+      "text": "Yeah, I'd say so, yeah."
+    },
+    {
+      "id": "m0131",
+      "start": 692.368,
+      "end": 700.448,
+      "text": "Um, I dunno, I've never bought a remote control, so I don't know how how good a remote control that would get you. Um."
+    },
+    {
+      "id": "m0132",
+      "start": 696.208,
+      "end": 696.672,
+      "text": "No."
+    },
+    {
+      "id": "m0133",
+      "start": 697.952,
+      "end": 702.08,
+      "text": "Yeah, yeah."
+    },
+    {
+      "id": "m0134",
+      "start": 702.0,
+      "end": 705.04,
+      "text": "But yeah, I suppose it has to look kind of cool and gimmicky."
+    },
+    {
+      "id": "m0135",
+      "start": 704.0,
+      "end": 704.464,
+      "text": "Mm-hmm."
+    },
+    {
+      "id": "m0136",
+      "start": 706.032,
+      "end": 710.24,
+      "text": "Um right, okay."
+    },
+    {
+      "id": "m0137",
+      "start": 711.408,
+      "end": 721.472,
+      "text": "Let me just scoot on ahead here. Okay. Um well d Does anybody have anything to add to uh to the finance issue at all?"
+    },
+    {
+      "id": "m0138",
+      "start": 722.384,
+      "end": 727.056,
+      "text": "Do we have any other background information on like how that compares to other"
+    },
+    {
+      "id": "m0139",
+      "start": 722.668,
+      "end": 723.149,
+      "text": "Thin"
+    },
+    {
+      "id": "m0140",
+      "start": 726.992,
+      "end": 733.12,
+      "text": "No, actually. That would be useful, though, wouldn't it, if you knew like what your money would get you now."
+    },
+    {
+      "id": "m0141",
+      "start": 728.32,
+      "end": 729.232,
+      "text": "other"
+    },
+    {
+      "id": "m0142",
+      "start": 730.656,
+      "end": 731.104,
+      "text": "Yeah."
+    },
+    {
+      "id": "m0143",
+      "start": 732.288,
+      "end": 732.773,
+      "text": "Hmm."
+    },
+    {
+      "id": "m0144",
+      "start": 734.688,
+      "end": 735.12,
+      "text": "Mm-hmm."
+    },
+    {
+      "id": "m0145",
+      "start": 735.072,
+      "end": 735.776,
+      "text": "Mm-hmm."
+    },
+    {
+      "id": "m0146",
+      "start": 753.648,
+      "end": 773.488,
+      "text": "Yeah, interesting thing about discussing um production of a remote control for me is that l as you point out, I just don't think of remote controls as somethin something people consciously assess in their purchasing habits. It's just like getting shoelaces with shoes or something. It just comes along."
+    },
+    {
+      "id": "m0147",
+      "start": 767.535,
+      "end": 768.423,
+      "text": "Yeah, yeah."
+    },
+    {
+      "id": "m0148",
+      "start": 771.863,
+      "end": 772.233,
+      "text": "Oh."
+    },
+    {
+      "id": "m0149",
+      "start": 772.784,
+      "end": 777.088,
+      "text": "Five minutes to end of meeting. Oh, okay. We're a bit behind."
+    },
+    {
+      "id": "m0150",
+      "start": 776.096,
+      "end": 793.664,
+      "text": "Do you know what I mean? Like so sort of like how do you I I mean one one way of looking at it would be, well the people producing television sets, maybe they have to buy remote controls. Or another way is maybe people who have T_V_ sets are really fed up with their remote control and they really want a better one or something."
+    },
+    {
+      "id": "m0151",
+      "start": 776.735,
+      "end": 777.955,
+      "text": "Yeah."
+    },
+    {
+      "id": "m0152",
+      "start": 777.676,
+      "end": 778.268,
+      "text": "Yeah."
+    },
+    {
+      "id": "m0153",
+      "start": 792.33,
+      "end": 793.327,
+      "text": "I know um"
+    },
+    {
+      "id": "m0154",
+      "start": 794.262,
+      "end": 795.162,
+      "text": "But"
+    },
+    {
+      "id": "m0155",
+      "start": 794.496,
+      "end": 804.368,
+      "text": "My parents went out and bought um remote controls because um they got fed up of having four or five different remote controls for each things the house. So um for them it was just how many devices control."
+    },
+    {
+      "id": "m0156",
+      "start": 799.856,
+      "end": 802.454,
+      "text": "Right. Right. Okay so"
+    },
+    {
+      "id": "m0157",
+      "start": 804.448,
+      "end": 810.448,
+      "text": "Right, so in function one of the priorities might be to combine as many uses"
+    },
+    {
+      "id": "m0158",
+      "start": 806.193,
+      "end": 807.178,
+      "text": "Yeah."
+    },
+    {
+      "id": "m0159",
+      "start": 811.456,
+      "end": 821.12,
+      "text": "Right, so do you think that should be like a main design aim of our remote control d you know, do your your satellite and your regular telly and your V_C_R_ and everything?"
+    },
+    {
+      "id": "m0160",
+      "start": 814.779,
+      "end": 817.072,
+      "text": "I think so. Yeah, yeah."
+    },
+    {
+      "id": "m0161",
+      "start": 818.432,
+      "end": 818.704,
+      "text": "Yeah."
+    },
+    {
+      "id": "m0162",
+      "start": 819.675,
+      "end": 834.128,
+      "text": "Well like um, maybe what we could use is a sort of like a example of a successful other piece technology is palm palm pilots. They're gone from being just like little sort of scribble boards to cameras, M_P_ three players, telephones,"
+    },
+    {
+      "id": "m0163",
+      "start": 832.604,
+      "end": 833.36,
+      "text": "Mm-hmm."
+    },
+    {
+      "id": "m0164",
+      "start": 835.2,
+      "end": 844.096,
+      "text": "everything, agenda. So, like, I wonder if we might add something new to the to the remote control market, such as the lighting in your house, or um"
+    },
+    {
+      "id": "m0165",
+      "start": 839.536,
+      "end": 841.047,
+      "text": "Yeah."
+    },
+    {
+      "id": "m0166",
+      "start": 843.7,
+      "end": 853.222,
+      "text": "Or even like, you know, notes about um what you wanna watch. Like you might put in there oh I want to watch such and such and look a Oh that's a good idea. So extra functionalities."
+    },
+    {
+      "id": "m0167",
+      "start": 849.056,
+      "end": 851.456,
+      "text": "Yeah, yeah. An"
+    },
+    {
+      "id": "m0168",
+      "start": 852.768,
+      "end": 870.336,
+      "text": "Yeah. Like, p personally for me, at home I've I've combined the um the audio video of my television set and my D_V_D_ player and my C_D_ player. So they w all work actually function together but I have different remote controls for each of them. So it's sort of ironic that that then they're in there"
+    },
+    {
+      "id": "m0169",
+      "start": 866.257,
+      "end": 867.448,
+      "text": "Mm-hmm."
+    },
+    {
+      "id": "m0170",
+      "start": 871.968,
+      "end": 872.592,
+      "text": "um"
+    },
+    {
+      "id": "m0171",
+      "start": 873.92,
+      "end": 877.808,
+      "text": "you know, the sound and everything it's just one system. But each one's got its own little"
+    },
+    {
+      "id": "m0172",
+      "start": 876.643,
+      "end": 877.747,
+      "text": "Hmm."
+    },
+    {
+      "id": "m0173",
+      "start": 878.928,
+      "end": 879.328,
+      "text": "part."
+    },
+    {
+      "id": "m0174",
+      "start": 881.872,
+      "end": 903.096,
+      "text": "Um okay, uh I'd wel we're gonna have to wrap up pretty quickly in the next couple of minutes. Um I'll just check we've nothing else. Okay. Um so anything else anybody wants to add about what they don't like about remote controls they've used, what they would really like to be part of this new one at all?"
+    },
+    {
+      "id": "m0175",
+      "start": 903.056,
+      "end": 904.016,
+      "text": "And you keep losing them."
+    },
+    {
+      "id": "m0176",
+      "start": 904.384,
+      "end": 906.112,
+      "text": "You keep losing them. Okay."
+    },
+    {
+      "id": "m0177",
+      "start": 904.547,
+      "end": 905.324,
+      "text": "Mm."
+    },
+    {
+      "id": "m0178",
+      "start": 906.432,
+      "end": 914.496,
+      "text": "Finding them is really a pain, you know. I mean it's usually quite small, or when you want it right, it slipped behind the couch or it's kicked under the table."
+    },
+    {
+      "id": "m0179",
+      "start": 907.44,
+      "end": 909.296,
+      "text": "Mm. Mm."
+    },
+    {
+      "id": "m0180",
+      "start": 911.072,
+      "end": 912.144,
+      "text": "Mm-hmm. Mm-hmm."
+    },
+    {
+      "id": "m0181",
+      "start": 912.985,
+      "end": 922.576,
+      "text": "Yeah. W You get those ones where you can, if you like, whistle or make a really high pitched noise they beep. There I mean is that something we'd want to include, do you think?"
+    },
+    {
+      "id": "m0182",
+      "start": 913.2,
+      "end": 913.616,
+      "text": "Yeah."
+    },
+    {
+      "id": "m0183",
+      "start": 914.752,
+      "end": 915.168,
+      "text": "Yeah."
+    },
+    {
+      "id": "m0184",
+      "start": 915.38,
+      "end": 916.194,
+      "text": "You know."
+    },
+    {
+      "id": "m0185",
+      "start": 915.825,
+      "end": 917.386,
+      "text": "That's just really good id"
+    },
+    {
+      "id": "m0186",
+      "start": 919.264,
+      "end": 919.744,
+      "text": "Yep."
+    },
+    {
+      "id": "m0187",
+      "start": 924.272,
+      "end": 953.04,
+      "text": "Uh, sure. I remember when the first remote control my my family had was on a cable. Actually had a cable between it and the T_V_ and big like buttons that sort of like, like on a blender or something. And um, you know, when I think about what they are now, it's better, but actually it's still kind of, I dunno, like a massive junky thing on the table. Maybe we could think about how, could be more, you know, streamlined. S"
+    },
+    {
+      "id": "m0188",
+      "start": 925.314,
+      "end": 927.869,
+      "text": "Dunno. Okay maybe."
+    },
+    {
+      "id": "m0189",
+      "start": 936.976,
+      "end": 937.965,
+      "text": "My goodness."
+    },
+    {
+      "id": "m0190",
+      "start": 946.24,
+      "end": 948.193,
+      "text": "Still feels quite primitive."
+    },
+    {
+      "id": "m0191",
+      "start": 951.392,
+      "end": 952.816,
+      "text": "Maybe like a touch screen or something?"
+    },
+    {
+      "id": "m0192",
+      "start": 953.04,
+      "end": 956.384,
+      "text": "Something like that, yeah. Or whatever would be technologically reasonable."
+    },
+    {
+      "id": "m0193",
+      "start": 953.925,
+      "end": 954.787,
+      "text": "Okay."
+    },
+    {
+      "id": "m0194",
+      "start": 956.336,
+      "end": 959.64,
+      "text": "Uh-huh, okay. Well I guess that's up to our industrial designer."
+    },
+    {
+      "id": "m0195",
+      "start": 957.52,
+      "end": 972.992,
+      "text": "'Cause it could b it could it could be that f it could be that functionally that doesn't make it any better, but that just the appeal of of not having You know, these days there's a r pe things in people's homes are becoming more and more like chic, you know. Um, nicer materials and might be"
+    },
+    {
+      "id": "m0196",
+      "start": 961.692,
+      "end": 963.497,
+      "text": "It looks better."
+    },
+    {
+      "id": "m0197",
+      "start": 968.849,
+      "end": 969.632,
+      "text": "Yeah."
+    },
+    {
+      "id": "m0198",
+      "start": 971.68,
+      "end": 972.544,
+      "text": "Okay."
+    },
+    {
+      "id": "m0199",
+      "start": 975.184,
+      "end": 975.664,
+      "text": "Okay."
+    },
+    {
+      "id": "m0200",
+      "start": 975.552,
+      "end": 976.864,
+      "text": "be worth exploring anyway."
+    },
+    {
+      "id": "m0201",
+      "start": 976.313,
+      "end": 977.09,
+      "text": "Uh."
+    },
+    {
+      "id": "m0202",
+      "start": 977.152,
+      "end": 1008.784,
+      "text": "Right, well um so just to wrap up, the next meeting's gonna be in thirty minutes. So that's about um about ten to twelve by my watch. Um so inbetween now and then, um as the industrial designer, you're gonna be working on you know the actual working design of it so y you know what you're doing there. Um for user interface, technical functions, I guess that's you know like what we've been talking about, what it'll actually do. Um and uh marketing executive,"
+    },
+    {
+      "id": "m0203",
+      "start": 993.856,
+      "end": 994.128,
+      "text": "Yep."
+    },
+    {
+      "id": "m0204",
+      "start": 1010.0,
+      "end": 1019.344,
+      "text": "you'll be just thinking about what it actually what, you know, what requirements it has to has to fulfil and you'll all get instructions emailed to you, I guess."
+    },
+    {
+      "id": "m0205",
+      "start": 1019.616,
+      "end": 1020.064,
+      "text": "Okay."
+    },
+    {
+      "id": "m0206",
+      "start": 1021.488,
+      "end": 1022.608,
+      "text": "Um."
+    },
+    {
+      "id": "m0207",
+      "start": 1028.032,
+      "end": 1031.792,
+      "text": "Yeah, so it's th the functional design stage is next, I guess."
+    },
+    {
+      "id": "m0208",
+      "start": 1034.448,
+      "end": 1035.312,
+      "text": "And uh"
+    },
+    {
+      "id": "m0209",
+      "start": 1036.448,
+      "end": 1037.792,
+      "text": "and that's the end of the meeting."
+    },
+    {
+      "id": "m0210",
+      "start": 1039.104,
+      "end": 1042.624,
+      "text": "So I got that little message a lot sooner than I thought I would, so"
+    },
+    {
+      "id": "m0211",
+      "start": 1039.376,
+      "end": 1041.248,
+      "text": "Um."
+    },
+    {
+      "id": "m0212",
+      "start": 1047.12,
+      "end": 1057.44,
+      "text": "Before we wrap up, just to make sure we're all on the same page here, um, do we We were given sort of an example of a coffee machine or something, right? Well,"
+    },
+    {
+      "id": "m0213",
+      "start": 1049.44,
+      "end": 1050.144,
+      "text": "Mm-hmm."
+    },
+    {
+      "id": "m0214",
+      "start": 1056.272,
+      "end": 1057.728,
+      "text": "Uh-huh, yeah."
+    },
+    {
+      "id": "m0215",
+      "start": 1056.912,
+      "end": 1057.184,
+      "text": "Mm-hmm."
+    },
+    {
+      "id": "m0216",
+      "start": 1058.592,
+      "end": 1059.184,
+      "text": "um"
+    },
+    {
+      "id": "m0217",
+      "start": 1060.88,
+      "end": 1074.576,
+      "text": "are we at ma right now on the assumption that our television remote control may have features which go beyond the television? Or are we keeping sort of like a a design commitment to television features? I I don't know."
+    },
+    {
+      "id": "m0218",
+      "start": 1068.641,
+      "end": 1068.974,
+      "text": "Th"
+    },
+    {
+      "id": "m0219",
+      "start": 1073.52,
+      "end": 1084.848,
+      "text": "Okay, well just very quickly 'cause this we're supposed to finish now. Um I guess that's up to us, I mean you probably want some kind of unique selling point of it, so um, you know"
+    },
+    {
+      "id": "m0220",
+      "start": 1076.544,
+      "end": 1078.096,
+      "text": "Yep. Yeah, sure."
+    },
+    {
+      "id": "m0221",
+      "start": 1081.968,
+      "end": 1082.416,
+      "text": "Okay."
+    },
+    {
+      "id": "m0222",
+      "start": 1084.102,
+      "end": 1087.173,
+      "text": "I think one factor would be production cost."
+    },
+    {
+      "id": "m0223",
+      "start": 1086.944,
+      "end": 1087.792,
+      "text": "Okay, yeah."
+    },
+    {
+      "id": "m0224",
+      "start": 1087.173,
+      "end": 1095.199,
+      "text": "Because there's a cap there, so um depends on how much you can cram into that price. Um."
+    },
+    {
+      "id": "m0225",
+      "start": 1087.563,
+      "end": 1088.266,
+      "text": "Yeah."
+    },
+    {
+      "id": "m0226",
+      "start": 1089.856,
+      "end": 1090.288,
+      "text": "Okay."
+    },
+    {
+      "id": "m0227",
+      "start": 1093.76,
+      "end": 1094.496,
+      "text": "Mm-hmm."
+    },
+    {
+      "id": "m0228",
+      "start": 1093.808,
+      "end": 1094.16,
+      "text": "Okay."
+    },
+    {
+      "id": "m0229",
+      "start": 1095.643,
+      "end": 1098.464,
+      "text": "I think that that's the main factor."
+    },
+    {
+      "id": "m0230",
+      "start": 1095.76,
+      "end": 1096.192,
+      "text": "Yeah."
+    },
+    {
+      "id": "m0231",
+      "start": 1098.39,
+      "end": 1103.232,
+      "text": "Okay. Right, okay, we'll that's that's the end of the meeting, then. Um."
+    },
+    {
+      "id": "m0232",
+      "start": 1098.48,
+      "end": 1098.88,
+      "text": "Okay."
+    },
+    {
+      "id": "m0233",
+      "start": 1102.308,
+      "end": 1102.998,
+      "text": "Alright."
+    },
+    {
+      "id": "m0234",
+      "start": 1104.352,
+      "end": 1105.74,
+      "text": "So, uh"
+    },
+    {
+      "id": "m0235",
+      "start": 1106.544,
+      "end": 1110.243,
+      "text": "thank you all for coming."
+    },
+    {
+      "id": "m0236",
+      "start": 1107.822,
+      "end": 1109.487,
+      "text": "Cool."
+    }
+  ]
+}

@@ -1,0 +1,769 @@
+{
+  "identity": {
+    "model": {
+      "tag": "qwen3.5:4b",
+      "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+      "runtime_version": "0.35.1",
+      "parameter_size": "4.2B",
+      "quantization": "Q4_K_M"
+    },
+    "context": 32768,
+    "output_tokens": 4096,
+    "manual_input_sha256": "e7905d3c8586b780b6ac392f3e382ee5cf269f38e4eb420b89e9c5a8c6f43e8c",
+    "asr_input_sha256": "ab0a0b22f94b7ab9a11f067a4ff8fd2191f965f5918970e1602438ffede177ff",
+    "glossary": "Real Reaction\nremote control\nindustrial designer\nuser interface designer\nmarketing executive\nproject manager\nLCD\ninfrared",
+    "reference_sha256": "b7e041b3a620e60f7e09c909f5dbc9fb0e13b79312326ca053911d6f7256871d",
+    "rubric_sha256": "bb4d090011007bac12c3fa0603159bab08e6813d88b09acfb8ebf76978db83f6",
+    "prompts": {
+      "refine": "82a0605e89cafc3d620e833143d8378d7d6ab3f71b593507b50aaae067d12082",
+      "document": "394b5c30231e38385db9106abe1713775ce5c85c4a9742dc3a7665073a0902f2",
+      "reconcile": "e48ebbda3de61892b1ffde84ac5249bc4a9bd6756771dbe335802f6748e41402",
+      "consolidate": "943c9e1714571ebb017028a23bf0860f81af9c3d84c0c09b69f6f880eab082e1"
+    }
+  },
+  "identity_sha256": "b16cc525058858fe288a780f9721515bda20a2bbe17254f6f5964520326814b8",
+  "dataset": {
+    "meeting": "ES2002a",
+    "prepared_at": "2026-10-05T10:05:13.850086+00:00",
+    "source": "AMI Meeting Corpus, Edinburgh/Idiap/TNO; AMI Project",
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "dataset_url": "https://groups.inf.ed.ac.uk/ami/corpus/",
+    "annotations_url": "https://groups.inf.ed.ac.uk/ami/AMICorpusAnnotations/ami_public_manual_1.6.2.zip",
+    "annotations_sha256": "b56e5babb2496b8795deeeda7e71178d7fbc9963f94276cf2a3f4b56ebbc9f9d",
+    "audio_url": "https://groups.inf.ed.ac.uk/ami/AMICorpusMirror/amicorpus/ES2002a/audio/ES2002a.Mix-Headset.wav",
+    "annotation_file_sha256": {
+      "abstractive/ES2002a.abssumm.xml": "13551d1be5c5a3d72345b18b840d033534a4ee80d50e648dfcaad646f1ba6d91",
+      "argumentation/ae/ES2002a.D.argumentstructs.xml": "017bd96e816a1d14d75b4eb1989c45c3ad7365676f5ddfe32429a441599f5bf5",
+      "argumentation/ae/ES2002a.B.argumentstructs.xml": "ac8e6c5870d18d258d8b1922621e7ecd0abec7ae981f08a41e053c50249cb2f0",
+      "argumentation/ae/ES2002a.A.argumentstructs.xml": "317a946dce8fc653d74f2ad8b39931f97f95ed60c1a2bd52c3152936cb16c39a",
+      "argumentation/ae/ES2002a.C.argumentstructs.xml": "21d29d771f9cc43cd9f41730144bc512bb77e5fdd87606063e0f23b2b75580e0",
+      "argumentation/ar/ES2002a.argumentationrels.xml": "d4a18ff77b45b952d72f4c94e9a2284c121e1519f0e590c827e23cd7ecce5580",
+      "argumentation/dis/ES2002a.discussions.xml": "ae9ad3fde6352034ddc978724502929687e102af3f8aa9bd7ce8e4733076ec22",
+      "decision/manual/ES2002a.decision.xml": "78af8fb82670b9c3bb0c06adb1337a5d718368e53c986673d86d7a87b7fb4b8a",
+      "dialogueActs/ES2002a.adjacency-pairs.xml": "af7e106cd913f83c496caeb88e9017ccf8f0196b769e8126601c7776613be2bb",
+      "dialogueActs/ES2002a.B.dialog-act.xml": "fd94fe188a80bad10c7c9879e0f0836482c208d21bfc7116623836b737e2b084",
+      "dialogueActs/ES2002a.C.dialog-act.xml": "a1107181388d9ef4e45c8276ca34cee10bc6fc4b0789fe60bbc91fb6dce483a9",
+      "dialogueActs/ES2002a.A.dialog-act.xml": "d93241138d13614122d5137f6e184f16edac3247b4cde8f3a3fe14ec46168836",
+      "dialogueActs/ES2002a.D.dialog-act.xml": "9adf983bb5cb17306213bb0182eeedd04263baf45a07459f4597a8ce1b117743",
+      "disfluency/ES2002a.A.disfluency.xml": "069755d078b33f90914b4bf8200d05bf412ff8e6a555426719e3967002158e1c",
+      "disfluency/ES2002a.C.disfluency.xml": "9011539c8497f388113fc230bd673f1a2b30c4734a6f2dd7f7909851920ecf3f",
+      "disfluency/ES2002a.D.disfluency.xml": "a44809fde91ad2e2e77d09b83765826f16e44ea02234a4cc32cee648553e7c91",
+      "disfluency/ES2002a.B.disfluency.xml": "27cede47ce1d30d0ca89a8cb04f51db8650d84a0705bf3301a3b310f1d5b5d56",
+      "extractive/ES2002a.extsumm.xml": "dbd45f53d0ee20ea8cb4db45d9bac31bab967f613292179ae3fb1dca81644824",
+      "extractive/ES2002a.summlink.xml": "70fae857eb544069a10548b0d1670643ad4a948497879010e9bf04b31657a80b",
+      "handGesture/ES2002a.C.hand.xml": "15d9279ff5adc4a9a1ab9dd006b443c45ebe4e118dd16fb6a061d724fd5a5467",
+      "handGesture/ES2002a.A.hand.xml": "aabf8fc7ea859d9e41a8f7464f88229dd349a4b7c9c34659fe9b2c0812e966e7",
+      "handGesture/ES2002a.D.hand.xml": "679890ee61af7be9f7b884c546e7f607dfc591a58c5371deac79ba818baba289",
+      "handGesture/ES2002a.B.hand.xml": "619038345c52650cea8077715a5310acb3ba0d3c124188175c662a6d4cf8ad8c",
+      "movement/ES2002a.C.movement.xml": "2e38d526b0991421646a65c2bd53b0c5e4381b1d392ea3b76114ebdd58921d5b",
+      "movement/ES2002a.A.movement.xml": "b312a2896d6ebcd36c0bb510446f87f8b4c3b3c191698fae54ce26e91093db4d",
+      "movement/ES2002a.B.movement.xml": "f8459c894d83cfec50382184a418003bcebe467155f3fd0b1471c0f91a2923bb",
+      "movement/ES2002a.D.movement.xml": "40bd8a7b6987440edecc52fe019b38919ee0dcb61efa7ab6dfe5cf9c5a619ac0",
+      "namedEntities/ES2002a.C.ne.xml": "df2ea3288ee96a7c32c9889701562c7492773cfb9a68bb459a8ee2034e0fead6",
+      "namedEntities/ES2002a.B.ne.xml": "29b1e7a20c395dc48f006f07de109e5bb445b3a95c72f731f9fb3509bb40737d",
+      "namedEntities/ES2002a.D.ne.xml": "d14a421a568bdc4c452e11359d1eb1215fb717a3fdfb470ee32fd4c56a071c86",
+      "namedEntities/ES2002a.A.ne.xml": "af6ebef3c5d425aad8c9cdd67df8bc0c32490dea2a9fab7bd67e7285928affa4",
+      "participantSummaries/ES2002a.D.summ.xml": "8795ffe8324869885df939def31f488a306f413cba71afe62f0b258879947e2f",
+      "participantSummaries/ES2002a.B.summ.xml": "29b383bfbf3ec25c8a83cfbedac3b0afdf6a593cc39d9d121f50e6caebac3fcd",
+      "participantSummaries/ES2002a.C.summ.xml": "4648b904bb53acc37146688cbed66941b8a69dca7cca040bcd416e28ea14ccf0",
+      "participantSummaries/ES2002a.A.summ.xml": "774c063ea0e754432d6aea0024005e6b8100952f670fce441f91ef6a25dd00af",
+      "segments/ES2002a.B.segments.xml": "ff370c9b7968ee5cf76357eda8447c63f3af664c482a71843dc0fb4bd5d445c9",
+      "segments/ES2002a.D.segments.xml": "655286757eab17d36aa2ff1fada19742ce1b131be94fcc655c492790aed3797e",
+      "segments/ES2002a.A.segments.xml": "c8d26cf329af8c8917c07f4725a02c362d2471f01ea735d9016a89fccb847c02",
+      "segments/ES2002a.C.segments.xml": "6b3667b7c49ea81902a19593b21c7c74568da73f9e33dd0062a9f238a0e50f68",
+      "topics/ES2002a.topic.xml": "17b953167675dac0b8d3580c2d2023ef3fb2d416b9bb4a0c2f43c9075804bb15",
+      "words/ES2002a.A.words.xml": "03e7f37c4b3519ee78396779bbc90e2778b7b7ccd7a7388f7fa3a22cb31f7044",
+      "words/ES2002a.B.words.xml": "a51156e0b3f1b05d9d1a631206d523c5247d2d6fd851ecfe826317ab261cc17a",
+      "words/ES2002a.C.words.xml": "c539fca7b7183a2b56be43f2362432a91a4552512ed03df8c4ce96aee75f3330",
+      "words/ES2002a.D.words.xml": "d4f8b66e53de583c839424323f0e05d038a1426e5628042d03dcd2ee72e68b05",
+      "youUsages/ES2002a.A.you.xml": "c353e76a42129a0f09061dc36764319863bdf6ab3cdb0364b3cb318e3fe98954",
+      "youUsages/ES2002a.D.you.xml": "8c8fb5712b5cbcb46a7cb68eea7f84d2d96d140f6be6547b731620c3bb5289e4",
+      "youUsages/ES2002a.B.you.xml": "da659e00ac5ee40536a026860aa592685fd019829845d7919a78fed50214e3b9"
+    },
+    "manual_segments": 236,
+    "lexical_tokens_with_punctuation": 3105,
+    "manual_input_sha256": "e7905d3c8586b780b6ac392f3e382ee5cf269f38e4eb420b89e9c5a8c6f43e8c",
+    "reference_sha256": "b7e041b3a620e60f7e09c909f5dbc9fb0e13b79312326ca053911d6f7256871d",
+    "glossary": "Real Reaction\nremote control\nindustrial designer\nuser interface designer\nmarketing executive\nproject manager\nLCD\ninfrared",
+    "speaker_prefixes_added": false,
+    "manual_timestamp_note": "Original annotation segment times; overlapping speaker turns are retained.",
+    "reference_note": "Official abstract/actions/decisions/problems plus linked evidence; excluded from all model prompts.",
+    "audio_sha256": "9c76866990fcc8b84006dc32d273ad99df439090b748ebe72103bb78c3216ee7",
+    "duration_seconds": 1272.64,
+    "asr_wall_seconds": 249.99177710000367,
+    "asr_input_sha256": "ab0a0b22f94b7ab9a11f067a4ff8fd2191f965f5918970e1602438ffede177ff"
+  },
+  "model_package_bytes": 3324173934,
+  "ram_at_start": {
+    "total_bytes": 16873545728,
+    "available_bytes": 3820888064
+  },
+  "host": "Windows-11-10.0.26200-SP0",
+  "logical_cpus": 28,
+  "git_head": "41b2dd8fb49d3eb680d05d296f252d8e0a6c51ea",
+  "started_at": "2026-10-05T10:11:26.134444+00:00",
+  "jobs": [
+    {
+      "role": "manual-documentation",
+      "meeting_id": "e84f31e8-f7d5-4cb8-bcf8-e9659932f1c4",
+      "status": "failed",
+      "input_sha256": "e7905d3c8586b780b6ac392f3e382ee5cf269f38e4eb420b89e9c5a8c6f43e8c",
+      "initial_groups": 2,
+      "error": "Transcript or consolidation exceeds the configured LLM context. Increase METAWISPR_LLM_CONTEXT within available memory or submit a shorter meeting.",
+      "wall_seconds": 83.20031420000305,
+      "measurements": [
+        {
+          "model": "qwen3.5:4b",
+          "options": {
+            "temperature": 0,
+            "seed": 0,
+            "num_ctx": 32768,
+            "num_predict": 4096,
+            "presence_penalty": 0,
+            "repeat_penalty": 1
+          },
+          "ram_before": {
+            "total_bytes": 16873545728,
+            "available_bytes": 3792388096
+          },
+          "done_reason": "stop",
+          "total_duration": 82241236900,
+          "load_duration": 10954098900,
+          "prompt_eval_count": 10304,
+          "prompt_eval_duration": 4301874000,
+          "eval_count": 3937,
+          "eval_duration": 66924448999,
+          "wall_seconds": 82.25809730000037,
+          "ram_after": {
+            "total_bytes": 16873545728,
+            "available_bytes": 2767679488
+          },
+          "resident_models": [
+            {
+              "name": "qwen3.5:4b",
+              "model": "qwen3.5:4b",
+              "size": 4098894068,
+              "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+              "details": {
+                "parent_model": "",
+                "format": "gguf",
+                "family": "qwen35",
+                "families": [
+                  "qwen35"
+                ],
+                "parameter_size": "4.2B",
+                "quantization_level": "Q4_K_M"
+              },
+              "expires_at": "2026-10-05T15:47:50.0710769+05:30",
+              "size_vram": 4098894068,
+              "context_length": 32768
+            }
+          ]
+        }
+      ],
+      "rejected_responses": [
+        {
+          "error": "Evidence does not match segment m0029",
+          "response": {
+            "model": "qwen3.5:4b",
+            "created_at": "2026-10-05T10:12:50.0699953Z",
+            "message": {
+              "role": "assistant",
+              "content": "{\n  \"record\": {\n    \"summary\": [\n      {\n        \"text\": \"The meeting was a kick-off for a project to design a new remote control, with participants Laura (Project Manager), David (Industrial Designer), Andrew (Marketing), and Craig (User Interface).\",\n        \"evidence\": [\n          {\n            \"segment_id\": \"m0003\",\n            \"quote\": \"Um well this is the kick-off meeting for our our project.\"\n          },\n          {\n            \"segment_id\": \"m0006\",\n            \"quote\": \"Hi, I'm David and I'm supposed to be an industrial designer.\"\n          },\n          {\n            \"segment_id\": \"m0008\",\n            \"quote\": \"And I'm Andrew and I'm uh our marketing\"\n          },\n          {\n            \"segment_id\": \"m0009\",\n            \"quote\": \"Um I'm Craig and I'm User Interface.\"\n          }\n        ]\n      },\n      {\n        \"text\": \"The project brief involves designing a remote control that is original, trendy, and user-friendly, with a selling price of twenty-five Euro and a target production cost of twelve-fifty Euro.\",\n        \"evidence\": [\n          {\n            \"segment_id\": \"m0013\",\n            \"quote\": \"Um, as you can see it's supposed to be original, trendy and user friendly.\"\n          },\n          {\n            \"segment_id\": \"m0080\",\n            \"quote\": \"so according to the brief um we're gonna be selling this remote control for twenty five Euro, um and we're aiming to make fifty million Euro.\"\n          },\n          {\n            \"segment_id\": \"m0080\",\n            \"quote\": \"And uh we don't want it to cost any more than uh twelve fifty Euros, so fifty percent of the selling price.\"\n          }\n        ]\n      },\n      {\n        \"text\": \"The team discussed the three-stage design process and the need to consider international markets, including regional keypad styles and price sensitivity.\",\n        \"evidence\": [\n          {\n            \"segment_id\": \"m0018\",\n            \"quote\": \"So we're gonna have like individual work and then a meeting about it. And repeat that process three times.\"\n          },\n          {\n            \"segment_id\": \"m0100\",\n            \"quote\": \"Well right away I'm wondering if there's um th th uh, like with D_V_D_ players, if there are zones. Um f frequencies or something um as well as uh characters, um different uh keypad styles and s symbols.\"\n          },\n          {\n            \"segment_id\": \"m0113\",\n            \"quote\": \"What, just like in terms of like the wealth of the country? Like how much money people have to spend on things like?\"\n          }\n        ]\n      },\n      {\n        \"text\": \"Participants identified key user needs, such as combining multiple devices into one remote to reduce clutter, and expressed frustration with losing remotes.\",\n        \"evidence\": [\n          {\n            \"segment_id\": \"m0155\",\n            \"quote\": \"My parents went out and bought um remote controls because um they got fed up of having four or five different remote controls for each things the house.\"\n          },\n          {\n            \"segment_id\": \"m0175\",\n            \"quote\": \"And you keep losing them.\"\n          },\n          {\n            \"segment_id\": \"m0178\",\n            \"quote\": \"Finding them is really a pain, you know. I mean it's usually quite small, or when you want it right, it slipped behind the couch or it's kicked under the table.\"\n          }\n        ]\n      },\n      {\n        \"text\": \"Suggestions were made to incorporate extra functionalities like lighting control or note-taking, and to explore more streamlined designs or touch screens.\",\n        \"evidence\": [\n          {\n            \"segment_id\": \"m0164\",\n            \"quote\": \"I wonder if we might add something new to the to the remote control market, such as the lighting in your house, or um\"\n          },\n          {\n            \"segment_id\": \"m0191\",\n            \"quote\": \"Maybe like a touch screen or something?\"\n          },\n          {\n            \"segment_id\": \"m0195\",\n            \"quote\": \"it could be that functionally that doesn't make it any better, but that just the appeal of of not having You know, these days there's a r pe things in people's homes are becoming more and more like chic, you know. Um, nicer materials and might be\"\n          }\n        ]\n      }\n    ],\n    \"topics\": [\n      {\n        \"title\": \"Project Kick-off and Team Introductions\",\n        \"points\": [\n          {\n            \"text\": \"The meeting was a kick-off for a project to design a new remote control.\",\n            \"evidence\": [\n              {\n                \"segment_id\": \"m0003\",\n                \"quote\": \"Um well this is the kick-off meeting for our our project.\"\n              }\n            ]\n          },\n          {\n            \"text\": \"Participants introduced themselves: Laura (Project Manager), David (Industrial Designer), Andrew (Marketing), and Craig (User Interface).\",\n            \"evidence\": [\n              {\n                \"segment_id\": \"m0006\",\n                \"quote\": \"Hi, I'm David and I'm supposed to be an industrial designer.\"\n              },\n              {\n                \"segment_id\": \"m0008\",\n                \"quote\": \"And I'm Andrew and I'm uh our marketing\"\n              },\n              {\n                \"segment_id\": \"m0009\",\n                \"quote\": \"Um I'm Craig and I'm User Interface.\"\n              }\n            ]\n          }\n        ]\n      },\n      {\n        \"title\": \"Design Process and Whiteboard Activity\",\n        \"points\": [\n          {\n            \"text\": \"The design process involves individual work followed by meetings, repeated three times.\",\n            \"evidence\": [\n              {\n                \"segment_id\": \"m0018\",\n                \"quote\": \"So we're gonna have like individual work and then a meeting about it. And repeat that process three times.\"\n              }\n            ]\n          },\n          {\n            \"text\": \"Participants drew their favorite animals on the whiteboard to summarize characteristics.\",\n            \"evidence\": [\n              {\n                \"segment_id\": \"m0018\",\n                \"quote\": \"So uh you get to draw your favourite animal and sum up your favourite characteristics of it.\"\n              }\n            ]\n          },\n          {\n            \"text\": \"Laura chose a blue beagle, valued for affection and personality.\",\n            \"evidence\": [\n              {\n                \"segment_id\": \"m0028\",\n                \"quote\": \"A beagle.\"\n              },\n              {\n                \"segment_id\": \"m0029\",\n                \"quote\": \"Is that right, well basically um high priority for any animal for me is that they be willing to take a lot of physical affection from their family.\"\n              }\n            ]\n          },\n          {\n            \"text\": \"Andrew chose a monkey, associated with Planet of the Apes.\",\n            \"evidence\": [\n              {\n                \"segment_id\": \"m0032\",\n                \"quote\": \"Well, my favourite animal would be a monkey.\"\n              },\n              {\n                \"segment_id\": \"m0033\",\n                \"quote\": \"Then they're small cute and furry, and uh when planet of the apes becomes real, I'm gonna be up there with them.\"\n              }\n            ]\n          },\n          {\n            \"text\": \"Craig chose a whale due to an allergy to animal fur.\",\n            \"evidence\": [\n              {\n                \"segment_id\": \"m0047\",\n                \"quote\": \"I don't know what mine is. I'm gonna have to think on the spot now.\"\n              },\n              {\n                \"segment_id\": \"m0047\",\n                \"quote\": \"Um, well anyway, I don't know, it's just the first animal I can think off the top of my head. Um. Yes. Big reason is 'cause I'm allergic to most animals. Allergic to animal fur, so um fish was a natural choice.\"\n              }\n            ]\n          },\n          {\n            \"text\": \"David chose his own dog, noting it looks like a pig in the sketch.\",\n            \"evidence\": [\n              {\n                \"segment_id\": \"m0056\",\n                \"quote\": \"I was gonna choose a dog as well. But I'll just draw a different kind of dog. M my favourite animal is my own dog at home.\"\n              },\n              {\n                \"segment_id\": \"m0059\",\n                \"quote\": \"He looks more like a pig, actually.\"\n              }\n            ]\n          },\n          {\n            \"text\": \"Craig's dog is friendly, affectionate, small, and chases its tail after dinner.\",\n            \"evidence\": [\n              {\n                \"segment_id\": \"m0066\",\n                \"quote\": \"Um he's very friendly and cheery and always pleased to see you, and very kind of affectionate and um\"\n              },\n              {\n                \"segment_id\": \"m0067\",\n                \"quote\": \"uh and he's quite quite wee as well so you know he can doesn't take up too much space.\"\n              },\n              {\n                \"segment_id\": \"m0068\",\n                \"quote\": \"and uh And he does a funny thing where he chases his tail as well, which is quite amusing, so\"\n              }\n            ]\n          }\n        ]\n      },\n      {\n        \"title\": \"Project Finance and Pricing\",\n        \"points\": [\n          {\n            \"text\": \"The remote control is intended to be sold for twenty-five Euro with a target production cost of twelve-fifty Euro.\",\n            \"evidence\": [\n              {\n                \"segment_id\": \"m0080\",\n                \"quote\": \"so according to the brief um we're gonna be selling this remote control for twenty five Euro, um and we're aiming to make fifty million Euro.\"\n              },\n              {\n                \"segment_id\": \"m0080\",\n                \"quote\": \"And uh we don't want it to cost any more than uh twelve fifty Euros, so fifty percent of the selling price.\"\n              }\n            ]\n          },\n          {\n            \"text\": \"There was discussion about whether the price is wholesale or retail, with Laura suggesting it is likely the retailer's price.\",\n            \"evidence\": [\n              {\n                \"segment_id\": \"m0085\",\n                \"quote\": \"So cost like production cost is twelve fifty, but selling price is is that wholesale or retail? Like on the shelf.\"\n              },\n              {\n                \"segment_id\": \"m0089\",\n                \"quote\": \"I imagine it probably is our sale actually because it's probably up to the\"\n              }\n            ]\n          },\n          {\n            \"text\": \"The international scale of sales raises questions about regional keypad styles and price sensitivity based on wealth.\",\n            \"evidence\": [\n              {\n                \"segment_id\": \"m0100\",\n                \"quote\": \"Well right away I'm wondering if there's um th th uh, like with D_V_D_ players, if there are zones. Um f frequencies or something um as well as uh characters, um different uh keypad styles and s symbols.\"\n              },\n              {\n                \"segment_id\": \"m0113\",\n                \"quote\": \"What, just like in terms of like the wealth of the country? Like how much money people have to spend on things like?\"\n              }\n            ]\n          }\n        ]\n      },\n      {\n        \"title\": \"Design Considerations and User Needs\",\n        \"points\": [\n          {\n            \"text\": \"The design should consider international markets, including regional keypad styles and symbols.\",\n            \"evidence\": [\n              {\n                \"segment_id\": \"m0100\",\n                \"quote\": \"Well right away I'm wondering if there's um th th uh, like with D_V_D_ players, if there are zones. Um f frequencies or something um as well as uh characters, um different uh keypad styles and s symbols.\"\n              }\n            ]\n          },\n          {\n            \"text\": \"Remote controls are often purchased unconsciously, similar to shoelaces, but users are fed up with having multiple remotes for different devices.\",\n            \"evidence\": [\n              {\n                \"segment_id\": \"m0146\",\n                \"quote\": \"I just don't think of remote controls as somethin something people consciously assess in their purchasing habits. It's just like getting shoelaces with shoes or something. It just comes along.\"\n              },\n              {\n                \"segment_id\": \"m0155\",\n                \"quote\": \"My parents went out and bought um remote controls because um they got fed up of having four or five different remote controls for each things the house.\"\n              }\n            ]\n          },\n          {\n            \"text\": \"A main design aim should be to combine multiple devices (TV, DVD, VCR) into one remote to reduce clutter.\",\n            \"evidence\": [\n              {\n                \"segment_id\": \"m0157\",\n                \"quote\": \"Right, so in function one of the priorities might be to combine as many uses\"\n              },\n              {\n                \"segment_id\": \"m0159\",\n                \"quote\": \"Right, so do you think that should be like a main design aim of our remote control d you know, do your your satellite and your regular telly and your V_C_R_ and everything?\"\n              }\n            ]\n          },\n          {\n            \"text\": \"Users expressed frustration with losing remotes, which are often small and hidden.\",\n            \"evidence\": [\n              {\n                \"segment_id\": \"m0175\",\n                \"quote\": \"And you keep losing them.\"\n              },\n              {\n                \"segment_id\": \"m0178\",\n                \"quote\": \"Finding them is really a pain, you know. I mean it's usually quite small, or when you want it right, it slipped behind the couch or it's kicked under the table.\"\n              }\n            ]\n          },\n          {\n            \"text\": \"Suggestions were made to include extra functionalities like lighting control or note-taking, and to explore more streamlined designs or touch screens.\",\n            \"evidence\": [\n              {\n                \"segment_id\": \"m0164\",\n                \"quote\": \"I wonder if we might add something new to the to the remote control market, such as the lighting in your house, or um\"\n              },\n              {\n                \"segment_id\": \"m0191\",\n                \"quote\": \"Maybe like a touch screen or something?\"\n              },\n              {\n                \"segment_id\": \"m0195\",\n                \"quote\": \"it could be that functionally that doesn't make it any better, but that just the appeal of of not having You know, these days there's a r pe things in people's homes are becoming more and more like chic, you know. Um, nicer materials and might be\"\n              }\n            ]\n          }\n        ]\n      }\n    ],\n    \"decisions\": [],\n    \"tasks\": [\n      {\n        \"text\": \"As the industrial designer, work on the actual working design of the remote control.\",\n        \"evidence\": [\n          {\n            \"segment_id\": \"m0202\",\n            \"quote\": \"So that's about um about ten to twelve by my watch. Um so inbetween now and then, um as the industrial designer, you're gonna be working on you know the actual working design of it\"\n          }\n        ],\n        \"owner\": \"David\",\n        \"deadline\": \"ten to twelve\"\n      },\n      {\n        \"text\": \"For user interface, define technical functions based on the discussion.\",\n        \"evidence\": [\n          {\n            \"segment_id\": \"m0202\",\n            \"quote\": \"Um for user interface, technical functions, I guess that's you know like what we've been talking about, what it'll actually do.\"\n          }\n        ],\n        \"owner\": \"Craig\",\n        \"deadline\": \"ten to twelve\"\n      },\n      {\n        \"text\": \"For marketing, execute the marketing plan.\",\n        \"evidence\": [\n          {\n            \"segment_id\": \"m0202\",\n            \"quote\": \"Um and uh marketing executive,\"\n          }\n        ],\n        \"owner\": \"Andrew\",\n        \"deadline\": \"ten to twelve\"\n      }\n    ],\n    \"uncertainties\": [\n      \"Whether the twenty-five Euro price is wholesale or retail.\",\n      \"Whether the remote control will need regional keypad styles and symbols.\",\n      \"Whether the price will appeal to different markets based on wealth.\",\n      \"Whether the design should include extra functionalities like lighting control or note-taking.\",\n      \"Whether a touch screen or more streamlined design is technologically reasonable.\"\n    ]\n  },\n  \"revisions\": []\n}"
+            },
+            "done": true,
+            "done_reason": "stop",
+            "total_duration": 82241236900,
+            "load_duration": 10954098900,
+            "prompt_eval_count": 10304,
+            "prompt_eval_cached_count": 0,
+            "prompt_eval_duration": 4301874000,
+            "eval_count": 3937,
+            "eval_duration": 66924448999
+          }
+        }
+      ]
+    },
+    {
+      "role": "asr-refinement",
+      "meeting_id": "f0da2d80-d3db-4582-86ce-e2ea243e4441",
+      "status": "complete",
+      "input_sha256": "ab0a0b22f94b7ab9a11f067a4ff8fd2191f965f5918970e1602438ffede177ff",
+      "output": {
+        "schema_version": "1.0",
+        "source_sha256": "ab0a0b22f94b7ab9a11f067a4ff8fd2191f965f5918970e1602438ffede177ff",
+        "policy_sha256": "4ed4ed190272cebbb5c7142bcf203cfb03bbafd01cdad5ed761b0153458b29b6",
+        "created_at": "2026-10-05T10:13:04.843148+00:00",
+        "segments": [
+          {
+            "id": "s00001",
+            "start": 0.0,
+            "end": 28.5,
+            "text": "Um my gosh, you've already produced a PowerPoint rendering. I think it's already on actually. God, how do you make this thing work? Maybe the input. Uh I you have to"
+          },
+          {
+            "id": "s00002",
+            "start": 28.5,
+            "end": 55.6,
+            "text": "I've plugged it in the back, but yeah, we'll just go okay, right. I know it's doing something like that. Okay, right."
+          },
+          {
+            "id": "s00003",
+            "start": 55.6,
+            "end": 84.9,
+            "text": "Um well this is a kickoff meeting for our our project and um this is just what we're going to be doing over the next 25 minutes. Um so first of all just to kind of make sure that we all know each other, I'm Laura and I'm the project manager. Great. Do you want to introduce yourself again? Hi, I'm David and I'm supposed to be an industrial designer. Okay. And I'm Andrew and I'm the our marketing"
+          },
+          {
+            "id": "s00004",
+            "start": 84.9,
+            "end": 112.8,
+            "text": "Expert. I'm Craig and I'm user interface designer. Great. Okay. Um so we're designing a new remote control and um oh I have to record he's here actually. So that's David, Andrew and Craig isn't it? And you all arrived on time. Um yes we did a design a new remote control um"
+          },
+          {
+            "id": "s00005",
+            "start": 112.8,
+            "end": 142.1,
+            "text": "As you can see it's supposed to be original, trendy and user friendly. Um so that's kind of our our brief as it were. Um and so there are three different stages to the design. Um I'm not really sure what what you guys have already received um in your emails. What did you get? Um I just got the project announcement project is that designing a remote control. Is that what yeah that's what anybody got? Okay."
+          },
+          {
+            "id": "s00006",
+            "start": 142.1,
+            "end": 170.4,
+            "text": "So we're going to have like individual work and then a meeting about it and repeat that process three times. And at this point we get to try out the whiteboard over there. So you get to draw your favourite animal and sum up your favourite characteristics of it. So who would like to go first? Very good."
+          },
+          {
+            "id": "s00007",
+            "start": 170.4,
+            "end": 199.1,
+            "text": "Alright, so this one here, right? Okay, very nice. All right, my favorite animal is like"
+          },
+          {
+            "id": "s00008",
+            "start": 199.1,
+            "end": 226.6,
+            "text": "A beagle. Character favorite characteristics of it? Is that right? Yeah. Right, well, basically, high priority for any animal for me is that they be willing to take a lot of physical affection."
+          },
+          {
+            "id": "s00009",
+            "start": 226.6,
+            "end": 253.7,
+            "text": "From their family, and yeah, they have lots of personality and be fit and in robust good health. So, this is blue beagle, my family's beagle."
+          },
+          {
+            "id": "s00010",
+            "start": 253.7,
+            "end": 283.4,
+            "text": "Well my favourite animal would be a monkey. They're small, cute and furry and when plants becomes real, I'm going to be up there with them. There's too much gear."
+          },
+          {
+            "id": "s00011",
+            "start": 283.4,
+            "end": 311.3,
+            "text": "You can take as long over this as you like because we haven't got an awful lot to discuss. Oh, well we do, we do. Don't feel like you're in a rash anyway. I could have told you a whole lot more about beagles. Okay, Joe. Well, we might have to get you up again then. I don't know what mine is. I'm going to have to think on the spot now. Impressionist."
+          },
+          {
+            "id": "s00012",
+            "start": 311.3,
+            "end": 340.8,
+            "text": "Is that a whale? Yeah. Um well my I don't know, it's just the first animal I can think of off the top of my head. Um guess big reason is'cause I'm allergic to most animals. Allergic to animal first, so um fish was a natural choice. Um yeah. And I kinda like whales. You come in and go eat everything inside. They're very harmless and mild and"
+          },
+          {
+            "id": "s00013",
+            "start": 340.8,
+            "end": 370.7,
+            "text": "Interesting. Okay. I still don't know what I'm going to write about. Um superb sketch by the way. Tail's a bit bigger I think. I was going to choose a dog as well but I'll just draw a different kind of dog. But my favourite animal is my own dog at home. That doesn't really look like him actually."
+          },
+          {
+            "id": "s00014",
+            "start": 370.7,
+            "end": 399.6,
+            "text": "He looks more like a pig actually. Oh well. I see a dog in there. Do you? Oh, that's very good of you. Now I see a rooster. What kind is it? Um he's a mixture of uh various things um"
+          },
+          {
+            "id": "s00015",
+            "start": 399.6,
+            "end": 427.3,
+            "text": "And what do I like about him? Um that's supposed to suggest that his tail wags. Um he's very friendly and cheery and always pleased to see you and very kind of affectionate and um uh and he's quite quite wee as well, so you know he can doesn't take up too much space. Um and uh"
+          },
+          {
+            "id": "s00016",
+            "start": 427.3,
+            "end": 455.0,
+            "text": "And he does a funny thing where he chases his tail as well. This is quite amusing. Is he aware that this is own cha tail he's chasing? It is, I think it is. He only does it after he's had his dinner. And he'll just all of a sudden just get up and start chasing his tail. It's an after-dinner dog, though. Yeah. Probably when he was little, he got lots of attention for doing it. And he has forever been conditioned. Maybe. Right, where did you find this? Just down here?"
+          },
+          {
+            "id": "s00017",
+            "start": 455.0,
+            "end": 482.1,
+            "text": "Okay. Um what do we do next? Um okay uh we now need to discuss the project finance. Um so according to the brief, um we're gonna be selling this remote control for twenty five euro um and we're aiming to make fifty million euro."
+          },
+          {
+            "id": "s00018",
+            "start": 482.1,
+            "end": 510.8,
+            "text": "Um so we're gonna be selling this on an international scale and uh we don't want it to cost any more than uh twelve fifty euros, so fifty percent of the selling price. Um can we just go over that again? Sure. Uh so basically twelve all right yeah okay so cost like production cost is twelve fifty but selling price is"
+          },
+          {
+            "id": "s00019",
+            "start": 510.8,
+            "end": 538.5,
+            "text": "Is that wholesale or retail? Like on the shelf? Um I don't know. I imagine that's a good question. I imagine it probably is our sale actually because it's probably up to the the um the retailer to uh sell it for whatever price they want. Um but I I don't know. I mean, do you think the fact that it's going to be sold internationally will have a bearing on how we design it at all?"
+          },
+          {
+            "id": "s00020",
+            "start": 538.5,
+            "end": 568.2,
+            "text": "Yes. I think it will. Um well right away I'm wondering if there's um like with D V D players if there are zones frequencies or something. Yeah. As well as characters, different keypad styles and symbols. Yeah. Well for remote control do you think that would be"
+          },
+          {
+            "id": "s00021",
+            "start": 568.2,
+            "end": 597.1,
+            "text": "I suppose it depends on how complicated our remote control is. It does make sense from maybe the design point of view'cause if you have more complicated characters like European languages then you need more buttons. Yeah. Yeah. Yeah. Okay. And then and then oh the other thing, international, is on the topic of price. I'm thinking the price might might appeal to a certain market in one region whereas in another it'll be different, so."
+          },
+          {
+            "id": "s00022",
+            "start": 597.1,
+            "end": 626.8,
+            "text": "Just like the rest of the country, like how much money people have to spend on things. Or just like basic product positioning. The 25 Euro remote control might be a big hit in London. Might not be such a big hit in Greece. Who knows? Oh my god. Yeah. Marketing. Good marketing thoughts. Oh gosh, I should be writing all this down."
+          },
+          {
+            "id": "s00024",
+            "start": 654.7,
+            "end": 684.4,
+            "text": "Right away, I'm making some kind of assumptions about what what information we're given here thinking Okay, trendy probably means something other than just basic. Yeah, something other than just standard So I'm wondering right away is selling 25 euros is that sort of the the is this gonna be like the premium product? Yeah, yeah, like how much does you know a remote control cost? Well 25 euro I mean that's um"
+          },
+          {
+            "id": "s00025",
+            "start": 684.4,
+            "end": 713.7,
+            "text": "That's about like 18 pounds or something isn't it or no is it as much as that 16 17 18 pounds. Yeah, it's I don't know. I've never bought a remote control, so I don't know how good a remote control that would get you. But yeah, I suppose it has to look kind of cool and gimmicky. Um right okay let me just scoot on ahead here."
+          },
+          {
+            "id": "s00026",
+            "start": 713.7,
+            "end": 742.2,
+            "text": "Okay. Um well d does anybody have anything to add to uh to the finance issue at all? Do we have any other background information on like how that compares to other no actually that would be useful though wouldn't it if you knew like what your money would get you now"
+          },
+          {
+            "id": "s00027",
+            "start": 742.2,
+            "end": 769.9,
+            "text": "The interesting thing about discussing production of remote control for me is that, as you point out, I just don't think remote control is being something people consciously assess in their purchasing habits. It's just like."
+          },
+          {
+            "id": "s00028",
+            "start": 769.9,
+            "end": 799.8,
+            "text": "Getting shoelaces with shoes or something, just five minutes to end of meeting. Oh, okay. We're a bit behind. Do you know what I mean? Like, yeah, so sort of like, how do you? I mean, one way of looking at it would be: well, the people producing television sets, maybe they have to buy remote controls. Or another way is maybe people who have TV sets are really fed up with their remote control and they really want a better one or something. My parents went out and bought remote controls because they got fed up with having like four or five different remote controls for each."
+          },
+          {
+            "id": "s00029",
+            "start": 799.8,
+            "end": 828.1,
+            "text": "Right times. Right. So um it was just how many devices it's a control. Right, so in function one of the priorities might be to combine as many uses. Right. So do you think that should be like a main design aim of our remote control? Don't you know? Do your your satellite and your regular tele and your V C R and everything? Well like um maybe what we could use as a sort of like a example of a successful other piece of technology is POM POM pilots."
+          },
+          {
+            "id": "s00030",
+            "start": 828.1,
+            "end": 855.8,
+            "text": "they're going from being just like little sort of scribble boards to cameras, MP3 players, telephones, everything, agenda. So like I wonder if we might add something new to the to the remote control market such as the lighting in your house or um or even like you know notes about um what you want to watch like you might put in there oh i want to watch such and such and they're kinda that's a good idea so extra functionality yeah like personally for me at home i've"
+          },
+          {
+            "id": "s00031",
+            "start": 855.8,
+            "end": 885.5,
+            "text": "I've combined the um the audio video of my television set and my DVD player and my C D player. So they all work actually function together, but I have different remote controls for each of them. So it's sort of ironic that that then they're in their um you know the sound and everything. It's just one system but each one's got its own little part. Um okay."
+          },
+          {
+            "id": "s00032",
+            "start": 885.5,
+            "end": 912.8,
+            "text": "Uh I d well we're gonna have to wrap up pretty quickly in the next couple of minutes. Um I'll just check we've nothing else. Okay. Um so anything else anybody wants to add about what they don't like about remote controls they've used, what they would really like to be part of this new one at all? You keep losing them. You keep losing them, okay. Finding them is maybe okay when you go. I mean it's usually quite small or when you want it right."
+          },
+          {
+            "id": "s00033",
+            "start": 912.8,
+            "end": 942.7,
+            "text": "Yeah, you get those ones where you can if you like whistle or make a really high pitched noise they beep. They're I mean is that something we'd want to include do you think maybe? I remember when the first remote control my my family had was on a cable. Actually the cable between it and the T V and big like buttons that sort of like like on a blender or something. My goodness. And you know when I think about what they are now, it's better, but actually it's still kind of"
+          },
+          {
+            "id": "s00034",
+            "start": 942.7,
+            "end": 972.4,
+            "text": "I don't know, like a massive junkie thing on the table. Maybe we could think about how it could be more, you know, streamlined. Maybe like a touch screen or something. Something like that, yeah. Or whatever would be technologically reasonable. Uh-huh. Okay. Well, I guess that's kind of the same thing. It could be that functionally that doesn't make it any better, but that just the appeal of not having you know, these days it's every peop things in people's homes are becoming more and more like chic, you know? Yeah. Um nicer materials and okay."
+          },
+          {
+            "id": "s00035",
+            "start": 972.4,
+            "end": 999.7,
+            "text": "Might be worth exploring any right, well um so just to wrap up the next meeting's gonna be in thirty minutes so that's about um about ten to twelve by my watch. Um so in between now and then um as the industrial designer you're gonna be working on you know the actual working design of it so you know what you're doing there um for user interface."
+          },
+          {
+            "id": "s00036",
+            "start": 999.7,
+            "end": 1027.4,
+            "text": "technical functions i guess that's you know like what we've been talking about what it'll actually do um and uh marketing executive you'll be just thinking about what it actually what you know what requirements it has to has to fulfil and you'll all get instructions emailed to you i guess okay um"
+          },
+          {
+            "id": "s00037",
+            "start": 1027.4,
+            "end": 1054.9,
+            "text": "Yeah, so it's the functional design stage is next, I guess. And uh and that's the end of the meeting. So I got that little message a lot sooner than I thought I would so Before we wrap up just to make sure we're all on the same page here do we we were given sort of an example of a"
+          },
+          {
+            "id": "s00038",
+            "start": 1054.9,
+            "end": 1084.0,
+            "text": "Coffee machine or something, right? Well, um are we ma right now on the assumption that our television remote control may have features which go beyond the television? Or are we keeping sort of like a a design commitment to television features? Okay, well just very quickly because we're supposed to finish now. I guess that's up to us. I mean you probably want some kind of unique selling point of it. Okay. So um"
+          },
+          {
+            "id": "s00039",
+            "start": 1084.0,
+            "end": 1113.9,
+            "text": "Okay. Yeah. There's a cap there, so um depends on how much you can cram into that price. Okay. Um yeah. And that's the main factor. Okay. Right, okay. Well that's that's the end of the meeting then. Um thank you all for coming. Good, I hope that was what they wanted us to do, listening."
+          },
+          {
+            "id": "s00040",
+            "start": 1113.9,
+            "end": 1142.6,
+            "text": "Um right great how do you turn this thing off? Is it function and ah there we go? I think if you can just leave it on maybe and then um oh god this has turned itself off"
+          },
+          {
+            "id": "s00041",
+            "start": 1142.6,
+            "end": 1172.5,
+            "text": "Try pushing function um eight, I think. Uh-huh. Oh, there it is. It's just okay. Right. This is all very high tech was the new"
+          },
+          {
+            "id": "s00042",
+            "start": 1172.5,
+            "end": 1201.0,
+            "text": "I d I don't know, uh do you guys go back to um target? It's a good thing we never target something like that."
+          },
+          {
+            "id": "s00043",
+            "start": 1201.0,
+            "end": 1228.3,
+            "text": "I have to be able to find out what next to my story because I could change my head savings. Of course, it's a"
+          },
+          {
+            "id": "s00044",
+            "start": 1228.3,
+            "end": 1256.8,
+            "text": "Well, I'm talking about um computers buying alternative and monitoring. Um computers can um I think that"
+          },
+          {
+            "id": "s00045",
+            "start": 1256.8,
+            "end": 1272.64,
+            "text": "Uh I don't know. I mean I don't really know how to do it but there's not just so I I was ki I wasn't expecting the"
+          }
+        ],
+        "accepted": [
+          {
+            "segment_id": "s00004",
+            "start": 26,
+            "end": 40,
+            "original": "user interface",
+            "replacement": "user interface designer",
+            "reason": "Correction based on glossary alias 'user interface' => 'user interface designer' for consistency with speaker's role description."
+          }
+        ],
+        "rejected": [
+          {
+            "edit": {
+              "segment_id": "s00003",
+              "start": 225,
+              "end": 240,
+              "original": "project manager",
+              "replacement": "project manager",
+              "reason": "None - term is correct and present in glossary as alias or exact match."
+            },
+            "rejection": "No change"
+          },
+          {
+            "edit": {
+              "segment_id": "s00003",
+              "start": 330,
+              "end": 349,
+              "original": "industrial designer",
+              "replacement": "industrial designer",
+              "reason": "None - term is correct and present in glossary."
+            },
+            "rejection": "No change"
+          },
+          {
+            "edit": {
+              "segment_id": "s00003",
+              "original": "marketing executive",
+              "replacement": "marketing executive",
+              "reason": "None - term is correct and present in glossary."
+            },
+            "rejection": "Original anchor is absent or ambiguous"
+          },
+          {
+            "edit": {
+              "segment_id": "s00004",
+              "original": "remote control",
+              "replacement": "remote control",
+              "reason": "None - term is correct and present in glossary."
+            },
+            "rejection": "Original anchor is absent or ambiguous"
+          },
+          {
+            "edit": {
+              "segment_id": "s00005",
+              "original": "LCD",
+              "replacement": "LCD",
+              "reason": "None - term is correct and present in glossary."
+            },
+            "rejection": "Original anchor is absent or ambiguous"
+          },
+          {
+            "edit": {
+              "segment_id": "s00005",
+              "original": "infrared",
+              "replacement": "infrared",
+              "reason": "None - term is correct and present in glossary."
+            },
+            "rejection": "Original anchor is absent or ambiguous"
+          }
+        ],
+        "calls": [
+          {
+            "key": "b081580b95d4ea20004d959cf5b0fb4cbf6fdc1518becb4bef0ea48da041329b",
+            "model": {
+              "tag": "qwen3.5:4b",
+              "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+              "runtime_version": "0.35.1",
+              "parameter_size": "4.2B",
+              "quantization": "Q4_K_M"
+            },
+            "prompt_sha256": "cac298a4702e7b57ea57a5471ae389881de308a0343057e76975d89c919f9581",
+            "input_sha256": "e05b37574575f8f1b3bcbcedbe93d39dcfc37688a16fe74c00f57a2a42b349dd",
+            "schema_sha256": "09b0f26550718f3d68a0d1a8a5d672491e5a73acec334aaf5fe3fe189939530f",
+            "context": 32768,
+            "output_tokens": 4096,
+            "temperature": 0.0,
+            "seed": 0,
+            "thinking": false,
+            "presence_penalty": 0.0,
+            "repeat_penalty": 1.0,
+            "elapsed_seconds": 14.247126400005072,
+            "prompt_tokens": 4678,
+            "generated_tokens": 263,
+            "attempts": 1
+          }
+        ],
+        "warnings": [
+          "Automatic edit guards cannot establish meaning. Review accepted and rejected edits."
+        ]
+      },
+      "wall_seconds": 14.468056500001694,
+      "measurements": [
+        {
+          "model": "qwen3.5:4b",
+          "options": {
+            "temperature": 0,
+            "seed": 0,
+            "num_ctx": 32768,
+            "num_predict": 4096,
+            "presence_penalty": 0,
+            "repeat_penalty": 1
+          },
+          "ram_before": {
+            "total_bytes": 16873545728,
+            "available_bytes": 3941695488
+          },
+          "done_reason": "stop",
+          "total_duration": 14149698800,
+          "load_duration": 7250202000,
+          "prompt_eval_count": 4678,
+          "prompt_eval_duration": 2189521000,
+          "eval_count": 263,
+          "eval_duration": 4645822000,
+          "wall_seconds": 14.194534700000077,
+          "ram_after": {
+            "total_bytes": 16873545728,
+            "available_bytes": 2786881536
+          },
+          "resident_models": [
+            {
+              "name": "qwen3.5:4b",
+              "model": "qwen3.5:4b",
+              "size": 4098894068,
+              "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+              "details": {
+                "parent_model": "",
+                "format": "gguf",
+                "family": "qwen35",
+                "families": [
+                  "qwen35"
+                ],
+                "parameter_size": "4.2B",
+                "quantization_level": "Q4_K_M"
+              },
+              "expires_at": "2026-10-05T15:48:04.7044804+05:30",
+              "size_vram": 4098894068,
+              "context_length": 32768
+            }
+          ]
+        }
+      ],
+      "rejected_responses": []
+    },
+    {
+      "role": "asr-documentation",
+      "meeting_id": "faf6f608-eba6-4457-8d24-3194bfa838fa",
+      "status": "failed",
+      "input_sha256": "499d65fb24fd5fc4cc39baf0b650ca3d44342caaa83811991c2309e8c4e349b3",
+      "initial_groups": 1,
+      "error": "Documenting model returned invalid output twice. Completed calls are saved; retry after checking the model/context settings.",
+      "wall_seconds": 124.77685789999668,
+      "measurements": [
+        {
+          "model": "qwen3.5:4b",
+          "options": {
+            "temperature": 0,
+            "seed": 0,
+            "num_ctx": 32768,
+            "num_predict": 4096,
+            "presence_penalty": 0,
+            "repeat_penalty": 1
+          },
+          "ram_before": {
+            "total_bytes": 16873545728,
+            "available_bytes": 3796070400
+          },
+          "done_reason": "stop",
+          "total_duration": 68459686100,
+          "load_duration": 6477167900,
+          "prompt_eval_count": 5388,
+          "prompt_eval_duration": 2283497000,
+          "eval_count": 3625,
+          "eval_duration": 59633026000,
+          "wall_seconds": 68.49359190000541,
+          "ram_after": {
+            "total_bytes": 16873545728,
+            "available_bytes": 2937262080
+          },
+          "resident_models": [
+            {
+              "name": "qwen3.5:4b",
+              "model": "qwen3.5:4b",
+              "size": 4098894068,
+              "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+              "details": {
+                "parent_model": "",
+                "format": "gguf",
+                "family": "qwen35",
+                "families": [
+                  "qwen35"
+                ],
+                "parameter_size": "4.2B",
+                "quantization_level": "Q4_K_M"
+              },
+              "expires_at": "2026-10-05T15:49:14.0576581+05:30",
+              "size_vram": 4098894068,
+              "context_length": 32768
+            }
+          ]
+        },
+        {
+          "model": "qwen3.5:4b",
+          "options": {
+            "temperature": 0,
+            "seed": 0,
+            "num_ctx": 32768,
+            "num_predict": 4096,
+            "presence_penalty": 0,
+            "repeat_penalty": 1
+          },
+          "ram_before": {
+            "total_bytes": 16873545728,
+            "available_bytes": 2924908544
+          },
+          "done_reason": "stop",
+          "total_duration": 55676875000,
+          "load_duration": 8495700,
+          "prompt_eval_count": 5415,
+          "prompt_eval_duration": 389768000,
+          "eval_count": 3392,
+          "eval_duration": 55231372000,
+          "wall_seconds": 55.73374109999713,
+          "ram_after": {
+            "total_bytes": 16873545728,
+            "available_bytes": 2845650944
+          },
+          "resident_models": [
+            {
+              "name": "qwen3.5:4b",
+              "model": "qwen3.5:4b",
+              "size": 4098894068,
+              "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+              "details": {
+                "parent_model": "",
+                "format": "gguf",
+                "family": "qwen35",
+                "families": [
+                  "qwen35"
+                ],
+                "parameter_size": "4.2B",
+                "quantization_level": "Q4_K_M"
+              },
+              "expires_at": "2026-10-05T15:50:09.8678853+05:30",
+              "size_vram": 4098894068,
+              "context_length": 32768
+            }
+          ]
+        }
+      ],
+      "rejected_responses": [
+        {
+          "error": "Evidence does not match segment s00005",
+          "response": {
+            "model": "qwen3.5:4b",
+            "created_at": "2026-10-05T10:14:14.0561603Z",
+            "message": {
+              "role": "assistant",
+              "content": "{\n  \"record\": {\n    \"summary\": [\n      {\n        \"text\": \"The meeting was a kickoff for a project to design a new remote control.\",\n        \"evidence\": [\n          {\n            \"segment_id\": \"s00003\",\n            \"quote\": \"Um well this is a kickoff meeting for our our project and um this is just what we're going to be doing over the next 25 minutes.\"\n          }\n        ]\n      },\n      {\n        \"text\": \"The project brief specifies designing a remote control that is original, trendy, and user-friendly.\",\n        \"evidence\": [\n          {\n            \"segment_id\": \"s00004\",\n            \"quote\": \"Um so we're designing a new remote control and um oh I have to record he's here actually.\"\n          },\n          {\n            \"segment_id\": \"s00005\",\n            \"quote\": \"As you can see it's supposed to be original, trendy and user friendly.\"\n          }\n        ]\n      },\n      {\n        \"text\": \"The design process involves individual work followed by meetings, repeated three times.\",\n        \"evidence\": [\n          {\n            \"segment_id\": \"s00005\",\n            \"quote\": \"So we're going to have like individual work and then a meeting about it and repeat that process three times.\"\n          }\n        ]\n      },\n      {\n        \"text\": \"The proposed selling price is twenty-five euros, with a target production cost of twelve point five euros.\",\n        \"evidence\": [\n          {\n            \"segment_id\": \"s00017\",\n            \"quote\": \"Um so according to the brief, um we're gonna be selling this remote control for twenty five euro um and we're aiming to make fifty million euro.\"\n          },\n          {\n            \"segment_id\": \"s00018\",\n            \"quote\": \"Um so we're gonna be selling this on an international scale and uh we don't want it to cost any more than uh twelve fifty euros, so fifty percent of the selling price.\"\n          }\n        ]\n      },\n      {\n        \"text\": \"The design must consider international markets, including regional price sensitivity and potential zone-specific features.\",\n        \"evidence\": [\n          {\n            \"segment_id\": \"s00019\",\n            \"quote\": \"Um I don't know. I imagine it probably is our sale actually because it's probably up to the the um the retailer to uh sell it for whatever price they want.\"\n          },\n          {\n            \"segment_id\": \"s00020\",\n            \"quote\": \"Yes. I think it will. Um well right away I'm wondering if there's um like with D V D players if there are zones frequencies or something.\"\n          },\n          {\n            \"segment_id\": \"s00021\",\n            \"quote\": \"I suppose it depends on how complicated our remote control is. It does make sense from maybe the design point of view'cause if you have more complicated characters like European languages then you need more buttons.\"\n          },\n          {\n            \"segment_id\": \"s00022\",\n            \"quote\": \"Just like the rest of the country, like how much money people have to spend on things. Or just like basic product positioning. The 25 Euro remote control might be a big hit in London. Might not be such a big hit in Greece. Who knows?\"\n          }\n        ]\n      },\n      {\n        \"text\": \"The remote control should combine multiple functions to replace multiple devices, such as a TV, DVD, and CD player.\",\n        \"evidence\": [\n          {\n            \"segment_id\": \"s00029\",\n            \"quote\": \"Right times. Right. So um it was just how many devices it's a control. Right, so in function one of the priorities might be to combine as many uses.\"\n          },\n          {\n            \"segment_id\": \"s00030\",\n            \"quote\": \"So like I wonder if we might add something new to the to the remote control market such as the lighting in your house or um or even like you know notes about um what you want to watch like you might put in there oh i want to watch such and such and they're kinda that's a good idea so extra functionality yeah like personally for me at home i've I've combined the um the audio video of my television set and my DVD player and my C D player.\"\n          }\n        ]\n      },\n      {\n        \"text\": \"Users frequently lose remote controls, so the design should address this issue.\",\n        \"evidence\": [\n          {\n            \"segment_id\": \"s00032\",\n            \"quote\": \"Yeah, you keep losing them. You keep losing them, okay. Finding them is maybe okay when you go. I mean it's usually quite small or when you want it right.\"\n          }\n        ]\n      },\n      {\n        \"text\": \"The design should explore modern, chic materials and potentially touch screen technology.\",\n        \"evidence\": [\n          {\n            \"segment_id\": \"s00034\",\n            \"quote\": \"Maybe we could think about how it could be more, you know, streamlined. Maybe like a touch screen or something. Something like that, yeah. Or whatever would be technologically reasonable. Uh-huh. Okay. Well, I guess that's kind of the same thing. It could be that functionally that doesn't make it any better, but that just the appeal of not having you know, these days it's every peop things in people's homes are becoming more and more like chic, you know? Yeah. Um nicer materials and okay.\"\n          }\n        ]\n      },\n      {\n        \"text\": \"The next meeting is scheduled for ten to twelve.\",\n        \"evidence\": [\n          {\n            \"segment_id\": \"s00035\",\n            \"quote\": \"Might be worth exploring any right, well um so just to wrap up the next meeting's gonna be in thirty minutes so that's about um about ten to twelve by my watch.\"\n          }\n        ]\n      },\n      {\n        \"text\": \"The functional design stage is the next phase of the project.\",\n        \"evidence\": [\n          {\n            \"segment_id\": \"s00037\",\n            \"quote\": \"Yeah, so it's the functional design stage is next, I guess.\"\n          }\n        ]\n      },\n      {\n        \"text\": \"The scope of the remote control's features (beyond TV) is not yet decided.\",\n        \"evidence\": [\n          {\n            \"segment_id\": \"s00038\",\n            \"quote\": \"Okay. Yeah. There's a cap there, so um depends on how much you can cram into that price. Okay. Um yeah. And that's the main factor. Okay. Right, okay. Well that's that's the end of the meeting then.\"\n          }\n        ]\n      }\n    ],\n    \"topics\": [\n      {\n        \"title\": \"Project Kickoff and Introductions\",\n        \"points\": [\n          {\n            \"text\": \"The meeting participants are Laura (Project Manager), David (Industrial Designer), Andrew (Marketing Expert), and Craig (User Interface Designer).\",\n            \"evidence\": [\n              {\n                \"segment_id\": \"s00003\",\n                \"quote\": \"Um well this is a kickoff meeting for our our project and um this is just what we're going to be doing over the next 25 minutes. Um so first of all just to kind of make sure that we all know each other, I'm Laura and I'm the project manager. Great. Do you want to introduce yourself again? Hi, I'm David and I'm supposed to be an industrial designer. Okay. And I'm Andrew and I'm the our marketing Expert. I'm Craig and I'm user interface designer.\"\n              }\n            ]\n          },\n          {\n            \"text\": \"The team discussed their favorite animals and characteristics as a warm-up activity.\",\n            \"evidence\": [\n              {\n                \"segment_id\": \"s00006\",\n                \"quote\": \"So you get to draw your favourite animal and sum up your favourite characteristics of it. So who would like to go first? Very good.\"\n              },\n              {\n                \"segment_id\": \"s00008\",\n                \"quote\": \"A beagle. Character favorite characteristics of it? Is that right? Yeah. Right, well, basically, high priority for any animal for me is that they be willing to take a lot of physical affection.\"\n              },\n              {\n                \"segment_id\": \"s00010\",\n                \"quote\": \"Well my favourite animal would be a monkey. They're small, cute and furry and when plants becomes real, I'm going to be up there with them. There's too much gear.\"\n              },\n              {\n                \"segment_id\": \"s00012\",\n                \"quote\": \"Is that a whale? Yeah. Um well my I don't know, it's just the first animal I can think of off the top of my head. Um guess big reason is'cause I'm allergic to most animals. Allergic to animal first, so um fish was a natural choice. Um yeah. And I kinda like whales.\"\n              },\n              {\n                \"segment_id\": \"s00013\",\n                \"quote\": \"Interesting. Okay. I still don't know what I'm going to write about. Um superb sketch by the way. Tail's a bit bigger I think. I was going to choose a dog as well but I'll just draw a different kind of dog. But my favourite animal is my own dog at home. That doesn't really look like him actually.\"\n              },\n              {\n                \"segment_id\": \"s00015\",\n                \"quote\": \"And what do I like about him? Um that's supposed to suggest that his tail wags. Um he's very friendly and cheery and always pleased to see you and very kind of affectionate and um uh and he's quite quite wee as well, so you know he can doesn't take up too much space. Um and uh And he does a funny thing where he chases his tail as well.\"\n              }\n            ]\n          }\n        ]\n      },\n      {\n        \"title\": \"Project Finance and Pricing\",\n        \"points\": [\n          {\n            \"text\": \"The project aims to sell the remote control for twenty-five euros with a target production cost of twelve point five euros.\",\n            \"evidence\": [\n              {\n                \"segment_id\": \"s00017\",\n                \"quote\": \"Um so according to the brief, um we're gonna be selling this remote control for twenty five euro um and we're aiming to make fifty million euro.\"\n              },\n              {\n                \"segment_id\": \"s00018\",\n                \"quote\": \"Um so we're gonna be selling this on an international scale and uh we don't want it to cost any more than uh twelve fifty euros, so fifty percent of the selling price.\"\n              }\n            ]\n          },\n          {\n            \"text\": \"The team discussed whether the price is wholesale or retail and the implications for international markets.\",\n            \"evidence\": [\n              {\n                \"segment_id\": \"s00019\",\n                \"quote\": \"Is that wholesale or retail? Like on the shelf? Um I don't know. I imagine it probably is our sale actually because it's probably up to the the um the retailer to uh sell it for whatever price they want.\"\n              },\n              {\n                \"segment_id\": \"s00022\",\n                \"quote\": \"Just like the rest of the country, like how much money people have to spend on things. Or just like basic product positioning. The 25 Euro remote control might be a big hit in London. Might not be such a big hit in Greece. Who knows?\"\n              }\n            ]\n          }\n        ]\n      },\n      {\n        \"title\": \"Design Requirements and Functionality\",\n        \"points\": [\n          {\n            \"text\": \"The remote control should combine multiple functions to replace multiple devices, such as TV, DVD, and CD players.\",\n            \"evidence\": [\n              {\n                \"segment_id\": \"s00029\",\n                \"quote\": \"Right times. Right. So um it was just how many devices it's a control. Right, so in function one of the priorities might be to combine as many uses.\"\n              },\n              {\n                \"segment_id\": \"s00030\",\n                \"quote\": \"So like I wonder if we might add something new to the to the remote control market such as the lighting in your house or um or even like you know notes about um what you want to watch like you might put in there oh i want to watch such and such and they're kinda that's a good idea so extra functionality yeah like personally for me at home i've I've combined the um the audio video of my television set and my DVD player and my C D player.\"\n              }\n            ]\n          },\n          {\n            \"text\": \"The design should address the issue of users losing remote controls.\",\n            \"evidence\": [\n              {\n                \"segment_id\": \"s00032\",\n                \"quote\": \"Yeah, you keep losing them. You keep losing them, okay. Finding them is maybe okay when you go. I mean it's usually quite small or when you want it right.\"\n              }\n            ]\n          },\n          {\n            \"text\": \"The design should explore modern, chic materials and potentially touch screen technology.\",\n            \"evidence\": [\n              {\n                \"segment_id\": \"s00034\",\n                \"quote\": \"Maybe we could think about how it could be more, you know, streamlined. Maybe like a touch screen or something. Something like that, yeah. Or whatever would be technologically reasonable. Uh-huh. Okay. Well, I guess that's kind of the same thing. It could be that functionally that doesn't make it any better, but that just the appeal of not having you know, these days it's every peop things in people's homes are becoming more and more like chic, you know? Yeah. Um nicer materials and okay.\"\n              }\n            ]\n          }\n        ]\n      },\n      {\n        \"title\": \"Meeting Logistics and Next Steps\",\n        \"points\": [\n          {\n            \"text\": \"The next meeting is scheduled for ten to twelve.\",\n            \"evidence\": [\n              {\n                \"segment_id\": \"s00035\",\n                \"quote\": \"Might be worth exploring any right, well um so just to wrap up the next meeting's gonna be in thirty minutes so that's about um about ten to twelve by my watch.\"\n              }\n            ]\n          },\n          {\n            \"text\": \"The functional design stage is the next phase of the project.\",\n            \"evidence\": [\n              {\n                \"segment_id\": \"s00037\",\n                \"quote\": \"Yeah, so it's the functional design stage is next, I guess.\"\n              }\n            ]\n          },\n          {\n            \"text\": \"The scope of the remote control's features (beyond TV) is not yet decided.\",\n            \"evidence\": [\n              {\n                \"segment_id\": \"s00038\",\n                \"quote\": \"Okay. Yeah. There's a cap there, so um depends on how much you can cram into that price. Okay. Um yeah. And that's the main factor. Okay. Right, okay. Well that's that's the end of the meeting then.\"\n              }\n            ]\n          }\n        ]\n      }\n    ],\n    \"decisions\": [],\n    \"tasks\": [],\n    \"uncertainties\": [\n      \"Whether the selling price is wholesale or retail.\",\n      \"Whether the remote control will include features beyond television control.\",\n      \"The specific regional price sensitivity differences between markets like London and Greece.\"\n    ]\n  },\n  \"revisions\": []\n}"
+            },
+            "done": true,
+            "done_reason": "stop",
+            "total_duration": 68459686100,
+            "load_duration": 6477167900,
+            "prompt_eval_count": 5388,
+            "prompt_eval_cached_count": 0,
+            "prompt_eval_duration": 2283497000,
+            "eval_count": 3625,
+            "eval_duration": 59633026000
+          }
+        },
+        {
+          "error": "Evidence does not match segment s00005",
+          "response": {
+            "model": "qwen3.5:4b",
+            "created_at": "2026-10-05T10:15:09.8667462Z",
+            "message": {
+              "role": "assistant",
+              "content": "{\n  \"record\": {\n    \"summary\": [\n      {\n        \"text\": \"The meeting was a kickoff for a project to design a new remote control.\",\n        \"evidence\": [\n          {\n            \"segment_id\": \"s00003\",\n            \"quote\": \"Um well this is a kickoff meeting for our our project and um this is just what we're going to be doing over the next 25 minutes.\"\n          }\n        ]\n      },\n      {\n        \"text\": \"The project brief is to design a remote control that is original, trendy, and user-friendly.\",\n        \"evidence\": [\n          {\n            \"segment_id\": \"s00004\",\n            \"quote\": \"Um so we're designing a new remote control and um oh I have to record he's here actually.\"\n          },\n          {\n            \"segment_id\": \"s00005\",\n            \"quote\": \"As you can see it's supposed to be original, trendy and user friendly.\"\n          }\n        ]\n      },\n      {\n        \"text\": \"The design process involves individual work followed by a meeting, repeated three times.\",\n        \"evidence\": [\n          {\n            \"segment_id\": \"s00005\",\n            \"quote\": \"So we're going to have like individual work and then a meeting about it and repeat that process three times.\"\n          }\n        ]\n      },\n      {\n        \"text\": \"The proposed selling price is twenty-five euros, with a target production cost of twelve point five euros.\",\n        \"evidence\": [\n          {\n            \"segment_id\": \"s00017\",\n            \"quote\": \"Um so according to the brief, um we're gonna be selling this remote control for twenty five euro um and we're aiming to make fifty million euro.\"\n          },\n          {\n            \"segment_id\": \"s00018\",\n            \"quote\": \"Um so we're gonna be selling this on an international scale and uh we don't want it to cost any more than uh twelve fifty euros, so fifty percent of the selling price.\"\n          }\n        ]\n      },\n      {\n        \"text\": \"The team discussed international design considerations, including keypad styles, symbols, and regional price sensitivity.\",\n        \"evidence\": [\n          {\n            \"segment_id\": \"s00019\",\n            \"quote\": \"Um I don't know. I imagine it probably is our sale actually because it's probably up to the the um the retailer to uh sell it for whatever price they want.\"\n          },\n          {\n            \"segment_id\": \"s00020\",\n            \"quote\": \"Yes. I think it will. Um well right away I'm wondering if there's um like with D V D players if there are zones frequencies or something. Yeah. As well as characters, different keypad styles and symbols.\"\n          },\n          {\n            \"segment_id\": \"s00021\",\n            \"quote\": \"I suppose it depends on how complicated our remote control is. It does make sense from maybe the design point of view'cause if you have more complicated characters like European languages then you need more buttons.\"\n          },\n          {\n            \"segment_id\": \"s00022\",\n            \"quote\": \"Just like the rest of the country, like how much money people have to spend on things. Or just like basic product positioning. The 25 Euro remote control might be a big hit in London. Might not be such a big hit in Greece. Who knows?\"\n          }\n        ]\n      },\n      {\n        \"text\": \"The team discussed the need for a multi-function remote control to replace multiple devices.\",\n        \"evidence\": [\n          {\n            \"segment_id\": \"s00028\",\n            \"quote\": \"Getting shoelaces with shoes or something, just five minutes to end of meeting. Oh, okay. We're a bit behind. Do you know what I mean? Like, yeah, so sort of like, how do you? I mean, one way of looking at it would be: well, the people producing television sets, maybe they have to buy remote controls. Or another way is maybe people who have TV sets are really fed up with their remote control and they really want a better one or something.\"\n          },\n          {\n            \"segment_id\": \"s00029\",\n            \"quote\": \"Right times. Right. So um it was just how many devices it's a control. Right, so in function one of the priorities might be to combine as many uses.\"\n          },\n          {\n            \"segment_id\": \"s00030\",\n            \"quote\": \"Well like um maybe what we could use as a sort of like a example of a successful other piece of technology is POM POM pilots.\"\n          }\n        ]\n      },\n      {\n        \"text\": \"The team discussed potential extra functionalities such as lighting control and note-taking.\",\n        \"evidence\": [\n          {\n            \"segment_id\": \"s00030\",\n            \"quote\": \"So like I wonder if we might add something new to the to the remote control market such as the lighting in your house or um or even like you know notes about um what you want to watch like you might put in there oh i want to watch such and such and they're kinda that's a good idea so extra functionality yeah like personally for me at home i've\"\n          }\n        ]\n      },\n      {\n        \"text\": \"The team discussed common remote control issues, such as losing them and the desire for streamlined designs.\",\n        \"evidence\": [\n          {\n            \"segment_id\": \"s00032\",\n            \"quote\": \"Yeah, you keep losing them. You keep losing them, okay. Finding them is maybe okay when you go. I mean it's usually quite small or when you want it right.\"\n          },\n          {\n            \"segment_id\": \"s00034\",\n            \"quote\": \"I don't know, like a massive junkie thing on the table. Maybe we could think about how it could be more, you know, streamlined. Maybe like a touch screen or something. Something like that, yeah. Or whatever would be technologically reasonable.\"\n          }\n        ]\n      },\n      {\n        \"text\": \"The meeting concluded with instructions for the next stage: functional design.\",\n        \"evidence\": [\n          {\n            \"segment_id\": \"s00035\",\n            \"quote\": \"Might be worth exploring any right, well um so just to wrap up the next meeting's gonna be in thirty minutes so that's about um about ten to twelve by my watch. Um so in between now and then um as the industrial designer you're gonna be working on you know the actual working design of it so you know what you're doing there um for user interface.\"\n          },\n          {\n            \"segment_id\": \"s00036\",\n            \"quote\": \"technical functions i guess that's you know like what we've been talking about what it'll actually do um and uh marketing executive you'll be just thinking about what it actually what you know what requirements it has to has to fulfil and you'll all get instructions emailed to you i guess okay um\"\n          }\n        ]\n      }\n    ],\n    \"topics\": [\n      {\n        \"title\": \"Project Kickoff and Introductions\",\n        \"points\": [\n          {\n            \"text\": \"The meeting was a kickoff for a project to design a new remote control.\",\n            \"evidence\": [\n              {\n                \"segment_id\": \"s00003\",\n                \"quote\": \"Um well this is a kickoff meeting for our our project and um this is just what we're going to be doing over the next 25 minutes.\"\n              }\n            ]\n          },\n          {\n            \"text\": \"The project brief is to design a remote control that is original, trendy, and user-friendly.\",\n            \"evidence\": [\n              {\n                \"segment_id\": \"s00004\",\n                \"quote\": \"Um so we're designing a new remote control and um oh I have to record he's here actually.\"\n              },\n              {\n                \"segment_id\": \"s00005\",\n                \"quote\": \"As you can see it's supposed to be original, trendy and user friendly.\"\n              }\n            ]\n          },\n          {\n            \"text\": \"The design process involves individual work followed by a meeting, repeated three times.\",\n            \"evidence\": [\n              {\n                \"segment_id\": \"s00005\",\n                \"quote\": \"So we're going to have like individual work and then a meeting about it and repeat that process three times.\"\n              }\n            ]\n          }\n        ]\n      },\n      {\n        \"title\": \"Project Finance and Pricing\",\n        \"points\": [\n          {\n            \"text\": \"The proposed selling price is twenty-five euros, with a target production cost of twelve point five euros.\",\n            \"evidence\": [\n              {\n                \"segment_id\": \"s00017\",\n                \"quote\": \"Um so according to the brief, um we're gonna be selling this remote control for twenty five euro um and we're aiming to make fifty million euro.\"\n              },\n              {\n                \"segment_id\": \"s00018\",\n                \"quote\": \"Um so we're gonna be selling this on an international scale and uh we don't want it to cost any more than uh twelve fifty euros, so fifty percent of the selling price.\"\n              }\n            ]\n          },\n          {\n            \"text\": \"The team discussed international design considerations, including keypad styles, symbols, and regional price sensitivity.\",\n            \"evidence\": [\n              {\n                \"segment_id\": \"s00019\",\n                \"quote\": \"Um I don't know. I imagine it probably is our sale actually because it's probably up to the the um the retailer to uh sell it for whatever price they want.\"\n              },\n              {\n                \"segment_id\": \"s00020\",\n                \"quote\": \"Yes. I think it will. Um well right away I'm wondering if there's um like with D V D players if there are zones frequencies or something. Yeah. As well as characters, different keypad styles and symbols.\"\n              },\n              {\n                \"segment_id\": \"s00021\",\n                \"quote\": \"I suppose it depends on how complicated our remote control is. It does make sense from maybe the design point of view'cause if you have more complicated characters like European languages then you need more buttons.\"\n              },\n              {\n                \"segment_id\": \"s00022\",\n                \"quote\": \"Just like the rest of the country, like how much money people have to spend on things. Or just like basic product positioning. The 25 Euro remote control might be a big hit in London. Might not be such a big hit in Greece. Who knows?\"\n              }\n            ]\n          }\n        ]\n      },\n      {\n        \"title\": \"Design Functionality and User Needs\",\n        \"points\": [\n          {\n            \"text\": \"The team discussed the need for a multi-function remote control to replace multiple devices.\",\n            \"evidence\": [\n              {\n                \"segment_id\": \"s00028\",\n                \"quote\": \"Getting shoelaces with shoes or something, just five minutes to end of meeting. Oh, okay. We're a bit behind. Do you know what I mean? Like, yeah, so sort of like, how do you? I mean, one way of looking at it would be: well, the people producing television sets, maybe they have to buy remote controls. Or another way is maybe people who have TV sets are really fed up with their remote control and they really want a better one or something.\"\n              },\n              {\n                \"segment_id\": \"s00029\",\n                \"quote\": \"Right times. Right. So um it was just how many devices it's a control. Right, so in function one of the priorities might be to combine as many uses.\"\n              },\n              {\n                \"segment_id\": \"s00030\",\n                \"quote\": \"Well like um maybe what we could use as a sort of like a example of a successful other piece of technology is POM POM pilots.\"\n              }\n            ]\n          },\n          {\n            \"text\": \"The team discussed potential extra functionalities such as lighting control and note-taking.\",\n            \"evidence\": [\n              {\n                \"segment_id\": \"s00030\",\n                \"quote\": \"So like I wonder if we might add something new to the to the remote control market such as the lighting in your house or um or even like you know notes about um what you want to watch like you might put in there oh i want to watch such and such and they're kinda that's a good idea so extra functionality yeah like personally for me at home i've\"\n              }\n            ]\n          },\n          {\n            \"text\": \"The team discussed common remote control issues, such as losing them and the desire for streamlined designs.\",\n            \"evidence\": [\n              {\n                \"segment_id\": \"s00032\",\n                \"quote\": \"Yeah, you keep losing them. You keep losing them, okay. Finding them is maybe okay when you go. I mean it's usually quite small or when you want it right.\"\n              },\n              {\n                \"segment_id\": \"s00034\",\n                \"quote\": \"I don't know, like a massive junkie thing on the table. Maybe we could think about how it could be more, you know, streamlined. Maybe like a touch screen or something. Something like that, yeah. Or whatever would be technologically reasonable.\"\n              }\n            ]\n          }\n        ]\n      },\n      {\n        \"title\": \"Next Steps and Meeting Conclusion\",\n        \"points\": [\n          {\n            \"text\": \"The meeting concluded with instructions for the next stage: functional design.\",\n            \"evidence\": [\n              {\n                \"segment_id\": \"s00035\",\n                \"quote\": \"Might be worth exploring any right, well um so just to wrap up the next meeting's gonna be in thirty minutes so that's about um about ten to twelve by my watch. Um so in between now and then um as the industrial designer you're gonna be working on you know the actual working design of it so you know what you're doing there um for user interface.\"\n              },\n              {\n                \"segment_id\": \"s00036\",\n                \"quote\": \"technical functions i guess that's you know like what we've been talking about what it'll actually do um and uh marketing executive you'll be just thinking about what it actually what you know what requirements it has to has to fulfil and you'll all get instructions emailed to you i guess okay um\"\n              }\n            ]\n          }\n        ]\n      }\n    ],\n    \"decisions\": [],\n    \"tasks\": [],\n    \"uncertainties\": []\n  },\n  \"revisions\": []\n}"
+            },
+            "done": true,
+            "done_reason": "stop",
+            "total_duration": 55676875000,
+            "load_duration": 8495700,
+            "prompt_eval_count": 5415,
+            "prompt_eval_cached_count": 4876,
+            "prompt_eval_duration": 389768000,
+            "eval_count": 3392,
+            "eval_duration": 55231372000
+          }
+        }
+      ]
+    }
+  ],
+  "scope": "One public AMI meeting; manual-documentation and shared-weight ASR/refinement/documentation component arms. Production Runner policy unchanged.",
+  "finished_at": "2026-10-05T10:15:10.059532+00:00"
+}

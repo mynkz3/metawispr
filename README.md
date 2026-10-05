@@ -12,6 +12,8 @@ The two Qwen checkpoints are local deployment defaults pending project-specific 
 
 A [genuine local LLM regression comparison](docs/LLM_EVALUATION.md) now covers Qwen 4B, Qwen 9B and Granite H-Micro 3B on fixed authored cases, plus CPU subsets. Qwen 4B is the preferred lightweight single-model candidate for further testing; the application defaults remain unchanged. The [evaluation runner and actual outputs](evaluation/README.md) are included. These results do not establish representative meeting accuracy.
 
+The [real AMI ES2002a comparison](docs/AMI_ES2002A_EVALUATION.md) now tests the same models on a 21-minute recording and official manual transcript. Qwen 9B produced the strongest validated narrative notes, but omitted the assigned tasks; no model met the complete meeting-record quality requirements. The earlier single-4B preference is not validated by this meeting. Citation handling, action extraction and context budgeting need work before selecting a production winner. Public derived inputs and genuine outputs are included; audio and weights remain outside Git.
+
 ## Development
 
 Use Python 3.11–3.13, uv and a current local Ollama installation supporting Qwen3.5. Model weights are installed separately and are not committed. Use Node.js 22.12+ (24 LTS recommended) and npm to build the frontend.

@@ -1,0 +1,1409 @@
+{
+  "abstract": [
+    {
+      "id": "ES2002a.rdhillon.s.1",
+      "text": "The project manager introduced the upcoming project to the team members and then the team members participated in an exercise in which they drew their favorite animal and discussed what they liked about the animal."
+    },
+    {
+      "id": "ES2002a.rdhillon.s.2",
+      "text": "The project manager talked about the project finances and selling prices."
+    },
+    {
+      "id": "ES2002a.rdhillon.s.3",
+      "text": "The team then discussed various features to consider in making the remote."
+    }
+  ],
+  "actions": [
+    {
+      "id": "ES2002a.rdhillon.s.4",
+      "text": "The industrial designer will work on the working design of the remote."
+    },
+    {
+      "id": "ES2002a.rdhillon.s.5",
+      "text": "The user interface designer will work on the technical functions of the remote."
+    },
+    {
+      "id": "ES2002a.rdhillon.s.6",
+      "text": "The marketing executive will work on what requirements the remote has to fulfill"
+    }
+  ],
+  "decisions": [
+    {
+      "id": "ES2002a.rdhillon.s.7",
+      "text": "The remote will sell for 25 Euro."
+    },
+    {
+      "id": "ES2002a.rdhillon.s.8",
+      "text": "The remote will be sold on an international scale."
+    },
+    {
+      "id": "ES2002a.rdhillon.s.9",
+      "text": "The production costs cannot exceed 12.50 Euro."
+    }
+  ],
+  "problems": [
+    {
+      "id": "ES2002a.rdhillon.s.10",
+      "text": "Whether the remote will be used exclusively for televisions."
+    }
+  ],
+  "source_links": [
+    {
+      "summary_ids": [
+        "ES2002a.rdhillon.s.1"
+      ],
+      "text": "Um well this is the kick-off meeting for our our project.",
+      "word_ids": [
+        "ES2002a.B.words5",
+        "ES2002a.B.words6",
+        "ES2002a.B.words7",
+        "ES2002a.B.words8",
+        "ES2002a.B.words9",
+        "ES2002a.B.words10",
+        "ES2002a.B.words11",
+        "ES2002a.B.words12",
+        "ES2002a.B.words13",
+        "ES2002a.B.words14",
+        "ES2002a.B.words15",
+        "ES2002a.B.words16"
+      ]
+    },
+    {
+      "summary_ids": [
+        "ES2002a.rdhillon.s.1"
+      ],
+      "text": "so we're designing a new remote control and um",
+      "word_ids": [
+        "ES2002a.B.words80",
+        "ES2002a.B.words81",
+        "ES2002a.B.words82",
+        "ES2002a.B.words83",
+        "ES2002a.B.words84",
+        "ES2002a.B.words85",
+        "ES2002a.B.words86",
+        "ES2002a.B.words87",
+        "ES2002a.B.words88"
+      ]
+    },
+    {
+      "summary_ids": [
+        "ES2002a.rdhillon.s.1"
+      ],
+      "text": "Um, as you can see it's supposed to be original, trendy and user friendly.",
+      "word_ids": [
+        "ES2002a.B.words129",
+        "ES2002a.B.words130",
+        "ES2002a.B.words131",
+        "ES2002a.B.words132",
+        "ES2002a.B.words133",
+        "ES2002a.B.words134",
+        "ES2002a.B.words135",
+        "ES2002a.B.words136",
+        "ES2002a.B.words137",
+        "ES2002a.B.words138",
+        "ES2002a.B.words139",
+        "ES2002a.B.words140",
+        "ES2002a.B.words141",
+        "ES2002a.B.words142",
+        "ES2002a.B.words143",
+        "ES2002a.B.words144",
+        "ES2002a.B.words145"
+      ]
+    },
+    {
+      "summary_ids": [
+        "ES2002a.rdhillon.s.1"
+      ],
+      "text": "Um and so there are three different stages to the design.",
+      "word_ids": [
+        "ES2002a.B.words159",
+        "ES2002a.B.words160",
+        "ES2002a.B.words161",
+        "ES2002a.B.words162",
+        "ES2002a.B.words163",
+        "ES2002a.B.words164",
+        "ES2002a.B.words165",
+        "ES2002a.B.words166",
+        "ES2002a.B.words167",
+        "ES2002a.B.words168",
+        "ES2002a.B.words169",
+        "ES2002a.B.words170"
+      ]
+    },
+    {
+      "summary_ids": [
+        "ES2002a.rdhillon.s.1"
+      ],
+      "text": "So we're gonna have like individual work and then a meeting about it.",
+      "word_ids": [
+        "ES2002a.B.words205",
+        "ES2002a.B.words206",
+        "ES2002a.B.words207",
+        "ES2002a.B.words208",
+        "ES2002a.B.words209",
+        "ES2002a.B.words210",
+        "ES2002a.B.words211",
+        "ES2002a.B.words212",
+        "ES2002a.B.words213",
+        "ES2002a.B.words214",
+        "ES2002a.B.words215",
+        "ES2002a.B.words216",
+        "ES2002a.B.words217",
+        "ES2002a.B.words218"
+      ]
+    },
+    {
+      "summary_ids": [
+        "ES2002a.rdhillon.s.1"
+      ],
+      "text": "And repeat that process three times.",
+      "word_ids": [
+        "ES2002a.B.words219",
+        "ES2002a.B.words220",
+        "ES2002a.B.words221",
+        "ES2002a.B.words222",
+        "ES2002a.B.words223",
+        "ES2002a.B.words224",
+        "ES2002a.B.words225"
+      ]
+    },
+    {
+      "summary_ids": [
+        "ES2002a.rdhillon.s.1"
+      ],
+      "text": "So uh you get to draw your favourite animal and sum up your favourite characteristics of it.",
+      "word_ids": [
+        "ES2002a.B.words243",
+        "ES2002a.B.words244",
+        "ES2002a.B.words245",
+        "ES2002a.B.words246",
+        "ES2002a.B.words247",
+        "ES2002a.B.words248",
+        "ES2002a.B.words249",
+        "ES2002a.B.words250",
+        "ES2002a.B.words251",
+        "ES2002a.B.words252",
+        "ES2002a.B.words253",
+        "ES2002a.B.words254",
+        "ES2002a.B.words255",
+        "ES2002a.B.words256",
+        "ES2002a.B.words257",
+        "ES2002a.B.words258",
+        "ES2002a.B.words259",
+        "ES2002a.B.words260"
+      ]
+    },
+    {
+      "summary_ids": [
+        "ES2002a.rdhillon.s.1"
+      ],
+      "text": "My favourite animal is like",
+      "word_ids": [
+        "ES2002a.D.words52",
+        "ES2002a.D.words53",
+        "ES2002a.D.words54",
+        "ES2002a.D.words55",
+        "ES2002a.D.words56"
+      ]
+    },
+    {
+      "summary_ids": [
+        "ES2002a.rdhillon.s.1"
+      ],
+      "text": "A beagle.",
+      "word_ids": [
+        "ES2002a.D.words60",
+        "ES2002a.D.words61",
+        "ES2002a.D.words62"
+      ]
+    },
+    {
+      "summary_ids": [
+        "ES2002a.rdhillon.s.1"
+      ],
+      "text": "Uh, right, well basically um high priority for any animal for me is that they be willing to take a lot of physical affection from their family.",
+      "word_ids": [
+        "ES2002a.D.words74",
+        "ES2002a.D.words75",
+        "ES2002a.D.words76",
+        "ES2002a.D.words77",
+        "ES2002a.D.words78",
+        "ES2002a.D.words79",
+        "ES2002a.D.words80",
+        "ES2002a.D.words81",
+        "ES2002a.D.words82",
+        "ES2002a.D.words83",
+        "ES2002a.D.words84",
+        "ES2002a.D.words85",
+        "ES2002a.D.words86",
+        "ES2002a.D.words87",
+        "ES2002a.D.words88",
+        "ES2002a.D.words89",
+        "ES2002a.D.words90",
+        "ES2002a.D.words91",
+        "ES2002a.D.words92",
+        "ES2002a.D.words93",
+        "ES2002a.D.words94",
+        "ES2002a.D.words95",
+        "ES2002a.D.words96",
+        "ES2002a.D.words97",
+        "ES2002a.D.words98",
+        "ES2002a.D.words99",
+        "ES2002a.D.words100",
+        "ES2002a.D.words101",
+        "ES2002a.D.words102",
+        "ES2002a.D.words103"
+      ]
+    },
+    {
+      "summary_ids": [
+        "ES2002a.rdhillon.s.1"
+      ],
+      "text": "And, yeah that they have lots of personality",
+      "word_ids": [
+        "ES2002a.D.words104",
+        "ES2002a.D.words105",
+        "ES2002a.D.words106",
+        "ES2002a.D.words107",
+        "ES2002a.D.words108",
+        "ES2002a.D.words109",
+        "ES2002a.D.words110",
+        "ES2002a.D.words111",
+        "ES2002a.D.words112"
+      ]
+    },
+    {
+      "summary_ids": [
+        "ES2002a.rdhillon.s.1"
+      ],
+      "text": "Well, my favourite animal would be a monkey.",
+      "word_ids": [
+        "ES2002a.C.words11",
+        "ES2002a.C.words12",
+        "ES2002a.C.words13",
+        "ES2002a.C.words14",
+        "ES2002a.C.words15",
+        "ES2002a.C.words16",
+        "ES2002a.C.words17",
+        "ES2002a.C.words18",
+        "ES2002a.C.words19",
+        "ES2002a.C.words20"
+      ]
+    },
+    {
+      "summary_ids": [
+        "ES2002a.rdhillon.s.1"
+      ],
+      "text": "Then they're small cute and furry,",
+      "word_ids": [
+        "ES2002a.C.words22",
+        "ES2002a.C.words23",
+        "ES2002a.C.words24",
+        "ES2002a.C.words25",
+        "ES2002a.C.words26",
+        "ES2002a.C.words27",
+        "ES2002a.C.words28"
+      ]
+    },
+    {
+      "summary_ids": [
+        "ES2002a.rdhillon.s.1"
+      ],
+      "text": "and I kind of like whales.",
+      "word_ids": [
+        "ES2002a.A.words125",
+        "ES2002a.A.words126",
+        "ES2002a.A.words127",
+        "ES2002a.A.words128",
+        "ES2002a.A.words129",
+        "ES2002a.A.words130",
+        "ES2002a.A.words131"
+      ]
+    },
+    {
+      "summary_ids": [
+        "ES2002a.rdhillon.s.1"
+      ],
+      "text": "They come in and go eat everything in sight.",
+      "word_ids": [
+        "ES2002a.A.words132",
+        "ES2002a.A.words133",
+        "ES2002a.A.words134",
+        "ES2002a.A.words135",
+        "ES2002a.A.words136",
+        "ES2002a.A.words138",
+        "ES2002a.A.words139",
+        "ES2002a.A.words140",
+        "ES2002a.A.words141",
+        "ES2002a.A.words142"
+      ]
+    },
+    {
+      "summary_ids": [
+        "ES2002a.rdhillon.s.1"
+      ],
+      "text": "M my favourite animal is my own dog at home.",
+      "word_ids": [
+        "ES2002a.B.words402",
+        "ES2002a.B.words403",
+        "ES2002a.B.words404",
+        "ES2002a.B.words405",
+        "ES2002a.B.words406",
+        "ES2002a.B.words407",
+        "ES2002a.B.words408",
+        "ES2002a.B.words409",
+        "ES2002a.B.words410",
+        "ES2002a.B.words411",
+        "ES2002a.B.words412"
+      ]
+    },
+    {
+      "summary_ids": [
+        "ES2002a.rdhillon.s.1"
+      ],
+      "text": "Um he's very friendly and cheery and always pleased to see you,",
+      "word_ids": [
+        "ES2002a.B.words479",
+        "ES2002a.B.words480",
+        "ES2002a.B.words481",
+        "ES2002a.B.words482",
+        "ES2002a.B.words483",
+        "ES2002a.B.words484",
+        "ES2002a.B.words485",
+        "ES2002a.B.words486",
+        "ES2002a.B.words487",
+        "ES2002a.B.words488",
+        "ES2002a.B.words489",
+        "ES2002a.B.words490",
+        "ES2002a.B.words491"
+      ]
+    },
+    {
+      "summary_ids": [
+        "ES2002a.rdhillon.s.7"
+      ],
+      "text": "Um so according to the brief um we're gonna be selling this remote control for twenty five Euro,",
+      "word_ids": [
+        "ES2002a.B.words636",
+        "ES2002a.B.words637",
+        "ES2002a.B.words638",
+        "ES2002a.B.words639",
+        "ES2002a.B.words640",
+        "ES2002a.B.words641",
+        "ES2002a.B.words642",
+        "ES2002a.B.words643",
+        "ES2002a.B.words644",
+        "ES2002a.B.words645",
+        "ES2002a.B.words646",
+        "ES2002a.B.words647",
+        "ES2002a.B.words648",
+        "ES2002a.B.words649",
+        "ES2002a.B.words650",
+        "ES2002a.B.words651",
+        "ES2002a.B.words652",
+        "ES2002a.B.words653",
+        "ES2002a.B.words654"
+      ]
+    },
+    {
+      "summary_ids": [
+        "ES2002a.rdhillon.s.9"
+      ],
+      "text": "And uh we don't want it to cost any more than uh twelve fifty Euros, so fifty percent of the selling price.",
+      "word_ids": [
+        "ES2002a.B.words677",
+        "ES2002a.B.words678",
+        "ES2002a.B.words679",
+        "ES2002a.B.words680",
+        "ES2002a.B.words681",
+        "ES2002a.B.words682",
+        "ES2002a.B.words683",
+        "ES2002a.B.words684",
+        "ES2002a.B.words685",
+        "ES2002a.B.words686",
+        "ES2002a.B.words687",
+        "ES2002a.B.words688",
+        "ES2002a.B.words689",
+        "ES2002a.B.words690",
+        "ES2002a.B.words691",
+        "ES2002a.B.words692",
+        "ES2002a.B.words693",
+        "ES2002a.B.words694",
+        "ES2002a.B.words695",
+        "ES2002a.B.words696",
+        "ES2002a.B.words697",
+        "ES2002a.B.words698",
+        "ES2002a.B.words699",
+        "ES2002a.B.words700"
+      ]
+    },
+    {
+      "summary_ids": [
+        "ES2002a.rdhillon.s.2"
+      ],
+      "text": "Um so according to the brief um we're gonna be selling this remote control for twenty five Euro,",
+      "word_ids": [
+        "ES2002a.B.words636",
+        "ES2002a.B.words637",
+        "ES2002a.B.words638",
+        "ES2002a.B.words639",
+        "ES2002a.B.words640",
+        "ES2002a.B.words641",
+        "ES2002a.B.words642",
+        "ES2002a.B.words643",
+        "ES2002a.B.words644",
+        "ES2002a.B.words645",
+        "ES2002a.B.words646",
+        "ES2002a.B.words647",
+        "ES2002a.B.words648",
+        "ES2002a.B.words649",
+        "ES2002a.B.words650",
+        "ES2002a.B.words651",
+        "ES2002a.B.words652",
+        "ES2002a.B.words653",
+        "ES2002a.B.words654"
+      ]
+    },
+    {
+      "summary_ids": [
+        "ES2002a.rdhillon.s.2"
+      ],
+      "text": "And uh we don't want it to cost any more than uh twelve fifty Euros, so fifty percent of the selling price.",
+      "word_ids": [
+        "ES2002a.B.words677",
+        "ES2002a.B.words678",
+        "ES2002a.B.words679",
+        "ES2002a.B.words680",
+        "ES2002a.B.words681",
+        "ES2002a.B.words682",
+        "ES2002a.B.words683",
+        "ES2002a.B.words684",
+        "ES2002a.B.words685",
+        "ES2002a.B.words686",
+        "ES2002a.B.words687",
+        "ES2002a.B.words688",
+        "ES2002a.B.words689",
+        "ES2002a.B.words690",
+        "ES2002a.B.words691",
+        "ES2002a.B.words692",
+        "ES2002a.B.words693",
+        "ES2002a.B.words694",
+        "ES2002a.B.words695",
+        "ES2002a.B.words696",
+        "ES2002a.B.words697",
+        "ES2002a.B.words698",
+        "ES2002a.B.words699",
+        "ES2002a.B.words700"
+      ]
+    },
+    {
+      "summary_ids": [
+        "ES2002a.rdhillon.s.2"
+      ],
+      "text": "but selling price is is that wholesale or retail?",
+      "word_ids": [
+        "ES2002a.D.words267",
+        "ES2002a.D.words268",
+        "ES2002a.D.words269",
+        "ES2002a.D.words270",
+        "ES2002a.D.words272",
+        "ES2002a.D.words273",
+        "ES2002a.D.words274",
+        "ES2002a.D.words275",
+        "ES2002a.D.words276",
+        "ES2002a.D.words277"
+      ]
+    },
+    {
+      "summary_ids": [
+        "ES2002a.rdhillon.s.2"
+      ],
+      "text": "I imagine it probably is our sale actually",
+      "word_ids": [
+        "ES2002a.B.words718",
+        "ES2002a.B.words719",
+        "ES2002a.B.words720",
+        "ES2002a.B.words721",
+        "ES2002a.B.words722",
+        "ES2002a.B.words723",
+        "ES2002a.B.words724",
+        "ES2002a.B.words725"
+      ]
+    },
+    {
+      "summary_ids": [
+        "ES2002a.rdhillon.s.2"
+      ],
+      "text": "because it's probably up to the the um the retailer to uh sell it for whatever price they want. Um.",
+      "word_ids": [
+        "ES2002a.B.words726",
+        "ES2002a.B.words727",
+        "ES2002a.B.words728",
+        "ES2002a.B.words729",
+        "ES2002a.B.words730",
+        "ES2002a.B.words731",
+        "ES2002a.B.words732",
+        "ES2002a.B.words733",
+        "ES2002a.B.words734",
+        "ES2002a.B.words735",
+        "ES2002a.B.words736",
+        "ES2002a.B.words737",
+        "ES2002a.B.words738",
+        "ES2002a.B.words739",
+        "ES2002a.B.words740",
+        "ES2002a.B.words741",
+        "ES2002a.B.words742",
+        "ES2002a.B.words743",
+        "ES2002a.B.words744",
+        "ES2002a.B.words745",
+        "ES2002a.B.words746",
+        "ES2002a.B.words747"
+      ]
+    },
+    {
+      "summary_ids": [
+        "ES2002a.rdhillon.s.8"
+      ],
+      "text": "I mean do you think the fact that it's going to be sold internationally will have a bearing on how we design it at all?",
+      "word_ids": [
+        "ES2002a.B.words755",
+        "ES2002a.B.words756",
+        "ES2002a.B.words757",
+        "ES2002a.B.words758",
+        "ES2002a.B.words759",
+        "ES2002a.B.words760",
+        "ES2002a.B.words761",
+        "ES2002a.B.words762",
+        "ES2002a.B.words763",
+        "ES2002a.B.words764",
+        "ES2002a.B.words765",
+        "ES2002a.B.words766",
+        "ES2002a.B.words767",
+        "ES2002a.B.words768",
+        "ES2002a.B.words769",
+        "ES2002a.B.words770",
+        "ES2002a.B.words771",
+        "ES2002a.B.words772",
+        "ES2002a.B.words773",
+        "ES2002a.B.words774",
+        "ES2002a.B.words775",
+        "ES2002a.B.words776",
+        "ES2002a.B.words777",
+        "ES2002a.B.words778",
+        "ES2002a.B.words779",
+        "ES2002a.B.words780"
+      ]
+    },
+    {
+      "summary_ids": [
+        "ES2002a.rdhillon.s.2"
+      ],
+      "text": "I mean do you think the fact that it's going to be sold internationally will have a bearing on how we design it at all?",
+      "word_ids": [
+        "ES2002a.B.words755",
+        "ES2002a.B.words756",
+        "ES2002a.B.words757",
+        "ES2002a.B.words758",
+        "ES2002a.B.words759",
+        "ES2002a.B.words760",
+        "ES2002a.B.words761",
+        "ES2002a.B.words762",
+        "ES2002a.B.words763",
+        "ES2002a.B.words764",
+        "ES2002a.B.words765",
+        "ES2002a.B.words766",
+        "ES2002a.B.words767",
+        "ES2002a.B.words768",
+        "ES2002a.B.words769",
+        "ES2002a.B.words770",
+        "ES2002a.B.words771",
+        "ES2002a.B.words772",
+        "ES2002a.B.words773",
+        "ES2002a.B.words774",
+        "ES2002a.B.words775",
+        "ES2002a.B.words776",
+        "ES2002a.B.words777",
+        "ES2002a.B.words778",
+        "ES2002a.B.words779",
+        "ES2002a.B.words780"
+      ]
+    },
+    {
+      "summary_ids": [
+        "ES2002a.rdhillon.s.8"
+      ],
+      "text": "Well right away I'm wondering if there's um th th uh, like with D_V_D_ players, if there are zones.",
+      "word_ids": [
+        "ES2002a.D.words307",
+        "ES2002a.D.words308",
+        "ES2002a.D.words309",
+        "ES2002a.D.words310",
+        "ES2002a.D.words311",
+        "ES2002a.D.words312",
+        "ES2002a.D.words313",
+        "ES2002a.D.words314",
+        "ES2002a.D.words315",
+        "ES2002a.D.words316",
+        "ES2002a.D.words317",
+        "ES2002a.D.words318",
+        "ES2002a.D.words319",
+        "ES2002a.D.words320",
+        "ES2002a.D.words321",
+        "ES2002a.D.words322",
+        "ES2002a.D.words323",
+        "ES2002a.D.words324",
+        "ES2002a.D.words325",
+        "ES2002a.D.words326",
+        "ES2002a.D.words327",
+        "ES2002a.D.words328"
+      ]
+    },
+    {
+      "summary_ids": [
+        "ES2002a.rdhillon.s.3"
+      ],
+      "text": "um as well as uh characters,",
+      "word_ids": [
+        "ES2002a.D.words334",
+        "ES2002a.D.words335",
+        "ES2002a.D.words336",
+        "ES2002a.D.words337",
+        "ES2002a.D.words338",
+        "ES2002a.D.words339",
+        "ES2002a.D.words340"
+      ]
+    },
+    {
+      "summary_ids": [
+        "ES2002a.rdhillon.s.3"
+      ],
+      "text": "um different uh keypad styles and s symbols.",
+      "word_ids": [
+        "ES2002a.D.words341",
+        "ES2002a.D.words342",
+        "ES2002a.D.words343",
+        "ES2002a.D.words344",
+        "ES2002a.D.words345",
+        "ES2002a.D.words346",
+        "ES2002a.D.words347",
+        "ES2002a.D.words348",
+        "ES2002a.D.words349"
+      ]
+    },
+    {
+      "summary_ids": [
+        "ES2002a.rdhillon.s.3"
+      ],
+      "text": "Well right away I'm wondering if there's um th th uh, like with D_V_D_ players, if there are zones.",
+      "word_ids": [
+        "ES2002a.D.words307",
+        "ES2002a.D.words308",
+        "ES2002a.D.words309",
+        "ES2002a.D.words310",
+        "ES2002a.D.words311",
+        "ES2002a.D.words312",
+        "ES2002a.D.words313",
+        "ES2002a.D.words314",
+        "ES2002a.D.words315",
+        "ES2002a.D.words316",
+        "ES2002a.D.words317",
+        "ES2002a.D.words318",
+        "ES2002a.D.words319",
+        "ES2002a.D.words320",
+        "ES2002a.D.words321",
+        "ES2002a.D.words322",
+        "ES2002a.D.words323",
+        "ES2002a.D.words324",
+        "ES2002a.D.words325",
+        "ES2002a.D.words326",
+        "ES2002a.D.words327",
+        "ES2002a.D.words328"
+      ]
+    },
+    {
+      "summary_ids": [
+        "ES2002a.rdhillon.s.3"
+      ],
+      "text": "'cause you have more complicated characters like European languages, then you need more buttons.",
+      "word_ids": [
+        "ES2002a.A.words188",
+        "ES2002a.A.words189",
+        "ES2002a.A.words190",
+        "ES2002a.A.words191",
+        "ES2002a.A.words192",
+        "ES2002a.A.words193",
+        "ES2002a.A.words194",
+        "ES2002a.A.words195",
+        "ES2002a.A.words196",
+        "ES2002a.A.words197",
+        "ES2002a.A.words198",
+        "ES2002a.A.words199",
+        "ES2002a.A.words200",
+        "ES2002a.A.words201",
+        "ES2002a.A.words202",
+        "ES2002a.A.words203"
+      ]
+    },
+    {
+      "summary_ids": [
+        "ES2002a.rdhillon.s.3"
+      ],
+      "text": "I'm thinking the price might might appeal to a certain market in one region, whereas in another it'll be different, so",
+      "word_ids": [
+        "ES2002a.D.words379",
+        "ES2002a.D.words380",
+        "ES2002a.D.words381",
+        "ES2002a.D.words382",
+        "ES2002a.D.words383",
+        "ES2002a.D.words384",
+        "ES2002a.D.words385",
+        "ES2002a.D.words386",
+        "ES2002a.D.words387",
+        "ES2002a.D.words388",
+        "ES2002a.D.words389",
+        "ES2002a.D.words390",
+        "ES2002a.D.words391",
+        "ES2002a.D.words392",
+        "ES2002a.D.words393",
+        "ES2002a.D.words394",
+        "ES2002a.D.words395",
+        "ES2002a.D.words396",
+        "ES2002a.D.words397",
+        "ES2002a.D.words398",
+        "ES2002a.D.words399",
+        "ES2002a.D.words400",
+        "ES2002a.D.words401"
+      ]
+    },
+    {
+      "summary_ids": [
+        "ES2002a.rdhillon.s.3"
+      ],
+      "text": "thinking, 'kay trendy probably means something other than just basic,",
+      "word_ids": [
+        "ES2002a.D.words475",
+        "ES2002a.D.words476",
+        "ES2002a.D.words477",
+        "ES2002a.D.words478",
+        "ES2002a.D.words479",
+        "ES2002a.D.words480",
+        "ES2002a.D.words481",
+        "ES2002a.D.words482",
+        "ES2002a.D.words483",
+        "ES2002a.D.words484",
+        "ES2002a.D.words485",
+        "ES2002a.D.words486"
+      ]
+    },
+    {
+      "summary_ids": [
+        "ES2002a.rdhillon.s.2"
+      ],
+      "text": "Like how much does, you know, a remote control cost.",
+      "word_ids": [
+        "ES2002a.B.words899",
+        "ES2002a.B.words900",
+        "ES2002a.B.words901",
+        "ES2002a.B.words902",
+        "ES2002a.B.words903",
+        "ES2002a.B.words904",
+        "ES2002a.B.words905",
+        "ES2002a.B.words906",
+        "ES2002a.B.words907",
+        "ES2002a.B.words908",
+        "ES2002a.B.words909",
+        "ES2002a.B.words910",
+        "ES2002a.B.words911"
+      ]
+    },
+    {
+      "summary_ids": [
+        "ES2002a.rdhillon.s.2"
+      ],
+      "text": "Well twenty five Euro, I mean that's um that's about like eighteen pounds or something,",
+      "word_ids": [
+        "ES2002a.B.words912",
+        "ES2002a.B.words913",
+        "ES2002a.B.words914",
+        "ES2002a.B.words915",
+        "ES2002a.B.words916",
+        "ES2002a.B.words917",
+        "ES2002a.B.words918",
+        "ES2002a.B.words919",
+        "ES2002a.B.words920",
+        "ES2002a.B.words921",
+        "ES2002a.B.words922",
+        "ES2002a.B.words923",
+        "ES2002a.B.words924",
+        "ES2002a.B.words925",
+        "ES2002a.B.words926",
+        "ES2002a.B.words927",
+        "ES2002a.B.words928"
+      ]
+    },
+    {
+      "summary_ids": [
+        "ES2002a.rdhillon.s.7"
+      ],
+      "text": "Well twenty five Euro, I mean that's um that's about like eighteen pounds or something,",
+      "word_ids": [
+        "ES2002a.B.words912",
+        "ES2002a.B.words913",
+        "ES2002a.B.words914",
+        "ES2002a.B.words915",
+        "ES2002a.B.words916",
+        "ES2002a.B.words917",
+        "ES2002a.B.words918",
+        "ES2002a.B.words919",
+        "ES2002a.B.words920",
+        "ES2002a.B.words921",
+        "ES2002a.B.words922",
+        "ES2002a.B.words923",
+        "ES2002a.B.words924",
+        "ES2002a.B.words925",
+        "ES2002a.B.words926",
+        "ES2002a.B.words927",
+        "ES2002a.B.words928"
+      ]
+    },
+    {
+      "summary_ids": [
+        "ES2002a.rdhillon.s.2"
+      ],
+      "text": "thi is this gonna to be like the premium product kinda thing or",
+      "word_ids": [
+        "ES2002a.D.words512",
+        "ES2002a.D.words513",
+        "ES2002a.D.words514",
+        "ES2002a.D.words515",
+        "ES2002a.D.words516",
+        "ES2002a.D.words517",
+        "ES2002a.D.words518",
+        "ES2002a.D.words519",
+        "ES2002a.D.words520",
+        "ES2002a.D.words521",
+        "ES2002a.D.words522",
+        "ES2002a.D.words523",
+        "ES2002a.D.words524"
+      ]
+    },
+    {
+      "summary_ids": [
+        "ES2002a.rdhillon.s.2"
+      ],
+      "text": "so I don't know how how good a remote control that would get you. Um.",
+      "word_ids": [
+        "ES2002a.B.words959",
+        "ES2002a.B.words960",
+        "ES2002a.B.words961",
+        "ES2002a.B.words962",
+        "ES2002a.B.words963",
+        "ES2002a.B.words964",
+        "ES2002a.B.words965",
+        "ES2002a.B.words966",
+        "ES2002a.B.words967",
+        "ES2002a.B.words968",
+        "ES2002a.B.words969",
+        "ES2002a.B.words970",
+        "ES2002a.B.words971",
+        "ES2002a.B.words972",
+        "ES2002a.B.words973",
+        "ES2002a.B.words974",
+        "ES2002a.B.words975"
+      ]
+    },
+    {
+      "summary_ids": [
+        "ES2002a.rdhillon.s.3"
+      ],
+      "text": "But yeah, I suppose it has to look kind of cool and gimmicky.",
+      "word_ids": [
+        "ES2002a.B.words976",
+        "ES2002a.B.words977",
+        "ES2002a.B.words978",
+        "ES2002a.B.words979",
+        "ES2002a.B.words980",
+        "ES2002a.B.words981",
+        "ES2002a.B.words982",
+        "ES2002a.B.words983",
+        "ES2002a.B.words984",
+        "ES2002a.B.words985",
+        "ES2002a.B.words986",
+        "ES2002a.B.words987",
+        "ES2002a.B.words988",
+        "ES2002a.B.words989",
+        "ES2002a.B.words990"
+      ]
+    },
+    {
+      "summary_ids": [
+        "ES2002a.rdhillon.s.3"
+      ],
+      "text": "So extra functionalities.",
+      "word_ids": [
+        "ES2002a.B.words1156",
+        "ES2002a.B.words1157",
+        "ES2002a.B.words1158",
+        "ES2002a.B.words1159"
+      ]
+    },
+    {
+      "summary_ids": [
+        "ES2002a.rdhillon.s.3"
+      ],
+      "text": "So, like, I wonder if we might add something new to the to the remote control market,",
+      "word_ids": [
+        "ES2002a.D.words783",
+        "ES2002a.D.words784",
+        "ES2002a.D.words785",
+        "ES2002a.D.words786",
+        "ES2002a.D.words787",
+        "ES2002a.D.words788",
+        "ES2002a.D.words789",
+        "ES2002a.D.words790",
+        "ES2002a.D.words791",
+        "ES2002a.D.words792",
+        "ES2002a.D.words793",
+        "ES2002a.D.words794",
+        "ES2002a.D.words795",
+        "ES2002a.D.words796",
+        "ES2002a.D.words797",
+        "ES2002a.D.words798",
+        "ES2002a.D.words799",
+        "ES2002a.D.words800",
+        "ES2002a.D.words801",
+        "ES2002a.D.words802"
+      ]
+    },
+    {
+      "summary_ids": [
+        "ES2002a.rdhillon.s.3"
+      ],
+      "text": "so in function one of the priorities might be to combine as many uses",
+      "word_ids": [
+        "ES2002a.D.words707",
+        "ES2002a.D.words708",
+        "ES2002a.D.words709",
+        "ES2002a.D.words710",
+        "ES2002a.D.words711",
+        "ES2002a.D.words712",
+        "ES2002a.D.words713",
+        "ES2002a.D.words714",
+        "ES2002a.D.words715",
+        "ES2002a.D.words716",
+        "ES2002a.D.words717",
+        "ES2002a.D.words718",
+        "ES2002a.D.words719",
+        "ES2002a.D.words720"
+      ]
+    },
+    {
+      "summary_ids": [
+        "ES2002a.rdhillon.s.3"
+      ],
+      "text": "Right, so do you think that should be like a main design aim of our remote control d you know,",
+      "word_ids": [
+        "ES2002a.B.words1077",
+        "ES2002a.B.words1078",
+        "ES2002a.B.words1079",
+        "ES2002a.B.words1080",
+        "ES2002a.B.words1081",
+        "ES2002a.B.words1082",
+        "ES2002a.B.words1083",
+        "ES2002a.B.words1084",
+        "ES2002a.B.words1085",
+        "ES2002a.B.words1086",
+        "ES2002a.B.words1087",
+        "ES2002a.B.words1088",
+        "ES2002a.B.words1089",
+        "ES2002a.B.words1090",
+        "ES2002a.B.words1091",
+        "ES2002a.B.words1092",
+        "ES2002a.B.words1093",
+        "ES2002a.B.words1094",
+        "ES2002a.B.words1095",
+        "ES2002a.B.words1096",
+        "ES2002a.B.words1097",
+        "ES2002a.B.words1098"
+      ]
+    },
+    {
+      "summary_ids": [
+        "ES2002a.rdhillon.s.3"
+      ],
+      "text": "do your your satellite and your regular telly and your V_C_R_ and everything?",
+      "word_ids": [
+        "ES2002a.B.words1099",
+        "ES2002a.B.words1100",
+        "ES2002a.B.words1101",
+        "ES2002a.B.words1102",
+        "ES2002a.B.words1103",
+        "ES2002a.B.words1104",
+        "ES2002a.B.words1105",
+        "ES2002a.B.words1106",
+        "ES2002a.B.words1107",
+        "ES2002a.B.words1108",
+        "ES2002a.B.words1109",
+        "ES2002a.B.words1110",
+        "ES2002a.B.words1111",
+        "ES2002a.B.words1112"
+      ]
+    },
+    {
+      "summary_ids": [
+        "ES2002a.rdhillon.s.3"
+      ],
+      "text": "maybe what we could use is a sort of like a example of a successful other piece technology is palm palm pilots.",
+      "word_ids": [
+        "ES2002a.D.words736",
+        "ES2002a.D.words737",
+        "ES2002a.D.words738",
+        "ES2002a.D.words739",
+        "ES2002a.D.words740",
+        "ES2002a.D.words741",
+        "ES2002a.D.words742",
+        "ES2002a.D.words743",
+        "ES2002a.D.words744",
+        "ES2002a.D.words745",
+        "ES2002a.D.words746",
+        "ES2002a.D.words747",
+        "ES2002a.D.words748",
+        "ES2002a.D.words749",
+        "ES2002a.D.words750",
+        "ES2002a.D.words751",
+        "ES2002a.D.words752",
+        "ES2002a.D.words753",
+        "ES2002a.D.words754",
+        "ES2002a.D.words755",
+        "ES2002a.D.words756",
+        "ES2002a.D.words757",
+        "ES2002a.D.words758"
+      ]
+    },
+    {
+      "summary_ids": [
+        "ES2002a.rdhillon.s.3"
+      ],
+      "text": "W You get those ones where you can, if you like, whistle or make a really high pitched noise they beep.",
+      "word_ids": [
+        "ES2002a.B.words1238",
+        "ES2002a.B.words1239",
+        "ES2002a.B.words1240",
+        "ES2002a.B.words1241",
+        "ES2002a.B.words1242",
+        "ES2002a.B.words1243",
+        "ES2002a.B.words1244",
+        "ES2002a.B.words1245",
+        "ES2002a.B.words1246",
+        "ES2002a.B.words1247",
+        "ES2002a.B.words1248",
+        "ES2002a.B.words1249",
+        "ES2002a.B.words1250",
+        "ES2002a.B.words1251",
+        "ES2002a.B.words1252",
+        "ES2002a.B.words1253",
+        "ES2002a.B.words1254",
+        "ES2002a.B.words1255",
+        "ES2002a.B.words1256",
+        "ES2002a.B.words1257",
+        "ES2002a.B.words1258",
+        "ES2002a.B.words1259",
+        "ES2002a.B.words1260",
+        "ES2002a.B.words1261"
+      ]
+    },
+    {
+      "summary_ids": [
+        "ES2002a.rdhillon.s.3"
+      ],
+      "text": "Maybe we could think about how, could be more, you know, streamlined. S",
+      "word_ids": [
+        "ES2002a.D.words1008",
+        "ES2002a.D.words1009",
+        "ES2002a.D.words1010",
+        "ES2002a.D.words1011",
+        "ES2002a.D.words1012",
+        "ES2002a.D.words1013",
+        "ES2002a.D.words1014",
+        "ES2002a.D.words1015",
+        "ES2002a.D.words1016",
+        "ES2002a.D.words1017",
+        "ES2002a.D.words1018",
+        "ES2002a.D.words1019",
+        "ES2002a.D.words1020",
+        "ES2002a.D.words1021",
+        "ES2002a.D.words1022",
+        "ES2002a.D.words1023",
+        "ES2002a.D.words1024"
+      ]
+    },
+    {
+      "summary_ids": [
+        "ES2002a.rdhillon.s.3"
+      ],
+      "text": "Maybe like a touch screen or something?",
+      "word_ids": [
+        "ES2002a.B.words1293",
+        "ES2002a.B.words1294",
+        "ES2002a.B.words1295",
+        "ES2002a.B.words1296",
+        "ES2002a.B.words1297",
+        "ES2002a.B.words1298",
+        "ES2002a.B.words1299",
+        "ES2002a.B.words1300"
+      ]
+    },
+    {
+      "summary_ids": [
+        "ES2002a.rdhillon.s.3"
+      ],
+      "text": "Or whatever would be technologically reasonable.",
+      "word_ids": [
+        "ES2002a.D.words1031",
+        "ES2002a.D.words1032",
+        "ES2002a.D.words1033",
+        "ES2002a.D.words1034",
+        "ES2002a.D.words1035",
+        "ES2002a.D.words1036",
+        "ES2002a.D.words1037"
+      ]
+    },
+    {
+      "summary_ids": [
+        "ES2002a.rdhillon.s.4"
+      ],
+      "text": "Um so inbetween now and then, um as the industrial designer, you're gonna be working on you know the actual working design of it",
+      "word_ids": [
+        "ES2002a.B.words1358",
+        "ES2002a.B.words1359",
+        "ES2002a.B.words1360",
+        "ES2002a.B.words1361",
+        "ES2002a.B.words1362",
+        "ES2002a.B.words1363",
+        "ES2002a.B.words1364",
+        "ES2002a.B.words1365",
+        "ES2002a.B.words1366",
+        "ES2002a.B.words1367",
+        "ES2002a.B.words1368",
+        "ES2002a.B.words1369",
+        "ES2002a.B.words1370",
+        "ES2002a.B.words1371",
+        "ES2002a.B.words1372",
+        "ES2002a.B.words1373",
+        "ES2002a.B.words1374",
+        "ES2002a.B.words1375",
+        "ES2002a.B.words1376",
+        "ES2002a.B.words1377",
+        "ES2002a.B.words1378",
+        "ES2002a.B.words1379",
+        "ES2002a.B.words1380",
+        "ES2002a.B.words1381",
+        "ES2002a.B.words1382",
+        "ES2002a.B.words1383"
+      ]
+    },
+    {
+      "summary_ids": [
+        "ES2002a.rdhillon.s.5"
+      ],
+      "text": "Um for user interface, technical functions,",
+      "word_ids": [
+        "ES2002a.B.words1393",
+        "ES2002a.B.words1394",
+        "ES2002a.B.words1395",
+        "ES2002a.B.words1396",
+        "ES2002a.B.words1397",
+        "ES2002a.B.words1398",
+        "ES2002a.B.words1399",
+        "ES2002a.B.words1400"
+      ]
+    },
+    {
+      "summary_ids": [
+        "ES2002a.rdhillon.s.6"
+      ],
+      "text": "Um and uh marketing executive,",
+      "word_ids": [
+        "ES2002a.B.words1418",
+        "ES2002a.B.words1419",
+        "ES2002a.B.words1420",
+        "ES2002a.B.words1421",
+        "ES2002a.B.words1422",
+        "ES2002a.B.words1423"
+      ]
+    },
+    {
+      "summary_ids": [
+        "ES2002a.rdhillon.s.6"
+      ],
+      "text": "you'll be just thinking about what it actually what, you know, what requirements it has to has to fulfil",
+      "word_ids": [
+        "ES2002a.B.words1424",
+        "ES2002a.B.words1425",
+        "ES2002a.B.words1426",
+        "ES2002a.B.words1427",
+        "ES2002a.B.words1428",
+        "ES2002a.B.words1429",
+        "ES2002a.B.words1430",
+        "ES2002a.B.words1431",
+        "ES2002a.B.words1433",
+        "ES2002a.B.words1434",
+        "ES2002a.B.words1435",
+        "ES2002a.B.words1436",
+        "ES2002a.B.words1437",
+        "ES2002a.B.words1438",
+        "ES2002a.B.words1439",
+        "ES2002a.B.words1440",
+        "ES2002a.B.words1441",
+        "ES2002a.B.words1442",
+        "ES2002a.B.words1443",
+        "ES2002a.B.words1444",
+        "ES2002a.B.words1445"
+      ]
+    },
+    {
+      "summary_ids": [
+        "ES2002a.rdhillon.s.10"
+      ],
+      "text": "are we at ma right now on the assumption that our television remote control may have features which go beyond the television?",
+      "word_ids": [
+        "ES2002a.D.words1155",
+        "ES2002a.D.words1156",
+        "ES2002a.D.words1157",
+        "ES2002a.D.words1158",
+        "ES2002a.D.words1159",
+        "ES2002a.D.words1160",
+        "ES2002a.D.words1161",
+        "ES2002a.D.words1162",
+        "ES2002a.D.words1163",
+        "ES2002a.D.words1164",
+        "ES2002a.D.words1165",
+        "ES2002a.D.words1166",
+        "ES2002a.D.words1167",
+        "ES2002a.D.words1168",
+        "ES2002a.D.words1169",
+        "ES2002a.D.words1170",
+        "ES2002a.D.words1171",
+        "ES2002a.D.words1172",
+        "ES2002a.D.words1173",
+        "ES2002a.D.words1174",
+        "ES2002a.D.words1175",
+        "ES2002a.D.words1176",
+        "ES2002a.D.words1177"
+      ]
+    },
+    {
+      "summary_ids": [
+        "ES2002a.rdhillon.s.10"
+      ],
+      "text": "Or are we keeping sort of like a a design commitment to television features?",
+      "word_ids": [
+        "ES2002a.D.words1178",
+        "ES2002a.D.words1179",
+        "ES2002a.D.words1180",
+        "ES2002a.D.words1181",
+        "ES2002a.D.words1182",
+        "ES2002a.D.words1183",
+        "ES2002a.D.words1184",
+        "ES2002a.D.words1185",
+        "ES2002a.D.words1186",
+        "ES2002a.D.words1187",
+        "ES2002a.D.words1188",
+        "ES2002a.D.words1189",
+        "ES2002a.D.words1190",
+        "ES2002a.D.words1191",
+        "ES2002a.D.words1192"
+      ]
+    },
+    {
+      "summary_ids": [
+        "ES2002a.rdhillon.s.10"
+      ],
+      "text": "So extra functionalities.",
+      "word_ids": [
+        "ES2002a.B.words1156",
+        "ES2002a.B.words1157",
+        "ES2002a.B.words1158",
+        "ES2002a.B.words1159"
+      ]
+    },
+    {
+      "summary_ids": [
+        "ES2002a.rdhillon.s.10"
+      ],
+      "text": "so in function one of the priorities might be to combine as many uses",
+      "word_ids": [
+        "ES2002a.D.words707",
+        "ES2002a.D.words708",
+        "ES2002a.D.words709",
+        "ES2002a.D.words710",
+        "ES2002a.D.words711",
+        "ES2002a.D.words712",
+        "ES2002a.D.words713",
+        "ES2002a.D.words714",
+        "ES2002a.D.words715",
+        "ES2002a.D.words716",
+        "ES2002a.D.words717",
+        "ES2002a.D.words718",
+        "ES2002a.D.words719",
+        "ES2002a.D.words720"
+      ]
+    },
+    {
+      "summary_ids": [
+        "ES2002a.rdhillon.s.3"
+      ],
+      "text": "I mean you probably want some kind of unique selling point of it,",
+      "word_ids": [
+        "ES2002a.B.words1533",
+        "ES2002a.B.words1534",
+        "ES2002a.B.words1535",
+        "ES2002a.B.words1536",
+        "ES2002a.B.words1537",
+        "ES2002a.B.words1538",
+        "ES2002a.B.words1539",
+        "ES2002a.B.words1540",
+        "ES2002a.B.words1541",
+        "ES2002a.B.words1542",
+        "ES2002a.B.words1543",
+        "ES2002a.B.words1544",
+        "ES2002a.B.words1545",
+        "ES2002a.B.words1546"
+      ]
+    },
+    {
+      "summary_ids": [
+        "ES2002a.rdhillon.s.3"
+      ],
+      "text": "I think one factor would be production cost.",
+      "word_ids": [
+        "ES2002a.A.words261",
+        "ES2002a.A.words262",
+        "ES2002a.A.words263",
+        "ES2002a.A.words264",
+        "ES2002a.A.words265",
+        "ES2002a.A.words266",
+        "ES2002a.A.words267",
+        "ES2002a.A.words268",
+        "ES2002a.A.words269"
+      ]
+    }
+  ],
+  "decision_spans": [
+    {
+      "id": "ES2002a.decision.melissa.1",
+      "external": "true",
+      "text": "Okay, uh we now need to discuss the project finance. Um so according to the brief um we're gonna be selling this remote control for twenty five Euro, um and we're aiming to make fifty million Euro. Um so we're gonna be selling this on an international scale. And uh we don't want it to cost any more than uh twelve fifty Euros, so fifty percent of the selling price. 'Kay. Um, can we just go over that again? Sure. Uh, so bas at twel Alright, yeah. Okay. So cost like production cost is twelve fifty, but selling price is is that wholesale or retail? Like on the shelf. All together. Um I dunno. I imagine That's a good question. Our sale our sale anyway. Yeah, okay okay. I imagine it probably is our sale actually because it's probably up to the the um the retailer to uh sell it for whatever price they want. Um. Okay. Mm-hmm. Alright."
+    },
+    {
+      "id": "ES2002a.decision.melissa.2",
+      "external": "true",
+      "text": "But I I don't know, I mean do you think the fact that it's going to be sold internationally will have a bearing on how we design it at all? Yes. Think it will? Um. Mm-hmm. Mm-hmm. Hmm. Well right away I'm wondering if there's um th th uh, like with D_V_D_ players, if there are zones. Um f frequencies or something um as well as uh characters, um different uh keypad styles and s symbols. Oh yeah, regions and stuff, yeah. Yeah. Okay. Hmm. Yeah. Well for a remote control, do you think that will be I suppose it's depends on how complicated our remote control is. Um. I don't know. Yeah. It does make sense from maybe the design point of view 'cause you have more complicated characters like European languages, then you need more buttons. Yeah, yeah. Okay. Yeah. So, possibly. Yeah. And then a and then al the other thing international is on top of the price. I'm thinking the price might might appeal to a certain market in one region, whereas in another it'll be different, so What, just like in terms of like the wealth of the country? Like how much money people have to spend on things like? Just a chara just a characteristic of the Just Or just like, basic product podi positioning, the twenty five Euro remote control might be a big hit in London, might not be such a big hit in Greece, who knows, something like that, yeah. Aye, I see what you mean, yeah. Marketing. Good marketing thoughts. Oh gosh, I should be writing all this down. Um."
+    },
+    {
+      "id": "ES2002a.decision.melissa.3",
+      "external": "true",
+      "text": "so I'm wondering right away, is selling twenty five Euros, is that sort of the thi is this gonna to be like the premium product kinda thing or Yeah, yeah. Like how much does, you know, a remote control cost. Uh-huh. Well twenty five Euro, I mean that's um that's about like eighteen pounds or something, isn't it? Or no, is it as much as that? Sixteen seventeen eighteen pounds. Mm-hmm. Yep. Yeah, I'd say so, yeah. Um, I dunno, I've never bought a remote control, so I don't know how how good a remote control that would get you. Um. No. Yeah, yeah. But yeah, I suppose it has to look kind of cool and gimmicky. Mm-hmm. Um right, okay."
+    }
+  ]
+}

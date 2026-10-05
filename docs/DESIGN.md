@@ -48,6 +48,8 @@ This is a deliberate local default, not a claim that these are universally best.
 
 The [local LLM regression study](LLM_EVALUATION.md) compares both roles using Qwen 4B, Qwen 9B and Granite H-Micro 3B. It identifies Qwen 4B as the preferred lightweight shared-weight candidate for further evaluation, without changing this default or the production distinct-weight policy. Authored regression cases do not establish representative meeting accuracy.
 
+The [AMI ES2002a evaluation](AMI_ES2002A_EVALUATION.md) does not validate that shared-4B preference on a real meeting. Qwen 9B produces the strongest validated narrative notes, but misses the assigned tasks; no tested profile meets complete record requirements. The default stays provisional while citation handling, assignment extraction and context budgeting are improved and tested on further meetings.
+
 Verified primary sources:
 
 - [NVIDIA Parakeet v2 model card](https://huggingface.co/nvidia/parakeet-tdt-0.6b-v2): English ASR, 600M parameters. Published base-model scores are not our INT8 deployment's scores.
