@@ -13,7 +13,7 @@ Source: `ML Bootcamp.pdf`, supplied by the owner in the parent workspace. We ret
 | Requirement and source section | Implementation | Acceptance evidence |
 | --- | --- | --- |
 | English recorded audio; STT (§3, §4) | Upload and decode; one ASR checkpoint | Real recording produces a preserved raw transcript |
-| Domain-aware refinement without meaning changes (§4) | Separate refinement checkpoint; proposed span edits; glossary; change log | Protected facts and uncertainty preserved; actual edit audit |
+| Domain-aware refinement without meaning changes (§4) | Separate refinement stage/checkpoint; proposed span edits; optional glossary; change log | Protected facts and uncertainty preserved; actual edit audit |
 | Separate ordered processing stages (§3, §4) | ASR → refinement → documentation with named artifacts | Stage status, persisted checkpoints, model identifiers |
 | Concise minutes and summary (§4, §6) | Topic minutes and evidence-backed summary | Human review of coverage and faithfulness |
 | Agreed decisions and actionable tasks (§4, §6) | Evidence-backed items; null missing owners/deadlines | Proposals excluded; no invented assignment details |
@@ -21,7 +21,7 @@ Source: `ML Bootcamp.pdf`, supplied by the owner in the parent workspace. We ret
 | Consistent decisions/tasks across formats (§6) | One canonical validated JSON record | Readable exports generated from that record |
 | New unseen recording (§5) | Ordinary inference with no content-specific branches | Held-out recording run after development choices |
 | Useful file-processing errors (§3, §4) | Limits, decoder validation, clear retryable failures | Empty, unsupported, corrupt, silent and oversized cases |
-| Source, prompts, dependencies, README, model roles, sample, actual outputs and demo (Deliverables) | Committed code/docs; separate weights; evaluation report | Phase 5 delivery checklist |
+| Source, prompts, dependencies, README, model roles, sample, actual outputs and demo (Deliverables) | Committed code/docs; weights outside Git; evaluation report | Phase 5 delivery checklist |
 
 The rubric weights transcription 20, refinement 20, minutes/decisions 25, tasks 15, application 15, and submission 5. Therefore fidelity and usable evidence take priority over decorative features. No model name, live mode, diarization, vector database, or cloud deployment is mandated.
 
@@ -35,6 +35,10 @@ The rubric weights transcription 20, refinement 20, minutes/decisions 25, tasks 
 
 See [PHASES.md](PHASES.md) for current status. Commit after each phase and each coherent fix. Never use a successful build to claim model accuracy.
 
+The [active problem-statement workplan](WORKPLAN.md) defines the remaining Phase 5
+milestones, requirement coverage and acceptance targets. Its source-ID extraction
+and focused documentation changes are planned work, not current implementation.
+
 ## 3. Model decisions
 
 | Role | Current exact selection | Execution | Decision status |
@@ -42,7 +46,7 @@ See [PHASES.md](PHASES.md) for current status. Commit after each phase and each 
 | Speech recognition | `nvidia/parakeet-tdt-0.6b-v2`, sherpa-onnx v2 INT8 export | sherpa-onnx CPU runtime initially; 4 threads; 16 kHz input | Provisional primary ASR; must pass real-audio checks |
 | Terminology refinement | `Qwen/Qwen3.5-4B`; Ollama `qwen3.5:4b` | Local structured JSON generation; thinking disabled | Genuine compatibility/terminology probe passed; representative quality pending |
 | Meeting documentation | `Qwen/Qwen3.5-4B`; Ollama `qwen3.5:4b` | Reuses refinement weights with a separate prompt/schema; thinking disabled | Owner-selected lightweight default; representative quality pending |
-| ASR evaluation baseline | Whisper `large-v3` via faster-whisper | Separate benchmark, not a second production ASR | Comparison only, no automatic dual-model ensemble |
+| Optional future ASR evaluation baseline | Whisper `large-v3` via faster-whisper | Separate benchmark, not a second production ASR | Deferred; not required for the problem-statement delivery gate |
 
 This is a deliberate local default, not a claim that these are universally best. The owner selected shared Qwen 4B to reduce installed model storage, retiring Qwen 9B and Granite locally. Both LLM roles remain separate ordered stages with independent prompts, schemas, audit artifacts and call identities. Custom role tags may still select different models. See [the profile verification and improvement plan](SHARED_QWEN4B.md). The application must not silently change models or fall back to fabricated output.
 
@@ -177,9 +181,9 @@ Allow two structured-generation attempts per group. Retry validation failures wi
 4. Real three-stage sample: save every artifact, model provenance, elapsed times and actual outputs; inspect correction quality and evidence fidelity.
 5. Representative validation and separate held-out meetings: varied English accents, terminology, noise, negation, numbers, missing details, proposals, revisions and long context.
 
-Measure raw WER on human reference transcripts, critical entity/number/negation errors, refinement-induced errors, decision precision/recall, task/owner/deadline accuracy, unsupported claims, runtime and memory on named hardware. Keep validation recordings separate from the final held-out set. Compare Parakeet against faster-whisper with the same audio and documented decoding settings. Do not infer deployment speed from published batched leaderboards or claim universal superiority.
+Measure raw WER on human reference transcripts, critical entity/number/negation errors, refinement-induced errors, decision precision/recall, task/owner/deadline accuracy, unsupported claims, runtime and memory on named hardware. Keep validation recordings separate from the final held-out set. A future optional Parakeet/faster-whisper comparison would use the same audio and documented decoding settings; it does not block the required workflow. Do not infer deployment speed from published batched leaderboards or claim universal superiority.
 
-Release gates include zero invented owner/deadline fields on the reviewed sample set, source evidence for all displayed extracted items, no export discrepancies, no silent stage failure, real complete pipeline execution, and a successful unseen-recording demonstration. Quantitative quality thresholds must be chosen before evaluating the final held-out set; until then, release quality is unverified.
+Release gates include zero invented owner/deadline fields on the reviewed sample set, source evidence for all displayed extracted items, no export discrepancies, no silent stage failure, real complete pipeline execution, and a successful unseen-recording demonstration. The [active workplan](WORKPLAN.md) defines planned quantitative targets that must be frozen before final held-out execution. Release quality remains unverified until those targets and delivery gates pass.
 
 ## 9. Attribution and future scope
 

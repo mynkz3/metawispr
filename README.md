@@ -12,6 +12,11 @@ One Qwen 4B weight set serves both ordered LLM stages with separate prompts, sch
 
 The shared-4B switch passed backend tests, build, readiness and genuine synthetic audio/export checks. Five browser fixture checks passed; the genuine browser test failed its decision-quality assertion because 4B classified a budget fact as an agreed decision. That failure is retained and remains Phase 5 work.
 
+The [active workplan](docs/WORKPLAN.md) keeps the remaining work inside the original
+problem statement: source/context reliability, accurate meeting documentation,
+genuine terminology refinement, new-recording evaluation, and review/export delivery.
+It defines acceptance gates and preserves both LLM stages while sharing 4B weights.
+
 A [genuine local LLM regression comparison](docs/LLM_EVALUATION.md) covers Qwen 4B, Qwen 9B and Granite H-Micro 3B on fixed authored cases, plus CPU subsets. It identified Qwen 4B as a lightweight candidate; the later shared-4B default is a separate storage decision. The [evaluation runner and actual outputs](evaluation/README.md) are included. These results do not establish representative meeting accuracy.
 
 The [real AMI ES2002a comparison](docs/AMI_ES2002A_EVALUATION.md) now tests the same models on a 21-minute recording and official manual transcript. Qwen 9B produced the strongest validated narrative notes, but omitted the assigned tasks; no model met the complete meeting-record quality requirements. The earlier single-4B preference is not validated by this meeting. Citation handling, action extraction and context budgeting need work before selecting a production winner. Public derived inputs and genuine outputs are included; audio and weights remain outside Git.

@@ -92,6 +92,10 @@ and use a completed copy of that sample in the running API's data directory.
 
 ## Next improvements, without fine-tuning
 
+The [active workplan](WORKPLAN.md) groups these improvements into five Phase 5
+milestones and maps them to the original problem statement. Follow its sequence
+and exit gates; the list below is the deployment report's issue summary.
+
 1. Reserve validation-feedback capacity when forming groups. A repair attempt must
    fit the same source and schema without truncation. Keep context bounded rather
    than compensating with a large unmeasured allocation.

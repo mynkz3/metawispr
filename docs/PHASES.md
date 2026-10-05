@@ -14,6 +14,20 @@ Statuses describe actual work, not an estimate of model quality. Each phase has 
 
 An implemented adapter is not a verified model. Phase 5 remains open until real inference and representative meeting evaluation have been completed. Synthetic or stubbed test outputs must never be presented as real model results.
 
+## Active workplan inside Phase 5
+
+The [problem-statement workplan](WORKPLAN.md) maps every remaining task to the
+source requirements and defines five open milestones. This refines Phase 5;
+it does not restart the completed implementation phases or claim new checks passed.
+
+| Milestone | Focus | Status |
+| --- | --- | --- |
+| 5.1 | Source evidence and retry/context reliability | Planned; first implementation priority |
+| 5.2 | Accurate decisions, tasks and narrative minutes | Planned; known synthetic and AMI quality failures remain |
+| 5.3 | Genuine terminology correction and meaning preservation | Planned; real correction quality insufficiently measured |
+| 5.4 | Complete-pipeline development and held-out evaluation | Planned; final recordings/configuration not yet frozen |
+| 5.5 | Existing review flow, canonical exports and submission | Planned; depends on accuracy gates and complete delivery evidence |
+
 ## Phase 1 verification, 4 October 2026
 
 - Cloned the owner's empty repository; no pre-existing source or history was overwritten.
