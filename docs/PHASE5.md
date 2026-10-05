@@ -38,3 +38,37 @@ runs, including failures; it is not a declaration that Phase 5 is complete.
 - [Actual synthetic result](../evaluation/results/phase5/source-id-synthetic.json).
   This does not establish representative accuracy; AMI and long-meeting gates
   remain open. Focused action extraction is the next implementation step.
+
+
+## Focused extraction and conservative refinement (development checkpoint)
+
+Action extraction now precedes notes, with a second source-based review call and
+separate chronological reconciliation. Every call uses the same local 4B package;
+no training, new weights, dependencies or cloud APIs were added. Immutable source
+IDs are restricted by the actual schema. Canonical quotations include validated
+character ranges; legacy records remain readable. Repair capacity remains reserved.
+
+Refinement can accept a plausible spelling correction without a glossary only
+when the replacement independently occurs in the immutable meeting text. Guards
+reject role expansion, singular/plural rewriting, embedded numeric changes and
+weekday/month changes. Raw text and edit audits remain intact. Authored positive
+witness tests are regression evidence, not genuine ASR correction measurements.
+
+79 backend checks pass; the frontend build passes; five fixture browser checks pass
+(the genuine browser check was not enabled in this checkpoint). Readiness reports
+real Parakeet and shared Qwen3.5 4B installed. A forced reasoning-mode probe exhausted
+4,096 generated tokens without returning JSON; it is not enabled in production.
+
+Genuine ES2002a component profiles v4-v7 still fail context or structural validation.
+Their identities, errors and request counts are retained in
+`evaluation/results/phase5/development-failures.json`. Increasing context alone did
+not fix missing assignments. Invalid responses remain in the ignored local cache.
+
+The first full production Runner run used 16,384 context / 3,072 output tokens:
+21:12.64 audio, 257.90 seconds ASR decoding, 501.67 seconds full run. Aligned WER was
+18.56% with normalization and excluded regions disclosed in the report. All eight
+ZIP members matched individual exports. The final record still missed the interface
+assignment (2/3 closing tasks), classified ten finance/brief statements as decisions,
+and called the 50-million profit aim revenue. These are semantic failures despite
+successful pipeline completion. This checkpoint does not close milestones 5.2-5.5.
+The full measured output is retained as `full-es2002a-development-v8.json`.

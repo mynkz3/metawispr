@@ -45,6 +45,8 @@ class EditBatch(Contract):
 class Evidence(Contract):
     segment_id: str
     quote: str = Field(min_length=1)
+    start_char: int | None = Field(default=None, ge=0)
+    end_char: int | None = Field(default=None, gt=0)
 
 
 class Fact(Contract):
@@ -102,23 +104,23 @@ class ConsolidatedNotes(Contract):
 
 
 class SourceFact(Contract):
-    text: str = Field(min_length=1)
+    text: str = Field(min_length=1, max_length=300)
     evidence_ids: list[str] = Field(min_length=1)
 
 
 class SourceTask(SourceFact):
-    owner: str | None
-    deadline: str | None
+    owner: str | None = Field(description="Exact contiguous text from cited source, or null. Do not complete roles or infer speakers.")
+    deadline: str | None = Field(description="Exact contiguous deadline text from cited source, or null. No paraphrase, combined phrases or dates inferred from clocks.")
 
 
 class SourceTopic(Contract):
     title: str = Field(min_length=1)
-    points: list[SourceFact] = Field(min_length=1)
+    points: list[SourceFact] = Field(min_length=1, max_length=3)
 
 
 class SourceNotes(Contract):
-    summary: list[SourceFact]
-    topics: list[SourceTopic]
+    summary: list[SourceFact] = Field(max_length=3)
+    topics: list[SourceTopic] = Field(max_length=5)
     uncertainties: list[str]
 
 
@@ -132,6 +134,12 @@ class SourceBatch(Contract):
     revisions: list[SourceFact]
 
 
+class SourceActions(Contract):
+    tasks: list[SourceTask]
+    decisions: list[SourceFact]
+    revisions: list[SourceFact]
+
+
 class SourceItem(SourceTask):
     kind: Literal["decision", "task"]
 
@@ -141,7 +149,7 @@ class SourceResolution(Contract):
     disposition: Literal["keep", "retire", "replace"]
     replacement: SourceItem | None
     evidence_ids: list[str] = Field(min_length=1)
-    reason: str = Field(min_length=1)
+    reason: str = Field(min_length=1, max_length=240)
 
 
 class SourceResolutions(Contract):

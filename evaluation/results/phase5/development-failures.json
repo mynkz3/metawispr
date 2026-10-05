@@ -1,0 +1,234 @@
+{
+  "scope": "Genuine development component runs on ES2002a. These are failed profiles, not complete-pipeline successes. Full local responses retained in ignored cache. AMI Project / Edinburgh / Idiap / TNO, CC BY 4.0.",
+  "profiles": [
+    {
+      "profile": "v4",
+      "identity": {
+        "model": {
+          "tag": "qwen3.5:4b",
+          "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+          "runtime_version": "0.35.1",
+          "parameter_size": "4.2B",
+          "quantization": "Q4_K_M"
+        },
+        "context": 8192,
+        "output_tokens": 2048,
+        "manual_input_sha256": "e7905d3c8586b780b6ac392f3e382ee5cf269f38e4eb420b89e9c5a8c6f43e8c",
+        "asr_input_sha256": "ab0a0b22f94b7ab9a11f067a4ff8fd2191f965f5918970e1602438ffede177ff",
+        "glossary": "Real Reaction\nremote control\nindustrial designer\nuser interface designer\nmarketing executive\nproject manager\nLCD\ninfrared",
+        "reference_sha256": "b7e041b3a620e60f7e09c909f5dbc9fb0e13b79312326ca053911d6f7256871d",
+        "rubric_sha256": "bb4d090011007bac12c3fa0603159bab08e6813d88b09acfb8ebf76978db83f6",
+        "prompts": {
+          "refine": "82a0605e89cafc3d620e833143d8378d7d6ab3f71b593507b50aaae067d12082",
+          "document": "36e3ecbab72e087e197e3c51c7388de8e050ef365eba16203ad29bbab157608a",
+          "notes": "c3a0f8e0b02783fe9a5268197d61b21412ea899bc3b114bd9ef2f4341d74ea5f",
+          "reconcile": "7798621fabd76e58d5921ca15b8525f4a56227cba5a77799fb2871b8cf8e89c1",
+          "consolidate": "d4313dd4b3a2989458d9eb1a81b7895c540e5bed3974421e2fd3f750ce10fb0f"
+        }
+      },
+      "jobs": [
+        {
+          "role": "manual-documentation",
+          "status": "failed",
+          "wall_seconds": 138.38472469999397,
+          "requests": 21,
+          "error": "Transcript or consolidation exceeds the configured LLM context. Increase METAWISPR_LLM_CONTEXT within available memory or submit a shorter meeting.",
+          "validation_failures": [
+            "Task owner must be null or literal text in its supporting quotes"
+          ]
+        },
+        {
+          "role": "asr-refinement",
+          "status": "complete",
+          "wall_seconds": 23.666022699995665,
+          "requests": 5,
+          "error": null,
+          "validation_failures": []
+        },
+        {
+          "role": "asr-documentation",
+          "status": "failed",
+          "wall_seconds": 80.23063890000049,
+          "requests": 12,
+          "error": "Transcript or consolidation exceeds the configured LLM context. Increase METAWISPR_LLM_CONTEXT within available memory or submit a shorter meeting.",
+          "validation_failures": []
+        }
+      ]
+    },
+    {
+      "profile": "v5",
+      "identity": {
+        "model": {
+          "tag": "qwen3.5:4b",
+          "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+          "runtime_version": "0.35.1",
+          "parameter_size": "4.2B",
+          "quantization": "Q4_K_M"
+        },
+        "context": 8192,
+        "output_tokens": 2048,
+        "manual_input_sha256": "e7905d3c8586b780b6ac392f3e382ee5cf269f38e4eb420b89e9c5a8c6f43e8c",
+        "asr_input_sha256": "ab0a0b22f94b7ab9a11f067a4ff8fd2191f965f5918970e1602438ffede177ff",
+        "glossary": "Real Reaction\nremote control\nindustrial designer\nuser interface designer\nmarketing executive\nproject manager\nLCD\ninfrared",
+        "reference_sha256": "b7e041b3a620e60f7e09c909f5dbc9fb0e13b79312326ca053911d6f7256871d",
+        "rubric_sha256": "bb4d090011007bac12c3fa0603159bab08e6813d88b09acfb8ebf76978db83f6",
+        "prompts": {
+          "refine": "82a0605e89cafc3d620e833143d8378d7d6ab3f71b593507b50aaae067d12082",
+          "document": "36e3ecbab72e087e197e3c51c7388de8e050ef365eba16203ad29bbab157608a",
+          "notes": "c3a0f8e0b02783fe9a5268197d61b21412ea899bc3b114bd9ef2f4341d74ea5f",
+          "reconcile": "7798621fabd76e58d5921ca15b8525f4a56227cba5a77799fb2871b8cf8e89c1",
+          "consolidate": "19fa97635c202b26371bb247274af10f0063461ffa88b4770fb5108ad4b450f0"
+        }
+      },
+      "jobs": [
+        {
+          "role": "manual-documentation",
+          "status": "failed",
+          "wall_seconds": 216.38106379999954,
+          "requests": 18,
+          "error": "Documenting model returned invalid output twice. Completed calls are saved; retry after checking the model/context settings.",
+          "validation_failures": [
+            "Evidence IDs must be unique and belong to the supplied sources",
+            "Evidence IDs must be unique and belong to the supplied sources",
+            "generation did not finish normally; output may be truncated",
+            "Task deadline must be null or literal text in its supporting quotes"
+          ]
+        },
+        {
+          "role": "asr-refinement",
+          "status": "complete",
+          "wall_seconds": 23.745404500004952,
+          "requests": 5,
+          "error": null,
+          "validation_failures": []
+        },
+        {
+          "role": "asr-documentation",
+          "status": "failed",
+          "wall_seconds": 139.8614399000071,
+          "requests": 16,
+          "error": "Transcript or consolidation exceeds the configured LLM context. Increase METAWISPR_LLM_CONTEXT within available memory or submit a shorter meeting.",
+          "validation_failures": []
+        }
+      ]
+    },
+    {
+      "profile": "v6",
+      "identity": {
+        "model": {
+          "tag": "qwen3.5:4b",
+          "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+          "runtime_version": "0.35.1",
+          "parameter_size": "4.2B",
+          "quantization": "Q4_K_M"
+        },
+        "context": 8192,
+        "output_tokens": 2048,
+        "manual_input_sha256": "e7905d3c8586b780b6ac392f3e382ee5cf269f38e4eb420b89e9c5a8c6f43e8c",
+        "asr_input_sha256": "ab0a0b22f94b7ab9a11f067a4ff8fd2191f965f5918970e1602438ffede177ff",
+        "glossary": "Real Reaction\nremote control\nindustrial designer\nuser interface designer\nmarketing executive\nproject manager\nLCD\ninfrared",
+        "reference_sha256": "b7e041b3a620e60f7e09c909f5dbc9fb0e13b79312326ca053911d6f7256871d",
+        "rubric_sha256": "bb4d090011007bac12c3fa0603159bab08e6813d88b09acfb8ebf76978db83f6",
+        "prompts": {
+          "refine": "82a0605e89cafc3d620e833143d8378d7d6ab3f71b593507b50aaae067d12082",
+          "document": "4ed44dd632dec5b53821de1467ead44e6d79029037f323db3cad9e83d3f3c7f0",
+          "notes": "488b8296c8cc3c160ce6ab81d282d1367e6790d57bf45190ea35e7b08752df44",
+          "reconcile": "7798621fabd76e58d5921ca15b8525f4a56227cba5a77799fb2871b8cf8e89c1",
+          "consolidate": "e891a97e0a5a58b0215494151ec611c8f364a32b22cd0801edf3a7e2fbe19c62"
+        }
+      },
+      "jobs": [
+        {
+          "role": "manual-documentation",
+          "status": "failed",
+          "wall_seconds": 386.3447182999953,
+          "requests": 38,
+          "error": "Transcript or consolidation exceeds the configured LLM context. Increase METAWISPR_LLM_CONTEXT within available memory or submit a shorter meeting.",
+          "validation_failures": [
+            "generation did not finish normally; output may be truncated",
+            "Task owner 'industrial designer' must be null or literal text in its supporting sources. Select the source ID containing the value; otherwise copy literal text or use null.",
+            "generation did not finish normally; output may be truncated",
+            "generation did not finish normally; output may be truncated"
+          ]
+        },
+        {
+          "role": "asr-refinement",
+          "status": "complete",
+          "wall_seconds": 24.17849030000798,
+          "requests": 5,
+          "error": null,
+          "validation_failures": []
+        },
+        {
+          "role": "asr-documentation",
+          "status": "failed",
+          "wall_seconds": 199.48354509999626,
+          "requests": 24,
+          "error": "Documenting model returned invalid output twice. Completed calls are saved; retry after checking the model/context settings.",
+          "validation_failures": [
+            "Task deadline 'in thirty minutes' must be null or literal text in its supporting sources. Select the source ID containing the value; otherwise copy literal text or use null.",
+            "Task owner 'Industrial designer' must be null or literal text in its supporting sources. Select the source ID containing the value; otherwise copy literal text or use null."
+          ]
+        }
+      ]
+    },
+    {
+      "profile": "v7",
+      "identity": {
+        "model": {
+          "tag": "qwen3.5:4b",
+          "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+          "runtime_version": "0.35.1",
+          "parameter_size": "4.2B",
+          "quantization": "Q4_K_M"
+        },
+        "context": 16384,
+        "output_tokens": 3072,
+        "manual_input_sha256": "e7905d3c8586b780b6ac392f3e382ee5cf269f38e4eb420b89e9c5a8c6f43e8c",
+        "asr_input_sha256": "ab0a0b22f94b7ab9a11f067a4ff8fd2191f965f5918970e1602438ffede177ff",
+        "glossary": "Real Reaction\nremote control\nindustrial designer\nuser interface designer\nmarketing executive\nproject manager\nLCD\ninfrared",
+        "reference_sha256": "b7e041b3a620e60f7e09c909f5dbc9fb0e13b79312326ca053911d6f7256871d",
+        "rubric_sha256": "bb4d090011007bac12c3fa0603159bab08e6813d88b09acfb8ebf76978db83f6",
+        "prompts": {
+          "refine": "82a0605e89cafc3d620e833143d8378d7d6ab3f71b593507b50aaae067d12082",
+          "document": "e550c704b9638afbc4040dae8728bc80039283e7d89577edaaa6d651c1c83959",
+          "notes": "488b8296c8cc3c160ce6ab81d282d1367e6790d57bf45190ea35e7b08752df44",
+          "reconcile": "7798621fabd76e58d5921ca15b8525f4a56227cba5a77799fb2871b8cf8e89c1",
+          "consolidate": "e891a97e0a5a58b0215494151ec611c8f364a32b22cd0801edf3a7e2fbe19c62"
+        }
+      },
+      "jobs": [
+        {
+          "role": "manual-documentation",
+          "status": "failed",
+          "wall_seconds": 121.53547900001286,
+          "requests": 8,
+          "error": "Documenting model returned invalid output twice. Completed calls are saved; retry after checking the model/context settings.",
+          "validation_failures": [
+            "Task deadline \"Thirty minutes from now (ten to twelve by speaker's watch)\" must be null or literal text in its supporting sources. Select the source ID containing the value; otherwise copy literal text or use null.",
+            "Task deadline \"Thirty minutes from now (ten to twelve by speaker's watch)\" must be null or literal text in its supporting sources. Select the source ID containing the value; otherwise copy literal text or use null."
+          ]
+        },
+        {
+          "role": "asr-refinement",
+          "status": "complete",
+          "wall_seconds": 20.647231800001464,
+          "requests": 2,
+          "error": null,
+          "validation_failures": []
+        },
+        {
+          "role": "asr-documentation",
+          "status": "failed",
+          "wall_seconds": 103.4069015999994,
+          "requests": 3,
+          "error": "Documenting model returned invalid output twice. Completed calls are saved; retry after checking the model/context settings.",
+          "validation_failures": [
+            "generation did not finish normally; output may be truncated",
+            "generation did not finish normally; output may be truncated"
+          ]
+        }
+      ]
+    }
+  ]
+}

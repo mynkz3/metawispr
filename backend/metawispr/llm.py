@@ -30,6 +30,21 @@ def digest(value) -> str:
     return sha256(compact(value).encode("utf-8")).hexdigest()
 
 
+def generation_schema(contract, payload):
+    schema = contract.model_json_schema()
+    sources = [*payload.get("segments", []), *payload.get("context", []), *payload.get("sources", [])]
+    ids = list(dict.fromkeys(item["id"] for item in sources if isinstance(item, dict) and "id" in item))
+    if ids:
+        schema.setdefault("$defs", {})["SourceID"] = {"type": "string", "enum": ids}
+        for definition in [schema, *schema.get("$defs", {}).values()]:
+            properties = definition.get("properties", {})
+            if "evidence_ids" in properties:
+                properties["evidence_ids"]["items"] = {"$ref": "#/$defs/SourceID"}
+            if "segment_id" in properties:
+                properties["segment_id"]["enum"] = ids
+    return schema
+
+
 def prompt(name: str) -> str:
     return files("metawispr").joinpath("prompts", f"{name}.txt").read_text(encoding="utf-8")
 
@@ -78,7 +93,7 @@ class Ollama:
         return tuple(result)
 
     def fits(self, name, contract, payload, feedback="") -> bool:
-        system = prompt(name) + "\nJSON schema: " + compact(contract.model_json_schema())
+        system = prompt(name) + "\nJSON schema: " + compact(generation_schema(contract, payload))
         # A conservative byte bound for the selected byte-level tokenizers. Reserve
         # output and chat framing; reject capacity overflow instead of truncating text.
         # Grouping and both attempts share the same reservation, including UTF-8
@@ -88,12 +103,12 @@ class Ollama:
 
     def generate(self, model, name, contract, payload, store, meeting_id, stage, validate):
         system = prompt(name)
-        schema = contract.model_json_schema()
+        schema = generation_schema(contract, payload)
         options = {"temperature": 0, "seed": 0, "num_ctx": self.settings.llm_context,
                    "num_predict": self.settings.llm_output_tokens, "presence_penalty": 0,
                    "repeat_penalty": 1}
         identity = {"model": model.model_dump(), "prompt": system, "schema": schema,
-                    "input": payload, "options": options, "think": False, "policy": 2}
+                    "input": payload, "options": options, "think": False, "policy": 4}
         key = digest(identity)
         filename = f"{stage}/calls/{key}.json"
         saved = store.read_json(meeting_id, filename)

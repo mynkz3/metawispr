@@ -8,10 +8,10 @@ from .config import InputError, SetupError
 from .llm import digest, prompt
 from .schemas import (ConsolidatedNotes, DocumentationBatch, DocumentedMeeting, Edit, EditBatch,
                       Evidence, Fact, MeetingRecord, RefinedTranscript, RejectedEdit, ResolutionBatch,
-                      SourceBatch, SourceNotes, SourceResolutions, Task)
+                      SourceActions, SourceBatch, SourceNotes, SourceRecord, SourceResolutions, Task)
 
 
-POLICY_VERSION = 3
+POLICY_VERSION = 8
 PROTECTED = re.compile(
     r"(?<!\w)[+-]?\d+(?:[.,:/-]\d+)*(?:%|\b)|\b(?:zero|one|two|three|four|five|six|seven|eight|nine|ten|"
     r"eleven|twelve|thirteen|fourteen|fifteen|sixteen|seventeen|eighteen|nineteen|twenty|thirty|forty|fifty|"
@@ -19,6 +19,8 @@ PROTECTED = re.compile(
     r"cannot|can|can't|won't|don't|doesn't|isn't|wasn't|shouldn't|wouldn't|couldn't|mustn't|"
     r"will|must|shall|should|would|could|might|may|agree|agreed|promise|promised|commit|committed|"
     r"cancel|cancelled|withdraw|withdrawn)\b", re.IGNORECASE)
+DATES = re.compile(r"\b(?:monday|tuesday|wednesday|thursday|friday|saturday|sunday|"
+                   r"january|february|march|april|may|june|july|august|september|october|november|december)\b", re.I)
 
 
 def glossary_terms(text):
@@ -51,8 +53,12 @@ def apply_edits(segments, edits, glossary):
             reason = "Unknown segment"
         elif edit.end <= edit.start or edit.end > len(segment.text) or segment.text[edit.start:edit.end] != edit.original:
             reason = "Original span/offsets do not match"
-        elif edit.replacement not in canonical:
-            reason = "Replacement is absent from the canonical glossary"
+        elif edit.replacement not in canonical and not any(
+                re.search(r"(?<!\w)" + re.escape(edit.replacement) + r"(?!\w)",
+                          part)
+                for item in segments for part in ([item.text[:edit.start], item.text[edit.end:]]
+                                                  if item.id == edit.segment_id else [item.text])):
+            reason = "Replacement has no canonical glossary entry or independent meeting occurrence"
         elif edit.original == edit.replacement:
             reason = "No change"
         elif ((edit.start and segment.text[edit.start - 1].isalnum() and edit.original[0].isalnum()) or
@@ -62,13 +68,20 @@ def apply_edits(segments, edits, glossary):
                  for other in accepted):
             reason = "Overlaps an accepted edit"
         elif [m.group().casefold() for m in PROTECTED.finditer(edit.original)] != [
-                m.group().casefold() for m in PROTECTED.finditer(edit.replacement)]:
-            reason = "Changes a number, negation or commitment marker"
+                m.group().casefold() for m in PROTECTED.finditer(edit.replacement)] or (
+                re.findall(r"\d+", edit.original) != re.findall(r"\d+", edit.replacement)) or (
+                DATES.findall(edit.original.casefold()) != DATES.findall(edit.replacement.casefold())):
+            reason = "Changes a number, date, negation or commitment marker"
         else:
             letters = lambda value: re.sub(r"\W+", "", value.casefold())
-            if aliases.get(edit.original.casefold()) != edit.replacement and SequenceMatcher(
-                    None, letters(edit.original), letters(edit.replacement)).ratio() < 0.65:
-                reason = "Not a plausible terminology spelling or explicit alias"
+            original, replacement = letters(edit.original), letters(edit.replacement)
+            if aliases.get(edit.original.casefold()) != edit.replacement:
+                if len(replacement) > len(original) * 1.25:
+                    reason = "Adds unsupported speech or completes a role"
+                elif original in {replacement + 's', replacement + 'es'} or replacement in {original + 's', original + 'es'}:
+                    reason = "Changes grammatical number, not terminology spelling"
+                elif SequenceMatcher(None, original, replacement).ratio() < 0.65:
+                    reason = "Not a plausible terminology spelling or explicit alias"
         if reason:
             rejected.append(RejectedEdit(edit=edit, rejection=reason))
         else:
@@ -95,14 +108,22 @@ def validate_record(record, segments, revisions=(), allowed=None):
         for evidence in fact.evidence:
             if not evidence.quote.strip() or evidence.segment_id not in source or evidence.quote not in source[evidence.segment_id]:
                 raise ValueError(f"Evidence does not match segment {evidence.segment_id}")
+            if ((evidence.start_char is None) != (evidence.end_char is None) or
+                    (evidence.start_char is not None and
+                     (evidence.end_char <= evidence.start_char or evidence.end_char > len(source[evidence.segment_id]) or
+                      source[evidence.segment_id][evidence.start_char:evidence.end_char] != evidence.quote))):
+                raise ValueError("Evidence character range does not match its source")
             if allowed is not None and (evidence.segment_id, evidence.quote) not in allowed:
                 raise ValueError("Consolidation introduced evidence outside its input batches")
     for task in record.tasks:
+        if task.owner is not None and task.owner.casefold().strip() in {"i", "me", "my", "we", "us", "our", "you", "your", "he", "she", "they", "them", "it"}:
+            raise ValueError("Owner must be an identified literal name/role, or null; pronouns do not identify a person.")
         for name in ("owner", "deadline"):
             value = getattr(task, name)
             if value is not None and (not value.strip() or not any(
                     re.search(r"(?<!\w)" + re.escape(value) + r"(?!\w)", ev.quote) for ev in task.evidence)):
-                raise ValueError(f"Task {name} must be null or literal text in its supporting quotes")
+                raise ValueError(f"Task {name} {value!r} must be null or literal text in its supporting sources. "
+                                 "Select the source ID containing the value; otherwise copy literal text or use null.")
     if any(not topic.title.strip() for topic in record.topics):
         raise ValueError("Topic titles must not be blank")
 
@@ -121,6 +142,31 @@ def groups(items, make_payload, fits):
     return result
 
 
+def evidence_key(item):
+    value = item if isinstance(item, dict) else item.model_dump()
+    return value["segment_id"], value["quote"], value.get("start_char"), value.get("end_char")
+
+
+def source_units(segments):
+    units, sources = [], {}
+    for segment in segments:
+        # These are immutable text spans, not speaker turns or word/audio alignment.
+        spans = [(0, len(segment.text), segment.text)]
+        if len(segment.text.encode("utf-8")) > 3500:
+            spans = [(match.start(), match.end(), match.group()) for match in
+                     re.finditer(r"\S.*?(?:[.!?](?=\s|$)|$)", segment.text, re.S)]
+        for index, (start, end, text) in enumerate(spans):
+            identifier = f"{segment.id}:u{index:03d}"
+            units.append(segment.model_copy(update={"id": identifier, "text": text}))
+            sources[identifier] = Evidence(segment_id=segment.id, quote=text,
+                                           start_char=start, end_char=end)
+    return units, sources
+
+
+def document_input(title, items):
+    return {"title": title, "segments": [{"id": item.id, "text": item.text} for item in items]}
+
+
 def attach_evidence(output, contract, sources):
     """Resolve selected IDs in Python; model responses cannot supply quote text."""
     def expand(value):
@@ -131,16 +177,27 @@ def attach_evidence(output, contract, sources):
         result = {key: expand(item) for key, item in value.items() if key != "evidence_ids"}
         if "evidence_ids" in value:
             ids = value["evidence_ids"]
-            if len(set(ids)) != len(ids) or any(identifier not in sources for identifier in ids):
-                raise ValueError("Evidence IDs must be unique and belong to the supplied sources")
+            unknown = [identifier for identifier in ids if identifier not in sources]
+            if len(set(ids)) != len(ids) or unknown:
+                raise ValueError(f"Evidence IDs must be unique supplied IDs; unknown: {unknown[:3]!r}. Copy exact IDs.")
             result["evidence"] = [sources[identifier].model_dump() for identifier in ids]
+            # Restore only capitalization from the selected literal source. This
+            # cannot supply an absent name, role or deadline.
+            for field in ("owner", "deadline"):
+                if isinstance(result.get(field), str):
+                    for identifier in ids:
+                        match = re.search(r"(?<!\w)" + re.escape(result[field]) + r"(?!\w)",
+                                          sources[identifier].quote, re.I)
+                        if match:
+                            result[field] = match.group()
+                            break
         return result
     return contract.model_validate(expand(output.model_dump()))
 
 
-def source_payload(value, sources):
+def source_payload(value, sources, include_text=True):
     """Send each immutable source once across candidate facts and revision signals."""
-    identifiers = {(item.segment_id, item.quote): identifier for identifier, item in sources.items()}
+    identifiers = {evidence_key(item): identifier for identifier, item in sources.items()}
     used = set()
     def select(value):
         if isinstance(value, list):
@@ -149,12 +206,13 @@ def source_payload(value, sources):
             return value
         result = {key: select(item) for key, item in value.items() if key != "evidence"}
         if "evidence" in value:
-            ids = [identifiers[(item["segment_id"], item["quote"])] for item in value["evidence"]]
+            ids = [identifiers[evidence_key(item)] for item in value["evidence"]]
             used.update(ids)
             result["evidence_ids"] = ids
         return result
     result = select(value)
-    result["sources"] = [{"id": identifier, "text": item.quote} for identifier, item in sources.items() if identifier in used]
+    result["sources"] = [{"id": identifier, **({"text": item.quote} if include_text else {})}
+                         for identifier, item in sources.items() if identifier in used]
     return result
 
 
@@ -164,35 +222,8 @@ def refinement_policy(settings, glossary):
 
 
 def documentation_policy(settings):
-    return digest({"version": POLICY_VERSION, "prompts": [prompt("document"), prompt("reconcile"), prompt("consolidate")],
+    return digest({"version": POLICY_VERSION, "prompts": [prompt("document"), prompt("review"), prompt("notes"), prompt("reconcile"), prompt("consolidate")],
                    "model": settings.documenter_model})
-
-
-def consolidation_payload(title, batches):
-    # Quotes often repeat across summary, minutes, decisions and tasks. Send each
-    # exact quote once, with indices in candidate facts; outputs still use full quotes.
-    evidence, identifiers, compact_batches = [], {}, []
-    def candidate(fact):
-        ids = []
-        for item in fact.evidence:
-            key = (item.segment_id, item.quote)
-            if key not in identifiers:
-                identifiers[key] = len(evidence)
-                evidence.append(item.model_dump())
-            ids.append(identifiers[key])
-        value = {"text": fact.text, "evidence_ids": ids}
-        if hasattr(fact, "owner"):
-            value.update(owner=fact.owner, deadline=fact.deadline)
-        return value
-    for batch in batches:
-        record = batch.record
-        compact_batches.append({"record": {
-            "summary": [candidate(item) for item in record.summary],
-            "topics": [{"title": topic.title, "points": [candidate(item) for item in topic.points]} for topic in record.topics],
-            "decisions": [candidate(item) for item in record.decisions],
-            "tasks": [candidate(item) for item in record.tasks], "uncertainties": record.uncertainties},
-            "revisions": [candidate(item) for item in batch.revisions]})
-    return {"title": title, "evidence": evidence, "chronological_batches": compact_batches}
 
 
 def candidate_items(batches):
@@ -235,7 +266,7 @@ def resolve_candidates(output, candidates, segments, allowed):
                 re.match(r"\s*(withdraw|cancel|reassign|replace|correct)\b", item.quote, re.I) for item in original.evidence)
             def position(item):
                 segment = source[item.segment_id]
-                return segment.start, segment.text.index(item.quote)
+                return segment.start, item.start_char if item.start_char is not None else segment.text.index(item.quote)
             if not directive and not reclassified and current != original and not any(position(new) > max(position(old) for old in original.evidence)
                                          for new in resolution.evidence):
                 raise ValueError(f"{resolution.candidate_id}: retirement/replacement needs later supporting evidence; use keep for unchanged items")
@@ -295,22 +326,80 @@ class Documentation:
                                  warnings=["Automatic edit guards cannot establish meaning. Review accepted and rejected edits."])
 
     def document(self, meeting, refined, model, progress):
-        payload = lambda items: {"title": meeting.title, "segments": [item.model_dump() for item in items]}
-        sources = {item.id: Evidence(segment_id=item.id, quote=item.text) for item in refined.segments}
-        batches = groups(refined.segments, payload, lambda value: self.llm.fits("document", SourceBatch, value))
+        units, sources = source_units(refined.segments)
+        identifiers = {evidence_key(item): identifier for identifier, item in sources.items()}
+        positions = {item.id: index for index, item in enumerate(units)}
+        def payload(items):
+            value = document_input(meeting.title, items)
+            start = positions[items[0].id]
+            value["context"] = document_input(meeting.title, units[max(0, start - 6):start])["segments"]
+            return value
+        # A large configured context is not a reason to give a small model an
+        # entire meeting at once. Keep action extraction focused; consolidation
+        # can use the remaining context for already-extracted facts.
+        batches = groups(units, payload, lambda value: self.llm.fits("document", SourceActions, value)
+                         and (len(value["segments"]) == 1 or
+                              sum(len(item["text"].encode("utf-8")) for item in value["segments"]) <= 3500))
         outputs, calls = [], []
         try:
             for batch in batches:
-                batch_sources = {item.id: sources[item.id] for item in batch}
-                def validate_batch(result):
-                    expanded = attach_evidence(result, DocumentationBatch, batch_sources)
-                    validate_record(expanded.record, batch, expanded.revisions)
-                selected, call = self.llm.generate(model, "document", SourceBatch, payload(batch), self.store,
-                                                  meeting.id, "documenting", validate_batch)
-                output = attach_evidence(selected, DocumentationBatch, batch_sources)
-                outputs.append(output)
+                value = payload(batch)
+                batch_sources = {item["id"]: sources[item["id"]] for item in [*value["segments"], *value["context"]]}
+                active = {item.id for item in batch}
+                def action_batch(actions):
+                    return SourceBatch(record=SourceRecord(summary=[], topics=[], uncertainties=[],
+                                                          decisions=actions.decisions, tasks=actions.tasks),
+                                       revisions=actions.revisions)
+                def validate_batch(result, draft=False):
+                    if any(not active.intersection(item.evidence_ids) for item in [*result.decisions, *result.tasks, *result.revisions]):
+                        raise ValueError("New items must cite a segments ID; context only helps interpret new speech. Do not repeat context-only items.")
+                    expanded = attach_evidence(action_batch(result), DocumentationBatch, batch_sources)
+                    if draft:
+                        for task in expanded.record.tasks:
+                            task.owner = task.deadline = None
+                    validate_record(expanded.record, refined.segments, expanded.revisions)
+                selected, call = self.llm.generate(model, "document", SourceActions, value, self.store,
+                                                  meeting.id, "documenting", lambda result: validate_batch(result, draft=True))
                 calls.append(call)
                 progress(len(calls))
+                # The first answer is a proposal. A focused second pass checks
+                # every assignment against the same source before canonicalizing.
+                reviewed, call = self.llm.generate(model, "review", SourceActions,
+                                                   {**value, "draft": selected.model_dump()}, self.store,
+                                                   meeting.id, "documenting", validate_batch)
+                output = attach_evidence(action_batch(reviewed), DocumentationBatch, batch_sources)
+                calls.append(call)
+                progress(len(calls))
+                # Budget notes against the actual extracted actions. If they consume
+                # more room, split notes inputs; never drop source or action evidence.
+                def notes_payload(items):
+                    ids = {item.id for item in items}
+                    current = {kind: [fact.model_dump() for fact in getattr(output.record, kind)
+                                      if any(identifiers[evidence_key(ev)] in ids for ev in fact.evidence)]
+                               for kind in ("decisions", "tasks")}
+                    revisions = [fact.model_dump() for fact in output.revisions
+                                 if any(identifiers[evidence_key(ev)] in ids for ev in fact.evidence)]
+                    value = source_payload({"title": meeting.title, "resolved_current": current,
+                                            "revisions": revisions}, batch_sources)
+                    ids.update(item["id"] for item in value.pop("sources"))
+                    value["segments"] = [{"id": identifier, "text": item.quote} for identifier, item in batch_sources.items() if identifier in ids]
+                    return value
+                note_groups = groups(batch, notes_payload, lambda value: self.llm.fits("notes", SourceNotes, value))
+                for note_group in note_groups:
+                    value = notes_payload(note_group)
+                    note_sources = {item["id"]: batch_sources[item["id"]] for item in value["segments"]}
+                    def validate_local_notes(result):
+                        notes = attach_evidence(result, ConsolidatedNotes, note_sources)
+                        validate_record(MeetingRecord(**notes.model_dump(), decisions=[], tasks=[]), refined.segments)
+                    selected_notes, call = self.llm.generate(model, "notes", SourceNotes, value, self.store,
+                                                            meeting.id, "documenting", validate_local_notes)
+                    notes = attach_evidence(selected_notes, ConsolidatedNotes, note_sources)
+                    output.record.summary.extend(notes.summary)
+                    output.record.topics.extend(notes.topics)
+                    output.record.uncertainties.extend(notes.uncertainties)
+                    calls.append(call)
+                    progress(len(calls))
+                outputs.append(output)
             # Pair adjacent chronological groups. Revisions remain available until
             # the last pass so a cancellation in a later group can reach its target.
             while len(outputs) > 1:
@@ -326,8 +415,7 @@ class Documentation:
                     if candidates:
                         resolution_input = source_payload({"candidates": [{**item, "fact": item["fact"].model_dump()} for item in candidates],
                                                            "revisions": [item.model_dump() for batch in pair for item in batch.revisions]}, sources)
-                        allowed_sources = {identifier: item for identifier, item in sources.items()
-                                           if (item.segment_id, item.quote) in allowed}
+                        allowed_sources = {item["id"]: sources[item["id"]] for item in resolution_input["sources"]}
                         selected, call = self.llm.generate(model, "reconcile", SourceResolutions, resolution_input,
                                                           self.store, meeting.id, "documenting",
                                                           lambda result: resolve_candidates(attach_evidence(result, ResolutionBatch, allowed_sources),
@@ -339,12 +427,15 @@ class Documentation:
                     else:
                         decisions, tasks, revisions = [], [], []
                     value = source_payload({"title": meeting.title,
-                                            "chronological_batches": [batch.model_dump() for batch in pair],
+                                            "chronological_batches": [{"record": {
+                                                "summary": batch.record.model_dump()["summary"],
+                                                "topics": batch.record.model_dump()["topics"],
+                                                "uncertainties": batch.record.uncertainties},
+                                                "revisions": [item.model_dump() for item in batch.revisions]} for batch in pair],
                                             "resolved_current": {"decisions": [item.model_dump() for item in decisions],
-                                                                 "tasks": [item.model_dump() for item in tasks]}}, sources)
+                                                                 "tasks": [item.model_dump() for item in tasks]}}, sources, include_text=False)
                     # Notes cannot overwrite the separately resolved canonical arrays.
-                    allowed_sources = {identifier: item for identifier, item in sources.items()
-                                       if (item.segment_id, item.quote) in allowed}
+                    allowed_sources = {item["id"]: sources[item["id"]] for item in value["sources"]}
                     def validate_notes(selected):
                         notes = attach_evidence(selected, ConsolidatedNotes, allowed_sources)
                         record = MeetingRecord(**notes.model_dump(), decisions=decisions, tasks=tasks)

@@ -1,0 +1,2995 @@
+{
+  "identity": {
+    "meeting": "ES2002a",
+    "split": "development",
+    "input_sha256": "9c76866990fcc8b84006dc32d273ad99df439090b748ebe72103bb78c3216ee7",
+    "manual_sha256": "d4f2f04f56f5028c1d944d9b76c692b93eb55761beed07ad8e595543980f7940",
+    "reference_sha256": "74e45342636161402e5710e0f8998ffab281391235993731b67283c0ca079f99",
+    "glossary": "Real Reaction\nremote control\nindustrial designer\nuser interface designer\nmarketing executive\nproject manager\nLCD\ninfrared",
+    "models": [
+      {
+        "tag": "qwen3.5:4b",
+        "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+        "runtime_version": "0.35.1",
+        "parameter_size": "4.2B",
+        "quantization": "Q4_K_M"
+      },
+      {
+        "tag": "qwen3.5:4b",
+        "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+        "runtime_version": "0.35.1",
+        "parameter_size": "4.2B",
+        "quantization": "Q4_K_M"
+      }
+    ],
+    "context": 16384,
+    "output_tokens": 3072,
+    "prompts": {
+      "refine": "b09d5b798d1c2425a4f650c6b70f709748fb068bcdf35d94f9bd6c8ae4d4c807",
+      "document": "959c39c6b90ff5c8a9112869799dce4a46dbab4e77d86144216549a5bab0dc9c",
+      "review": "799bd50b5f8047327e4dcbe101fd6a07c8864942401474370dffc8939f4dcd90",
+      "notes": "488b8296c8cc3c160ce6ab81d282d1367e6790d57bf45190ea35e7b08752df44",
+      "reconcile": "7798621fabd76e58d5921ca15b8525f4a56227cba5a77799fb2871b8cf8e89c1",
+      "consolidate": "e891a97e0a5a58b0215494151ec611c8f364a32b22cd0801edf3a7e2fbe19c62"
+    },
+    "refinement_policy": "4c67641ca8996678b03d342f2038ef0f43da4db79b1fb30e2ec55fcc73564ea0",
+    "documentation_policy": "87d0c90487de14a2ae67b1910b456364fe6402651e478e74cc192cb1031d6da4"
+  },
+  "identity_sha256": "d7f0ec25383cafb1c122b70fec9cd55e8162aeb3896c7924d25c8c2df1a6c278",
+  "meeting_id": "43c76356-e899-4d78-97cb-8b0ab6edbe91",
+  "dataset": {
+    "meeting": "ES2002a",
+    "prepared_at": "2026-10-05T10:05:13.850086+00:00",
+    "source": "AMI Meeting Corpus, Edinburgh/Idiap/TNO; AMI Project",
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "dataset_url": "https://groups.inf.ed.ac.uk/ami/corpus/",
+    "annotations_url": "https://groups.inf.ed.ac.uk/ami/AMICorpusAnnotations/ami_public_manual_1.6.2.zip",
+    "annotations_sha256": "b56e5babb2496b8795deeeda7e71178d7fbc9963f94276cf2a3f4b56ebbc9f9d",
+    "audio_url": "https://groups.inf.ed.ac.uk/ami/AMICorpusMirror/amicorpus/ES2002a/audio/ES2002a.Mix-Headset.wav",
+    "annotation_file_sha256": {
+      "abstractive/ES2002a.abssumm.xml": "13551d1be5c5a3d72345b18b840d033534a4ee80d50e648dfcaad646f1ba6d91",
+      "argumentation/ae/ES2002a.D.argumentstructs.xml": "017bd96e816a1d14d75b4eb1989c45c3ad7365676f5ddfe32429a441599f5bf5",
+      "argumentation/ae/ES2002a.B.argumentstructs.xml": "ac8e6c5870d18d258d8b1922621e7ecd0abec7ae981f08a41e053c50249cb2f0",
+      "argumentation/ae/ES2002a.A.argumentstructs.xml": "317a946dce8fc653d74f2ad8b39931f97f95ed60c1a2bd52c3152936cb16c39a",
+      "argumentation/ae/ES2002a.C.argumentstructs.xml": "21d29d771f9cc43cd9f41730144bc512bb77e5fdd87606063e0f23b2b75580e0",
+      "argumentation/ar/ES2002a.argumentationrels.xml": "d4a18ff77b45b952d72f4c94e9a2284c121e1519f0e590c827e23cd7ecce5580",
+      "argumentation/dis/ES2002a.discussions.xml": "ae9ad3fde6352034ddc978724502929687e102af3f8aa9bd7ce8e4733076ec22",
+      "decision/manual/ES2002a.decision.xml": "78af8fb82670b9c3bb0c06adb1337a5d718368e53c986673d86d7a87b7fb4b8a",
+      "dialogueActs/ES2002a.adjacency-pairs.xml": "af7e106cd913f83c496caeb88e9017ccf8f0196b769e8126601c7776613be2bb",
+      "dialogueActs/ES2002a.B.dialog-act.xml": "fd94fe188a80bad10c7c9879e0f0836482c208d21bfc7116623836b737e2b084",
+      "dialogueActs/ES2002a.C.dialog-act.xml": "a1107181388d9ef4e45c8276ca34cee10bc6fc4b0789fe60bbc91fb6dce483a9",
+      "dialogueActs/ES2002a.A.dialog-act.xml": "d93241138d13614122d5137f6e184f16edac3247b4cde8f3a3fe14ec46168836",
+      "dialogueActs/ES2002a.D.dialog-act.xml": "9adf983bb5cb17306213bb0182eeedd04263baf45a07459f4597a8ce1b117743",
+      "disfluency/ES2002a.A.disfluency.xml": "069755d078b33f90914b4bf8200d05bf412ff8e6a555426719e3967002158e1c",
+      "disfluency/ES2002a.C.disfluency.xml": "9011539c8497f388113fc230bd673f1a2b30c4734a6f2dd7f7909851920ecf3f",
+      "disfluency/ES2002a.D.disfluency.xml": "a44809fde91ad2e2e77d09b83765826f16e44ea02234a4cc32cee648553e7c91",
+      "disfluency/ES2002a.B.disfluency.xml": "27cede47ce1d30d0ca89a8cb04f51db8650d84a0705bf3301a3b310f1d5b5d56",
+      "extractive/ES2002a.extsumm.xml": "dbd45f53d0ee20ea8cb4db45d9bac31bab967f613292179ae3fb1dca81644824",
+      "extractive/ES2002a.summlink.xml": "70fae857eb544069a10548b0d1670643ad4a948497879010e9bf04b31657a80b",
+      "handGesture/ES2002a.C.hand.xml": "15d9279ff5adc4a9a1ab9dd006b443c45ebe4e118dd16fb6a061d724fd5a5467",
+      "handGesture/ES2002a.A.hand.xml": "aabf8fc7ea859d9e41a8f7464f88229dd349a4b7c9c34659fe9b2c0812e966e7",
+      "handGesture/ES2002a.D.hand.xml": "679890ee61af7be9f7b884c546e7f607dfc591a58c5371deac79ba818baba289",
+      "handGesture/ES2002a.B.hand.xml": "619038345c52650cea8077715a5310acb3ba0d3c124188175c662a6d4cf8ad8c",
+      "movement/ES2002a.C.movement.xml": "2e38d526b0991421646a65c2bd53b0c5e4381b1d392ea3b76114ebdd58921d5b",
+      "movement/ES2002a.A.movement.xml": "b312a2896d6ebcd36c0bb510446f87f8b4c3b3c191698fae54ce26e91093db4d",
+      "movement/ES2002a.B.movement.xml": "f8459c894d83cfec50382184a418003bcebe467155f3fd0b1471c0f91a2923bb",
+      "movement/ES2002a.D.movement.xml": "40bd8a7b6987440edecc52fe019b38919ee0dcb61efa7ab6dfe5cf9c5a619ac0",
+      "namedEntities/ES2002a.C.ne.xml": "df2ea3288ee96a7c32c9889701562c7492773cfb9a68bb459a8ee2034e0fead6",
+      "namedEntities/ES2002a.B.ne.xml": "29b1e7a20c395dc48f006f07de109e5bb445b3a95c72f731f9fb3509bb40737d",
+      "namedEntities/ES2002a.D.ne.xml": "d14a421a568bdc4c452e11359d1eb1215fb717a3fdfb470ee32fd4c56a071c86",
+      "namedEntities/ES2002a.A.ne.xml": "af6ebef3c5d425aad8c9cdd67df8bc0c32490dea2a9fab7bd67e7285928affa4",
+      "participantSummaries/ES2002a.D.summ.xml": "8795ffe8324869885df939def31f488a306f413cba71afe62f0b258879947e2f",
+      "participantSummaries/ES2002a.B.summ.xml": "29b383bfbf3ec25c8a83cfbedac3b0afdf6a593cc39d9d121f50e6caebac3fcd",
+      "participantSummaries/ES2002a.C.summ.xml": "4648b904bb53acc37146688cbed66941b8a69dca7cca040bcd416e28ea14ccf0",
+      "participantSummaries/ES2002a.A.summ.xml": "774c063ea0e754432d6aea0024005e6b8100952f670fce441f91ef6a25dd00af",
+      "segments/ES2002a.B.segments.xml": "ff370c9b7968ee5cf76357eda8447c63f3af664c482a71843dc0fb4bd5d445c9",
+      "segments/ES2002a.D.segments.xml": "655286757eab17d36aa2ff1fada19742ce1b131be94fcc655c492790aed3797e",
+      "segments/ES2002a.A.segments.xml": "c8d26cf329af8c8917c07f4725a02c362d2471f01ea735d9016a89fccb847c02",
+      "segments/ES2002a.C.segments.xml": "6b3667b7c49ea81902a19593b21c7c74568da73f9e33dd0062a9f238a0e50f68",
+      "topics/ES2002a.topic.xml": "17b953167675dac0b8d3580c2d2023ef3fb2d416b9bb4a0c2f43c9075804bb15",
+      "words/ES2002a.A.words.xml": "03e7f37c4b3519ee78396779bbc90e2778b7b7ccd7a7388f7fa3a22cb31f7044",
+      "words/ES2002a.B.words.xml": "a51156e0b3f1b05d9d1a631206d523c5247d2d6fd851ecfe826317ab261cc17a",
+      "words/ES2002a.C.words.xml": "c539fca7b7183a2b56be43f2362432a91a4552512ed03df8c4ce96aee75f3330",
+      "words/ES2002a.D.words.xml": "d4f8b66e53de583c839424323f0e05d038a1426e5628042d03dcd2ee72e68b05",
+      "youUsages/ES2002a.A.you.xml": "c353e76a42129a0f09061dc36764319863bdf6ab3cdb0364b3cb318e3fe98954",
+      "youUsages/ES2002a.D.you.xml": "8c8fb5712b5cbcb46a7cb68eea7f84d2d96d140f6be6547b731620c3bb5289e4",
+      "youUsages/ES2002a.B.you.xml": "da659e00ac5ee40536a026860aa592685fd019829845d7919a78fed50214e3b9"
+    },
+    "manual_segments": 236,
+    "lexical_tokens_with_punctuation": 3105,
+    "manual_input_sha256": "e7905d3c8586b780b6ac392f3e382ee5cf269f38e4eb420b89e9c5a8c6f43e8c",
+    "reference_sha256": "b7e041b3a620e60f7e09c909f5dbc9fb0e13b79312326ca053911d6f7256871d",
+    "glossary": "Real Reaction\nremote control\nindustrial designer\nuser interface designer\nmarketing executive\nproject manager\nLCD\ninfrared",
+    "speaker_prefixes_added": false,
+    "manual_timestamp_note": "Original annotation segment times; overlapping speaker turns are retained.",
+    "reference_note": "Official abstract/actions/decisions/problems plus linked evidence; excluded from all model prompts.",
+    "audio_sha256": "9c76866990fcc8b84006dc32d273ad99df439090b748ebe72103bb78c3216ee7",
+    "duration_seconds": 1272.64,
+    "asr_wall_seconds": 249.99177710000367,
+    "asr_input_sha256": "ab0a0b22f94b7ab9a11f067a4ff8fd2191f965f5918970e1602438ffede177ff"
+  },
+  "host": "Windows-11-10.0.26200-SP0",
+  "ram_at_start": {
+    "total_bytes": 16873545728,
+    "available_bytes": 4431015936
+  },
+  "git_head": "a102522d9c34246659903f3da9366a3a85cfe65e",
+  "started_at": "2026-10-05T15:23:42.983864+00:00",
+  "runs": [
+    {
+      "wall_seconds": 501.67054859999917,
+      "measurements": [
+        {
+          "model": "qwen3.5:4b",
+          "options": {
+            "temperature": 0,
+            "seed": 0,
+            "num_ctx": 16384,
+            "num_predict": 3072,
+            "presence_penalty": 0,
+            "repeat_penalty": 1
+          },
+          "ram_before": {
+            "total_bytes": 16873545728,
+            "available_bytes": 3739156480
+          },
+          "done_reason": "stop",
+          "total_duration": 10725380900,
+          "load_duration": 6999027500,
+          "prompt_eval_count": 3466,
+          "prompt_eval_duration": 1637715000,
+          "eval_count": 115,
+          "eval_duration": 2052179999,
+          "wall_seconds": 10.75511739999638,
+          "ram_after": {
+            "total_bytes": 16873545728,
+            "available_bytes": 2690646016
+          },
+          "resident_models": [
+            {
+              "name": "qwen3.5:4b",
+              "model": "qwen3.5:4b",
+              "size": 3629142506,
+              "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+              "details": {
+                "parent_model": "",
+                "format": "gguf",
+                "family": "qwen35",
+                "families": [
+                  "qwen35"
+                ],
+                "parameter_size": "4.2B",
+                "quantization_level": "Q4_K_M"
+              },
+              "expires_at": "2026-10-05T21:03:17.2046219+05:30",
+              "size_vram": 3629142506,
+              "context_length": 16384
+            }
+          ]
+        },
+        {
+          "model": "qwen3.5:4b",
+          "options": {
+            "temperature": 0,
+            "seed": 0,
+            "num_ctx": 16384,
+            "num_predict": 3072,
+            "presence_penalty": 0,
+            "repeat_penalty": 1
+          },
+          "ram_before": {
+            "total_bytes": 16873545728,
+            "available_bytes": 2689929216
+          },
+          "done_reason": "stop",
+          "total_duration": 12656000300,
+          "load_duration": 8320600,
+          "prompt_eval_count": 2382,
+          "prompt_eval_duration": 1031108999,
+          "eval_count": 721,
+          "eval_duration": 11412479000,
+          "wall_seconds": 12.707316999993054,
+          "ram_after": {
+            "total_bytes": 16873545728,
+            "available_bytes": 2533257216
+          },
+          "resident_models": [
+            {
+              "name": "qwen3.5:4b",
+              "model": "qwen3.5:4b",
+              "size": 3629142506,
+              "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+              "details": {
+                "parent_model": "",
+                "format": "gguf",
+                "family": "qwen35",
+                "families": [
+                  "qwen35"
+                ],
+                "parameter_size": "4.2B",
+                "quantization_level": "Q4_K_M"
+              },
+              "expires_at": "2026-10-05T21:03:29.9768404+05:30",
+              "size_vram": 3629142506,
+              "context_length": 16384
+            }
+          ]
+        },
+        {
+          "model": "qwen3.5:4b",
+          "options": {
+            "temperature": 0,
+            "seed": 0,
+            "num_ctx": 16384,
+            "num_predict": 3072,
+            "presence_penalty": 0,
+            "repeat_penalty": 1
+          },
+          "ram_before": {
+            "total_bytes": 16873545728,
+            "available_bytes": 4016750592
+          },
+          "done_reason": "stop",
+          "total_duration": 9019401400,
+          "load_duration": 7476992200,
+          "prompt_eval_count": 2293,
+          "prompt_eval_duration": 1192322000,
+          "eval_count": 13,
+          "eval_duration": 317004000,
+          "wall_seconds": 9.072207699995488,
+          "ram_after": {
+            "total_bytes": 16873545728,
+            "available_bytes": 2814836736
+          },
+          "resident_models": [
+            {
+              "name": "qwen3.5:4b",
+              "model": "qwen3.5:4b",
+              "size": 3629142506,
+              "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+              "details": {
+                "parent_model": "",
+                "format": "gguf",
+                "family": "qwen35",
+                "families": [
+                  "qwen35"
+                ],
+                "parameter_size": "4.2B",
+                "quantization_level": "Q4_K_M"
+              },
+              "expires_at": "2026-10-05T21:03:39.3683475+05:30",
+              "size_vram": 3629142506,
+              "context_length": 16384
+            }
+          ]
+        },
+        {
+          "model": "qwen3.5:4b",
+          "options": {
+            "temperature": 0,
+            "seed": 0,
+            "num_ctx": 16384,
+            "num_predict": 3072,
+            "presence_penalty": 0,
+            "repeat_penalty": 1
+          },
+          "ram_before": {
+            "total_bytes": 16873545728,
+            "available_bytes": 2819387392
+          },
+          "done_reason": "stop",
+          "total_duration": 1506697800,
+          "load_duration": 7645400,
+          "prompt_eval_count": 2057,
+          "prompt_eval_duration": 960044000,
+          "eval_count": 24,
+          "eval_duration": 363538000,
+          "wall_seconds": 1.5614152000052854,
+          "ram_after": {
+            "total_bytes": 16873545728,
+            "available_bytes": 2600759296
+          },
+          "resident_models": [
+            {
+              "name": "qwen3.5:4b",
+              "model": "qwen3.5:4b",
+              "size": 3629142506,
+              "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+              "details": {
+                "parent_model": "",
+                "format": "gguf",
+                "family": "qwen35",
+                "families": [
+                  "qwen35"
+                ],
+                "parameter_size": "4.2B",
+                "quantization_level": "Q4_K_M"
+              },
+              "expires_at": "2026-10-05T21:03:40.995851+05:30",
+              "size_vram": 3629142506,
+              "context_length": 16384
+            }
+          ]
+        },
+        {
+          "model": "qwen3.5:4b",
+          "options": {
+            "temperature": 0,
+            "seed": 0,
+            "num_ctx": 16384,
+            "num_predict": 3072,
+            "presence_penalty": 0,
+            "repeat_penalty": 1
+          },
+          "ram_before": {
+            "total_bytes": 16873545728,
+            "available_bytes": 2601893888
+          },
+          "done_reason": "stop",
+          "total_duration": 21070789800,
+          "load_duration": 6283500,
+          "prompt_eval_count": 1758,
+          "prompt_eval_duration": 735100000,
+          "eval_count": 1280,
+          "eval_duration": 20156306000,
+          "wall_seconds": 21.100231500007794,
+          "ram_after": {
+            "total_bytes": 16873545728,
+            "available_bytes": 3080286208
+          },
+          "resident_models": [
+            {
+              "name": "qwen3.5:4b",
+              "model": "qwen3.5:4b",
+              "size": 3629142506,
+              "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+              "details": {
+                "parent_model": "",
+                "format": "gguf",
+                "family": "qwen35",
+                "families": [
+                  "qwen35"
+                ],
+                "parameter_size": "4.2B",
+                "quantization_level": "Q4_K_M"
+              },
+              "expires_at": "2026-10-05T21:04:02.2242756+05:30",
+              "size_vram": 3629142506,
+              "context_length": 16384
+            }
+          ]
+        },
+        {
+          "model": "qwen3.5:4b",
+          "options": {
+            "temperature": 0,
+            "seed": 0,
+            "num_ctx": 16384,
+            "num_predict": 3072,
+            "presence_penalty": 0,
+            "repeat_penalty": 1
+          },
+          "ram_before": {
+            "total_bytes": 16873545728,
+            "available_bytes": 3088863232
+          },
+          "done_reason": "stop",
+          "total_duration": 1831450900,
+          "load_duration": 6794800,
+          "prompt_eval_count": 2699,
+          "prompt_eval_duration": 1183166000,
+          "eval_count": 24,
+          "eval_duration": 431542000,
+          "wall_seconds": 1.8619994000036968,
+          "ram_after": {
+            "total_bytes": 16873545728,
+            "available_bytes": 3060039680
+          },
+          "resident_models": [
+            {
+              "name": "qwen3.5:4b",
+              "model": "qwen3.5:4b",
+              "size": 3629142506,
+              "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+              "details": {
+                "parent_model": "",
+                "format": "gguf",
+                "family": "qwen35",
+                "families": [
+                  "qwen35"
+                ],
+                "parameter_size": "4.2B",
+                "quantization_level": "Q4_K_M"
+              },
+              "expires_at": "2026-10-05T21:04:04.1583205+05:30",
+              "size_vram": 3629142506,
+              "context_length": 16384
+            }
+          ]
+        },
+        {
+          "model": "qwen3.5:4b",
+          "options": {
+            "temperature": 0,
+            "seed": 0,
+            "num_ctx": 16384,
+            "num_predict": 3072,
+            "presence_penalty": 0,
+            "repeat_penalty": 1
+          },
+          "ram_before": {
+            "total_bytes": 16873545728,
+            "available_bytes": 3058044928
+          },
+          "done_reason": "stop",
+          "total_duration": 10136496600,
+          "load_duration": 5890200,
+          "prompt_eval_count": 2463,
+          "prompt_eval_duration": 1082615000,
+          "eval_count": 574,
+          "eval_duration": 8892370000,
+          "wall_seconds": 10.168558499994106,
+          "ram_after": {
+            "total_bytes": 16873545728,
+            "available_bytes": 2862084096
+          },
+          "resident_models": [
+            {
+              "name": "qwen3.5:4b",
+              "model": "qwen3.5:4b",
+              "size": 3629142506,
+              "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+              "details": {
+                "parent_model": "",
+                "format": "gguf",
+                "family": "qwen35",
+                "families": [
+                  "qwen35"
+                ],
+                "parameter_size": "4.2B",
+                "quantization_level": "Q4_K_M"
+              },
+              "expires_at": "2026-10-05T21:04:14.4172915+05:30",
+              "size_vram": 3629142506,
+              "context_length": 16384
+            }
+          ]
+        },
+        {
+          "model": "qwen3.5:4b",
+          "options": {
+            "temperature": 0,
+            "seed": 0,
+            "num_ctx": 16384,
+            "num_predict": 3072,
+            "presence_penalty": 0,
+            "repeat_penalty": 1
+          },
+          "ram_before": {
+            "total_bytes": 16873545728,
+            "available_bytes": 2859679744
+          },
+          "done_reason": "stop",
+          "total_duration": 18868925100,
+          "load_duration": 6901700,
+          "prompt_eval_count": 1970,
+          "prompt_eval_duration": 823890000,
+          "eval_count": 1159,
+          "eval_duration": 17898212000,
+          "wall_seconds": 18.92306400000234,
+          "ram_after": {
+            "total_bytes": 16873545728,
+            "available_bytes": 2597703680
+          },
+          "resident_models": [
+            {
+              "name": "qwen3.5:4b",
+              "model": "qwen3.5:4b",
+              "size": 3629142506,
+              "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+              "details": {
+                "parent_model": "",
+                "format": "gguf",
+                "family": "qwen35",
+                "families": [
+                  "qwen35"
+                ],
+                "parameter_size": "4.2B",
+                "quantization_level": "Q4_K_M"
+              },
+              "expires_at": "2026-10-05T21:04:33.4606829+05:30",
+              "size_vram": 3629142506,
+              "context_length": 16384
+            }
+          ]
+        },
+        {
+          "model": "qwen3.5:4b",
+          "options": {
+            "temperature": 0,
+            "seed": 0,
+            "num_ctx": 16384,
+            "num_predict": 3072,
+            "presence_penalty": 0,
+            "repeat_penalty": 1
+          },
+          "ram_before": {
+            "total_bytes": 16873545728,
+            "available_bytes": 2595962880
+          },
+          "done_reason": "stop",
+          "total_duration": 1765354100,
+          "load_duration": 6721400,
+          "prompt_eval_count": 2675,
+          "prompt_eval_duration": 1137784000,
+          "eval_count": 24,
+          "eval_duration": 426203000,
+          "wall_seconds": 1.8191255999990972,
+          "ram_after": {
+            "total_bytes": 16873545728,
+            "available_bytes": 2562994176
+          },
+          "resident_models": [
+            {
+              "name": "qwen3.5:4b",
+              "model": "qwen3.5:4b",
+              "size": 3629142506,
+              "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+              "details": {
+                "parent_model": "",
+                "format": "gguf",
+                "family": "qwen35",
+                "families": [
+                  "qwen35"
+                ],
+                "parameter_size": "4.2B",
+                "quantization_level": "Q4_K_M"
+              },
+              "expires_at": "2026-10-05T21:04:35.3355163+05:30",
+              "size_vram": 3629142506,
+              "context_length": 16384
+            }
+          ]
+        },
+        {
+          "model": "qwen3.5:4b",
+          "options": {
+            "temperature": 0,
+            "seed": 0,
+            "num_ctx": 16384,
+            "num_predict": 3072,
+            "presence_penalty": 0,
+            "repeat_penalty": 1
+          },
+          "ram_before": {
+            "total_bytes": 16873545728,
+            "available_bytes": 2551128064
+          },
+          "done_reason": "stop",
+          "total_duration": 1565450000,
+          "load_duration": 5105400,
+          "prompt_eval_count": 2439,
+          "prompt_eval_duration": 1058781000,
+          "eval_count": 24,
+          "eval_duration": 364906000,
+          "wall_seconds": 1.6101582999981474,
+          "ram_after": {
+            "total_bytes": 16873545728,
+            "available_bytes": 2651525120
+          },
+          "resident_models": [
+            {
+              "name": "qwen3.5:4b",
+              "model": "qwen3.5:4b",
+              "size": 3629142506,
+              "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+              "details": {
+                "parent_model": "",
+                "format": "gguf",
+                "family": "qwen35",
+                "families": [
+                  "qwen35"
+                ],
+                "parameter_size": "4.2B",
+                "quantization_level": "Q4_K_M"
+              },
+              "expires_at": "2026-10-05T21:04:36.9991926+05:30",
+              "size_vram": 3629142506,
+              "context_length": 16384
+            }
+          ]
+        },
+        {
+          "model": "qwen3.5:4b",
+          "options": {
+            "temperature": 0,
+            "seed": 0,
+            "num_ctx": 16384,
+            "num_predict": 3072,
+            "presence_penalty": 0,
+            "repeat_penalty": 1
+          },
+          "ram_before": {
+            "total_bytes": 16873545728,
+            "available_bytes": 2648539136
+          },
+          "done_reason": "stop",
+          "total_duration": 19705584300,
+          "load_duration": 4536800,
+          "prompt_eval_count": 1469,
+          "prompt_eval_duration": 621431000,
+          "eval_count": 1216,
+          "eval_duration": 18924707000,
+          "wall_seconds": 19.731385000006412,
+          "ram_after": {
+            "total_bytes": 16873545728,
+            "available_bytes": 2364039168
+          },
+          "resident_models": [
+            {
+              "name": "qwen3.5:4b",
+              "model": "qwen3.5:4b",
+              "size": 3629142506,
+              "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+              "details": {
+                "parent_model": "",
+                "format": "gguf",
+                "family": "qwen35",
+                "families": [
+                  "qwen35"
+                ],
+                "parameter_size": "4.2B",
+                "quantization_level": "Q4_K_M"
+              },
+              "expires_at": "2026-10-05T21:04:56.8247964+05:30",
+              "size_vram": 3629142506,
+              "context_length": 16384
+            }
+          ]
+        },
+        {
+          "model": "qwen3.5:4b",
+          "options": {
+            "temperature": 0,
+            "seed": 0,
+            "num_ctx": 16384,
+            "num_predict": 3072,
+            "presence_penalty": 0,
+            "repeat_penalty": 1
+          },
+          "ram_before": {
+            "total_bytes": 16873545728,
+            "available_bytes": 2359701504
+          },
+          "done_reason": "stop",
+          "total_duration": 4212063300,
+          "load_duration": 6570900,
+          "prompt_eval_count": 2871,
+          "prompt_eval_duration": 1227167000,
+          "eval_count": 170,
+          "eval_duration": 2727174000,
+          "wall_seconds": 4.262805199992727,
+          "ram_after": {
+            "total_bytes": 16873545728,
+            "available_bytes": 2338512896
+          },
+          "resident_models": [
+            {
+              "name": "qwen3.5:4b",
+              "model": "qwen3.5:4b",
+              "size": 3629142506,
+              "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+              "details": {
+                "parent_model": "",
+                "format": "gguf",
+                "family": "qwen35",
+                "families": [
+                  "qwen35"
+                ],
+                "parameter_size": "4.2B",
+                "quantization_level": "Q4_K_M"
+              },
+              "expires_at": "2026-10-05T21:05:01.1772395+05:30",
+              "size_vram": 3629142506,
+              "context_length": 16384
+            }
+          ]
+        },
+        {
+          "model": "qwen3.5:4b",
+          "options": {
+            "temperature": 0,
+            "seed": 0,
+            "num_ctx": 16384,
+            "num_predict": 3072,
+            "presence_penalty": 0,
+            "repeat_penalty": 1
+          },
+          "ram_before": {
+            "total_bytes": 16873545728,
+            "available_bytes": 2335993856
+          },
+          "done_reason": "stop",
+          "total_duration": 3997406200,
+          "load_duration": 10636300,
+          "prompt_eval_count": 2736,
+          "prompt_eval_duration": 1187145000,
+          "eval_count": 170,
+          "eval_duration": 2638403000,
+          "wall_seconds": 4.038131499997689,
+          "ram_after": {
+            "total_bytes": 16873545728,
+            "available_bytes": 2140266496
+          },
+          "resident_models": [
+            {
+              "name": "qwen3.5:4b",
+              "model": "qwen3.5:4b",
+              "size": 3629142506,
+              "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+              "details": {
+                "parent_model": "",
+                "format": "gguf",
+                "family": "qwen35",
+                "families": [
+                  "qwen35"
+                ],
+                "parameter_size": "4.2B",
+                "quantization_level": "Q4_K_M"
+              },
+              "expires_at": "2026-10-05T21:05:05.2804785+05:30",
+              "size_vram": 3629142506,
+              "context_length": 16384
+            }
+          ]
+        },
+        {
+          "model": "qwen3.5:4b",
+          "options": {
+            "temperature": 0,
+            "seed": 0,
+            "num_ctx": 16384,
+            "num_predict": 3072,
+            "presence_penalty": 0,
+            "repeat_penalty": 1
+          },
+          "ram_before": {
+            "total_bytes": 16873545728,
+            "available_bytes": 2140872704
+          },
+          "done_reason": "stop",
+          "total_duration": 20846935600,
+          "load_duration": 9994300,
+          "prompt_eval_count": 1644,
+          "prompt_eval_duration": 685849000,
+          "eval_count": 1285,
+          "eval_duration": 19949658000,
+          "wall_seconds": 20.889136900004814,
+          "ram_after": {
+            "total_bytes": 16873545728,
+            "available_bytes": 2063515648
+          },
+          "resident_models": [
+            {
+              "name": "qwen3.5:4b",
+              "model": "qwen3.5:4b",
+              "size": 3629142506,
+              "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+              "details": {
+                "parent_model": "",
+                "format": "gguf",
+                "family": "qwen35",
+                "families": [
+                  "qwen35"
+                ],
+                "parameter_size": "4.2B",
+                "quantization_level": "Q4_K_M"
+              },
+              "expires_at": "2026-10-05T21:05:26.3044983+05:30",
+              "size_vram": 3629142506,
+              "context_length": 16384
+            }
+          ]
+        },
+        {
+          "model": "qwen3.5:4b",
+          "options": {
+            "temperature": 0,
+            "seed": 0,
+            "num_ctx": 16384,
+            "num_predict": 3072,
+            "presence_penalty": 0,
+            "repeat_penalty": 1
+          },
+          "ram_before": {
+            "total_bytes": 16873545728,
+            "available_bytes": 2063257600
+          },
+          "done_reason": "stop",
+          "total_duration": 8047365800,
+          "load_duration": 7447800,
+          "prompt_eval_count": 1966,
+          "prompt_eval_duration": 871448000,
+          "eval_count": 446,
+          "eval_duration": 6969723000,
+          "wall_seconds": 8.101248000006308,
+          "ram_after": {
+            "total_bytes": 16873545728,
+            "available_bytes": 1817706496
+          },
+          "resident_models": [
+            {
+              "name": "qwen3.5:4b",
+              "model": "qwen3.5:4b",
+              "size": 3629142506,
+              "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+              "details": {
+                "parent_model": "",
+                "format": "gguf",
+                "family": "qwen35",
+                "families": [
+                  "qwen35"
+                ],
+                "parameter_size": "4.2B",
+                "quantization_level": "Q4_K_M"
+              },
+              "expires_at": "2026-10-05T21:05:34.4777978+05:30",
+              "size_vram": 3629142506,
+              "context_length": 16384
+            }
+          ]
+        },
+        {
+          "model": "qwen3.5:4b",
+          "options": {
+            "temperature": 0,
+            "seed": 0,
+            "num_ctx": 16384,
+            "num_predict": 3072,
+            "presence_penalty": 0,
+            "repeat_penalty": 1
+          },
+          "ram_before": {
+            "total_bytes": 16873545728,
+            "available_bytes": 1817464832
+          },
+          "done_reason": "stop",
+          "total_duration": 19181542600,
+          "load_duration": 6064000,
+          "prompt_eval_count": 2954,
+          "prompt_eval_duration": 1289279000,
+          "eval_count": 1096,
+          "eval_duration": 17698830000,
+          "wall_seconds": 19.213313799991738,
+          "ram_after": {
+            "total_bytes": 16873545728,
+            "available_bytes": 1491767296
+          },
+          "resident_models": [
+            {
+              "name": "qwen3.5:4b",
+              "model": "qwen3.5:4b",
+              "size": 3629142506,
+              "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+              "details": {
+                "parent_model": "",
+                "format": "gguf",
+                "family": "qwen35",
+                "families": [
+                  "qwen35"
+                ],
+                "parameter_size": "4.2B",
+                "quantization_level": "Q4_K_M"
+              },
+              "expires_at": "2026-10-05T21:05:53.7910735+05:30",
+              "size_vram": 3629142506,
+              "context_length": 16384
+            }
+          ]
+        },
+        {
+          "model": "qwen3.5:4b",
+          "options": {
+            "temperature": 0,
+            "seed": 0,
+            "num_ctx": 16384,
+            "num_predict": 3072,
+            "presence_penalty": 0,
+            "repeat_penalty": 1
+          },
+          "ram_before": {
+            "total_bytes": 16873545728,
+            "available_bytes": 1500123136
+          },
+          "done_reason": "stop",
+          "total_duration": 4293021700,
+          "load_duration": 6317600,
+          "prompt_eval_count": 1022,
+          "prompt_eval_duration": 485662000,
+          "eval_count": 225,
+          "eval_duration": 3633410000,
+          "wall_seconds": 4.33396879999782,
+          "ram_after": {
+            "total_bytes": 16873545728,
+            "available_bytes": 1337933824
+          },
+          "resident_models": [
+            {
+              "name": "qwen3.5:4b",
+              "model": "qwen3.5:4b",
+              "size": 3629142506,
+              "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+              "details": {
+                "parent_model": "",
+                "format": "gguf",
+                "family": "qwen35",
+                "families": [
+                  "qwen35"
+                ],
+                "parameter_size": "4.2B",
+                "quantization_level": "Q4_K_M"
+              },
+              "expires_at": "2026-10-05T21:05:58.248411+05:30",
+              "size_vram": 3629142506,
+              "context_length": 16384
+            }
+          ]
+        },
+        {
+          "model": "qwen3.5:4b",
+          "options": {
+            "temperature": 0,
+            "seed": 0,
+            "num_ctx": 16384,
+            "num_predict": 3072,
+            "presence_penalty": 0,
+            "repeat_penalty": 1
+          },
+          "ram_before": {
+            "total_bytes": 16873545728,
+            "available_bytes": 1338265600
+          },
+          "done_reason": "stop",
+          "total_duration": 21268368200,
+          "load_duration": 5997200,
+          "prompt_eval_count": 2742,
+          "prompt_eval_duration": 1161123000,
+          "eval_count": 1278,
+          "eval_duration": 20009908000,
+          "wall_seconds": 21.312838300000294,
+          "ram_after": {
+            "total_bytes": 16873545728,
+            "available_bytes": 1168404480
+          },
+          "resident_models": [
+            {
+              "name": "qwen3.5:4b",
+              "model": "qwen3.5:4b",
+              "size": 3629142506,
+              "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+              "details": {
+                "parent_model": "",
+                "format": "gguf",
+                "family": "qwen35",
+                "families": [
+                  "qwen35"
+                ],
+                "parameter_size": "4.2B",
+                "quantization_level": "Q4_K_M"
+              },
+              "expires_at": "2026-10-05T21:06:19.6297961+05:30",
+              "size_vram": 3629142506,
+              "context_length": 16384
+            }
+          ]
+        },
+        {
+          "model": "qwen3.5:4b",
+          "options": {
+            "temperature": 0,
+            "seed": 0,
+            "num_ctx": 16384,
+            "num_predict": 3072,
+            "presence_penalty": 0,
+            "repeat_penalty": 1
+          },
+          "ram_before": {
+            "total_bytes": 16873545728,
+            "available_bytes": 1164324864
+          },
+          "done_reason": "stop",
+          "total_duration": 21037442700,
+          "load_duration": 4707200,
+          "prompt_eval_count": 2297,
+          "prompt_eval_duration": 999164000,
+          "eval_count": 1269,
+          "eval_duration": 19847354000,
+          "wall_seconds": 21.09050419999403,
+          "ram_after": {
+            "total_bytes": 16873545728,
+            "available_bytes": 836567040
+          },
+          "resident_models": [
+            {
+              "name": "qwen3.5:4b",
+              "model": "qwen3.5:4b",
+              "size": 3629142506,
+              "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+              "details": {
+                "parent_model": "",
+                "format": "gguf",
+                "family": "qwen35",
+                "families": [
+                  "qwen35"
+                ],
+                "parameter_size": "4.2B",
+                "quantization_level": "Q4_K_M"
+              },
+              "expires_at": "2026-10-05T21:06:40.8048687+05:30",
+              "size_vram": 3629142506,
+              "context_length": 16384
+            }
+          ]
+        },
+        {
+          "model": "qwen3.5:4b",
+          "options": {
+            "temperature": 0,
+            "seed": 0,
+            "num_ctx": 16384,
+            "num_predict": 3072,
+            "presence_penalty": 0,
+            "repeat_penalty": 1
+          },
+          "ram_before": {
+            "total_bytes": 16873545728,
+            "available_bytes": 836911104
+          },
+          "done_reason": "stop",
+          "total_duration": 23612581000,
+          "load_duration": 7265000,
+          "prompt_eval_count": 3153,
+          "prompt_eval_duration": 1332671000,
+          "eval_count": 1405,
+          "eval_duration": 22102904000,
+          "wall_seconds": 23.650469700005488,
+          "ram_after": {
+            "total_bytes": 16873545728,
+            "available_bytes": 609284096
+          },
+          "resident_models": [
+            {
+              "name": "qwen3.5:4b",
+              "model": "qwen3.5:4b",
+              "size": 3629142506,
+              "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+              "details": {
+                "parent_model": "",
+                "format": "gguf",
+                "family": "qwen35",
+                "families": [
+                  "qwen35"
+                ],
+                "parameter_size": "4.2B",
+                "quantization_level": "Q4_K_M"
+              },
+              "expires_at": "2026-10-05T21:07:04.5109147+05:30",
+              "size_vram": 3629142506,
+              "context_length": 16384
+            }
+          ]
+        }
+      ],
+      "stage": "complete",
+      "error": null
+    }
+  ],
+  "scope": "Uploaded full AMI audio through genuine Parakeet and both shared-Qwen stages. References excluded from generation. Public corpus pretraining exposure unknown. Semantic grading requires source review.",
+  "meeting": {
+    "id": "43c76356-e899-4d78-97cb-8b0ab6edbe91",
+    "title": "AMI ES2002a",
+    "filename": "ES2002a.Mix-Headset.wav",
+    "source_name": "original.wav",
+    "glossary": "Real Reaction\nremote control\nindustrial designer\nuser interface designer\nmarketing executive\nproject manager\nLCD\ninfrared",
+    "created_at": "2026-10-05T15:23:42.831948+00:00",
+    "updated_at": "2026-10-05T15:32:04.635836+00:00",
+    "stage": "complete",
+    "input_sha256": "9c76866990fcc8b84006dc32d273ad99df439090b748ebe72103bb78c3216ee7",
+    "size_bytes": 40724524,
+    "duration_seconds": 1272.64,
+    "processed_audio_seconds": 1272.64,
+    "prepare_seconds": 0.05597880001005251,
+    "transcribed_at": "2026-10-05T15:23:43.106256+00:00",
+    "failed_stage": null,
+    "error": null,
+    "retryable": false,
+    "target": "complete",
+    "llm_completed_calls": 18,
+    "refined_at": "2026-10-05T15:28:30.110182+00:00",
+    "documented_at": "2026-10-05T15:32:04.628055+00:00"
+  },
+  "raw": {
+    "schema_version": "1.0",
+    "input_sha256": "9c76866990fcc8b84006dc32d273ad99df439090b748ebe72103bb78c3216ee7",
+    "audio_sha256": "9c76866990fcc8b84006dc32d273ad99df439090b748ebe72103bb78c3216ee7",
+    "duration_seconds": 1272.64,
+    "timing": "audio_window",
+    "segments": [
+      {
+        "id": "s00001",
+        "start": 0.0,
+        "end": 28.5,
+        "text": "Um my gosh, you've already produced a PowerPoint rendering. I think it's already on actually. God, how do you make this thing work? Maybe the input. Uh I you have to"
+      },
+      {
+        "id": "s00002",
+        "start": 28.5,
+        "end": 55.6,
+        "text": "I've plugged it in the back, but yeah, we'll just go okay, right. I know it's doing something like that. Okay, right."
+      },
+      {
+        "id": "s00003",
+        "start": 55.6,
+        "end": 84.9,
+        "text": "Um well this is a kickoff meeting for our our project and um this is just what we're going to be doing over the next 25 minutes. Um so first of all just to kind of make sure that we all know each other, I'm Laura and I'm the project manager. Great. Do you want to introduce yourself again? Hi, I'm David and I'm supposed to be an industrial designer. Okay. And I'm Andrew and I'm the our marketing"
+      },
+      {
+        "id": "s00004",
+        "start": 84.9,
+        "end": 112.8,
+        "text": "Expert. I'm Craig and I'm user interface. Great. Okay. Um so we're designing a new remote control and um oh I have to record he's here actually. So that's David, Andrew and Craig isn't it? And you all arrived on time. Um yes we did a design a new remote control um"
+      },
+      {
+        "id": "s00005",
+        "start": 112.8,
+        "end": 142.1,
+        "text": "As you can see it's supposed to be original, trendy and user friendly. Um so that's kind of our our brief as it were. Um and so there are three different stages to the design. Um I'm not really sure what what you guys have already received um in your emails. What did you get? Um I just got the project announcement project is that designing a remote control. Is that what yeah that's what anybody got? Okay."
+      },
+      {
+        "id": "s00006",
+        "start": 142.1,
+        "end": 170.4,
+        "text": "So we're going to have like individual work and then a meeting about it and repeat that process three times. And at this point we get to try out the whiteboard over there. So you get to draw your favourite animal and sum up your favourite characteristics of it. So who would like to go first? Very good."
+      },
+      {
+        "id": "s00007",
+        "start": 170.4,
+        "end": 199.1,
+        "text": "Alright, so this one here, right? Okay, very nice. All right, my favorite animal is like"
+      },
+      {
+        "id": "s00008",
+        "start": 199.1,
+        "end": 226.6,
+        "text": "A beagle. Character favorite characteristics of it? Is that right? Yeah. Right, well, basically, high priority for any animal for me is that they be willing to take a lot of physical affection."
+      },
+      {
+        "id": "s00009",
+        "start": 226.6,
+        "end": 253.7,
+        "text": "From their family, and yeah, they have lots of personality and be fit and in robust good health. So, this is blue beagle, my family's beagle."
+      },
+      {
+        "id": "s00010",
+        "start": 253.7,
+        "end": 283.4,
+        "text": "Well my favourite animal would be a monkey. They're small, cute and furry and when plants becomes real, I'm going to be up there with them. There's too much gear."
+      },
+      {
+        "id": "s00011",
+        "start": 283.4,
+        "end": 311.3,
+        "text": "You can take as long over this as you like because we haven't got an awful lot to discuss. Oh, well we do, we do. Don't feel like you're in a rash anyway. I could have told you a whole lot more about beagles. Okay, Joe. Well, we might have to get you up again then. I don't know what mine is. I'm going to have to think on the spot now. Impressionist."
+      },
+      {
+        "id": "s00012",
+        "start": 311.3,
+        "end": 340.8,
+        "text": "Is that a whale? Yeah. Um well my I don't know, it's just the first animal I can think of off the top of my head. Um guess big reason is'cause I'm allergic to most animals. Allergic to animal first, so um fish was a natural choice. Um yeah. And I kinda like whales. You come in and go eat everything inside. They're very harmless and mild and"
+      },
+      {
+        "id": "s00013",
+        "start": 340.8,
+        "end": 370.7,
+        "text": "Interesting. Okay. I still don't know what I'm going to write about. Um superb sketch by the way. Tail's a bit bigger I think. I was going to choose a dog as well but I'll just draw a different kind of dog. But my favourite animal is my own dog at home. That doesn't really look like him actually."
+      },
+      {
+        "id": "s00014",
+        "start": 370.7,
+        "end": 399.6,
+        "text": "He looks more like a pig actually. Oh well. I see a dog in there. Do you? Oh, that's very good of you. Now I see a rooster. What kind is it? Um he's a mixture of uh various things um"
+      },
+      {
+        "id": "s00015",
+        "start": 399.6,
+        "end": 427.3,
+        "text": "And what do I like about him? Um that's supposed to suggest that his tail wags. Um he's very friendly and cheery and always pleased to see you and very kind of affectionate and um uh and he's quite quite wee as well, so you know he can doesn't take up too much space. Um and uh"
+      },
+      {
+        "id": "s00016",
+        "start": 427.3,
+        "end": 455.0,
+        "text": "And he does a funny thing where he chases his tail as well. This is quite amusing. Is he aware that this is own cha tail he's chasing? It is, I think it is. He only does it after he's had his dinner. And he'll just all of a sudden just get up and start chasing his tail. It's an after-dinner dog, though. Yeah. Probably when he was little, he got lots of attention for doing it. And he has forever been conditioned. Maybe. Right, where did you find this? Just down here?"
+      },
+      {
+        "id": "s00017",
+        "start": 455.0,
+        "end": 482.1,
+        "text": "Okay. Um what do we do next? Um okay uh we now need to discuss the project finance. Um so according to the brief, um we're gonna be selling this remote control for twenty five euro um and we're aiming to make fifty million euro."
+      },
+      {
+        "id": "s00018",
+        "start": 482.1,
+        "end": 510.8,
+        "text": "Um so we're gonna be selling this on an international scale and uh we don't want it to cost any more than uh twelve fifty euros, so fifty percent of the selling price. Um can we just go over that again? Sure. Uh so basically twelve all right yeah okay so cost like production cost is twelve fifty but selling price is"
+      },
+      {
+        "id": "s00019",
+        "start": 510.8,
+        "end": 538.5,
+        "text": "Is that wholesale or retail? Like on the shelf? Um I don't know. I imagine that's a good question. I imagine it probably is our sale actually because it's probably up to the the um the retailer to uh sell it for whatever price they want. Um but I I don't know. I mean, do you think the fact that it's going to be sold internationally will have a bearing on how we design it at all?"
+      },
+      {
+        "id": "s00020",
+        "start": 538.5,
+        "end": 568.2,
+        "text": "Yes. I think it will. Um well right away I'm wondering if there's um like with D V D players if there are zones frequencies or something. Yeah. As well as characters, different keypad styles and symbols. Yeah. Well for remote control do you think that would be"
+      },
+      {
+        "id": "s00021",
+        "start": 568.2,
+        "end": 597.1,
+        "text": "I suppose it depends on how complicated our remote control is. It does make sense from maybe the design point of view'cause if you have more complicated characters like European languages then you need more buttons. Yeah. Yeah. Yeah. Okay. And then and then oh the other thing, international, is on the topic of price. I'm thinking the price might might appeal to a certain market in one region whereas in another it'll be different, so."
+      },
+      {
+        "id": "s00022",
+        "start": 597.1,
+        "end": 626.8,
+        "text": "Just like the rest of the country, like how much money people have to spend on things. Or just like basic product positioning. The 25 Euro remote control might be a big hit in London. Might not be such a big hit in Greece. Who knows? Oh my god. Yeah. Marketing. Good marketing thoughts. Oh gosh, I should be writing all this down."
+      },
+      {
+        "id": "s00024",
+        "start": 654.7,
+        "end": 684.4,
+        "text": "Right away, I'm making some kind of assumptions about what what information we're given here thinking Okay, trendy probably means something other than just basic. Yeah, something other than just standard So I'm wondering right away is selling 25 euros is that sort of the the is this gonna be like the premium product? Yeah, yeah, like how much does you know a remote control cost? Well 25 euro I mean that's um"
+      },
+      {
+        "id": "s00025",
+        "start": 684.4,
+        "end": 713.7,
+        "text": "That's about like 18 pounds or something isn't it or no is it as much as that 16 17 18 pounds. Yeah, it's I don't know. I've never bought a remote control, so I don't know how good a remote control that would get you. But yeah, I suppose it has to look kind of cool and gimmicky. Um right okay let me just scoot on ahead here."
+      },
+      {
+        "id": "s00026",
+        "start": 713.7,
+        "end": 742.2,
+        "text": "Okay. Um well d does anybody have anything to add to uh to the finance issue at all? Do we have any other background information on like how that compares to other no actually that would be useful though wouldn't it if you knew like what your money would get you now"
+      },
+      {
+        "id": "s00027",
+        "start": 742.2,
+        "end": 769.9,
+        "text": "The interesting thing about discussing production of remote control for me is that, as you point out, I just don't think remote control is being something people consciously assess in their purchasing habits. It's just like."
+      },
+      {
+        "id": "s00028",
+        "start": 769.9,
+        "end": 799.8,
+        "text": "Getting shoelaces with shoes or something, just five minutes to end of meeting. Oh, okay. We're a bit behind. Do you know what I mean? Like, yeah, so sort of like, how do you? I mean, one way of looking at it would be: well, the people producing television sets, maybe they have to buy remote controls. Or another way is maybe people who have TV sets are really fed up with their remote control and they really want a better one or something. My parents went out and bought remote controls because they got fed up with having like four or five different remote controls for each."
+      },
+      {
+        "id": "s00029",
+        "start": 799.8,
+        "end": 828.1,
+        "text": "Right times. Right. So um it was just how many devices it's a control. Right, so in function one of the priorities might be to combine as many uses. Right. So do you think that should be like a main design aim of our remote control? Don't you know? Do your your satellite and your regular tele and your V C R and everything? Well like um maybe what we could use as a sort of like a example of a successful other piece of technology is POM POM pilots."
+      },
+      {
+        "id": "s00030",
+        "start": 828.1,
+        "end": 855.8,
+        "text": "they're going from being just like little sort of scribble boards to cameras, MP3 players, telephones, everything, agenda. So like I wonder if we might add something new to the to the remote control market such as the lighting in your house or um or even like you know notes about um what you want to watch like you might put in there oh i want to watch such and such and they're kinda that's a good idea so extra functionality yeah like personally for me at home i've"
+      },
+      {
+        "id": "s00031",
+        "start": 855.8,
+        "end": 885.5,
+        "text": "I've combined the um the audio video of my television set and my DVD player and my C D player. So they all work actually function together, but I have different remote controls for each of them. So it's sort of ironic that that then they're in their um you know the sound and everything. It's just one system but each one's got its own little part. Um okay."
+      },
+      {
+        "id": "s00032",
+        "start": 885.5,
+        "end": 912.8,
+        "text": "Uh I d well we're gonna have to wrap up pretty quickly in the next couple of minutes. Um I'll just check we've nothing else. Okay. Um so anything else anybody wants to add about what they don't like about remote controls they've used, what they would really like to be part of this new one at all? You keep losing them. You keep losing them, okay. Finding them is maybe okay when you go. I mean it's usually quite small or when you want it right."
+      },
+      {
+        "id": "s00033",
+        "start": 912.8,
+        "end": 942.7,
+        "text": "Yeah, you get those ones where you can if you like whistle or make a really high pitched noise they beep. They're I mean is that something we'd want to include do you think maybe? I remember when the first remote control my my family had was on a cable. Actually the cable between it and the T V and big like buttons that sort of like like on a blender or something. My goodness. And you know when I think about what they are now, it's better, but actually it's still kind of"
+      },
+      {
+        "id": "s00034",
+        "start": 942.7,
+        "end": 972.4,
+        "text": "I don't know, like a massive junkie thing on the table. Maybe we could think about how it could be more, you know, streamlined. Maybe like a touch screen or something. Something like that, yeah. Or whatever would be technologically reasonable. Uh-huh. Okay. Well, I guess that's kind of the same thing. It could be that functionally that doesn't make it any better, but that just the appeal of not having you know, these days it's every peop things in people's homes are becoming more and more like chic, you know? Yeah. Um nicer materials and okay."
+      },
+      {
+        "id": "s00035",
+        "start": 972.4,
+        "end": 999.7,
+        "text": "Might be worth exploring any right, well um so just to wrap up the next meeting's gonna be in thirty minutes so that's about um about ten to twelve by my watch. Um so in between now and then um as the industrial designer you're gonna be working on you know the actual working design of it so you know what you're doing there um for user interface."
+      },
+      {
+        "id": "s00036",
+        "start": 999.7,
+        "end": 1027.4,
+        "text": "technical functions i guess that's you know like what we've been talking about what it'll actually do um and uh marketing executive you'll be just thinking about what it actually what you know what requirements it has to has to fulfil and you'll all get instructions emailed to you i guess okay um"
+      },
+      {
+        "id": "s00037",
+        "start": 1027.4,
+        "end": 1054.9,
+        "text": "Yeah, so it's the functional design stage is next, I guess. And uh and that's the end of the meeting. So I got that little message a lot sooner than I thought I would so Before we wrap up just to make sure we're all on the same page here do we we were given sort of an example of a"
+      },
+      {
+        "id": "s00038",
+        "start": 1054.9,
+        "end": 1084.0,
+        "text": "Coffee machine or something, right? Well, um are we ma right now on the assumption that our television remote control may have features which go beyond the television? Or are we keeping sort of like a a design commitment to television features? Okay, well just very quickly because we're supposed to finish now. I guess that's up to us. I mean you probably want some kind of unique selling point of it. Okay. So um"
+      },
+      {
+        "id": "s00039",
+        "start": 1084.0,
+        "end": 1113.9,
+        "text": "Okay. Yeah. There's a cap there, so um depends on how much you can cram into that price. Okay. Um yeah. And that's the main factor. Okay. Right, okay. Well that's that's the end of the meeting then. Um thank you all for coming. Good, I hope that was what they wanted us to do, listening."
+      },
+      {
+        "id": "s00040",
+        "start": 1113.9,
+        "end": 1142.6,
+        "text": "Um right great how do you turn this thing off? Is it function and ah there we go? I think if you can just leave it on maybe and then um oh god this has turned itself off"
+      },
+      {
+        "id": "s00041",
+        "start": 1142.6,
+        "end": 1172.5,
+        "text": "Try pushing function um eight, I think. Uh-huh. Oh, there it is. It's just okay. Right. This is all very high tech was the new"
+      },
+      {
+        "id": "s00042",
+        "start": 1172.5,
+        "end": 1201.0,
+        "text": "I d I don't know, uh do you guys go back to um target? It's a good thing we never target something like that."
+      },
+      {
+        "id": "s00043",
+        "start": 1201.0,
+        "end": 1228.3,
+        "text": "I have to be able to find out what next to my story because I could change my head savings. Of course, it's a"
+      },
+      {
+        "id": "s00044",
+        "start": 1228.3,
+        "end": 1256.8,
+        "text": "Well, I'm talking about um computers buying alternative and monitoring. Um computers can um I think that"
+      },
+      {
+        "id": "s00045",
+        "start": 1256.8,
+        "end": 1272.64,
+        "text": "Uh I don't know. I mean I don't really know how to do it but there's not just so I I was ki I wasn't expecting the"
+      }
+    ],
+    "model": {
+      "model_id": "nvidia/parakeet-tdt-0.6b-v2",
+      "package": "sherpa-onnx-nemo-parakeet-tdt-0.6b-v2-int8",
+      "runtime": "sherpa-onnx",
+      "runtime_version": "1.13.8",
+      "provider": "cpu",
+      "num_threads": 4,
+      "file_sha256": {
+        "encoder.int8.onnx": "a32b12d17bbbc309d0686fbbcc2987b5e9b8333a7da83fa6b089f0a2acd651ab",
+        "decoder.int8.onnx": "b6bb64963457237b900e496ee9994b59294526439fbcc1fecf705b31a15c6b4e",
+        "joiner.int8.onnx": "7946164367946e7f9f29a122407c3252b680dbae9a51343eb2488d057c3c43d2",
+        "tokens.txt": "ec182b70dd42113aff6c5372c75cac58c952443eb22322f57bbd7f53977d497d"
+      }
+    },
+    "load_seconds": 3.942827799997758,
+    "decode_seconds": 257.8962352999515,
+    "created_at": "2026-10-05T15:23:43.106256+00:00",
+    "warnings": [
+      "Timestamps identify audio windows, not individual word boundaries."
+    ]
+  },
+  "asr_word_errors": {
+    "reference_words": 2565,
+    "hypothesis_words": 2256,
+    "substitutions": 127,
+    "deletions": 329,
+    "insertions": 20,
+    "wer": 0.18557504873294348,
+    "aligned_start_seconds": 55.6,
+    "aligned_end_seconds": 1084.0,
+    "excluded_leading_seconds": 55.6,
+    "excluded_trailing_seconds": 188.6400000000001,
+    "normalization": "Lowercase; punctuation to separators; apostrophes retained; no number expansion.",
+    "alignment": "Complete ASR windows inside lexical annotation coverage; reference words by midpoint. Overlapping speakers sorted by start and speaker file. Not an official AMI benchmark."
+  },
+  "refined": {
+    "schema_version": "1.0",
+    "source_sha256": "527cb697ffa88d7a5ae215a9184a2e4ccc7c9dac053015f0fcfa1b9cda129c20",
+    "policy_sha256": "4c67641ca8996678b03d342f2038ef0f43da4db79b1fb30e2ec55fcc73564ea0",
+    "created_at": "2026-10-05T15:28:30.110182+00:00",
+    "segments": [
+      {
+        "id": "s00001",
+        "start": 0.0,
+        "end": 28.5,
+        "text": "Um my gosh, you've already produced a PowerPoint rendering. I think it's already on actually. God, how do you make this thing work? Maybe the input. Uh I you have to"
+      },
+      {
+        "id": "s00002",
+        "start": 28.5,
+        "end": 55.6,
+        "text": "I've plugged it in the back, but yeah, we'll just go okay, right. I know it's doing something like that. Okay, right."
+      },
+      {
+        "id": "s00003",
+        "start": 55.6,
+        "end": 84.9,
+        "text": "Um well this is a kickoff meeting for our our project and um this is just what we're going to be doing over the next 25 minutes. Um so first of all just to kind of make sure that we all know each other, I'm Laura and I'm the project manager. Great. Do you want to introduce yourself again? Hi, I'm David and I'm supposed to be an industrial designer. Okay. And I'm Andrew and I'm the our marketing"
+      },
+      {
+        "id": "s00004",
+        "start": 84.9,
+        "end": 112.8,
+        "text": "Expert. I'm Craig and I'm user interface. Great. Okay. Um so we're designing a new remote control and um oh I have to record he's here actually. So that's David, Andrew and Craig isn't it? And you all arrived on time. Um yes we did a design a new remote control um"
+      },
+      {
+        "id": "s00005",
+        "start": 112.8,
+        "end": 142.1,
+        "text": "As you can see it's supposed to be original, trendy and user friendly. Um so that's kind of our our brief as it were. Um and so there are three different stages to the design. Um I'm not really sure what what you guys have already received um in your emails. What did you get? Um I just got the project announcement project is that designing a remote control. Is that what yeah that's what anybody got? Okay."
+      },
+      {
+        "id": "s00006",
+        "start": 142.1,
+        "end": 170.4,
+        "text": "So we're going to have like individual work and then a meeting about it and repeat that process three times. And at this point we get to try out the whiteboard over there. So you get to draw your favourite animal and sum up your favourite characteristics of it. So who would like to go first? Very good."
+      },
+      {
+        "id": "s00007",
+        "start": 170.4,
+        "end": 199.1,
+        "text": "Alright, so this one here, right? Okay, very nice. All right, my favorite animal is like"
+      },
+      {
+        "id": "s00008",
+        "start": 199.1,
+        "end": 226.6,
+        "text": "A beagle. Character favorite characteristics of it? Is that right? Yeah. Right, well, basically, high priority for any animal for me is that they be willing to take a lot of physical affection."
+      },
+      {
+        "id": "s00009",
+        "start": 226.6,
+        "end": 253.7,
+        "text": "From their family, and yeah, they have lots of personality and be fit and in robust good health. So, this is blue beagle, my family's beagle."
+      },
+      {
+        "id": "s00010",
+        "start": 253.7,
+        "end": 283.4,
+        "text": "Well my favourite animal would be a monkey. They're small, cute and furry and when plants becomes real, I'm going to be up there with them. There's too much gear."
+      },
+      {
+        "id": "s00011",
+        "start": 283.4,
+        "end": 311.3,
+        "text": "You can take as long over this as you like because we haven't got an awful lot to discuss. Oh, well we do, we do. Don't feel like you're in a rash anyway. I could have told you a whole lot more about beagles. Okay, Joe. Well, we might have to get you up again then. I don't know what mine is. I'm going to have to think on the spot now. Impressionist."
+      },
+      {
+        "id": "s00012",
+        "start": 311.3,
+        "end": 340.8,
+        "text": "Is that a whale? Yeah. Um well my I don't know, it's just the first animal I can think of off the top of my head. Um guess big reason is'cause I'm allergic to most animals. Allergic to animal first, so um fish was a natural choice. Um yeah. And I kinda like whales. You come in and go eat everything inside. They're very harmless and mild and"
+      },
+      {
+        "id": "s00013",
+        "start": 340.8,
+        "end": 370.7,
+        "text": "Interesting. Okay. I still don't know what I'm going to write about. Um superb sketch by the way. Tail's a bit bigger I think. I was going to choose a dog as well but I'll just draw a different kind of dog. But my favourite animal is my own dog at home. That doesn't really look like him actually."
+      },
+      {
+        "id": "s00014",
+        "start": 370.7,
+        "end": 399.6,
+        "text": "He looks more like a pig actually. Oh well. I see a dog in there. Do you? Oh, that's very good of you. Now I see a rooster. What kind is it? Um he's a mixture of uh various things um"
+      },
+      {
+        "id": "s00015",
+        "start": 399.6,
+        "end": 427.3,
+        "text": "And what do I like about him? Um that's supposed to suggest that his tail wags. Um he's very friendly and cheery and always pleased to see you and very kind of affectionate and um uh and he's quite quite wee as well, so you know he can doesn't take up too much space. Um and uh"
+      },
+      {
+        "id": "s00016",
+        "start": 427.3,
+        "end": 455.0,
+        "text": "And he does a funny thing where he chases his tail as well. This is quite amusing. Is he aware that this is own cha tail he's chasing? It is, I think it is. He only does it after he's had his dinner. And he'll just all of a sudden just get up and start chasing his tail. It's an after-dinner dog, though. Yeah. Probably when he was little, he got lots of attention for doing it. And he has forever been conditioned. Maybe. Right, where did you find this? Just down here?"
+      },
+      {
+        "id": "s00017",
+        "start": 455.0,
+        "end": 482.1,
+        "text": "Okay. Um what do we do next? Um okay uh we now need to discuss the project finance. Um so according to the brief, um we're gonna be selling this remote control for twenty five euro um and we're aiming to make fifty million euro."
+      },
+      {
+        "id": "s00018",
+        "start": 482.1,
+        "end": 510.8,
+        "text": "Um so we're gonna be selling this on an international scale and uh we don't want it to cost any more than uh twelve fifty euros, so fifty percent of the selling price. Um can we just go over that again? Sure. Uh so basically twelve all right yeah okay so cost like production cost is twelve fifty but selling price is"
+      },
+      {
+        "id": "s00019",
+        "start": 510.8,
+        "end": 538.5,
+        "text": "Is that wholesale or retail? Like on the shelf? Um I don't know. I imagine that's a good question. I imagine it probably is our sale actually because it's probably up to the the um the retailer to uh sell it for whatever price they want. Um but I I don't know. I mean, do you think the fact that it's going to be sold internationally will have a bearing on how we design it at all?"
+      },
+      {
+        "id": "s00020",
+        "start": 538.5,
+        "end": 568.2,
+        "text": "Yes. I think it will. Um well right away I'm wondering if there's um like with D V D players if there are zones frequencies or something. Yeah. As well as characters, different keypad styles and symbols. Yeah. Well for remote control do you think that would be"
+      },
+      {
+        "id": "s00021",
+        "start": 568.2,
+        "end": 597.1,
+        "text": "I suppose it depends on how complicated our remote control is. It does make sense from maybe the design point of view'cause if you have more complicated characters like European languages then you need more buttons. Yeah. Yeah. Yeah. Okay. And then and then oh the other thing, international, is on the topic of price. I'm thinking the price might might appeal to a certain market in one region whereas in another it'll be different, so."
+      },
+      {
+        "id": "s00022",
+        "start": 597.1,
+        "end": 626.8,
+        "text": "Just like the rest of the country, like how much money people have to spend on things. Or just like basic product positioning. The 25 Euro remote control might be a big hit in London. Might not be such a big hit in Greece. Who knows? Oh my god. Yeah. Marketing. Good marketing thoughts. Oh gosh, I should be writing all this down."
+      },
+      {
+        "id": "s00024",
+        "start": 654.7,
+        "end": 684.4,
+        "text": "Right away, I'm making some kind of assumptions about what what information we're given here thinking Okay, trendy probably means something other than just basic. Yeah, something other than just standard So I'm wondering right away is selling 25 euros is that sort of the the is this gonna be like the premium product? Yeah, yeah, like how much does you know a remote control cost? Well 25 euro I mean that's um"
+      },
+      {
+        "id": "s00025",
+        "start": 684.4,
+        "end": 713.7,
+        "text": "That's about like 18 pounds or something isn't it or no is it as much as that 16 17 18 pounds. Yeah, it's I don't know. I've never bought a remote control, so I don't know how good a remote control that would get you. But yeah, I suppose it has to look kind of cool and gimmicky. Um right okay let me just scoot on ahead here."
+      },
+      {
+        "id": "s00026",
+        "start": 713.7,
+        "end": 742.2,
+        "text": "Okay. Um well d does anybody have anything to add to uh to the finance issue at all? Do we have any other background information on like how that compares to other no actually that would be useful though wouldn't it if you knew like what your money would get you now"
+      },
+      {
+        "id": "s00027",
+        "start": 742.2,
+        "end": 769.9,
+        "text": "The interesting thing about discussing production of remote control for me is that, as you point out, I just don't think remote control is being something people consciously assess in their purchasing habits. It's just like."
+      },
+      {
+        "id": "s00028",
+        "start": 769.9,
+        "end": 799.8,
+        "text": "Getting shoelaces with shoes or something, just five minutes to end of meeting. Oh, okay. We're a bit behind. Do you know what I mean? Like, yeah, so sort of like, how do you? I mean, one way of looking at it would be: well, the people producing television sets, maybe they have to buy remote controls. Or another way is maybe people who have TV sets are really fed up with their remote control and they really want a better one or something. My parents went out and bought remote controls because they got fed up with having like four or five different remote controls for each."
+      },
+      {
+        "id": "s00029",
+        "start": 799.8,
+        "end": 828.1,
+        "text": "Right times. Right. So um it was just how many devices it's a control. Right, so in function one of the priorities might be to combine as many uses. Right. So do you think that should be like a main design aim of our remote control? Don't you know? Do your your satellite and your regular tele and your V C R and everything? Well like um maybe what we could use as a sort of like a example of a successful other piece of technology is POM POM pilots."
+      },
+      {
+        "id": "s00030",
+        "start": 828.1,
+        "end": 855.8,
+        "text": "they're going from being just like little sort of scribble boards to cameras, MP3 players, telephones, everything, agenda. So like I wonder if we might add something new to the to the remote control market such as the lighting in your house or um or even like you know notes about um what you want to watch like you might put in there oh i want to watch such and such and they're kinda that's a good idea so extra functionality yeah like personally for me at home i've"
+      },
+      {
+        "id": "s00031",
+        "start": 855.8,
+        "end": 885.5,
+        "text": "I've combined the um the audio video of my television set and my DVD player and my C D player. So they all work actually function together, but I have different remote controls for each of them. So it's sort of ironic that that then they're in their um you know the sound and everything. It's just one system but each one's got its own little part. Um okay."
+      },
+      {
+        "id": "s00032",
+        "start": 885.5,
+        "end": 912.8,
+        "text": "Uh I d well we're gonna have to wrap up pretty quickly in the next couple of minutes. Um I'll just check we've nothing else. Okay. Um so anything else anybody wants to add about what they don't like about remote controls they've used, what they would really like to be part of this new one at all? You keep losing them. You keep losing them, okay. Finding them is maybe okay when you go. I mean it's usually quite small or when you want it right."
+      },
+      {
+        "id": "s00033",
+        "start": 912.8,
+        "end": 942.7,
+        "text": "Yeah, you get those ones where you can if you like whistle or make a really high pitched noise they beep. They're I mean is that something we'd want to include do you think maybe? I remember when the first remote control my my family had was on a cable. Actually the cable between it and the TV and big like buttons that sort of like like on a blender or something. My goodness. And you know when I think about what they are now, it's better, but actually it's still kind of"
+      },
+      {
+        "id": "s00034",
+        "start": 942.7,
+        "end": 972.4,
+        "text": "I don't know, like a massive junkie thing on the table. Maybe we could think about how it could be more, you know, streamlined. Maybe like a touch screen or something. Something like that, yeah. Or whatever would be technologically reasonable. Uh-huh. Okay. Well, I guess that's kind of the same thing. It could be that functionally that doesn't make it any better, but that just the appeal of not having you know, these days it's every peop things in people's homes are becoming more and more like chic, you know? Yeah. Um nicer materials and okay."
+      },
+      {
+        "id": "s00035",
+        "start": 972.4,
+        "end": 999.7,
+        "text": "Might be worth exploring any right, well um so just to wrap up the next meeting's gonna be in thirty minutes so that's about um about ten to twelve by my watch. Um so in between now and then um as the industrial designer you're gonna be working on you know the actual working design of it so you know what you're doing there um for user interface."
+      },
+      {
+        "id": "s00036",
+        "start": 999.7,
+        "end": 1027.4,
+        "text": "technical functions i guess that's you know like what we've been talking about what it'll actually do um and uh marketing executive you'll be just thinking about what it actually what you know what requirements it has to has to fulfil and you'll all get instructions emailed to you i guess okay um"
+      },
+      {
+        "id": "s00037",
+        "start": 1027.4,
+        "end": 1054.9,
+        "text": "Yeah, so it's the functional design stage is next, I guess. And uh and that's the end of the meeting. So I got that little message a lot sooner than I thought I would so Before we wrap up just to make sure we're all on the same page here do we we were given sort of an example of a"
+      },
+      {
+        "id": "s00038",
+        "start": 1054.9,
+        "end": 1084.0,
+        "text": "Coffee machine or something, right? Well, um are we ma right now on the assumption that our television remote control may have features which go beyond the television? Or are we keeping sort of like a a design commitment to television features? Okay, well just very quickly because we're supposed to finish now. I guess that's up to us. I mean you probably want some kind of unique selling point of it. Okay. So um"
+      },
+      {
+        "id": "s00039",
+        "start": 1084.0,
+        "end": 1113.9,
+        "text": "Okay. Yeah. There's a cap there, so um depends on how much you can cram into that price. Okay. Um yeah. And that's the main factor. Okay. Right, okay. Well that's that's the end of the meeting then. Um thank you all for coming. Good, I hope that was what they wanted us to do, listening."
+      },
+      {
+        "id": "s00040",
+        "start": 1113.9,
+        "end": 1142.6,
+        "text": "Um right great how do you turn this thing off? Is it function and ah there we go? I think if you can just leave it on maybe and then um oh god this has turned itself off"
+      },
+      {
+        "id": "s00041",
+        "start": 1142.6,
+        "end": 1172.5,
+        "text": "Try pushing function um eight, I think. Uh-huh. Oh, there it is. It's just okay. Right. This is all very high tech was the new"
+      },
+      {
+        "id": "s00042",
+        "start": 1172.5,
+        "end": 1201.0,
+        "text": "I d I don't know, uh do you guys go back to um target? It's a good thing we never target something like that."
+      },
+      {
+        "id": "s00043",
+        "start": 1201.0,
+        "end": 1228.3,
+        "text": "I have to be able to find out what next to my story because I could change my head savings. Of course, it's a"
+      },
+      {
+        "id": "s00044",
+        "start": 1228.3,
+        "end": 1256.8,
+        "text": "Well, I'm talking about um computers buying alternative and monitoring. Um computers can um I think that"
+      },
+      {
+        "id": "s00045",
+        "start": 1256.8,
+        "end": 1272.64,
+        "text": "Uh I don't know. I mean I don't really know how to do it but there's not just so I I was ki I wasn't expecting the"
+      }
+    ],
+    "accepted": [
+      {
+        "segment_id": "s00033",
+        "start": 292,
+        "end": 295,
+        "original": "T V",
+        "replacement": "TV",
+        "reason": "Corrects spacing in standard term 'TV'."
+      }
+    ],
+    "rejected": [
+      {
+        "edit": {
+          "segment_id": "s00003",
+          "start": 330,
+          "end": 349,
+          "original": "industrial designer",
+          "replacement": "industrial designer",
+          "reason": "No correction needed; term is correct and matches glossary alias."
+        },
+        "rejection": "No change"
+      },
+      {
+        "edit": {
+          "segment_id": "s00004",
+          "start": 26,
+          "end": 40,
+          "original": "user interface",
+          "replacement": "user interface designer",
+          "reason": "Corrects incomplete phrase to match glossary alias and context."
+        },
+        "rejection": "Adds unsupported speech or completes a role"
+      },
+      {
+        "edit": {
+          "segment_id": "s00005",
+          "start": 344,
+          "end": 358,
+          "original": "remote control",
+          "replacement": "remote control",
+          "reason": "No correction needed; term is correct and matches glossary."
+        },
+        "rejection": "No change"
+      },
+      {
+        "edit": {
+          "segment_id": "s00029",
+          "start": 55,
+          "end": 69,
+          "original": "it's a control",
+          "replacement": "it's a remote control",
+          "reason": "Corrects incomplete phrase using glossary term 'remote control' and context of discussion about devices."
+        },
+        "rejection": "Replacement has no canonical glossary entry or independent meeting occurrence"
+      },
+      {
+        "edit": {
+          "segment_id": "s00030",
+          "start": 115,
+          "end": 121,
+          "original": "agenda",
+          "replacement": "calendar",
+          "reason": "Corrects likely phonetic error 'agenda' to 'calendar' in context of scheduling/notes."
+        },
+        "rejection": "Replacement has no canonical glossary entry or independent meeting occurrence"
+      },
+      {
+        "edit": {
+          "segment_id": "s00031",
+          "start": 83,
+          "end": 93,
+          "original": "C D player",
+          "replacement": "CD player",
+          "reason": "Corrects spacing in standard term 'CD player'."
+        },
+        "rejection": "Replacement has no canonical glossary entry or independent meeting occurrence"
+      },
+      {
+        "edit": {
+          "segment_id": "s00033",
+          "start": 242,
+          "end": 252,
+          "original": "on a cable",
+          "replacement": "on a cable",
+          "reason": "No correction needed; 'cable' is a valid term."
+        },
+        "rejection": "Replacement has no canonical glossary entry or independent meeting occurrence"
+      },
+      {
+        "edit": {
+          "segment_id": "s00034",
+          "start": 431,
+          "end": 448,
+          "original": "every peop things",
+          "replacement": "every person's things",
+          "reason": "Corrects likely phonetic transcription error 'peop' to 'person's'."
+        },
+        "rejection": "Replacement has no canonical glossary entry or independent meeting occurrence"
+      },
+      {
+        "edit": {
+          "segment_id": "s00035",
+          "start": 201,
+          "end": 220,
+          "original": "industrial designer",
+          "replacement": "industrial designer",
+          "reason": "Term is correct and present in glossary."
+        },
+        "rejection": "No change"
+      },
+      {
+        "edit": {
+          "segment_id": "s00035",
+          "start": 332,
+          "end": 346,
+          "original": "user interface",
+          "replacement": "user interface",
+          "reason": "Term is correct and present in glossary."
+        },
+        "rejection": "No change"
+      },
+      {
+        "edit": {
+          "segment_id": "s00036",
+          "start": 0,
+          "end": 19,
+          "original": "technical functions",
+          "replacement": "technical functions",
+          "reason": "Term is correct."
+        },
+        "rejection": "Replacement has no canonical glossary entry or independent meeting occurrence"
+      },
+      {
+        "edit": {
+          "segment_id": "s00036",
+          "start": 112,
+          "end": 131,
+          "original": "marketing executive",
+          "replacement": "marketing executive",
+          "reason": "Term is correct and present in glossary."
+        },
+        "rejection": "No change"
+      },
+      {
+        "edit": {
+          "segment_id": "s00037",
+          "start": 18,
+          "end": 35,
+          "original": "functional design",
+          "replacement": "functional design",
+          "reason": "Term is correct."
+        },
+        "rejection": "Replacement has no canonical glossary entry or independent meeting occurrence"
+      },
+      {
+        "edit": {
+          "segment_id": "s00038",
+          "start": 203,
+          "end": 220,
+          "original": "design commitment",
+          "replacement": "design commitment",
+          "reason": "Term is correct."
+        },
+        "rejection": "Replacement has no canonical glossary entry or independent meeting occurrence"
+      },
+      {
+        "edit": {
+          "segment_id": "s00039",
+          "start": 250,
+          "end": 275,
+          "original": "what they wanted us to do",
+          "replacement": "what they wanted us to do",
+          "reason": "No correction needed."
+        },
+        "rejection": "Replacement has no canonical glossary entry or independent meeting occurrence"
+      },
+      {
+        "edit": {
+          "segment_id": "s00040",
+          "start": 47,
+          "end": 61,
+          "original": "Is it function",
+          "replacement": "Is it function",
+          "reason": "No correction needed; 'function' is a valid term."
+        },
+        "rejection": "Replacement has no canonical glossary entry or independent meeting occurrence"
+      },
+      {
+        "edit": {
+          "segment_id": "s00041",
+          "start": 105,
+          "end": 114,
+          "original": "high tech",
+          "replacement": "high tech",
+          "reason": "No correction needed; 'high tech' is a valid phrase."
+        },
+        "rejection": "Replacement has no canonical glossary entry or independent meeting occurrence"
+      },
+      {
+        "edit": {
+          "segment_id": "s00043",
+          "start": 78,
+          "end": 90,
+          "original": "head savings",
+          "replacement": "head savings",
+          "reason": "No correction needed; 'head savings' is a valid phrase."
+        },
+        "rejection": "Replacement has no canonical glossary entry or independent meeting occurrence"
+      },
+      {
+        "edit": {
+          "segment_id": "s00044",
+          "start": 27,
+          "end": 55,
+          "original": "computers buying alternative",
+          "replacement": "computers buying alternatives",
+          "reason": "Corrects likely pluralization error 'alternative' to 'alternatives' in context of multiple computers."
+        },
+        "rejection": "Replacement has no canonical glossary entry or independent meeting occurrence"
+      },
+      {
+        "edit": {
+          "segment_id": "s00045",
+          "start": 92,
+          "end": 114,
+          "original": "I wasn't expecting the",
+          "replacement": "I wasn't expecting the",
+          "reason": "No correction needed."
+        },
+        "rejection": "Replacement has no canonical glossary entry or independent meeting occurrence"
+      },
+      {
+        "edit": {
+          "segment_id": "s00042",
+          "original": "I d",
+          "replacement": "I'd",
+          "reason": "Corrects likely phonetic error 'I d' to 'I'd' (I would)."
+        },
+        "rejection": "Original anchor is absent or ambiguous"
+      },
+      {
+        "edit": {
+          "segment_id": "s00042",
+          "original": "target",
+          "replacement": "target",
+          "reason": "No correction needed; 'target' is a valid term."
+        },
+        "rejection": "Original anchor is absent or ambiguous"
+      }
+    ],
+    "calls": [
+      {
+        "key": "ce6ac17f2975de19f4af72802256442dbd9459655e4af75a82726de4f4d86013",
+        "model": {
+          "tag": "qwen3.5:4b",
+          "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+          "runtime_version": "0.35.1",
+          "parameter_size": "4.2B",
+          "quantization": "Q4_K_M"
+        },
+        "prompt_sha256": "08a76f01e95d5aee0a83fca4c20a58024026d6629e9bec2319bda99b15670668",
+        "input_sha256": "e1f76329f558b2bb763ce31fcc551ef27c2c97c11d9b0a8b99093564aa45b237",
+        "schema_sha256": "63ae1224d11f86e1ea9cdbfb4bbaabc0159a973ac55939b87beb1a1def651820",
+        "context": 16384,
+        "output_tokens": 3072,
+        "temperature": 0.0,
+        "seed": 0,
+        "thinking": false,
+        "presence_penalty": 0.0,
+        "repeat_penalty": 1.0,
+        "elapsed_seconds": 10.79452689999016,
+        "prompt_tokens": 3466,
+        "generated_tokens": 115,
+        "attempts": 1
+      },
+      {
+        "key": "e793b9e9fb273285999d5f6a3567ef249716552a3658ec594168ca1e6ff1d42f",
+        "model": {
+          "tag": "qwen3.5:4b",
+          "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+          "runtime_version": "0.35.1",
+          "parameter_size": "4.2B",
+          "quantization": "Q4_K_M"
+        },
+        "prompt_sha256": "08a76f01e95d5aee0a83fca4c20a58024026d6629e9bec2319bda99b15670668",
+        "input_sha256": "7290afe43be027a9decb9fa5f9d700f81196ee1f5da6cb9c5389bbf57e4f5329",
+        "schema_sha256": "87cff05033b1b10f93acc65a7d568fa017ea45f14aa16be8e7c238986897012c",
+        "context": 16384,
+        "output_tokens": 3072,
+        "temperature": 0.0,
+        "seed": 0,
+        "thinking": false,
+        "presence_penalty": 0.0,
+        "repeat_penalty": 1.0,
+        "elapsed_seconds": 12.753665199998068,
+        "prompt_tokens": 2382,
+        "generated_tokens": 721,
+        "attempts": 1
+      }
+    ],
+    "warnings": [
+      "Automatic edit guards cannot establish meaning. Review accepted and rejected edits."
+    ]
+  },
+  "document": {
+    "schema_version": "1.0",
+    "source_sha256": "7ac06156fc9ed4ddebe7d32816d631235b580cae70b8818e941c3b85d9830493",
+    "policy_sha256": "87d0c90487de14a2ae67b1910b456364fe6402651e478e74cc192cb1031d6da4",
+    "created_at": "2026-10-05T15:32:04.628055+00:00",
+    "record": {
+      "summary": [
+        {
+          "text": "The remote control project kickoff established a 25 euro selling price, 50 million euro revenue target, and 12.50 euro production cost cap.",
+          "evidence": [
+            {
+              "segment_id": "s00003",
+              "quote": "Um well this is a kickoff meeting for our our project and um this is just what we're going to be doing over the next 25 minutes. Um so first of all just to kind of make sure that we all know each other, I'm Laura and I'm the project manager. Great. Do you want to introduce yourself again? Hi, I'm David and I'm supposed to be an industrial designer. Okay. And I'm Andrew and I'm the our marketing",
+              "start_char": 0,
+              "end_char": 397
+            },
+            {
+              "segment_id": "s00004",
+              "quote": "Expert. I'm Craig and I'm user interface. Great. Okay. Um so we're designing a new remote control and um oh I have to record he's here actually. So that's David, Andrew and Craig isn't it? And you all arrived on time. Um yes we did a design a new remote control um",
+              "start_char": 0,
+              "end_char": 264
+            },
+            {
+              "segment_id": "s00005",
+              "quote": "As you can see it's supposed to be original, trendy and user friendly. Um so that's kind of our our brief as it were. Um and so there are three different stages to the design. Um I'm not really sure what what you guys have already received um in your emails. What did you get? Um I just got the project announcement project is that designing a remote control. Is that what yeah that's what anybody got? Okay.",
+              "start_char": 0,
+              "end_char": 408
+            },
+            {
+              "segment_id": "s00006",
+              "quote": "So we're going to have like individual work and then a meeting about it and repeat that process three times. And at this point we get to try out the whiteboard over there. So you get to draw your favourite animal and sum up your favourite characteristics of it. So who would like to go first? Very good.",
+              "start_char": 0,
+              "end_char": 303
+            },
+            {
+              "segment_id": "s00007",
+              "quote": "Alright, so this one here, right? Okay, very nice. All right, my favorite animal is like",
+              "start_char": 0,
+              "end_char": 88
+            },
+            {
+              "segment_id": "s00017",
+              "quote": "Okay. Um what do we do next? Um okay uh we now need to discuss the project finance. Um so according to the brief, um we're gonna be selling this remote control for twenty five euro um and we're aiming to make fifty million euro.",
+              "start_char": 0,
+              "end_char": 228
+            },
+            {
+              "segment_id": "s00018",
+              "quote": "Um so we're gonna be selling this on an international scale and uh we don't want it to cost any more than uh twelve fifty euros, so fifty percent of the selling price. Um can we just go over that again? Sure. Uh so basically twelve all right yeah okay so cost like production cost is twelve fifty but selling price is",
+              "start_char": 0,
+              "end_char": 317
+            }
+          ]
+        },
+        {
+          "text": "Design requirements specify an original, trendy, user-friendly remote with a three-stage process involving individual work and meetings.",
+          "evidence": [
+            {
+              "segment_id": "s00004",
+              "quote": "Expert. I'm Craig and I'm user interface. Great. Okay. Um so we're designing a new remote control and um oh I have to record he's here actually. So that's David, Andrew and Craig isn't it? And you all arrived on time. Um yes we did a design a new remote control um",
+              "start_char": 0,
+              "end_char": 264
+            },
+            {
+              "segment_id": "s00005",
+              "quote": "As you can see it's supposed to be original, trendy and user friendly. Um so that's kind of our our brief as it were. Um and so there are three different stages to the design. Um I'm not really sure what what you guys have already received um in your emails. What did you get? Um I just got the project announcement project is that designing a remote control. Is that what yeah that's what anybody got? Okay.",
+              "start_char": 0,
+              "end_char": 408
+            },
+            {
+              "segment_id": "s00006",
+              "quote": "So we're going to have like individual work and then a meeting about it and repeat that process three times. And at this point we get to try out the whiteboard over there. So you get to draw your favourite animal and sum up your favourite characteristics of it. So who would like to go first? Very good.",
+              "start_char": 0,
+              "end_char": 303
+            }
+          ]
+        },
+        {
+          "text": "Team members drew animals to summarize characteristics, with David choosing a beagle and Andrew choosing a monkey.",
+          "evidence": [
+            {
+              "segment_id": "s00008",
+              "quote": "A beagle. Character favorite characteristics of it? Is that right? Yeah. Right, well, basically, high priority for any animal for me is that they be willing to take a lot of physical affection.",
+              "start_char": 0,
+              "end_char": 193
+            },
+            {
+              "segment_id": "s00009",
+              "quote": "From their family, and yeah, they have lots of personality and be fit and in robust good health. So, this is blue beagle, my family's beagle.",
+              "start_char": 0,
+              "end_char": 141
+            },
+            {
+              "segment_id": "s00010",
+              "quote": "Well my favourite animal would be a monkey. They're small, cute and furry and when plants becomes real, I'm going to be up there with them. There's too much gear.",
+              "start_char": 0,
+              "end_char": 162
+            }
+          ]
+        }
+      ],
+      "topics": [
+        {
+          "title": "Project Kickoff and Team Introductions",
+          "points": [
+            {
+              "text": "Laura confirmed her role as project manager and introduced David, Andrew, and Craig.",
+              "evidence": [
+                {
+                  "segment_id": "s00003",
+                  "quote": "Um well this is a kickoff meeting for our our project and um this is just what we're going to be doing over the next 25 minutes. Um so first of all just to kind of make sure that we all know each other, I'm Laura and I'm the project manager. Great. Do you want to introduce yourself again? Hi, I'm David and I'm supposed to be an industrial designer. Okay. And I'm Andrew and I'm the our marketing",
+                  "start_char": 0,
+                  "end_char": 397
+                }
+              ]
+            },
+            {
+              "text": "The meeting was scheduled to last approximately 25 minutes.",
+              "evidence": [
+                {
+                  "segment_id": "s00003",
+                  "quote": "Um well this is a kickoff meeting for our our project and um this is just what we're going to be doing over the next 25 minutes. Um so first of all just to kind of make sure that we all know each other, I'm Laura and I'm the project manager. Great. Do you want to introduce yourself again? Hi, I'm David and I'm supposed to be an industrial designer. Okay. And I'm Andrew and I'm the our marketing",
+                  "start_char": 0,
+                  "end_char": 397
+                }
+              ]
+            },
+            {
+              "text": "Team members confirmed receipt of the project announcement.",
+              "evidence": [
+                {
+                  "segment_id": "s00005",
+                  "quote": "As you can see it's supposed to be original, trendy and user friendly. Um so that's kind of our our brief as it were. Um and so there are three different stages to the design. Um I'm not really sure what what you guys have already received um in your emails. What did you get? Um I just got the project announcement project is that designing a remote control. Is that what yeah that's what anybody got? Okay.",
+                  "start_char": 0,
+                  "end_char": 408
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Design Brief and Process",
+          "points": [
+            {
+              "text": "The design must be original, trendy, and user-friendly.",
+              "evidence": [
+                {
+                  "segment_id": "s00005",
+                  "quote": "As you can see it's supposed to be original, trendy and user friendly. Um so that's kind of our our brief as it were. Um and so there are three different stages to the design. Um I'm not really sure what what you guys have already received um in your emails. What did you get? Um I just got the project announcement project is that designing a remote control. Is that what yeah that's what anybody got? Okay.",
+                  "start_char": 0,
+                  "end_char": 408
+                }
+              ]
+            },
+            {
+              "text": "The process involves individual work followed by a meeting, repeated three times.",
+              "evidence": [
+                {
+                  "segment_id": "s00006",
+                  "quote": "So we're going to have like individual work and then a meeting about it and repeat that process three times. And at this point we get to try out the whiteboard over there. So you get to draw your favourite animal and sum up your favourite characteristics of it. So who would like to go first? Very good.",
+                  "start_char": 0,
+                  "end_char": 303
+                }
+              ]
+            },
+            {
+              "text": "Participants were unsure if they had received all necessary information via email.",
+              "evidence": [
+                {
+                  "segment_id": "s00005",
+                  "quote": "As you can see it's supposed to be original, trendy and user friendly. Um so that's kind of our our brief as it were. Um and so there are three different stages to the design. Um I'm not really sure what what you guys have already received um in your emails. What did you get? Um I just got the project announcement project is that designing a remote control. Is that what yeah that's what anybody got? Okay.",
+                  "start_char": 0,
+                  "end_char": 408
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Project Finance Goals",
+          "points": [
+            {
+              "text": "Selling price set at twenty five euro.",
+              "evidence": [
+                {
+                  "segment_id": "s00017",
+                  "quote": "Okay. Um what do we do next? Um okay uh we now need to discuss the project finance. Um so according to the brief, um we're gonna be selling this remote control for twenty five euro um and we're aiming to make fifty million euro.",
+                  "start_char": 0,
+                  "end_char": 228
+                }
+              ]
+            },
+            {
+              "text": "Target revenue of fifty million euro.",
+              "evidence": [
+                {
+                  "segment_id": "s00017",
+                  "quote": "Okay. Um what do we do next? Um okay uh we now need to discuss the project finance. Um so according to the brief, um we're gonna be selling this remote control for twenty five euro um and we're aiming to make fifty million euro.",
+                  "start_char": 0,
+                  "end_char": 228
+                }
+              ]
+            },
+            {
+              "text": "Production cost capped at twelve fifty euro.",
+              "evidence": [
+                {
+                  "segment_id": "s00018",
+                  "quote": "Um so we're gonna be selling this on an international scale and uh we don't want it to cost any more than uh twelve fifty euros, so fifty percent of the selling price. Um can we just go over that again? Sure. Uh so basically twelve all right yeah okay so cost like production cost is twelve fifty but selling price is",
+                  "start_char": 0,
+                  "end_char": 317
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Consumer Behavior and Design Priorities",
+          "points": [
+            {
+              "text": "People do not consciously assess remote controls when purchasing them.",
+              "evidence": [
+                {
+                  "segment_id": "s00027",
+                  "quote": "The interesting thing about discussing production of remote control for me is that, as you point out, I just don't think remote control is being something people consciously assess in their purchasing habits. It's just like.",
+                  "start_char": 0,
+                  "end_char": 224
+                }
+              ]
+            },
+            {
+              "text": "Users often feel fed up with owning multiple remotes for different devices.",
+              "evidence": [
+                {
+                  "segment_id": "s00028",
+                  "quote": "Getting shoelaces with shoes or something, just five minutes to end of meeting. Oh, okay. We're a bit behind. Do you know what I mean? Like, yeah, so sort of like, how do you? I mean, one way of looking at it would be: well, the people producing television sets, maybe they have to buy remote controls. Or another way is maybe people who have TV sets are really fed up with their remote control and they really want a better one or something. My parents went out and bought remote controls because they got fed up with having like four or five different remote controls for each.",
+                  "start_char": 0,
+                  "end_char": 579
+                }
+              ]
+            },
+            {
+              "text": "Combining multiple uses into a single remote is identified as a priority.",
+              "evidence": [
+                {
+                  "segment_id": "s00029",
+                  "quote": "Right times. Right. So um it was just how many devices it's a control. Right, so in function one of the priorities might be to combine as many uses. Right. So do you think that should be like a main design aim of our remote control? Don't you know? Do your your satellite and your regular tele and your V C R and everything? Well like um maybe what we could use as a sort of like a example of a successful other piece of technology is POM POM pilots.",
+                  "start_char": 0,
+                  "end_char": 450
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Proposed Features and Next Steps",
+          "points": [
+            {
+              "text": "Adding lighting control to the remote is suggested as a new functionality.",
+              "evidence": [
+                {
+                  "segment_id": "s00030",
+                  "quote": "they're going from being just like little sort of scribble boards to cameras, MP3 players, telephones, everything, agenda. So like I wonder if we might add something new to the to the remote control market such as the lighting in your house or um or even like you know notes about um what you want to watch like you might put in there oh i want to watch such and such and they're kinda that's a good idea so extra functionality yeah like personally for me at home i've",
+                  "start_char": 0,
+                  "end_char": 468
+                }
+              ]
+            },
+            {
+              "text": "Including note-taking capabilities is proposed.",
+              "evidence": [
+                {
+                  "segment_id": "s00030",
+                  "quote": "they're going from being just like little sort of scribble boards to cameras, MP3 players, telephones, everything, agenda. So like I wonder if we might add something new to the to the remote control market such as the lighting in your house or um or even like you know notes about um what you want to watch like you might put in there oh i want to watch such and such and they're kinda that's a good idea so extra functionality yeah like personally for me at home i've",
+                  "start_char": 0,
+                  "end_char": 468
+                }
+              ]
+            },
+            {
+              "text": "The industrial designer is tasked with working on the actual working design for the user interface.",
+              "evidence": [
+                {
+                  "segment_id": "s00035",
+                  "quote": "Might be worth exploring any right, well um so just to wrap up the next meeting's gonna be in thirty minutes so that's about um about ten to twelve by my watch. Um so in between now and then um as the industrial designer you're gonna be working on you know the actual working design of it so you know what you're doing there um for user interface.",
+                  "start_char": 0,
+                  "end_char": 347
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "decisions": [
+        {
+          "text": "Discuss project finance",
+          "evidence": [
+            {
+              "segment_id": "s00017",
+              "quote": "Okay. Um what do we do next? Um okay uh we now need to discuss the project finance. Um so according to the brief, um we're gonna be selling this remote control for twenty five euro um and we're aiming to make fifty million euro.",
+              "start_char": 0,
+              "end_char": 228
+            }
+          ]
+        },
+        {
+          "text": "Sell remote control for twenty five euro",
+          "evidence": [
+            {
+              "segment_id": "s00017",
+              "quote": "Okay. Um what do we do next? Um okay uh we now need to discuss the project finance. Um so according to the brief, um we're gonna be selling this remote control for twenty five euro um and we're aiming to make fifty million euro.",
+              "start_char": 0,
+              "end_char": 228
+            }
+          ]
+        },
+        {
+          "text": "Aim to make fifty million euro",
+          "evidence": [
+            {
+              "segment_id": "s00017",
+              "quote": "Okay. Um what do we do next? Um okay uh we now need to discuss the project finance. Um so according to the brief, um we're gonna be selling this remote control for twenty five euro um and we're aiming to make fifty million euro.",
+              "start_char": 0,
+              "end_char": 228
+            }
+          ]
+        },
+        {
+          "text": "Cost production no more than twelve fifty euros",
+          "evidence": [
+            {
+              "segment_id": "s00018",
+              "quote": "Um so we're gonna be selling this on an international scale and uh we don't want it to cost any more than uh twelve fifty euros, so fifty percent of the selling price. Um can we just go over that again? Sure. Uh so basically twelve all right yeah okay so cost like production cost is twelve fifty but selling price is",
+              "start_char": 0,
+              "end_char": 317
+            }
+          ]
+        },
+        {
+          "text": "Sell price fifty percent of selling price",
+          "evidence": [
+            {
+              "segment_id": "s00018",
+              "quote": "Um so we're gonna be selling this on an international scale and uh we don't want it to cost any more than uh twelve fifty euros, so fifty percent of the selling price. Um can we just go over that again? Sure. Uh so basically twelve all right yeah okay so cost like production cost is twelve fifty but selling price is",
+              "start_char": 0,
+              "end_char": 317
+            }
+          ]
+        },
+        {
+          "text": "Design remote control considering international scale",
+          "evidence": [
+            {
+              "segment_id": "s00019",
+              "quote": "Is that wholesale or retail? Like on the shelf? Um I don't know. I imagine that's a good question. I imagine it probably is our sale actually because it's probably up to the the um the retailer to uh sell it for whatever price they want. Um but I I don't know. I mean, do you think the fact that it's going to be sold internationally will have a bearing on how we design it at all?",
+              "start_char": 0,
+              "end_char": 381
+            }
+          ]
+        },
+        {
+          "text": "Consider zones frequencies and different keypad styles and symbols for international remote control",
+          "evidence": [
+            {
+              "segment_id": "s00020",
+              "quote": "Yes. I think it will. Um well right away I'm wondering if there's um like with D V D players if there are zones frequencies or something. Yeah. As well as characters, different keypad styles and symbols. Yeah. Well for remote control do you think that would be",
+              "start_char": 0,
+              "end_char": 260
+            }
+          ]
+        },
+        {
+          "text": "Consider price appeal to certain market in one region versus another",
+          "evidence": [
+            {
+              "segment_id": "s00021",
+              "quote": "I suppose it depends on how complicated our remote control is. It does make sense from maybe the design point of view'cause if you have more complicated characters like European languages then you need more buttons. Yeah. Yeah. Yeah. Okay. And then and then oh the other thing, international, is on the topic of price. I'm thinking the price might might appeal to a certain market in one region whereas in another it'll be different, so.",
+              "start_char": 0,
+              "end_char": 437
+            }
+          ]
+        },
+        {
+          "text": "Consider how much money people have to spend on things for basic product positioning",
+          "evidence": [
+            {
+              "segment_id": "s00022",
+              "quote": "Just like the rest of the country, like how much money people have to spend on things. Or just like basic product positioning. The 25 Euro remote control might be a big hit in London. Might not be such a big hit in Greece. Who knows? Oh my god. Yeah. Marketing. Good marketing thoughts. Oh gosh, I should be writing all this down.",
+              "start_char": 0,
+              "end_char": 330
+            }
+          ]
+        },
+        {
+          "text": "Determine if twenty five euro remote control is premium product",
+          "evidence": [
+            {
+              "segment_id": "s00024",
+              "quote": "Right away, I'm making some kind of assumptions about what what information we're given here thinking Okay, trendy probably means something other than just basic. Yeah, something other than just standard So I'm wondering right away is selling 25 euros is that sort of the the is this gonna be like the premium product? Yeah, yeah, like how much does you know a remote control cost? Well 25 euro I mean that's um",
+              "start_char": 0,
+              "end_char": 411
+            }
+          ]
+        }
+      ],
+      "tasks": [
+        {
+          "text": "working on the actual working design of it so you know what you're doing there um for user interface",
+          "evidence": [
+            {
+              "segment_id": "s00035",
+              "quote": "Might be worth exploring any right, well um so just to wrap up the next meeting's gonna be in thirty minutes so that's about um about ten to twelve by my watch. Um so in between now and then um as the industrial designer you're gonna be working on you know the actual working design of it so you know what you're doing there um for user interface.",
+              "start_char": 0,
+              "end_char": 347
+            }
+          ],
+          "owner": "the industrial designer",
+          "deadline": "next meeting's gonna be in thirty minutes"
+        },
+        {
+          "text": "just thinking about what it actually what you know what requirements it has to has to fulfil",
+          "evidence": [
+            {
+              "segment_id": "s00036",
+              "quote": "technical functions i guess that's you know like what we've been talking about what it'll actually do um and uh marketing executive you'll be just thinking about what it actually what you know what requirements it has to has to fulfil and you'll all get instructions emailed to you i guess okay um",
+              "start_char": 0,
+              "end_char": 297
+            }
+          ],
+          "owner": "marketing executive",
+          "deadline": null
+        }
+      ],
+      "uncertainties": [
+        "Whether the team has received all necessary project information via email.",
+        "The exact characteristics required for the whiteboard exercise output.",
+        "The specific timeline for the three stages of the design process.",
+        "Whether twenty five euro is a premium or standard product.",
+        "Whether the twelve fifty euro cost is wholesale or retail price.",
+        "It is unclear if the proposed new features (lighting, notes) will be implemented.",
+        "The specific product type (coffee machine vs. television remote) is not confirmed.",
+        "The meaning of references to 'target', 'story', and 'head savings' is unclear.",
+        "The exact functionality of the demonstrated device is not fully defined."
+      ]
+    },
+    "revision_audit": [
+      {
+        "text": "Original text 'Discuss project finance' is a decision/commitment, not a task. Recategorize to decision.",
+        "evidence": [
+          {
+            "segment_id": "s00017",
+            "quote": "Okay. Um what do we do next? Um okay uh we now need to discuss the project finance. Um so according to the brief, um we're gonna be selling this remote control for twenty five euro um and we're aiming to make fifty million euro.",
+            "start_char": 0,
+            "end_char": 228
+          }
+        ]
+      },
+      {
+        "text": "Original text 'Sell remote control for twenty five euro' is a decision/commitment, not a task. Recategorize to decision.",
+        "evidence": [
+          {
+            "segment_id": "s00017",
+            "quote": "Okay. Um what do we do next? Um okay uh we now need to discuss the project finance. Um so according to the brief, um we're gonna be selling this remote control for twenty five euro um and we're aiming to make fifty million euro.",
+            "start_char": 0,
+            "end_char": 228
+          }
+        ]
+      },
+      {
+        "text": "Original text 'Aim to make fifty million euro' is a decision/commitment, not a task. Recategorize to decision.",
+        "evidence": [
+          {
+            "segment_id": "s00017",
+            "quote": "Okay. Um what do we do next? Um okay uh we now need to discuss the project finance. Um so according to the brief, um we're gonna be selling this remote control for twenty five euro um and we're aiming to make fifty million euro.",
+            "start_char": 0,
+            "end_char": 228
+          }
+        ]
+      },
+      {
+        "text": "Original text 'Cost production no more than twelve fifty euros' is a decision/commitment, not a task. Recategorize to decision.",
+        "evidence": [
+          {
+            "segment_id": "s00018",
+            "quote": "Um so we're gonna be selling this on an international scale and uh we don't want it to cost any more than uh twelve fifty euros, so fifty percent of the selling price. Um can we just go over that again? Sure. Uh so basically twelve all right yeah okay so cost like production cost is twelve fifty but selling price is",
+            "start_char": 0,
+            "end_char": 317
+          }
+        ]
+      },
+      {
+        "text": "Original text 'Sell price fifty percent of selling price' is a decision/commitment, not a task. Recategorize to decision.",
+        "evidence": [
+          {
+            "segment_id": "s00018",
+            "quote": "Um so we're gonna be selling this on an international scale and uh we don't want it to cost any more than uh twelve fifty euros, so fifty percent of the selling price. Um can we just go over that again? Sure. Uh so basically twelve all right yeah okay so cost like production cost is twelve fifty but selling price is",
+            "start_char": 0,
+            "end_char": 317
+          }
+        ]
+      },
+      {
+        "text": "Original text 'Design remote control considering international scale' is a decision/commitment, not a task. Recategorize to decision.",
+        "evidence": [
+          {
+            "segment_id": "s00019",
+            "quote": "Is that wholesale or retail? Like on the shelf? Um I don't know. I imagine that's a good question. I imagine it probably is our sale actually because it's probably up to the the um the retailer to uh sell it for whatever price they want. Um but I I don't know. I mean, do you think the fact that it's going to be sold internationally will have a bearing on how we design it at all?",
+            "start_char": 0,
+            "end_char": 381
+          }
+        ]
+      },
+      {
+        "text": "Original text 'Consider zones frequencies and different keypad styles and symbols for international remote control' is a decision/commitment, not a task. Recategorize to decision.",
+        "evidence": [
+          {
+            "segment_id": "s00020",
+            "quote": "Yes. I think it will. Um well right away I'm wondering if there's um like with D V D players if there are zones frequencies or something. Yeah. As well as characters, different keypad styles and symbols. Yeah. Well for remote control do you think that would be",
+            "start_char": 0,
+            "end_char": 260
+          }
+        ]
+      },
+      {
+        "text": "Original text 'Consider price appeal to certain market in one region versus another' is a decision/commitment, not a task. Recategorize to decision.",
+        "evidence": [
+          {
+            "segment_id": "s00021",
+            "quote": "I suppose it depends on how complicated our remote control is. It does make sense from maybe the design point of view'cause if you have more complicated characters like European languages then you need more buttons. Yeah. Yeah. Yeah. Okay. And then and then oh the other thing, international, is on the topic of price. I'm thinking the price might might appeal to a certain market in one region whereas in another it'll be different, so.",
+            "start_char": 0,
+            "end_char": 437
+          }
+        ]
+      },
+      {
+        "text": "Original text 'Consider how much money people have to spend on things for basic product positioning' is a decision/commitment, not a task. Recategorize to decision.",
+        "evidence": [
+          {
+            "segment_id": "s00022",
+            "quote": "Just like the rest of the country, like how much money people have to spend on things. Or just like basic product positioning. The 25 Euro remote control might be a big hit in London. Might not be such a big hit in Greece. Who knows? Oh my god. Yeah. Marketing. Good marketing thoughts. Oh gosh, I should be writing all this down.",
+            "start_char": 0,
+            "end_char": 330
+          }
+        ]
+      },
+      {
+        "text": "Original text 'Determine if twenty five euro remote control is premium product' is a decision/commitment, not a task. Recategorize to decision.",
+        "evidence": [
+          {
+            "segment_id": "s00024",
+            "quote": "Right away, I'm making some kind of assumptions about what what information we're given here thinking Okay, trendy probably means something other than just basic. Yeah, something other than just standard So I'm wondering right away is selling 25 euros is that sort of the the is this gonna be like the premium product? Yeah, yeah, like how much does you know a remote control cost? Well 25 euro I mean that's um",
+            "start_char": 0,
+            "end_char": 411
+          }
+        ]
+      }
+    ],
+    "calls": [
+      {
+        "key": "a025d609475253e0837ebb1b7889aca5528d1b1fac41fe66d7103ab34a9509ba",
+        "model": {
+          "tag": "qwen3.5:4b",
+          "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+          "runtime_version": "0.35.1",
+          "parameter_size": "4.2B",
+          "quantization": "Q4_K_M"
+        },
+        "prompt_sha256": "a690a0c57fb5426ef07a5191b31c0e4f66f3c5d331346ab53a0e51769515f28e",
+        "input_sha256": "05cf32dc8ef17e51b4ffdd9390f458e558de89e9d9db872435fd6f3ff075af79",
+        "schema_sha256": "7c5625d1bc2b9d3763b42cc81016e0ef57107f9b6ca9bf8a3a115351ee55fe7b",
+        "context": 16384,
+        "output_tokens": 3072,
+        "temperature": 0.0,
+        "seed": 0,
+        "thinking": false,
+        "presence_penalty": 0.0,
+        "repeat_penalty": 1.0,
+        "elapsed_seconds": 9.117576799995732,
+        "prompt_tokens": 2293,
+        "generated_tokens": 13,
+        "attempts": 1
+      },
+      {
+        "key": "c331a1f61db77485ab3e6975ed4733456def83067dd74e895e50e57a2f0838fb",
+        "model": {
+          "tag": "qwen3.5:4b",
+          "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+          "runtime_version": "0.35.1",
+          "parameter_size": "4.2B",
+          "quantization": "Q4_K_M"
+        },
+        "prompt_sha256": "8fe99ea430dc7131d94a4388294329ce51a43a627a46302bbc8bf546582b8b84",
+        "input_sha256": "56a8e28699dbeeba447054076faf501b6f1e27fa9e086e4d08b45c900c0565ab",
+        "schema_sha256": "7c5625d1bc2b9d3763b42cc81016e0ef57107f9b6ca9bf8a3a115351ee55fe7b",
+        "context": 16384,
+        "output_tokens": 3072,
+        "temperature": 0.0,
+        "seed": 0,
+        "thinking": false,
+        "presence_penalty": 0.0,
+        "repeat_penalty": 1.0,
+        "elapsed_seconds": 1.609306700003799,
+        "prompt_tokens": 2057,
+        "generated_tokens": 24,
+        "attempts": 1
+      },
+      {
+        "key": "029068f64c7b0a21c575f3533253f28620317f602557ec9428bb8d645e1f0f25",
+        "model": {
+          "tag": "qwen3.5:4b",
+          "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+          "runtime_version": "0.35.1",
+          "parameter_size": "4.2B",
+          "quantization": "Q4_K_M"
+        },
+        "prompt_sha256": "2b9cee0b4e1be0b7639117ae1662d538bfcbd33957e933e5da8f15698431c394",
+        "input_sha256": "5b82153ab18793df651ae721c28639c46a025f6cd0376fd15bf1d2f825e6daa8",
+        "schema_sha256": "7a3b63437c74af7afd6cdd94e9a6cae0be0d0593282da6b12848bbce39910868",
+        "context": 16384,
+        "output_tokens": 3072,
+        "temperature": 0.0,
+        "seed": 0,
+        "thinking": false,
+        "presence_penalty": 0.0,
+        "repeat_penalty": 1.0,
+        "elapsed_seconds": 21.154640599997947,
+        "prompt_tokens": 1758,
+        "generated_tokens": 1280,
+        "attempts": 1
+      },
+      {
+        "key": "8e24c1685a8faf4b03b2d03f906a9244319b2ff11771e302d5ecd5974c0a31dd",
+        "model": {
+          "tag": "qwen3.5:4b",
+          "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+          "runtime_version": "0.35.1",
+          "parameter_size": "4.2B",
+          "quantization": "Q4_K_M"
+        },
+        "prompt_sha256": "a690a0c57fb5426ef07a5191b31c0e4f66f3c5d331346ab53a0e51769515f28e",
+        "input_sha256": "be721e2388726c9bb1d479c15aa1a2128f54e7a94974bb60a5a59fdf64efbf1c",
+        "schema_sha256": "7e816aa2368a3fb1a5ff6a52d2c7ccf3a4903e08c2692730950aa474bb47941e",
+        "context": 16384,
+        "output_tokens": 3072,
+        "temperature": 0.0,
+        "seed": 0,
+        "thinking": false,
+        "presence_penalty": 0.0,
+        "repeat_penalty": 1.0,
+        "elapsed_seconds": 1.9136590999987675,
+        "prompt_tokens": 2699,
+        "generated_tokens": 24,
+        "attempts": 1
+      },
+      {
+        "key": "4a18f8695cdc712c6ddd780fdb7b4337ab422a663fa450948aa8e1614c80feba",
+        "model": {
+          "tag": "qwen3.5:4b",
+          "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+          "runtime_version": "0.35.1",
+          "parameter_size": "4.2B",
+          "quantization": "Q4_K_M"
+        },
+        "prompt_sha256": "8fe99ea430dc7131d94a4388294329ce51a43a627a46302bbc8bf546582b8b84",
+        "input_sha256": "f19a754dad622332d4c000ecab6b6609b56e80490a1277996fe308f7291c9930",
+        "schema_sha256": "7e816aa2368a3fb1a5ff6a52d2c7ccf3a4903e08c2692730950aa474bb47941e",
+        "context": 16384,
+        "output_tokens": 3072,
+        "temperature": 0.0,
+        "seed": 0,
+        "thinking": false,
+        "presence_penalty": 0.0,
+        "repeat_penalty": 1.0,
+        "elapsed_seconds": 10.222673100011889,
+        "prompt_tokens": 2463,
+        "generated_tokens": 574,
+        "attempts": 1
+      },
+      {
+        "key": "18386f33df89e1513fab61e998cbc8d7218ab0703953bcdac6a8807af5821057",
+        "model": {
+          "tag": "qwen3.5:4b",
+          "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+          "runtime_version": "0.35.1",
+          "parameter_size": "4.2B",
+          "quantization": "Q4_K_M"
+        },
+        "prompt_sha256": "2b9cee0b4e1be0b7639117ae1662d538bfcbd33957e933e5da8f15698431c394",
+        "input_sha256": "92f7455aa989a3de1d472168c5169c9379f5a9294828e383cee913812b1f1b8c",
+        "schema_sha256": "5333c3ffd78abdc1dc4ae18f8ed334f83042440f006b4090f363d763b52c440c",
+        "context": 16384,
+        "output_tokens": 3072,
+        "temperature": 0.0,
+        "seed": 0,
+        "thinking": false,
+        "presence_penalty": 0.0,
+        "repeat_penalty": 1.0,
+        "elapsed_seconds": 18.962898300000234,
+        "prompt_tokens": 1970,
+        "generated_tokens": 1159,
+        "attempts": 1
+      },
+      {
+        "key": "0c2cf95453e66ac8e7e9769ddcca0af9a47f2e6b35a7f7895b9bcec9ee700bd6",
+        "model": {
+          "tag": "qwen3.5:4b",
+          "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+          "runtime_version": "0.35.1",
+          "parameter_size": "4.2B",
+          "quantization": "Q4_K_M"
+        },
+        "prompt_sha256": "a690a0c57fb5426ef07a5191b31c0e4f66f3c5d331346ab53a0e51769515f28e",
+        "input_sha256": "3a87060a66322054bcf24daf8d8b6b28a4e0da8b6b8f03feafed22c2a822b601",
+        "schema_sha256": "c3ceb9a91773b61fd5b695650254851c0a0e32ceafcd87adde93a9ad0d1207a3",
+        "context": 16384,
+        "output_tokens": 3072,
+        "temperature": 0.0,
+        "seed": 0,
+        "thinking": false,
+        "presence_penalty": 0.0,
+        "repeat_penalty": 1.0,
+        "elapsed_seconds": 1.853815399997984,
+        "prompt_tokens": 2675,
+        "generated_tokens": 24,
+        "attempts": 1
+      },
+      {
+        "key": "8a43c68b5f290f2a8d44b9d10658a50f6b1cfb1672bce49b7c79dd4b22415af6",
+        "model": {
+          "tag": "qwen3.5:4b",
+          "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+          "runtime_version": "0.35.1",
+          "parameter_size": "4.2B",
+          "quantization": "Q4_K_M"
+        },
+        "prompt_sha256": "8fe99ea430dc7131d94a4388294329ce51a43a627a46302bbc8bf546582b8b84",
+        "input_sha256": "956864b66cd4ecbc96fc7bc8948de79c6f8f23f07ccf37c2705d17823272770c",
+        "schema_sha256": "c3ceb9a91773b61fd5b695650254851c0a0e32ceafcd87adde93a9ad0d1207a3",
+        "context": 16384,
+        "output_tokens": 3072,
+        "temperature": 0.0,
+        "seed": 0,
+        "thinking": false,
+        "presence_penalty": 0.0,
+        "repeat_penalty": 1.0,
+        "elapsed_seconds": 1.664094899999327,
+        "prompt_tokens": 2439,
+        "generated_tokens": 24,
+        "attempts": 1
+      },
+      {
+        "key": "986bec80a6aea7db2ad915f0a9aa0dc0a167735657f59d2dd82479d6797519c3",
+        "model": {
+          "tag": "qwen3.5:4b",
+          "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+          "runtime_version": "0.35.1",
+          "parameter_size": "4.2B",
+          "quantization": "Q4_K_M"
+        },
+        "prompt_sha256": "2b9cee0b4e1be0b7639117ae1662d538bfcbd33957e933e5da8f15698431c394",
+        "input_sha256": "bdd2370111f8c3892f68ea93caedfb3e94758526b2946c09cda016e6f3f0c497",
+        "schema_sha256": "19ca5c585cf0b0a33d9dd8a532253d2bc19c913de62d911d63a27d92bef6a9b3",
+        "context": 16384,
+        "output_tokens": 3072,
+        "temperature": 0.0,
+        "seed": 0,
+        "thinking": false,
+        "presence_penalty": 0.0,
+        "repeat_penalty": 1.0,
+        "elapsed_seconds": 19.784976300012204,
+        "prompt_tokens": 1469,
+        "generated_tokens": 1216,
+        "attempts": 1
+      },
+      {
+        "key": "b89c065ae8ef50c69485c0d33ed3d4cacbf0127e3dd7df41518c1543b3ad8dff",
+        "model": {
+          "tag": "qwen3.5:4b",
+          "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+          "runtime_version": "0.35.1",
+          "parameter_size": "4.2B",
+          "quantization": "Q4_K_M"
+        },
+        "prompt_sha256": "a690a0c57fb5426ef07a5191b31c0e4f66f3c5d331346ab53a0e51769515f28e",
+        "input_sha256": "9ae4264c0cbc509b188e42aac29254d16c6365ba5baac7e0af5b2659b133f196",
+        "schema_sha256": "4b1cceb1498e013b0261eaccd3852b2231b628e05fe8728953db3a82dcc3b2d1",
+        "context": 16384,
+        "output_tokens": 3072,
+        "temperature": 0.0,
+        "seed": 0,
+        "thinking": false,
+        "presence_penalty": 0.0,
+        "repeat_penalty": 1.0,
+        "elapsed_seconds": 4.302392899990082,
+        "prompt_tokens": 2871,
+        "generated_tokens": 170,
+        "attempts": 1
+      },
+      {
+        "key": "0713ad50fb0bcd165907e9b69b266cff4092a277403192c333b77ebd8093260e",
+        "model": {
+          "tag": "qwen3.5:4b",
+          "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+          "runtime_version": "0.35.1",
+          "parameter_size": "4.2B",
+          "quantization": "Q4_K_M"
+        },
+        "prompt_sha256": "8fe99ea430dc7131d94a4388294329ce51a43a627a46302bbc8bf546582b8b84",
+        "input_sha256": "c66b52d6ead0a7177ee8e7b0c8895e2dc182e61fb7cdbd24062cf89a5810402d",
+        "schema_sha256": "4b1cceb1498e013b0261eaccd3852b2231b628e05fe8728953db3a82dcc3b2d1",
+        "context": 16384,
+        "output_tokens": 3072,
+        "temperature": 0.0,
+        "seed": 0,
+        "thinking": false,
+        "presence_penalty": 0.0,
+        "repeat_penalty": 1.0,
+        "elapsed_seconds": 4.094919499999378,
+        "prompt_tokens": 2736,
+        "generated_tokens": 170,
+        "attempts": 1
+      },
+      {
+        "key": "1dc04bb8fb7ed356ecf372d2f5d89d8c536a110280c72d49e3ddad9e5a040f3f",
+        "model": {
+          "tag": "qwen3.5:4b",
+          "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+          "runtime_version": "0.35.1",
+          "parameter_size": "4.2B",
+          "quantization": "Q4_K_M"
+        },
+        "prompt_sha256": "2b9cee0b4e1be0b7639117ae1662d538bfcbd33957e933e5da8f15698431c394",
+        "input_sha256": "c46a9bcbab7d6c4ad7665472ee4906775f8682316931c766fea23073c8920e7f",
+        "schema_sha256": "4b9f8e81a1c4f4056c8f409d3aa7a3a62cc4427970c2fadfb4cc12dbe0967a2a",
+        "context": 16384,
+        "output_tokens": 3072,
+        "temperature": 0.0,
+        "seed": 0,
+        "thinking": false,
+        "presence_penalty": 0.0,
+        "repeat_penalty": 1.0,
+        "elapsed_seconds": 20.940627799995127,
+        "prompt_tokens": 1644,
+        "generated_tokens": 1285,
+        "attempts": 1
+      },
+      {
+        "key": "f89572daf77a8edc4f6f2fc01fa8f35f129197f312056a74549df6e7438740f2",
+        "model": {
+          "tag": "qwen3.5:4b",
+          "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+          "runtime_version": "0.35.1",
+          "parameter_size": "4.2B",
+          "quantization": "Q4_K_M"
+        },
+        "prompt_sha256": "3259dc728df1b7f71b6f89f69fa8d24bc5b2f7be1e12a1e7bef8fe30a214164c",
+        "input_sha256": "ac06d6d5cc26507030d596aa803988283d9d1325aa5d3565b8c4228745a50791",
+        "schema_sha256": "a2491207501d9e73fa7c1a080806d7668372347a35ed98276e6ae3d5d375d6f5",
+        "context": 16384,
+        "output_tokens": 3072,
+        "temperature": 0.0,
+        "seed": 0,
+        "thinking": false,
+        "presence_penalty": 0.0,
+        "repeat_penalty": 1.0,
+        "elapsed_seconds": 8.16745730000548,
+        "prompt_tokens": 1966,
+        "generated_tokens": 446,
+        "attempts": 1
+      },
+      {
+        "key": "94ebc6da884887219587f211e21eb60c28af60982413012aa46663d0f34c0fa7",
+        "model": {
+          "tag": "qwen3.5:4b",
+          "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+          "runtime_version": "0.35.1",
+          "parameter_size": "4.2B",
+          "quantization": "Q4_K_M"
+        },
+        "prompt_sha256": "c2c6e23ffea2688d8f4d927edd70601f3d8e91d9a9b719973c75c2fc03ba9442",
+        "input_sha256": "c70ae1379c85536b1f5f928e159db7642ee09b5a7293b48b6c0f1cb899700020",
+        "schema_sha256": "17e7dcbc6f4931168c7015c5f52e24b09591e33b344c20ed47b039069d2523f8",
+        "context": 16384,
+        "output_tokens": 3072,
+        "temperature": 0.0,
+        "seed": 0,
+        "thinking": false,
+        "presence_penalty": 0.0,
+        "repeat_penalty": 1.0,
+        "elapsed_seconds": 19.31535459999577,
+        "prompt_tokens": 2954,
+        "generated_tokens": 1096,
+        "attempts": 1
+      },
+      {
+        "key": "f3a9455a4510000a4daf363e80647cfff948bbcc4e2784cde5aeca5abdec7e42",
+        "model": {
+          "tag": "qwen3.5:4b",
+          "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+          "runtime_version": "0.35.1",
+          "parameter_size": "4.2B",
+          "quantization": "Q4_K_M"
+        },
+        "prompt_sha256": "3259dc728df1b7f71b6f89f69fa8d24bc5b2f7be1e12a1e7bef8fe30a214164c",
+        "input_sha256": "6939c1fd757eaac0cc670cd86c727ed2697fef60f4297414c07e8b560d9c7c8a",
+        "schema_sha256": "7e7ab463e7a8bace7ed9f0378c6671491e1fa2202c2caae707c26d09a82c74bb",
+        "context": 16384,
+        "output_tokens": 3072,
+        "temperature": 0.0,
+        "seed": 0,
+        "thinking": false,
+        "presence_penalty": 0.0,
+        "repeat_penalty": 1.0,
+        "elapsed_seconds": 4.393537399999332,
+        "prompt_tokens": 1022,
+        "generated_tokens": 225,
+        "attempts": 1
+      },
+      {
+        "key": "18bf097a8d808b4e8606c0f0f64b71679eb41c72f8962aa6a3f73bfb0c7e6644",
+        "model": {
+          "tag": "qwen3.5:4b",
+          "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+          "runtime_version": "0.35.1",
+          "parameter_size": "4.2B",
+          "quantization": "Q4_K_M"
+        },
+        "prompt_sha256": "c2c6e23ffea2688d8f4d927edd70601f3d8e91d9a9b719973c75c2fc03ba9442",
+        "input_sha256": "760c24045e348af0bb9b6b79a0965fc72444e5ba0ea8bcf4a4370316028689d5",
+        "schema_sha256": "0a309aec5eac44f4d4c82fc62daf39e6dcb2080fcc73ca8877532671bbe7a847",
+        "context": 16384,
+        "output_tokens": 3072,
+        "temperature": 0.0,
+        "seed": 0,
+        "thinking": false,
+        "presence_penalty": 0.0,
+        "repeat_penalty": 1.0,
+        "elapsed_seconds": 21.369441799994092,
+        "prompt_tokens": 2742,
+        "generated_tokens": 1278,
+        "attempts": 1
+      },
+      {
+        "key": "05e00b9a73ef22687e84f7345a719d122f9851f92f02f3ad5cd1a34f47d6dafd",
+        "model": {
+          "tag": "qwen3.5:4b",
+          "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+          "runtime_version": "0.35.1",
+          "parameter_size": "4.2B",
+          "quantization": "Q4_K_M"
+        },
+        "prompt_sha256": "3259dc728df1b7f71b6f89f69fa8d24bc5b2f7be1e12a1e7bef8fe30a214164c",
+        "input_sha256": "fb0526de3251c1da43bd4162ed6fecc8012d61832c0f97abb0d50264948812c7",
+        "schema_sha256": "d099a5d482056913183f56e62dd5660d64c265daaf783fabde847cee45e24937",
+        "context": 16384,
+        "output_tokens": 3072,
+        "temperature": 0.0,
+        "seed": 0,
+        "thinking": false,
+        "presence_penalty": 0.0,
+        "repeat_penalty": 1.0,
+        "elapsed_seconds": 21.13115359999938,
+        "prompt_tokens": 2297,
+        "generated_tokens": 1269,
+        "attempts": 1
+      },
+      {
+        "key": "ee02ed7351853776dd112b896cb1b7974be3293756451eb3d2d3babbb1ba17bd",
+        "model": {
+          "tag": "qwen3.5:4b",
+          "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+          "runtime_version": "0.35.1",
+          "parameter_size": "4.2B",
+          "quantization": "Q4_K_M"
+        },
+        "prompt_sha256": "c2c6e23ffea2688d8f4d927edd70601f3d8e91d9a9b719973c75c2fc03ba9442",
+        "input_sha256": "61dfcc3b8aae932d0179e54c9a8dac74d19876a21a2ca741738fb3610c31071e",
+        "schema_sha256": "946a149162b56f259b8401b7ba9128037d1e96fd324ee009fda6fb609fd070b3",
+        "context": 16384,
+        "output_tokens": 3072,
+        "temperature": 0.0,
+        "seed": 0,
+        "thinking": false,
+        "presence_penalty": 0.0,
+        "repeat_penalty": 1.0,
+        "elapsed_seconds": 23.69849670000258,
+        "prompt_tokens": 3153,
+        "generated_tokens": 1405,
+        "attempts": 1
+      }
+    ],
+    "warnings": [
+      "Exact evidence matching verifies provenance, not interpretation. Review decisions, tasks and revisions."
+    ]
+  },
+  "structural_checks": {
+    "validated_source_references": 50,
+    "zip_members_match": 8,
+    "canonical_json_matches": true
+  },
+  "finished_at": "2026-10-05T15:32:13.074764+00:00"
+}

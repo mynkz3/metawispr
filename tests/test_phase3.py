@@ -195,15 +195,18 @@ class Phase3Tests(unittest.TestCase):
             if "segments" in payload:
                 segment = payload["segments"][0]
                 fact = {"text": segment["text"], "evidence_ids": [segment["id"]]}
-                if segment["id"] == "s1":
+                if segment["id"] == "s1:u000":
                     value["decisions"] = [fact]
                 else:
                     revisions = [fact]
+                if "resolved_current" in payload:
+                    return {"done": True, "done_reason": "stop", "message": {"content": json.dumps(
+                        {key: value[key] for key in ("summary", "topics", "uncertainties")})}}
             elif "candidates" in payload:
                 reconciliation_inputs.append(payload)
                 output = {"resolutions": [{"candidate_id": item["candidate_id"], "disposition": "retire",
                                              "replacement": None, "reason": "Friday deployment cancelled",
-                                             "evidence_ids": ["s2"]}
+                                             "evidence_ids": ["s2:u000"]}
                                             for item in payload["candidates"]]}
                 return {"done": True, "done_reason": "stop", "message": {"content": json.dumps(output)}}
             else:
@@ -213,7 +216,8 @@ class Phase3Tests(unittest.TestCase):
                     raise SetupError("Explicit interrupted consolidation fixture")
                 return {"done": True, "done_reason": "stop", "message": {"content": json.dumps(
                     {key: value[key] for key in ("summary", "topics", "uncertainties")})}}
-            return {"done": True, "done_reason": "stop", "message": {"content": json.dumps({"record": value, "revisions": revisions})}}
+            return {"done": True, "done_reason": "stop", "message": {"content": json.dumps(
+                {"decisions": value["decisions"], "tasks": value["tasks"], "revisions": revisions})}}
         original_fits = llm.fits
         def fits(name, contract, payload, feedback=""):
             return len(payload.get("segments", [])) <= 1 and original_fits(name, contract, payload, feedback)

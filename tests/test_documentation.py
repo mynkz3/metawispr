@@ -3,7 +3,7 @@ from tempfile import TemporaryDirectory
 import unittest
 
 from metawispr.config import Settings, SetupError
-from metawispr.documentation import Documentation, apply_edits, validate_record, resolve_candidates, candidate_items, consolidation_payload, attach_evidence, source_payload
+from metawispr.documentation import Documentation, apply_edits, validate_record, resolve_candidates, candidate_items, attach_evidence, source_payload, source_units
 from metawispr.pipeline import Runner
 from metawispr.schemas import DocumentationBatch, Edit, Evidence, Fact, MeetingRecord, ResolvedItem, Resolution, ResolutionBatch, Segment, SourceRecord, Task
 from support import FixtureASR, FixtureLLM, wav_bytes
@@ -59,6 +59,21 @@ class DocumentationTests(unittest.TestCase):
         self.assertEqual(accepted, [])
         self.assertEqual(len(rejected), 1)
 
+    def test_context_witness_allows_spelling_but_not_role_completion_or_grammar(self):
+        witness = Segment(id="s2", start=10.0, end=20.0, text="We use Docker for deployment.")
+        edit = self.edit("dock her", "Docker")
+        refined, accepted, _ = apply_edits([self.segment, witness], [edit], "")
+        self.assertEqual(accepted, [edit])
+        self.assertIn("Docker", refined[0].text)
+        self.assertEqual(self.segment.text, "Use dock her, not 50 dollars. Maya will send it by Friday.")
+        for original, replacement in [("user interface", "user interface designer"),
+                                      ("remote controls", "remote control"), ("GPT4", "GPT5"),
+                                      ("Monday", "Tuesday")]:
+            segment = Segment(id="x", start=0.0, end=1.0, text=original)
+            proposal = Edit(segment_id="x", start=0, end=len(original), original=original,
+                            replacement=replacement, reason="Regression fixture")
+            self.assertEqual(apply_edits([segment], [proposal], replacement)[1], [])
+
     def test_quote_and_segment_must_match_exactly(self):
         for evidence in [Evidence(segment_id="missing", quote="Maya"), Evidence(segment_id="s1", quote="maya")]:
             value = record()
@@ -100,6 +115,29 @@ class DocumentationTests(unittest.TestCase):
         value.tasks[0].owner = None
         value.tasks[0].deadline = None
         validate_record(value, [self.segment])
+
+    def test_immutable_units_preserve_decimal_text_and_distinguish_repeated_quotes(self):
+        segment = Segment(id="s1", start=0.0, end=10.0,
+                          text="Filler. " * 450 + "  Budget 12.50 Euro. Maya will send it. Maya will send it.  ")
+        units, sources = source_units([segment])
+        self.assertEqual(len(units), 453)
+        self.assertEqual(units[-3].text, "Budget 12.50 Euro.")
+        self.assertEqual(units[-2].text, units[-1].text)
+        self.assertNotEqual(sources[units[-2].id].start_char, sources[units[-1].id].start_char)
+        self.assertEqual("".join(segment.text.split()),
+                         "".join("".join(item.text.split()) for item in units))
+        value = record()
+        value.summary = [Fact(text="fixture", evidence=[sources[units[-2].id], sources[units[-1].id]])]
+        validate_record(value, [segment])
+        payload = source_payload(value.model_dump(), sources, include_text=False)
+        self.assertEqual(payload["summary"][0]["evidence_ids"], [units[-2].id, units[-1].id])
+        self.assertTrue(all("text" not in item for item in payload["sources"]))
+        value.summary[0].evidence[0] = value.summary[0].evidence[0].model_copy(update={"end_char": 10000})
+        with self.assertRaisesRegex(ValueError, "character range"):
+            validate_record(value, [segment])
+        value.summary[0].evidence[0] = sources[units[-2].id].model_copy(update={"start_char": 0})
+        with self.assertRaisesRegex(ValueError, "character range"):
+            validate_record(value, [segment])
 
     def test_consolidation_cannot_add_new_evidence(self):
         value = record()
@@ -162,9 +200,13 @@ class DocumentationTests(unittest.TestCase):
         self.assertEqual((decisions, tasks), ([], []))
         self.assertEqual(revisions[0].evidence, [*fact.evidence, *resolution.evidence])
         outgoing = DocumentationBatch(record=record(), revisions=revisions)
-        payload = consolidation_payload("Fixture", [incoming, outgoing])
-        self.assertEqual(len(payload["evidence"]), 2)
-        self.assertEqual(payload["chronological_batches"][0]["record"]["decisions"][0]["evidence_ids"], [0])
+        _, sources = source_units(segments)
+        for batch in (incoming, outgoing):
+            for item in [*batch.record.decisions, *batch.revisions]:
+                item.evidence = [next(ev for ev in sources.values() if ev.quote == old.quote) for old in item.evidence]
+        payload = source_payload({"chronological_batches": [incoming.model_dump(), outgoing.model_dump()]}, sources)
+        self.assertEqual(len(payload["sources"]), 2)
+        self.assertEqual(payload["chronological_batches"][0]["record"]["decisions"][0]["evidence_ids"], ["s1:u000"])
 
     def test_reassignment_requires_a_task_with_quoted_new_owner_and_deadline(self):
         old, new = "Maya will send the report by Friday.", "Alex takes over the report, due Monday."

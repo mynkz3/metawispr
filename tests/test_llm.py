@@ -9,7 +9,7 @@ import httpx
 from metawispr.config import Settings, SetupError
 from metawispr.llm import Ollama, FEEDBACK_BYTES, compact, prompt, repair_feedback
 from metawispr.pipeline import Store
-from metawispr.schemas import EditBatch
+from metawispr.schemas import EditBatch, SourceActions
 from support import FixtureLLM
 
 
@@ -55,6 +55,15 @@ class LLMTests(unittest.TestCase):
         self.assertEqual(call.attempts, 2)
         self.assertEqual(len(attempts), 2)
         self.assertIn("failed validation", attempts[1][2]["messages"][-1]["content"])
+
+    def test_wire_schema_limits_references_to_current_and_context_sources(self):
+        payload = {"segments": [{"id": "s2", "text": "Send it."}],
+                   "context": [{"id": "s1", "text": "Maya will do that."}]}
+        self.llm.generate(self.model, "document", SourceActions, payload, self.store,
+                          self.meeting.id, "documenting", lambda result: None)
+        schema = self.llm.requests[-1][1]["format"]
+        for name in ("SourceFact", "SourceTask"):
+            self.assertEqual(schema["$defs"][name]["properties"]["evidence_ids"]["items"], {"$ref": "#/$defs/SourceID"})
 
     def test_truncated_outputs_are_never_saved(self):
         with patch.object(self.llm, "request", return_value={"done": True, "done_reason": "length",

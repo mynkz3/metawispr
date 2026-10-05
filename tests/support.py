@@ -81,8 +81,10 @@ class FixtureLLM(Ollama):
                 for batch in payload["chronological_batches"]:
                     for fact in batch["record"]["summary"]:
                         record["summary"].append(fact)
-            output = ({key: record[key] for key in ("summary", "topics", "uncertainties")}
-                      if "resolved_current" in payload else {"record": record, "revisions": []})
+            properties = body["format"]["properties"]
+            output = ({"decisions": record["decisions"], "tasks": record["tasks"], "revisions": []}
+                      if "decisions" in properties else
+                      {key: record[key] for key in ("summary", "topics", "uncertainties")})
         return {"done": True, "done_reason": "stop", "message": {"content": json.dumps(output)},
                 "prompt_eval_count": 1, "eval_count": 1}
 

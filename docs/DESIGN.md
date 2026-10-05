@@ -1,6 +1,6 @@
 # Metawispr design
 
-Version 0.4 · 5 October 2026 · implementation specification
+Version 0.4 Â· 5 October 2026 Â· implementation specification
 
 This document separates the problem statement's requirements from our engineering choices. The first release serves the recorded English meeting task. Mainstream open-source distribution is a later release goal; present architecture should be understandable and reproducible without building that future platform now.
 
@@ -12,15 +12,15 @@ Source: `ML Bootcamp.pdf`, supplied by the owner in the parent workspace. We ret
 
 | Requirement and source section | Implementation | Acceptance evidence |
 | --- | --- | --- |
-| English recorded audio; STT (§3, §4) | Upload and decode; one ASR checkpoint | Real recording produces a preserved raw transcript |
-| Domain-aware refinement without meaning changes (§4) | Separate refinement stage/checkpoint; proposed span edits; optional glossary; change log | Protected facts and uncertainty preserved; actual edit audit |
-| Separate ordered processing stages (§3, §4) | ASR → refinement → documentation with named artifacts | Stage status, persisted checkpoints, model identifiers |
-| Concise minutes and summary (§4, §6) | Topic minutes and evidence-backed summary | Human review of coverage and faithfulness |
-| Agreed decisions and actionable tasks (§4, §6) | Evidence-backed items; null missing owners/deadlines | Proposals excluded; no invented assignment details |
-| Display and download required outputs (§6) | Raw/refined text, review workspace, Markdown, JSON, ZIP | All outputs accessible; export parity |
-| Consistent decisions/tasks across formats (§6) | One canonical validated JSON record | Readable exports generated from that record |
-| New unseen recording (§5) | Ordinary inference with no content-specific branches | Held-out recording run after development choices |
-| Useful file-processing errors (§3, §4) | Limits, decoder validation, clear retryable failures | Empty, unsupported, corrupt, silent and oversized cases |
+| English recorded audio; STT (Â§3, Â§4) | Upload and decode; one ASR checkpoint | Real recording produces a preserved raw transcript |
+| Domain-aware refinement without meaning changes (Â§4) | Separate refinement stage/checkpoint; proposed span edits; optional glossary; change log | Protected facts and uncertainty preserved; actual edit audit |
+| Separate ordered processing stages (Â§3, Â§4) | ASR â†’ refinement â†’ documentation with named artifacts | Stage status, persisted checkpoints, model identifiers |
+| Concise minutes and summary (Â§4, Â§6) | Topic minutes and evidence-backed summary | Human review of coverage and faithfulness |
+| Agreed decisions and actionable tasks (Â§4, Â§6) | Evidence-backed items; null missing owners/deadlines | Proposals excluded; no invented assignment details |
+| Display and download required outputs (Â§6) | Raw/refined text, review workspace, Markdown, JSON, ZIP | All outputs accessible; export parity |
+| Consistent decisions/tasks across formats (Â§6) | One canonical validated JSON record | Readable exports generated from that record |
+| New unseen recording (Â§5) | Ordinary inference with no content-specific branches | Held-out recording run after development choices |
+| Useful file-processing errors (Â§3, Â§4) | Limits, decoder validation, clear retryable failures | Empty, unsupported, corrupt, silent and oversized cases |
 | Source, prompts, dependencies, README, model roles, sample, actual outputs and demo (Deliverables) | Committed code/docs; weights outside Git; evaluation report | Phase 5 delivery checklist |
 
 The rubric weights transcription 20, refinement 20, minutes/decisions 25, tasks 15, application 15, and submission 5. Therefore fidelity and usable evidence take priority over decorative features. No model name, live mode, diarization, vector database, or cloud deployment is mandated.
@@ -126,7 +126,7 @@ LLM 1 receives bounded chronological transcript groups, meeting title and an opt
 
 Require exact span matches and reject invalid/overlapping edits. Preserve digits, negation and obvious commitment markers mechanically; constrain term corrections to supplied glossary entries initially. Flag rejected edits and retain original text. Guard checks cannot certify meaning, dates or names. The glossary improves precision but does not prove ambiguous audio; user review remains necessary.
 
-The glossary uses one canonical term per line, optionally `alias => canonical`. An explicit alias or plausible spelling similarity is required; unrelated rewrites are rejected. Conflicting aliases fail input validation. Without a glossary, the refinement model still executes, but no terminology changes can be accepted.
+The glossary uses one canonical term per line, optionally `alias => canonical`. An explicit alias or plausible spelling similarity is required; unrelated rewrites are rejected. Conflicting aliases fail input validation. Without a glossary, a plausible spelling correction requires an independent exact occurrence elsewhere in the immutable meeting text. Date/numeric/negation/commitment changes, role expansion and grammatical number changes are rejected. Accepted edits remain proposals requiring source review.
 
 Save raw transcript, refined transcript, accepted edits, rejected edits and reasons. Refinement is not summarization, rewriting or adding details. A failed refinement must not silently bypass a required LLM stage.
 
@@ -160,7 +160,7 @@ Markdown, JSON and ZIP render from the same validated record. ZIP includes both 
 
 Visual direction: a quiet editorial workspace, warm ivory background, charcoal typography, muted coral accent, fine borders and generous whitespace. The record should feel readable, not like a developer console. Use system sans-serif typography with a restrained serif heading; no remote font request is required.
 
-Initial tokens: canvas `#f5f3ec`, surface `#ffffff`, text `#242722`, secondary text `#62675d`, border `#dedfd5`, accent `#b6482e`; 8-pixel spacing base; 16-pixel body text; 12–20-pixel corner radii. Use a 224-pixel desktop rail and a content width capped near 1,160 pixels. Stack the layout below 900 pixels. The working Phase 4 workspace follows these tokens and is wired to genuine processing. The [earlier static preview](ui-preview.html) remains a labelled design artifact; [PHASE4.md](PHASE4.md) records the production UI verification.
+Initial tokens: canvas `#f5f3ec`, surface `#ffffff`, text `#242722`, secondary text `#62675d`, border `#dedfd5`, accent `#b6482e`; 8-pixel spacing base; 16-pixel body text; 12â€“20-pixel corner radii. Use a 224-pixel desktop rail and a content width capped near 1,160 pixels. Stack the layout below 900 pixels. The working Phase 4 workspace follows these tokens and is wired to genuine processing. The [earlier static preview](ui-preview.html) remains a labelled design artifact; [PHASE4.md](PHASE4.md) records the production UI verification.
 
 - Desktop: compact navigation rail, a central meeting workspace, and a source panel when an evidence link is selected.
 - Empty state: a clear upload surface, supported-format/size guidance, optional title and glossary, and a visible explanation of the three stages.
@@ -196,3 +196,6 @@ Release gates include zero invented owner/deadline fields on the reviewed sample
 Application code: MIT. Parakeet base weights: CC BY 4.0 per the NVIDIA model card; retain attribution and identify INT8 conversion. Qwen3.5 checkpoints: Apache 2.0 per their official cards. sherpa-onnx, Ollama, FFmpeg and other dependencies keep their own licenses; bundling binaries is a separate distribution decision. Do not commit third-party model weights.
 
 Future work: live buffered capture with end-of-meeting reconciliation, validated diarization/identity mapping, versioned user corrections, hosted quality tiers, accounts, retention controls, public service hardening, packaging and integrations. These features do not block the problem-statement implementation.
+
+
+Phase 5 implementation adds focused action extraction before notes and a source-based review pass using the same shared weights. Source IDs are constrained by the actual input schema; Python attaches immutable quotation ranges. Owner/deadline capitalization can be restored from selected literal source text, while unidentified pronouns are rejected as owners. These guards verify provenance and shape, not semantic accuracy. Current genuine development failures are recorded in PHASE5.md.

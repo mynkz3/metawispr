@@ -6,6 +6,11 @@ Earlier withdrawn or cancelled items are history, never current commitments.
 Describe corrections and withdrawals in minutes with their supporting quotes.
 Input and output evidence_ids select exact IDs from the sources table.
 Never write quotes; Python attaches unchanged source text. Do not invent IDs.
+Facts were extracted from the transcript in earlier calls. This compact input
+contains their source IDs, not repeated quotations. Summarize only supplied facts,
+retain their evidence_ids, and never infer additional events or change history.
 Deduplicate/compress summary and topics; preserve names, numbers, negation and
 qualifiers. Expose genuine ambiguities in uncertainties. Empty arrays are valid.
 Do not infer missing owners, dates, deadlines or agreement from proposals.
+Use at most 3 summary points and 5 topics with at most 3 short points each.
+One short sentence per fact; combine related topics without losing important facts.
