@@ -191,6 +191,17 @@ class DocumentationTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             SelectedNotes.model_validate({"summary_ids": [], "topics": [], "uncertainty_ids": [], "text": "Invented financial claim"})
 
+    def test_absence_of_financial_labels_is_not_a_claimed_category(self):
+        source = Segment(id="s1", start=0, end=5, text="They discussed the recording device.")
+        value = record()
+        for wording in ("There was no explicit mention of profit or revenue.",
+                        "The speaker did not specify a profit amount."):
+            value.summary = [Fact(text=wording, evidence=[Evidence(segment_id="s1", quote=source.text)])]
+            validate_record(value, [source])
+        value.summary[0].text = "There was no profit."
+        with self.assertRaisesRegex(ValueError, "Unsupported financial"):
+            validate_record(value, [source])
+
     def test_owner_cannot_be_a_fragment_of_a_different_name(self):
         value = record()
         value.tasks.append(Task(text="Send it", owner="May", deadline=None,

@@ -114,3 +114,13 @@ its summary even though the recording only says "$15, not $50". It is a
 semantic failure, and the compatibility pass does not close the history or
 unsupported-claim gate. The frozen AMI candidate will be measured without
 claiming release readiness.
+
+
+ES2002a v12 failed after 14 completed calls because the financial guard rejected
+"no explicit mention of profit/revenue" and "did not specify" as affirmative
+category claims. The narrowly bounded absence patterns are now accepted;
+"there was no profit" still requires an explicit source label. This fix arose
+from ES2002a development, before any held-out LLM generation. Held-out ASR was
+already started under the same ASR profile. Its saved genuine checkpoints will
+be reused with their old identities disclosed; a revised LLM/source freeze is
+recorded before held-out LLM generation. No held-out output drove this fix.
