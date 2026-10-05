@@ -1,0 +1,666 @@
+{
+  "identity_sha256": "095ab0a00a72ebf4c24ef8f2df66d5cc65f0a5b32ac454aee5dd88329290c7d9",
+  "identity": {
+    "model": {
+      "tag": "metawispr-granite4-h-micro:q4_k_m",
+      "digest": "3fb76833e15c512f3c9e1187d620c97505f73273ee817c9900f8552de1de4ac3",
+      "runtime_version": "0.35.1",
+      "parameter_size": "3.2B",
+      "quantization": "Q4_K_M"
+    },
+    "cpu": false,
+    "context": 16384,
+    "output_tokens": 2048,
+    "cases": [
+      [
+        "documentation",
+        {
+          "id": "cross_group_withdrawal",
+          "force_two_groups": true,
+          "texts": [
+            "We agreed to launch on Friday. Maya will send the release report by Friday. Action item: check the logs. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context.",
+            "We withdraw the Friday launch decision and cancel Maya's release report task. Instead, Alex will send the revised draft by Monday. The log-check action remains unassigned with no deadline. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context."
+          ],
+          "decisions": [],
+          "tasks": [
+            {
+              "pattern": "logs|log.check",
+              "anchor": "Action item: check the logs.",
+              "owner": null,
+              "deadline": null
+            },
+            {
+              "pattern": "draft",
+              "anchor": "Alex will send the revised draft by Monday.",
+              "owner": "Alex",
+              "deadline": "Monday"
+            }
+          ],
+          "revision_anchors": [
+            "withdraw",
+            "cancel"
+          ],
+          "filler_repetitions": 112
+        }
+      ],
+      [
+        "documentation",
+        {
+          "id": "cross_group_reassignment",
+          "force_two_groups": true,
+          "texts": [
+            "We agreed to use Docker. Sara will send the migration checklist by Friday. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context.",
+            "Correction: the migration checklist is reassigned from Sara to Omar, and its deadline changes from Friday to Tuesday. Omar will send the migration checklist by Tuesday. The Docker decision remains unchanged. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context."
+          ],
+          "decisions": [
+            {
+              "pattern": "docker",
+              "anchor": "We agreed to use Docker."
+            }
+          ],
+          "tasks": [
+            {
+              "pattern": "checklist",
+              "anchor": "Omar will send the migration checklist by Tuesday.",
+              "owner": "Omar",
+              "deadline": "Tuesday"
+            }
+          ],
+          "revision_anchors": [
+            "reassigned",
+            "deadline changes"
+          ],
+          "filler_repetitions": 112
+        }
+      ]
+    ],
+    "prompt_sha256": {
+      "refine": "82a0605e89cafc3d620e833143d8378d7d6ab3f71b593507b50aaae067d12082",
+      "document": "394b5c30231e38385db9106abe1713775ce5c85c4a9742dc3a7665073a0902f2",
+      "reconcile": "e48ebbda3de61892b1ffde84ac5249bc4a9bd6756771dbe335802f6748e41402",
+      "consolidate": "943c9e1714571ebb017028a23bf0860f81af9c3d84c0c09b69f6f880eab082e1"
+    }
+  },
+  "model_package_bytes": 1942564643,
+  "started_at": "2026-10-05T09:09:09.951161+00:00",
+  "host": "Windows-11-10.0.26200-SP0",
+  "logical_cpus": 28,
+  "ram_at_start": {
+    "total_bytes": 16873545728,
+    "available_bytes": 5969534976
+  },
+  "git_head": "65c70204696966ed0b547bcf607d55ed306bc7f9",
+  "scope": "Authored English LLM regression cases, not recorded meetings or an ASR benchmark. Expectations are fixed before inference. Synthetic segment times have no audio alignment.",
+  "jobs": [
+    {
+      "role": "documentation",
+      "id": "cross_group_withdrawal",
+      "meeting_id": "c7af8cf2-2c17-42ac-8307-a52e7a8ee38b",
+      "status": "failed",
+      "error": "Documenting model returned invalid output twice. Completed calls are saved; retry after checking the model/context settings.",
+      "score": {
+        "decisions": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "field_errors": []
+        },
+        "tasks": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 2,
+          "field_errors": []
+        },
+        "missing_revision_anchors": [
+          "withdraw",
+          "cancel"
+        ],
+        "passed": false
+      },
+      "wall_seconds": 38.87535090000165,
+      "measurements": [
+        {
+          "model": "metawispr-granite4-h-micro:q4_k_m",
+          "options": {
+            "temperature": 0,
+            "seed": 0,
+            "num_ctx": 16384,
+            "num_predict": 2048,
+            "presence_penalty": 0,
+            "repeat_penalty": 1
+          },
+          "ram_before": {
+            "total_bytes": 16873545728,
+            "available_bytes": 5970468864
+          },
+          "done_reason": "stop",
+          "total_duration": 7860860100,
+          "load_duration": 2354881300,
+          "prompt_eval_count": 1799,
+          "prompt_eval_duration": 826127000,
+          "eval_count": 360,
+          "eval_duration": 4638039000,
+          "wall_seconds": 7.887625399998797,
+          "ram_after": {
+            "total_bytes": 16873545728,
+            "available_bytes": 4807380992
+          },
+          "resident_models": [
+            {
+              "name": "metawispr-granite4-h-micro:q4_k_m",
+              "model": "metawispr-granite4-h-micro:q4_k_m",
+              "size": 2318422507,
+              "digest": "3fb76833e15c512f3c9e1187d620c97505f73273ee817c9900f8552de1de4ac3",
+              "details": {
+                "parent_model": "",
+                "format": "gguf",
+                "family": "granitehybrid",
+                "families": [
+                  "granitehybrid"
+                ],
+                "parameter_size": "3.2B",
+                "quantization_level": "Q4_K_M"
+              },
+              "expires_at": "2026-10-05T14:44:18.1039397+05:30",
+              "size_vram": 2318422507,
+              "context_length": 16384
+            }
+          ]
+        },
+        {
+          "model": "metawispr-granite4-h-micro:q4_k_m",
+          "options": {
+            "temperature": 0,
+            "seed": 0,
+            "num_ctx": 16384,
+            "num_predict": 2048,
+            "presence_penalty": 0,
+            "repeat_penalty": 1
+          },
+          "ram_before": {
+            "total_bytes": 16873545728,
+            "available_bytes": 4807176192
+          },
+          "done_reason": "stop",
+          "total_duration": 5397716000,
+          "load_duration": 6715400,
+          "prompt_eval_count": 1827,
+          "prompt_eval_duration": 267464999,
+          "eval_count": 398,
+          "eval_duration": 5061279000,
+          "wall_seconds": 5.443870100003551,
+          "ram_after": {
+            "total_bytes": 16873545728,
+            "available_bytes": 4607557632
+          },
+          "resident_models": [
+            {
+              "name": "metawispr-granite4-h-micro:q4_k_m",
+              "model": "metawispr-granite4-h-micro:q4_k_m",
+              "size": 2318422507,
+              "digest": "3fb76833e15c512f3c9e1187d620c97505f73273ee817c9900f8552de1de4ac3",
+              "details": {
+                "parent_model": "",
+                "format": "gguf",
+                "family": "granitehybrid",
+                "families": [
+                  "granitehybrid"
+                ],
+                "parameter_size": "3.2B",
+                "quantization_level": "Q4_K_M"
+              },
+              "expires_at": "2026-10-05T14:44:23.6084102+05:30",
+              "size_vram": 2318422507,
+              "context_length": 16384
+            }
+          ]
+        },
+        {
+          "model": "metawispr-granite4-h-micro:q4_k_m",
+          "options": {
+            "temperature": 0,
+            "seed": 0,
+            "num_ctx": 16384,
+            "num_predict": 2048,
+            "presence_penalty": 0,
+            "repeat_penalty": 1
+          },
+          "ram_before": {
+            "total_bytes": 16873545728,
+            "available_bytes": 4606767104
+          },
+          "done_reason": "stop",
+          "total_duration": 5724760900,
+          "load_duration": 7086200,
+          "prompt_eval_count": 1812,
+          "prompt_eval_duration": 374895000,
+          "eval_count": 420,
+          "eval_duration": 5083601000,
+          "wall_seconds": 5.760803999997734,
+          "ram_after": {
+            "total_bytes": 16873545728,
+            "available_bytes": 4229197824
+          },
+          "resident_models": [
+            {
+              "name": "metawispr-granite4-h-micro:q4_k_m",
+              "model": "metawispr-granite4-h-micro:q4_k_m",
+              "size": 2318422507,
+              "digest": "3fb76833e15c512f3c9e1187d620c97505f73273ee817c9900f8552de1de4ac3",
+              "details": {
+                "parent_model": "",
+                "format": "gguf",
+                "family": "granitehybrid",
+                "families": [
+                  "granitehybrid"
+                ],
+                "parameter_size": "3.2B",
+                "quantization_level": "Q4_K_M"
+              },
+              "expires_at": "2026-10-05T14:44:29.4274336+05:30",
+              "size_vram": 2318422507,
+              "context_length": 16384
+            }
+          ]
+        },
+        {
+          "model": "metawispr-granite4-h-micro:q4_k_m",
+          "options": {
+            "temperature": 0,
+            "seed": 0,
+            "num_ctx": 16384,
+            "num_predict": 2048,
+            "presence_penalty": 0,
+            "repeat_penalty": 1
+          },
+          "ram_before": {
+            "total_bytes": 16873545728,
+            "available_bytes": 4227792896
+          },
+          "done_reason": "stop",
+          "total_duration": 10129082800,
+          "load_duration": 4129000,
+          "prompt_eval_count": 1092,
+          "prompt_eval_duration": 416004000,
+          "eval_count": 752,
+          "eval_duration": 9578965000,
+          "wall_seconds": 10.14894440000353,
+          "ram_after": {
+            "total_bytes": 16873545728,
+            "available_bytes": 3818135552
+          },
+          "resident_models": [
+            {
+              "name": "metawispr-granite4-h-micro:q4_k_m",
+              "model": "metawispr-granite4-h-micro:q4_k_m",
+              "size": 2318422507,
+              "digest": "3fb76833e15c512f3c9e1187d620c97505f73273ee817c9900f8552de1de4ac3",
+              "details": {
+                "parent_model": "",
+                "format": "gguf",
+                "family": "granitehybrid",
+                "families": [
+                  "granitehybrid"
+                ],
+                "parameter_size": "3.2B",
+                "quantization_level": "Q4_K_M"
+              },
+              "expires_at": "2026-10-05T14:44:39.6075388+05:30",
+              "size_vram": 2318422507,
+              "context_length": 16384
+            }
+          ]
+        },
+        {
+          "model": "metawispr-granite4-h-micro:q4_k_m",
+          "options": {
+            "temperature": 0,
+            "seed": 0,
+            "num_ctx": 16384,
+            "num_predict": 2048,
+            "presence_penalty": 0,
+            "repeat_penalty": 1
+          },
+          "ram_before": {
+            "total_bytes": 16873545728,
+            "available_bytes": 3818029056
+          },
+          "done_reason": "stop",
+          "total_duration": 9220937800,
+          "load_duration": 6526100,
+          "prompt_eval_count": 1127,
+          "prompt_eval_duration": 306023000,
+          "eval_count": 685,
+          "eval_duration": 8849721000,
+          "wall_seconds": 9.284805399998731,
+          "ram_after": {
+            "total_bytes": 16873545728,
+            "available_bytes": 3727233024
+          },
+          "resident_models": [
+            {
+              "name": "metawispr-granite4-h-micro:q4_k_m",
+              "model": "metawispr-granite4-h-micro:q4_k_m",
+              "size": 2318422507,
+              "digest": "3fb76833e15c512f3c9e1187d620c97505f73273ee817c9900f8552de1de4ac3",
+              "details": {
+                "parent_model": "",
+                "format": "gguf",
+                "family": "granitehybrid",
+                "families": [
+                  "granitehybrid"
+                ],
+                "parameter_size": "3.2B",
+                "quantization_level": "Q4_K_M"
+              },
+              "expires_at": "2026-10-05T14:44:48.9575122+05:30",
+              "size_vram": 2318422507,
+              "context_length": 16384
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "role": "documentation",
+      "id": "cross_group_reassignment",
+      "meeting_id": "16dc2f7d-c4f9-4857-af95-cb68896d6592",
+      "status": "failed",
+      "error": "Documenting model returned invalid output twice. Completed calls are saved; retry after checking the model/context settings.",
+      "score": {
+        "decisions": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 1,
+          "field_errors": []
+        },
+        "tasks": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 1,
+          "field_errors": []
+        },
+        "missing_revision_anchors": [
+          "reassigned",
+          "deadline changes"
+        ],
+        "passed": false
+      },
+      "wall_seconds": 25.62816749999911,
+      "measurements": [
+        {
+          "model": "metawispr-granite4-h-micro:q4_k_m",
+          "options": {
+            "temperature": 0,
+            "seed": 0,
+            "num_ctx": 16384,
+            "num_predict": 2048,
+            "presence_penalty": 0,
+            "repeat_penalty": 1
+          },
+          "ram_before": {
+            "total_bytes": 16873545728,
+            "available_bytes": 5866086400
+          },
+          "done_reason": "stop",
+          "total_duration": 7621403600,
+          "load_duration": 3132835300,
+          "prompt_eval_count": 1790,
+          "prompt_eval_duration": 819243000,
+          "eval_count": 285,
+          "eval_duration": 3622389000,
+          "wall_seconds": 7.688253899999836,
+          "ram_after": {
+            "total_bytes": 16873545728,
+            "available_bytes": 4726591488
+          },
+          "resident_models": [
+            {
+              "name": "metawispr-granite4-h-micro:q4_k_m",
+              "model": "metawispr-granite4-h-micro:q4_k_m",
+              "size": 2318422507,
+              "digest": "3fb76833e15c512f3c9e1187d620c97505f73273ee817c9900f8552de1de4ac3",
+              "details": {
+                "parent_model": "",
+                "format": "gguf",
+                "family": "granitehybrid",
+                "families": [
+                  "granitehybrid"
+                ],
+                "parameter_size": "3.2B",
+                "quantization_level": "Q4_K_M"
+              },
+              "expires_at": "2026-10-05T14:44:56.9974285+05:30",
+              "size_vram": 2318422507,
+              "context_length": 16384
+            }
+          ]
+        },
+        {
+          "model": "metawispr-granite4-h-micro:q4_k_m",
+          "options": {
+            "temperature": 0,
+            "seed": 0,
+            "num_ctx": 16384,
+            "num_predict": 2048,
+            "presence_penalty": 0,
+            "repeat_penalty": 1
+          },
+          "ram_before": {
+            "total_bytes": 16873545728,
+            "available_bytes": 4723761152
+          },
+          "done_reason": "stop",
+          "total_duration": 5215203700,
+          "load_duration": 10570000,
+          "prompt_eval_count": 1812,
+          "prompt_eval_duration": 373514000,
+          "eval_count": 368,
+          "eval_duration": 4769028000,
+          "wall_seconds": 5.2504693000009866,
+          "ram_after": {
+            "total_bytes": 16873545728,
+            "available_bytes": 4712902656
+          },
+          "resident_models": [
+            {
+              "name": "metawispr-granite4-h-micro:q4_k_m",
+              "model": "metawispr-granite4-h-micro:q4_k_m",
+              "size": 2318422507,
+              "digest": "3fb76833e15c512f3c9e1187d620c97505f73273ee817c9900f8552de1de4ac3",
+              "details": {
+                "parent_model": "",
+                "format": "gguf",
+                "family": "granitehybrid",
+                "families": [
+                  "granitehybrid"
+                ],
+                "parameter_size": "3.2B",
+                "quantization_level": "Q4_K_M"
+              },
+              "expires_at": "2026-10-05T14:45:02.3565294+05:30",
+              "size_vram": 2318422507,
+              "context_length": 16384
+            }
+          ]
+        },
+        {
+          "model": "metawispr-granite4-h-micro:q4_k_m",
+          "options": {
+            "temperature": 0,
+            "seed": 0,
+            "num_ctx": 16384,
+            "num_predict": 2048,
+            "presence_penalty": 0,
+            "repeat_penalty": 1
+          },
+          "ram_before": {
+            "total_bytes": 16873545728,
+            "available_bytes": 4722155520
+          },
+          "done_reason": "stop",
+          "total_duration": 7078022600,
+          "load_duration": 5959800,
+          "prompt_eval_count": 909,
+          "prompt_eval_duration": 405809000,
+          "eval_count": 483,
+          "eval_duration": 6471996000,
+          "wall_seconds": 7.11257409999962,
+          "ram_after": {
+            "total_bytes": 16873545728,
+            "available_bytes": 4485500928
+          },
+          "resident_models": [
+            {
+              "name": "metawispr-granite4-h-micro:q4_k_m",
+              "model": "metawispr-granite4-h-micro:q4_k_m",
+              "size": 2318422507,
+              "digest": "3fb76833e15c512f3c9e1187d620c97505f73273ee817c9900f8552de1de4ac3",
+              "details": {
+                "parent_model": "",
+                "format": "gguf",
+                "family": "granitehybrid",
+                "families": [
+                  "granitehybrid"
+                ],
+                "parameter_size": "3.2B",
+                "quantization_level": "Q4_K_M"
+              },
+              "expires_at": "2026-10-05T14:45:09.5282923+05:30",
+              "size_vram": 2318422507,
+              "context_length": 16384
+            }
+          ]
+        },
+        {
+          "model": "metawispr-granite4-h-micro:q4_k_m",
+          "options": {
+            "temperature": 0,
+            "seed": 0,
+            "num_ctx": 16384,
+            "num_predict": 2048,
+            "presence_penalty": 0,
+            "repeat_penalty": 1
+          },
+          "ram_before": {
+            "total_bytes": 16873545728,
+            "available_bytes": 4481806336
+          },
+          "done_reason": "stop",
+          "total_duration": 3652010800,
+          "load_duration": 6825900,
+          "prompt_eval_count": 1019,
+          "prompt_eval_duration": 411591000,
+          "eval_count": 233,
+          "eval_duration": 3064875000,
+          "wall_seconds": 3.7068040000012843,
+          "ram_after": {
+            "total_bytes": 16873545728,
+            "available_bytes": 4235808768
+          },
+          "resident_models": [
+            {
+              "name": "metawispr-granite4-h-micro:q4_k_m",
+              "model": "metawispr-granite4-h-micro:q4_k_m",
+              "size": 2318422507,
+              "digest": "3fb76833e15c512f3c9e1187d620c97505f73273ee817c9900f8552de1de4ac3",
+              "details": {
+                "parent_model": "",
+                "format": "gguf",
+                "family": "granitehybrid",
+                "families": [
+                  "granitehybrid"
+                ],
+                "parameter_size": "3.2B",
+                "quantization_level": "Q4_K_M"
+              },
+              "expires_at": "2026-10-05T14:45:13.2965341+05:30",
+              "size_vram": 2318422507,
+              "context_length": 16384
+            }
+          ]
+        },
+        {
+          "model": "metawispr-granite4-h-micro:q4_k_m",
+          "options": {
+            "temperature": 0,
+            "seed": 0,
+            "num_ctx": 16384,
+            "num_predict": 2048,
+            "presence_penalty": 0,
+            "repeat_penalty": 1
+          },
+          "ram_before": {
+            "total_bytes": 16873545728,
+            "available_bytes": 4237119488
+          },
+          "done_reason": "stop",
+          "total_duration": 1368818000,
+          "load_duration": 7369500,
+          "prompt_eval_count": 1043,
+          "prompt_eval_duration": 293199000,
+          "eval_count": 77,
+          "eval_duration": 1007857000,
+          "wall_seconds": 1.415897799997765,
+          "ram_after": {
+            "total_bytes": 16873545728,
+            "available_bytes": 4089069568
+          },
+          "resident_models": [
+            {
+              "name": "metawispr-granite4-h-micro:q4_k_m",
+              "model": "metawispr-granite4-h-micro:q4_k_m",
+              "size": 2318422507,
+              "digest": "3fb76833e15c512f3c9e1187d620c97505f73273ee817c9900f8552de1de4ac3",
+              "details": {
+                "parent_model": "",
+                "format": "gguf",
+                "family": "granitehybrid",
+                "families": [
+                  "granitehybrid"
+                ],
+                "parameter_size": "3.2B",
+                "quantization_level": "Q4_K_M"
+              },
+              "expires_at": "2026-10-05T14:45:14.7765607+05:30",
+              "size_vram": 2318422507,
+              "context_length": 16384
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "refinement": {
+      "cases": 0,
+      "validated": 0,
+      "passed": 0,
+      "median_case_wall_seconds": null,
+      "attempts": 0
+    },
+    "documentation": {
+      "cases": 2,
+      "validated": 0,
+      "passed": 0,
+      "median_case_wall_seconds": 32.25175920000038,
+      "attempts": 10,
+      "decisions": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 1,
+        "precision": null,
+        "recall": 0.0
+      },
+      "tasks": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 3,
+        "precision": null,
+        "recall": 0.0
+      },
+      "task_field_errors": 0
+    }
+  },
+  "finished_at": "2026-10-05T09:10:14.914358+00:00"
+}

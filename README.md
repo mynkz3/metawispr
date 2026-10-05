@@ -10,6 +10,8 @@ React + TypeScript interface → FastAPI → Parakeet v2 INT8 ONNX → Qwen3.5 4
 
 The two Qwen checkpoints are local deployment defaults pending project-specific evaluation. Only one ASR runs in the product. Faster-whisper large-v3 is an evaluation baseline.
 
+A [genuine local LLM regression comparison](docs/LLM_EVALUATION.md) now covers Qwen 4B, Qwen 9B and Granite H-Micro 3B on fixed authored cases, plus CPU subsets. Qwen 4B is the preferred lightweight single-model candidate for further testing; the application defaults remain unchanged. The [evaluation runner and actual outputs](evaluation/README.md) are included. These results do not establish representative meeting accuracy.
+
 ## Development
 
 Use Python 3.11–3.13, uv and a current local Ollama installation supporting Qwen3.5. Model weights are installed separately and are not committed. Use Node.js 22.12+ (24 LTS recommended) and npm to build the frontend.

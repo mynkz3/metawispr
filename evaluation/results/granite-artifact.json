@@ -1,0 +1,9 @@
+{
+  "repository": "ibm-granite/granite-4.0-h-micro-GGUF",
+  "revision": "dc1dd2585fac18a78001c677d33ef8a7bbb7eb68",
+  "filename": "granite-4.0-h-micro-Q4_K_M.gguf",
+  "file_sha256": "bcc78b9b25450101d1ad90d4b9a264e1bac892f534dfb76066f4eec792fdf023",
+  "file_bytes": 1942564512,
+  "local_tag": "metawispr-granite4-h-micro:q4_k_m",
+  "source_url": "https://huggingface.co/ibm-granite/granite-4.0-h-micro-GGUF/resolve/dc1dd2585fac18a78001c677d33ef8a7bbb7eb68/granite-4.0-h-micro-Q4_K_M.gguf"
+}

@@ -1,0 +1,1148 @@
+{
+  "identity_sha256": "220647b004dc9518e3469f802c54111eb4413f7b0c97dec844d332b8725e731a",
+  "identity": {
+    "model": {
+      "tag": "qwen3.5:4b",
+      "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+      "runtime_version": "0.35.1",
+      "parameter_size": "4.2B",
+      "quantization": "Q4_K_M"
+    },
+    "cpu": false,
+    "context": 16384,
+    "output_tokens": 2048,
+    "cases": [
+      [
+        "documentation",
+        {
+          "id": "cross_group_withdrawal",
+          "force_two_groups": true,
+          "texts": [
+            "We agreed to launch on Friday. Maya will send the release report by Friday. Action item: check the logs. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context.",
+            "We withdraw the Friday launch decision and cancel Maya's release report task. Instead, Alex will send the revised draft by Monday. The log-check action remains unassigned with no deadline. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context."
+          ],
+          "decisions": [],
+          "tasks": [
+            {
+              "pattern": "logs|log.check",
+              "anchor": "Action item: check the logs.",
+              "owner": null,
+              "deadline": null
+            },
+            {
+              "pattern": "draft",
+              "anchor": "Alex will send the revised draft by Monday.",
+              "owner": "Alex",
+              "deadline": "Monday"
+            }
+          ],
+          "revision_anchors": [
+            "withdraw",
+            "cancel"
+          ],
+          "filler_repetitions": 112
+        }
+      ],
+      [
+        "documentation",
+        {
+          "id": "cross_group_reassignment",
+          "force_two_groups": true,
+          "texts": [
+            "We agreed to use Docker. Sara will send the migration checklist by Friday. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context.",
+            "Correction: the migration checklist is reassigned from Sara to Omar, and its deadline changes from Friday to Tuesday. Omar will send the migration checklist by Tuesday. The Docker decision remains unchanged. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context. The team reviewed background context."
+          ],
+          "decisions": [
+            {
+              "pattern": "docker",
+              "anchor": "We agreed to use Docker."
+            }
+          ],
+          "tasks": [
+            {
+              "pattern": "checklist",
+              "anchor": "Omar will send the migration checklist by Tuesday.",
+              "owner": "Omar",
+              "deadline": "Tuesday"
+            }
+          ],
+          "revision_anchors": [
+            "reassigned",
+            "deadline changes"
+          ],
+          "filler_repetitions": 112
+        }
+      ]
+    ],
+    "prompt_sha256": {
+      "refine": "82a0605e89cafc3d620e833143d8378d7d6ab3f71b593507b50aaae067d12082",
+      "document": "394b5c30231e38385db9106abe1713775ce5c85c4a9742dc3a7665073a0902f2",
+      "reconcile": "e48ebbda3de61892b1ffde84ac5249bc4a9bd6756771dbe335802f6748e41402",
+      "consolidate": "943c9e1714571ebb017028a23bf0860f81af9c3d84c0c09b69f6f880eab082e1"
+    }
+  },
+  "model_package_bytes": 3324173934,
+  "started_at": "2026-10-05T08:44:47.904175+00:00",
+  "host": "Windows-11-10.0.26200-SP0",
+  "logical_cpus": 28,
+  "ram_at_start": {
+    "total_bytes": 16873545728,
+    "available_bytes": 4832473088
+  },
+  "git_head": "65c70204696966ed0b547bcf607d55ed306bc7f9",
+  "scope": "Authored English LLM regression cases, not recorded meetings or an ASR benchmark. Expectations are fixed before inference. Synthetic segment times have no audio alignment.",
+  "jobs": [
+    {
+      "role": "documentation",
+      "id": "cross_group_withdrawal",
+      "meeting_id": "6b19f4dc-31fa-46a5-abf1-1ba0b3519c26",
+      "status": "complete",
+      "output": {
+        "schema_version": "1.0",
+        "source_sha256": "14a360dac85132fe25a70c289518b966b24dde597d8ed703861265e7760706a4",
+        "policy_sha256": "19af6146fbc4404d68f381d6231697a3c0ae0521ecf1ef9a801686119d4f41fd",
+        "created_at": "2026-10-05T08:45:53.838638+00:00",
+        "record": {
+          "summary": [
+            {
+              "text": "The Friday launch decision was withdrawn and Maya's release report task was cancelled.",
+              "evidence": [
+                {
+                  "segment_id": "s00002",
+                  "quote": "We withdraw the Friday launch decision and cancel Maya's release report task."
+                }
+              ]
+            },
+            {
+              "text": "Alex will send the revised draft by Monday.",
+              "evidence": [
+                {
+                  "segment_id": "s00002",
+                  "quote": "Instead, Alex will send the revised draft by Monday."
+                }
+              ]
+            },
+            {
+              "text": "The log-check action remains unassigned with no deadline.",
+              "evidence": [
+                {
+                  "segment_id": "s00002",
+                  "quote": "The log-check action remains unassigned with no deadline."
+                }
+              ]
+            }
+          ],
+          "topics": [
+            {
+              "title": "Launch and Release Updates",
+              "points": [
+                {
+                  "text": "The Friday launch decision was withdrawn.",
+                  "evidence": [
+                    {
+                      "segment_id": "s00002",
+                      "quote": "We withdraw the Friday launch decision and cancel Maya's release report task."
+                    }
+                  ]
+                },
+                {
+                  "text": "Maya's release report task was cancelled.",
+                  "evidence": [
+                    {
+                      "segment_id": "s00002",
+                      "quote": "We withdraw the Friday launch decision and cancel Maya's release report task."
+                    }
+                  ]
+                },
+                {
+                  "text": "Alex will send the revised draft by Monday.",
+                  "evidence": [
+                    {
+                      "segment_id": "s00002",
+                      "quote": "Instead, Alex will send the revised draft by Monday."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "title": "Action Items Status",
+              "points": [
+                {
+                  "text": "The log-check action remains unassigned with no deadline.",
+                  "evidence": [
+                    {
+                      "segment_id": "s00002",
+                      "quote": "The log-check action remains unassigned with no deadline."
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "decisions": [
+            {
+              "text": "Withdraw the Friday launch decision.",
+              "evidence": [
+                {
+                  "segment_id": "s00002",
+                  "quote": "We withdraw the Friday launch decision and cancel Maya's release report task."
+                }
+              ]
+            },
+            {
+              "text": "Cancel Maya's release report task.",
+              "evidence": [
+                {
+                  "segment_id": "s00002",
+                  "quote": "We withdraw the Friday launch decision and cancel Maya's release report task."
+                }
+              ]
+            }
+          ],
+          "tasks": [
+            {
+              "text": "Alex will send the revised draft by Monday.",
+              "evidence": [
+                {
+                  "segment_id": "s00002",
+                  "quote": "Instead, Alex will send the revised draft by Monday."
+                }
+              ],
+              "owner": "Alex",
+              "deadline": "Monday"
+            },
+            {
+              "text": "The log-check action remains unassigned with no deadline.",
+              "evidence": [
+                {
+                  "segment_id": "s00002",
+                  "quote": "The log-check action remains unassigned with no deadline."
+                }
+              ],
+              "owner": null,
+              "deadline": null
+            }
+          ],
+          "uncertainties": [
+            "The log-check action has no assigned owner or deadline."
+          ]
+        },
+        "revision_audit": [
+          {
+            "text": "Withdraw the Friday launch decision and cancel Maya's release report task.",
+            "evidence": [
+              {
+                "segment_id": "s00002",
+                "quote": "We withdraw the Friday launch decision and cancel Maya's release report task."
+              }
+            ]
+          },
+          {
+            "text": "Superseded by revision in s00002.",
+            "evidence": [
+              {
+                "segment_id": "s00001",
+                "quote": "We agreed to launch on Friday."
+              },
+              {
+                "segment_id": "s00002",
+                "quote": "We withdraw the Friday launch decision and cancel Maya's release report task."
+              }
+            ]
+          },
+          {
+            "text": "Superseded by revision in s00002.",
+            "evidence": [
+              {
+                "segment_id": "s00001",
+                "quote": "Maya will send the release report by Friday."
+              },
+              {
+                "segment_id": "s00002",
+                "quote": "We withdraw the Friday launch decision and cancel Maya's release report task."
+              }
+            ]
+          },
+          {
+            "text": "Superseded by revision in s00002.",
+            "evidence": [
+              {
+                "segment_id": "s00001",
+                "quote": "Action item: check the logs."
+              },
+              {
+                "segment_id": "s00002",
+                "quote": "The log-check action remains unassigned with no deadline."
+              }
+            ]
+          }
+        ],
+        "calls": [
+          {
+            "key": "457cb3f29903d3e34a2a1306489aebb5ebf0a3d9b0aa1c2841755989aa45e960",
+            "model": {
+              "tag": "qwen3.5:4b",
+              "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+              "runtime_version": "0.35.1",
+              "parameter_size": "4.2B",
+              "quantization": "Q4_K_M"
+            },
+            "prompt_sha256": "58f4d9139b2f1facb1defdeab10a08225c17bed196d4050be05602a932e71d08",
+            "input_sha256": "fc3ac20008ac539bde182236937aad0a9dd20ccca9440fa531449f80d1bdc0b0",
+            "schema_sha256": "3870df43ed186a43d1461d9b5d81a847dcf319790b210ff00843ce6679fe679a",
+            "context": 16384,
+            "output_tokens": 2048,
+            "temperature": 0.0,
+            "seed": 0,
+            "thinking": false,
+            "presence_penalty": 0.0,
+            "repeat_penalty": 1.0,
+            "elapsed_seconds": 21.15585909999936,
+            "prompt_tokens": 1837,
+            "generated_tokens": 825,
+            "attempts": 1
+          },
+          {
+            "key": "413cdefb03d8f26f403bcddfa6750719ddf587b96fd86157f353f78ff373ab3b",
+            "model": {
+              "tag": "qwen3.5:4b",
+              "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+              "runtime_version": "0.35.1",
+              "parameter_size": "4.2B",
+              "quantization": "Q4_K_M"
+            },
+            "prompt_sha256": "58f4d9139b2f1facb1defdeab10a08225c17bed196d4050be05602a932e71d08",
+            "input_sha256": "0e79a6fa64f30004528603896557c090e7f1564142865debb8790351694773c2",
+            "schema_sha256": "3870df43ed186a43d1461d9b5d81a847dcf319790b210ff00843ce6679fe679a",
+            "context": 16384,
+            "output_tokens": 2048,
+            "temperature": 0.0,
+            "seed": 0,
+            "thinking": false,
+            "presence_penalty": 0.0,
+            "repeat_penalty": 1.0,
+            "elapsed_seconds": 16.97288500000286,
+            "prompt_tokens": 1851,
+            "generated_tokens": 991,
+            "attempts": 1
+          },
+          {
+            "key": "91d3fc1a02ee44f80df78c987fe58c0198646d564b14ff39324b8de25b5db3cf",
+            "model": {
+              "tag": "qwen3.5:4b",
+              "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+              "runtime_version": "0.35.1",
+              "parameter_size": "4.2B",
+              "quantization": "Q4_K_M"
+            },
+            "prompt_sha256": "d795c3cba9be49e10a7eec82552c032322ccd20718449d9204a4148e6922fe05",
+            "input_sha256": "5f68ff493e2eaf3103131a405c7f017bdb277d4e9ff5aaee45a3e71830846d30",
+            "schema_sha256": "e16e920590547e3115ab7af9f087d328eb76ddc9fc16b16bf8e0aa3a8c246f16",
+            "context": 16384,
+            "output_tokens": 2048,
+            "temperature": 0.0,
+            "seed": 0,
+            "thinking": false,
+            "presence_penalty": 0.0,
+            "repeat_penalty": 1.0,
+            "elapsed_seconds": 17.02592200000072,
+            "prompt_tokens": 1162,
+            "generated_tokens": 443,
+            "attempts": 2
+          },
+          {
+            "key": "edd09aa55e01497534575836b1e70dbf2a4a243b526fa5bb155076b4f4bb5ca1",
+            "model": {
+              "tag": "qwen3.5:4b",
+              "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+              "runtime_version": "0.35.1",
+              "parameter_size": "4.2B",
+              "quantization": "Q4_K_M"
+            },
+            "prompt_sha256": "bdbf326eb112b5056774320cb0899585c8cb3c1cf481c59e25710adaad6f3e22",
+            "input_sha256": "37b68118bead8b3d23fc26d8b2258ede5bc5aef80d92077820fd9148b596e4a1",
+            "schema_sha256": "e71e6d960c999b413b77783c8b6cf15debbeb195984bddf83a421c8793114324",
+            "context": 16384,
+            "output_tokens": 2048,
+            "temperature": 0.0,
+            "seed": 0,
+            "thinking": false,
+            "presence_penalty": 0.0,
+            "repeat_penalty": 1.0,
+            "elapsed_seconds": 10.449803399998927,
+            "prompt_tokens": 1338,
+            "generated_tokens": 591,
+            "attempts": 1
+          }
+        ],
+        "warnings": [
+          "Exact evidence matching verifies provenance, not interpretation. Review decisions, tasks and revisions."
+        ]
+      },
+      "score": {
+        "decisions": {
+          "tp": 0,
+          "fp": 2,
+          "fn": 0,
+          "field_errors": []
+        },
+        "tasks": {
+          "tp": 1,
+          "fp": 1,
+          "fn": 1,
+          "field_errors": []
+        },
+        "missing_revision_anchors": [],
+        "passed": false
+      },
+      "wall_seconds": 65.74073519999365,
+      "measurements": [
+        {
+          "model": "qwen3.5:4b",
+          "options": {
+            "temperature": 0,
+            "seed": 0,
+            "num_ctx": 16384,
+            "num_predict": 2048,
+            "presence_penalty": 0,
+            "repeat_penalty": 1
+          },
+          "ram_before": {
+            "total_bytes": 16873545728,
+            "available_bytes": 4835160064
+          },
+          "done_reason": "stop",
+          "total_duration": 21090501500,
+          "load_duration": 6667004700,
+          "prompt_eval_count": 1837,
+          "prompt_eval_duration": 1017073000,
+          "eval_count": 825,
+          "eval_duration": 13372775000,
+          "wall_seconds": 21.121233799996844,
+          "ram_after": {
+            "total_bytes": 16873545728,
+            "available_bytes": 3398135808
+          },
+          "resident_models": [
+            {
+              "name": "qwen3.5:4b",
+              "model": "qwen3.5:4b",
+              "size": 3629142506,
+              "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+              "details": {
+                "parent_model": "",
+                "format": "gguf",
+                "family": "qwen35",
+                "families": [
+                  "qwen35"
+                ],
+                "parameter_size": "4.2B",
+                "quantization_level": "Q4_K_M"
+              },
+              "expires_at": "2026-10-05T14:20:09.2294373+05:30",
+              "size_vram": 3629142506,
+              "context_length": 16384
+            }
+          ]
+        },
+        {
+          "model": "qwen3.5:4b",
+          "options": {
+            "temperature": 0,
+            "seed": 0,
+            "num_ctx": 16384,
+            "num_predict": 2048,
+            "presence_penalty": 0,
+            "repeat_penalty": 1
+          },
+          "ram_before": {
+            "total_bytes": 16873545728,
+            "available_bytes": 3400503296
+          },
+          "done_reason": "stop",
+          "total_duration": 16892043400,
+          "load_duration": 9771100,
+          "prompt_eval_count": 1851,
+          "prompt_eval_duration": 540154000,
+          "eval_count": 991,
+          "eval_duration": 16158797000,
+          "wall_seconds": 16.92303310000716,
+          "ram_after": {
+            "total_bytes": 16873545728,
+            "available_bytes": 2887528448
+          },
+          "resident_models": [
+            {
+              "name": "qwen3.5:4b",
+              "model": "qwen3.5:4b",
+              "size": 3629142506,
+              "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+              "details": {
+                "parent_model": "",
+                "format": "gguf",
+                "family": "qwen35",
+                "families": [
+                  "qwen35"
+                ],
+                "parameter_size": "4.2B",
+                "quantization_level": "Q4_K_M"
+              },
+              "expires_at": "2026-10-05T14:20:26.2192172+05:30",
+              "size_vram": 3629142506,
+              "context_length": 16384
+            }
+          ]
+        },
+        {
+          "model": "qwen3.5:4b",
+          "options": {
+            "temperature": 0,
+            "seed": 0,
+            "num_ctx": 16384,
+            "num_predict": 2048,
+            "presence_penalty": 0,
+            "repeat_penalty": 1
+          },
+          "ram_before": {
+            "total_bytes": 16873545728,
+            "available_bytes": 2882486272
+          },
+          "done_reason": "stop",
+          "total_duration": 8929812600,
+          "load_duration": 6479900,
+          "prompt_eval_count": 1127,
+          "prompt_eval_duration": 601805000,
+          "eval_count": 498,
+          "eval_duration": 8129326000,
+          "wall_seconds": 8.9602292999989,
+          "ram_after": {
+            "total_bytes": 16873545728,
+            "available_bytes": 2612871168
+          },
+          "resident_models": [
+            {
+              "name": "qwen3.5:4b",
+              "model": "qwen3.5:4b",
+              "size": 3629142506,
+              "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+              "details": {
+                "parent_model": "",
+                "format": "gguf",
+                "family": "qwen35",
+                "families": [
+                  "qwen35"
+                ],
+                "parameter_size": "4.2B",
+                "quantization_level": "Q4_K_M"
+              },
+              "expires_at": "2026-10-05T14:20:35.2437859+05:30",
+              "size_vram": 3629142506,
+              "context_length": 16384
+            }
+          ]
+        },
+        {
+          "model": "qwen3.5:4b",
+          "options": {
+            "temperature": 0,
+            "seed": 0,
+            "num_ctx": 16384,
+            "num_predict": 2048,
+            "presence_penalty": 0,
+            "repeat_penalty": 1
+          },
+          "ram_before": {
+            "total_bytes": 16873545728,
+            "available_bytes": 2611814400
+          },
+          "done_reason": "stop",
+          "total_duration": 7928465000,
+          "load_duration": 6251000,
+          "prompt_eval_count": 1162,
+          "prompt_eval_duration": 599695000,
+          "eval_count": 443,
+          "eval_duration": 7306887000,
+          "wall_seconds": 7.979893700001412,
+          "ram_after": {
+            "total_bytes": 16873545728,
+            "available_bytes": 2576740352
+          },
+          "resident_models": [
+            {
+              "name": "qwen3.5:4b",
+              "model": "qwen3.5:4b",
+              "size": 3629142506,
+              "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+              "details": {
+                "parent_model": "",
+                "format": "gguf",
+                "family": "qwen35",
+                "families": [
+                  "qwen35"
+                ],
+                "parameter_size": "4.2B",
+                "quantization_level": "Q4_K_M"
+              },
+              "expires_at": "2026-10-05T14:20:43.2642901+05:30",
+              "size_vram": 3629142506,
+              "context_length": 16384
+            }
+          ]
+        },
+        {
+          "model": "qwen3.5:4b",
+          "options": {
+            "temperature": 0,
+            "seed": 0,
+            "num_ctx": 16384,
+            "num_predict": 2048,
+            "presence_penalty": 0,
+            "repeat_penalty": 1
+          },
+          "ram_before": {
+            "total_bytes": 16873545728,
+            "available_bytes": 2573254656
+          },
+          "done_reason": "stop",
+          "total_duration": 10354486000,
+          "load_duration": 7639500,
+          "prompt_eval_count": 1338,
+          "prompt_eval_duration": 599235000,
+          "eval_count": 591,
+          "eval_duration": 9585751000,
+          "wall_seconds": 10.392988699997659,
+          "ram_after": {
+            "total_bytes": 16873545728,
+            "available_bytes": 2345672704
+          },
+          "resident_models": [
+            {
+              "name": "qwen3.5:4b",
+              "model": "qwen3.5:4b",
+              "size": 3629142506,
+              "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+              "details": {
+                "parent_model": "",
+                "format": "gguf",
+                "family": "qwen35",
+                "families": [
+                  "qwen35"
+                ],
+                "parameter_size": "4.2B",
+                "quantization_level": "Q4_K_M"
+              },
+              "expires_at": "2026-10-05T14:20:53.7147009+05:30",
+              "size_vram": 3629142506,
+              "context_length": 16384
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "role": "documentation",
+      "id": "cross_group_reassignment",
+      "meeting_id": "92707a77-268d-41f9-a724-14a204b404bc",
+      "status": "complete",
+      "output": {
+        "schema_version": "1.0",
+        "source_sha256": "836491244a65f9b95da43ef053d1139564d43a5d9b7d2fd753745826568f1ed3",
+        "policy_sha256": "19af6146fbc4404d68f381d6231697a3c0ae0521ecf1ef9a801686119d4f41fd",
+        "created_at": "2026-10-05T08:46:46.115190+00:00",
+        "record": {
+          "summary": [
+            {
+              "text": "The team agreed to use Docker.",
+              "evidence": [
+                {
+                  "segment_id": "s00001",
+                  "quote": "We agreed to use Docker."
+                }
+              ]
+            },
+            {
+              "text": "The migration checklist has been reassigned from Sara to Omar, with the deadline changed from Friday to Tuesday.",
+              "evidence": [
+                {
+                  "segment_id": "s00002",
+                  "quote": "Correction: the migration checklist is reassigned from Sara to Omar, and its deadline changes from Friday to Tuesday."
+                }
+              ]
+            },
+            {
+              "text": "Omar is committed to sending the migration checklist by Tuesday.",
+              "evidence": [
+                {
+                  "segment_id": "s00002",
+                  "quote": "Omar will send the migration checklist by Tuesday."
+                }
+              ]
+            }
+          ],
+          "topics": [
+            {
+              "title": "Migration Strategy",
+              "points": [
+                {
+                  "text": "The team agreed to use Docker.",
+                  "evidence": [
+                    {
+                      "segment_id": "s00001",
+                      "quote": "We agreed to use Docker."
+                    }
+                  ]
+                },
+                {
+                  "text": "The migration checklist has been reassigned from Sara to Omar, with the deadline changed from Friday to Tuesday.",
+                  "evidence": [
+                    {
+                      "segment_id": "s00002",
+                      "quote": "Correction: the migration checklist is reassigned from Sara to Omar, and its deadline changes from Friday to Tuesday."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "title": "Docker Decision",
+              "points": [
+                {
+                  "text": "The Docker decision remains unchanged.",
+                  "evidence": [
+                    {
+                      "segment_id": "s00002",
+                      "quote": "The Docker decision remains unchanged."
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "decisions": [
+            {
+              "text": "The team agreed to use Docker.",
+              "evidence": [
+                {
+                  "segment_id": "s00001",
+                  "quote": "We agreed to use Docker."
+                }
+              ]
+            },
+            {
+              "text": "The Docker decision remains unchanged.",
+              "evidence": [
+                {
+                  "segment_id": "s00002",
+                  "quote": "The Docker decision remains unchanged."
+                }
+              ]
+            }
+          ],
+          "tasks": [
+            {
+              "text": "Omar will send the migration checklist by Tuesday.",
+              "evidence": [
+                {
+                  "segment_id": "s00002",
+                  "quote": "Correction: the migration checklist is reassigned from Sara to Omar, and its deadline changes from Friday to Tuesday."
+                }
+              ],
+              "owner": "Omar",
+              "deadline": "Tuesday"
+            },
+            {
+              "text": "Omar will send the migration checklist by Tuesday.",
+              "evidence": [
+                {
+                  "segment_id": "s00002",
+                  "quote": "Omar will send the migration checklist by Tuesday."
+                }
+              ],
+              "owner": "Omar",
+              "deadline": "Tuesday"
+            }
+          ],
+          "uncertainties": []
+        },
+        "revision_audit": [
+          {
+            "text": "The migration checklist is reassigned from Sara to Omar, and its deadline changes from Friday to Tuesday.",
+            "evidence": [
+              {
+                "segment_id": "s00002",
+                "quote": "Correction: the migration checklist is reassigned from Sara to Omar, and its deadline changes from Friday to Tuesday."
+              }
+            ]
+          },
+          {
+            "text": "Superseded by batch 1 revision which reassigns the task and changes the deadline.",
+            "evidence": [
+              {
+                "segment_id": "s00001",
+                "quote": "Sara will send the migration checklist by Friday."
+              },
+              {
+                "segment_id": "s00002",
+                "quote": "Correction: the migration checklist is reassigned from Sara to Omar, and its deadline changes from Friday to Tuesday."
+              }
+            ]
+          },
+          {
+            "text": "Reclassified from decision to task based on the revision text; owner and deadline extracted from the correction.",
+            "evidence": [
+              {
+                "segment_id": "s00002",
+                "quote": "Correction: the migration checklist is reassigned from Sara to Omar, and its deadline changes from Friday to Tuesday."
+              }
+            ]
+          }
+        ],
+        "calls": [
+          {
+            "key": "454963954847f53b90ff4b8694b6a921edc6122a383262562479e4759da80927",
+            "model": {
+              "tag": "qwen3.5:4b",
+              "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+              "runtime_version": "0.35.1",
+              "parameter_size": "4.2B",
+              "quantization": "Q4_K_M"
+            },
+            "prompt_sha256": "58f4d9139b2f1facb1defdeab10a08225c17bed196d4050be05602a932e71d08",
+            "input_sha256": "66e3aa15dc4c66f606283e55a139e5b7d609cd44864250badcebc5c3d7a1a88f",
+            "schema_sha256": "3870df43ed186a43d1461d9b5d81a847dcf319790b210ff00843ce6679fe679a",
+            "context": 16384,
+            "output_tokens": 2048,
+            "temperature": 0.0,
+            "seed": 0,
+            "thinking": false,
+            "presence_penalty": 0.0,
+            "repeat_penalty": 1.0,
+            "elapsed_seconds": 18.091314400000556,
+            "prompt_tokens": 1828,
+            "generated_tokens": 638,
+            "attempts": 1
+          },
+          {
+            "key": "27c37c229774b6a3cdb3fb1b4d3e8e45904d2390983d76a1f8ed7fc1f5a02da1",
+            "model": {
+              "tag": "qwen3.5:4b",
+              "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+              "runtime_version": "0.35.1",
+              "parameter_size": "4.2B",
+              "quantization": "Q4_K_M"
+            },
+            "prompt_sha256": "58f4d9139b2f1facb1defdeab10a08225c17bed196d4050be05602a932e71d08",
+            "input_sha256": "74890199a8f4c839d496cb27479a46cfd4974304391c8d4247209f578c91c962",
+            "schema_sha256": "3870df43ed186a43d1461d9b5d81a847dcf319790b210ff00843ce6679fe679a",
+            "context": 16384,
+            "output_tokens": 2048,
+            "temperature": 0.0,
+            "seed": 0,
+            "thinking": false,
+            "presence_penalty": 0.0,
+            "repeat_penalty": 1.0,
+            "elapsed_seconds": 16.62446710000222,
+            "prompt_tokens": 1851,
+            "generated_tokens": 956,
+            "attempts": 1
+          },
+          {
+            "key": "556bf34f06abf7f1f9c2a3adefd420c0725ab7ff3d17f57ae87e001a69a9e61b",
+            "model": {
+              "tag": "qwen3.5:4b",
+              "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+              "runtime_version": "0.35.1",
+              "parameter_size": "4.2B",
+              "quantization": "Q4_K_M"
+            },
+            "prompt_sha256": "d795c3cba9be49e10a7eec82552c032322ccd20718449d9204a4148e6922fe05",
+            "input_sha256": "6b1b37278069fdd7dff0b2fa0f0373b13ab0bc09086fefce40b7f21fefebfce3",
+            "schema_sha256": "e16e920590547e3115ab7af9f087d328eb76ddc9fc16b16bf8e0aa3a8c246f16",
+            "context": 16384,
+            "output_tokens": 2048,
+            "temperature": 0.0,
+            "seed": 0,
+            "thinking": false,
+            "presence_penalty": 0.0,
+            "repeat_penalty": 1.0,
+            "elapsed_seconds": 8.047164199997496,
+            "prompt_tokens": 1030,
+            "generated_tokens": 407,
+            "attempts": 1
+          },
+          {
+            "key": "e3f4baf666e2d006f6e8327ffa063565cbd691d0bad61c53d0681976f0c8dfda",
+            "model": {
+              "tag": "qwen3.5:4b",
+              "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+              "runtime_version": "0.35.1",
+              "parameter_size": "4.2B",
+              "quantization": "Q4_K_M"
+            },
+            "prompt_sha256": "bdbf326eb112b5056774320cb0899585c8cb3c1cf481c59e25710adaad6f3e22",
+            "input_sha256": "0711f3f82b35f163827ee4bf2614c3120e89e66bd80aae1766ccf6506f4c6b47",
+            "schema_sha256": "e71e6d960c999b413b77783c8b6cf15debbeb195984bddf83a421c8793114324",
+            "context": 16384,
+            "output_tokens": 2048,
+            "temperature": 0.0,
+            "seed": 0,
+            "thinking": false,
+            "presence_penalty": 0.0,
+            "repeat_penalty": 1.0,
+            "elapsed_seconds": 9.148303699999815,
+            "prompt_tokens": 1262,
+            "generated_tokens": 513,
+            "attempts": 1
+          }
+        ],
+        "warnings": [
+          "Exact evidence matching verifies provenance, not interpretation. Review decisions, tasks and revisions."
+        ]
+      },
+      "score": {
+        "decisions": {
+          "tp": 1,
+          "fp": 1,
+          "fn": 0,
+          "field_errors": []
+        },
+        "tasks": {
+          "tp": 1,
+          "fp": 1,
+          "fn": 0,
+          "field_errors": []
+        },
+        "missing_revision_anchors": [],
+        "passed": false
+      },
+      "wall_seconds": 52.01622669999779,
+      "measurements": [
+        {
+          "model": "qwen3.5:4b",
+          "options": {
+            "temperature": 0,
+            "seed": 0,
+            "num_ctx": 16384,
+            "num_predict": 2048,
+            "presence_penalty": 0,
+            "repeat_penalty": 1
+          },
+          "ram_before": {
+            "total_bytes": 16873545728,
+            "available_bytes": 4371439616
+          },
+          "done_reason": "stop",
+          "total_duration": 17977504700,
+          "load_duration": 6314411600,
+          "prompt_eval_count": 1828,
+          "prompt_eval_duration": 1151151000,
+          "eval_count": 638,
+          "eval_duration": 10446006000,
+          "wall_seconds": 18.027542999996513,
+          "ram_after": {
+            "total_bytes": 16873545728,
+            "available_bytes": 3297927168
+          },
+          "resident_models": [
+            {
+              "name": "qwen3.5:4b",
+              "model": "qwen3.5:4b",
+              "size": 3629142506,
+              "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+              "details": {
+                "parent_model": "",
+                "format": "gguf",
+                "family": "qwen35",
+                "families": [
+                  "qwen35"
+                ],
+                "parameter_size": "4.2B",
+                "quantization_level": "Q4_K_M"
+              },
+              "expires_at": "2026-10-05T14:21:12.1513858+05:30",
+              "size_vram": 3629142506,
+              "context_length": 16384
+            }
+          ]
+        },
+        {
+          "model": "qwen3.5:4b",
+          "options": {
+            "temperature": 0,
+            "seed": 0,
+            "num_ctx": 16384,
+            "num_predict": 2048,
+            "presence_penalty": 0,
+            "repeat_penalty": 1
+          },
+          "ram_before": {
+            "total_bytes": 16873545728,
+            "available_bytes": 3298226176
+          },
+          "done_reason": "stop",
+          "total_duration": 16522372000,
+          "load_duration": 11580800,
+          "prompt_eval_count": 1851,
+          "prompt_eval_duration": 534397000,
+          "eval_count": 956,
+          "eval_duration": 15792584000,
+          "wall_seconds": 16.573435400001472,
+          "ram_after": {
+            "total_bytes": 16873545728,
+            "available_bytes": 2878222336
+          },
+          "resident_models": [
+            {
+              "name": "qwen3.5:4b",
+              "model": "qwen3.5:4b",
+              "size": 3629142506,
+              "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+              "details": {
+                "parent_model": "",
+                "format": "gguf",
+                "family": "qwen35",
+                "families": [
+                  "qwen35"
+                ],
+                "parameter_size": "4.2B",
+                "quantization_level": "Q4_K_M"
+              },
+              "expires_at": "2026-10-05T14:21:28.8103961+05:30",
+              "size_vram": 3629142506,
+              "context_length": 16384
+            }
+          ]
+        },
+        {
+          "model": "qwen3.5:4b",
+          "options": {
+            "temperature": 0,
+            "seed": 0,
+            "num_ctx": 16384,
+            "num_predict": 2048,
+            "presence_penalty": 0,
+            "repeat_penalty": 1
+          },
+          "ram_before": {
+            "total_bytes": 16873545728,
+            "available_bytes": 2872852480
+          },
+          "done_reason": "stop",
+          "total_duration": 7954254800,
+          "load_duration": 7760600,
+          "prompt_eval_count": 1030,
+          "prompt_eval_duration": 657465000,
+          "eval_count": 407,
+          "eval_duration": 7061505000,
+          "wall_seconds": 7.997502699996403,
+          "ram_after": {
+            "total_bytes": 16873545728,
+            "available_bytes": 2591600640
+          },
+          "resident_models": [
+            {
+              "name": "qwen3.5:4b",
+              "model": "qwen3.5:4b",
+              "size": 3629142506,
+              "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+              "details": {
+                "parent_model": "",
+                "format": "gguf",
+                "family": "qwen35",
+                "families": [
+                  "qwen35"
+                ],
+                "parameter_size": "4.2B",
+                "quantization_level": "Q4_K_M"
+              },
+              "expires_at": "2026-10-05T14:21:36.8712579+05:30",
+              "size_vram": 3629142506,
+              "context_length": 16384
+            }
+          ]
+        },
+        {
+          "model": "qwen3.5:4b",
+          "options": {
+            "temperature": 0,
+            "seed": 0,
+            "num_ctx": 16384,
+            "num_predict": 2048,
+            "presence_penalty": 0,
+            "repeat_penalty": 1
+          },
+          "ram_before": {
+            "total_bytes": 16873545728,
+            "available_bytes": 2603347968
+          },
+          "done_reason": "stop",
+          "total_duration": 9069189300,
+          "load_duration": 4677300,
+          "prompt_eval_count": 1262,
+          "prompt_eval_duration": 571154000,
+          "eval_count": 513,
+          "eval_duration": 8363916999,
+          "wall_seconds": 9.115626699996938,
+          "ram_after": {
+            "total_bytes": 16873545728,
+            "available_bytes": 2500349952
+          },
+          "resident_models": [
+            {
+              "name": "qwen3.5:4b",
+              "model": "qwen3.5:4b",
+              "size": 3629142506,
+              "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+              "details": {
+                "parent_model": "",
+                "format": "gguf",
+                "family": "qwen35",
+                "families": [
+                  "qwen35"
+                ],
+                "parameter_size": "4.2B",
+                "quantization_level": "Q4_K_M"
+              },
+              "expires_at": "2026-10-05T14:21:46.0640085+05:30",
+              "size_vram": 3629142506,
+              "context_length": 16384
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "refinement": {
+      "cases": 0,
+      "validated": 0,
+      "passed": 0,
+      "median_case_wall_seconds": null,
+      "attempts": 0
+    },
+    "documentation": {
+      "cases": 2,
+      "validated": 2,
+      "passed": 0,
+      "median_case_wall_seconds": 58.87848094999572,
+      "attempts": 9,
+      "decisions": {
+        "tp": 1,
+        "fp": 3,
+        "fn": 0,
+        "precision": 0.25,
+        "recall": 1.0
+      },
+      "tasks": {
+        "tp": 2,
+        "fp": 2,
+        "fn": 1,
+        "precision": 0.5,
+        "recall": 0.6666666666666666
+      },
+      "task_field_errors": 0
+    }
+  },
+  "finished_at": "2026-10-05T08:46:46.120707+00:00"
+}

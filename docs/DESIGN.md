@@ -46,6 +46,8 @@ See [PHASES.md](PHASES.md) for current status. Commit after each phase and each 
 
 This is a deliberate local default, not a claim that these are universally best. A hosted quality profile is a future decision if local extraction fails the quality gate. The application must not silently change models or fall back to fabricated output.
 
+The [local LLM regression study](LLM_EVALUATION.md) compares both roles using Qwen 4B, Qwen 9B and Granite H-Micro 3B. It identifies Qwen 4B as the preferred lightweight shared-weight candidate for further evaluation, without changing this default or the production distinct-weight policy. Authored regression cases do not establish representative meeting accuracy.
+
 Verified primary sources:
 
 - [NVIDIA Parakeet v2 model card](https://huggingface.co/nvidia/parakeet-tdt-0.6b-v2): English ASR, 600M parameters. Published base-model scores are not our INT8 deployment's scores.

@@ -1,0 +1,432 @@
+{
+  "identity_sha256": "d9d7a8e7b4b4f1870354d21ff2859dc2d2594824bc6d456e41926a2a429250ce",
+  "identity": {
+    "model": {
+      "tag": "qwen3.5:4b",
+      "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+      "runtime_version": "0.35.1",
+      "parameter_size": "4.2B",
+      "quantization": "Q4_K_M"
+    },
+    "cpu": true,
+    "context": 8192,
+    "output_tokens": 2048,
+    "cases": [
+      [
+        "refinement",
+        {
+          "id": "protected_facts",
+          "glossary": "dock her => Docker",
+          "texts": [
+            "Maya will not deploy dock her tomorrow. The budget is 15, not 50. Version 2.1 must stay."
+          ],
+          "expected_texts": [
+            "Maya will not deploy Docker tomorrow. The budget is 15, not 50. Version 2.1 must stay."
+          ]
+        }
+      ],
+      [
+        "documentation",
+        {
+          "id": "explicit_commitments",
+          "texts": [
+            "We agreed to use Docker. Maya will send the release report by Friday. We have not agreed to deploy tomorrow."
+          ],
+          "decisions": [
+            {
+              "pattern": "docker",
+              "anchor": "We agreed to use Docker."
+            }
+          ],
+          "tasks": [
+            {
+              "pattern": "report",
+              "anchor": "Maya will send the release report by Friday.",
+              "owner": "Maya",
+              "deadline": "Friday"
+            }
+          ]
+        }
+      ]
+    ],
+    "prompt_sha256": {
+      "refine": "82a0605e89cafc3d620e833143d8378d7d6ab3f71b593507b50aaae067d12082",
+      "document": "394b5c30231e38385db9106abe1713775ce5c85c4a9742dc3a7665073a0902f2",
+      "reconcile": "e48ebbda3de61892b1ffde84ac5249bc4a9bd6756771dbe335802f6748e41402",
+      "consolidate": "943c9e1714571ebb017028a23bf0860f81af9c3d84c0c09b69f6f880eab082e1"
+    }
+  },
+  "model_package_bytes": 3324173934,
+  "started_at": "2026-10-05T08:51:16.181268+00:00",
+  "host": "Windows-11-10.0.26200-SP0",
+  "logical_cpus": 28,
+  "ram_at_start": {
+    "total_bytes": 16873545728,
+    "available_bytes": 4504838144
+  },
+  "git_head": "65c70204696966ed0b547bcf607d55ed306bc7f9",
+  "scope": "Authored English LLM regression cases, not recorded meetings or an ASR benchmark. Expectations are fixed before inference. Synthetic segment times have no audio alignment.",
+  "jobs": [
+    {
+      "role": "refinement",
+      "id": "protected_facts",
+      "meeting_id": "bdc2553e-e42f-4f23-a728-11c9704d91c3",
+      "status": "complete",
+      "output": {
+        "schema_version": "1.0",
+        "source_sha256": "3080aebcbfbe905fda48b48cce41002adacbece4dde51a50b53c5dae66b98cc6",
+        "policy_sha256": "e57ae41802518b8857dd60ca3ea6e22e7ffcd0da23e70e1c7321967ba37ea444",
+        "created_at": "2026-10-05T08:51:33.866813+00:00",
+        "segments": [
+          {
+            "id": "s00001",
+            "start": 0.0,
+            "end": 30.0,
+            "text": "Maya will not deploy Docker tomorrow. The budget is 15, not 50. Version 2.1 must stay."
+          }
+        ],
+        "accepted": [
+          {
+            "segment_id": "s00001",
+            "start": 21,
+            "end": 29,
+            "original": "dock her",
+            "replacement": "Docker",
+            "reason": "Corrected alias to canonical term per glossary"
+          }
+        ],
+        "rejected": [],
+        "calls": [
+          {
+            "key": "ddfd51e0616fd9d845debb588e09a7cdeb4b74187d355a67d415aea4c0e0d649",
+            "model": {
+              "tag": "qwen3.5:4b",
+              "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+              "runtime_version": "0.35.1",
+              "parameter_size": "4.2B",
+              "quantization": "Q4_K_M"
+            },
+            "prompt_sha256": "cac298a4702e7b57ea57a5471ae389881de308a0343057e76975d89c919f9581",
+            "input_sha256": "89a10c4cfe605372be823c4fa5c2e3643e82994f25794f555e11ac52e810813c",
+            "schema_sha256": "09b0f26550718f3d68a0d1a8a5d672491e5a73acec334aaf5fe3fe189939530f",
+            "context": 8192,
+            "output_tokens": 2048,
+            "temperature": 0.0,
+            "seed": 0,
+            "thinking": false,
+            "presence_penalty": 0.0,
+            "repeat_penalty": 1.0,
+            "elapsed_seconds": 17.448641999995743,
+            "prompt_tokens": 440,
+            "generated_tokens": 38,
+            "attempts": 1
+          }
+        ],
+        "warnings": [
+          "Automatic edit guards cannot establish meaning. Review accepted and rejected edits."
+        ]
+      },
+      "score": {
+        "passed": true,
+        "accepted": 1,
+        "rejected": 0
+      },
+      "wall_seconds": 17.532139100003405,
+      "measurements": [
+        {
+          "model": "qwen3.5:4b",
+          "options": {
+            "temperature": 0,
+            "seed": 0,
+            "num_ctx": 8192,
+            "num_predict": 2048,
+            "presence_penalty": 0,
+            "repeat_penalty": 1,
+            "num_gpu": 0
+          },
+          "ram_before": {
+            "total_bytes": 16873545728,
+            "available_bytes": 4374736896
+          },
+          "done_reason": "stop",
+          "total_duration": 17396873800,
+          "load_duration": 8252290700,
+          "prompt_eval_count": 440,
+          "prompt_eval_duration": 5340721000,
+          "eval_count": 38,
+          "eval_duration": 3773101000,
+          "wall_seconds": 17.412077200002386,
+          "ram_after": {
+            "total_bytes": 16873545728,
+            "available_bytes": 1558351872
+          },
+          "resident_models": [
+            {
+              "name": "qwen3.5:4b",
+              "model": "qwen3.5:4b",
+              "size": 3355422227,
+              "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+              "details": {
+                "parent_model": "",
+                "format": "gguf",
+                "family": "qwen35",
+                "families": [
+                  "qwen35"
+                ],
+                "parameter_size": "4.2B",
+                "quantization_level": "Q4_K_M"
+              },
+              "expires_at": "2026-10-05T14:26:33.7529284+05:30",
+              "size_vram": 0,
+              "context_length": 8192
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "role": "documentation",
+      "id": "explicit_commitments",
+      "meeting_id": "3f903111-9d38-4b2e-b81f-6f488cbe02eb",
+      "status": "complete",
+      "output": {
+        "schema_version": "1.0",
+        "source_sha256": "3e8deeddafec80520d79871c50bebaf59d9e579935d639507757c3b1a6423bbf",
+        "policy_sha256": "19af6146fbc4404d68f381d6231697a3c0ae0521ecf1ef9a801686119d4f41fd",
+        "created_at": "2026-10-05T08:53:03.683581+00:00",
+        "record": {
+          "summary": [
+            {
+              "text": "The group agreed to use Docker.",
+              "evidence": [
+                {
+                  "segment_id": "s00001",
+                  "quote": "We agreed to use Docker."
+                }
+              ]
+            },
+            {
+              "text": "Maya committed to sending the release report by Friday.",
+              "evidence": [
+                {
+                  "segment_id": "s00001",
+                  "quote": "Maya will send the release report by Friday."
+                }
+              ]
+            },
+            {
+              "text": "The group has not agreed to deploy tomorrow.",
+              "evidence": [
+                {
+                  "segment_id": "s00001",
+                  "quote": "We have not agreed to deploy tomorrow."
+                }
+              ]
+            }
+          ],
+          "topics": [
+            {
+              "title": "Technology Stack",
+              "points": [
+                {
+                  "text": "The group agreed to use Docker.",
+                  "evidence": [
+                    {
+                      "segment_id": "s00001",
+                      "quote": "We agreed to use Docker."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "title": "Release Reporting",
+              "points": [
+                {
+                  "text": "Maya will send the release report by Friday.",
+                  "evidence": [
+                    {
+                      "segment_id": "s00001",
+                      "quote": "Maya will send the release report by Friday."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "title": "Deployment Schedule",
+              "points": [
+                {
+                  "text": "The group has not agreed to deploy tomorrow.",
+                  "evidence": [
+                    {
+                      "segment_id": "s00001",
+                      "quote": "We have not agreed to deploy tomorrow."
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "decisions": [
+            {
+              "text": "The group agreed to use Docker.",
+              "evidence": [
+                {
+                  "segment_id": "s00001",
+                  "quote": "We agreed to use Docker."
+                }
+              ]
+            }
+          ],
+          "tasks": [
+            {
+              "text": "Maya will send the release report by Friday.",
+              "evidence": [
+                {
+                  "segment_id": "s00001",
+                  "quote": "Maya will send the release report by Friday."
+                }
+              ],
+              "owner": "Maya",
+              "deadline": "Friday"
+            }
+          ],
+          "uncertainties": [
+            "The group has not agreed to deploy tomorrow."
+          ]
+        },
+        "revision_audit": [],
+        "calls": [
+          {
+            "key": "a5bc1c68da7e17550ee492d70f5b1249605badf6365c6f4d850452c2d70cfd68",
+            "model": {
+              "tag": "qwen3.5:4b",
+              "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+              "runtime_version": "0.35.1",
+              "parameter_size": "4.2B",
+              "quantization": "Q4_K_M"
+            },
+            "prompt_sha256": "58f4d9139b2f1facb1defdeab10a08225c17bed196d4050be05602a932e71d08",
+            "input_sha256": "bf555a14f60a9a3dbaa55c2b5c14554d93ccba31459402df2f50bd4bda3cbe0e",
+            "schema_sha256": "3870df43ed186a43d1461d9b5d81a847dcf319790b210ff00843ce6679fe679a",
+            "context": 8192,
+            "output_tokens": 2048,
+            "temperature": 0.0,
+            "seed": 0,
+            "thinking": false,
+            "presence_penalty": 0.0,
+            "repeat_penalty": 1.0,
+            "elapsed_seconds": 89.442366700001,
+            "prompt_tokens": 1163,
+            "generated_tokens": 687,
+            "attempts": 1
+          }
+        ],
+        "warnings": [
+          "Exact evidence matching verifies provenance, not interpretation. Review decisions, tasks and revisions."
+        ]
+      },
+      "score": {
+        "decisions": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0,
+          "field_errors": []
+        },
+        "tasks": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0,
+          "field_errors": []
+        },
+        "missing_revision_anchors": [],
+        "passed": true
+      },
+      "wall_seconds": 89.51146359999984,
+      "measurements": [
+        {
+          "model": "qwen3.5:4b",
+          "options": {
+            "temperature": 0,
+            "seed": 0,
+            "num_ctx": 8192,
+            "num_predict": 2048,
+            "presence_penalty": 0,
+            "repeat_penalty": 1,
+            "num_gpu": 0
+          },
+          "ram_before": {
+            "total_bytes": 16873545728,
+            "available_bytes": 5496786944
+          },
+          "done_reason": "stop",
+          "total_duration": 89331649400,
+          "load_duration": 8006298500,
+          "prompt_eval_count": 1163,
+          "prompt_eval_duration": 13180793000,
+          "eval_count": 687,
+          "eval_duration": 68107869000,
+          "wall_seconds": 89.38888650000445,
+          "ram_after": {
+            "total_bytes": 16873545728,
+            "available_bytes": 1530978304
+          },
+          "resident_models": [
+            {
+              "name": "qwen3.5:4b",
+              "model": "qwen3.5:4b",
+              "size": 3355422227,
+              "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+              "details": {
+                "parent_model": "",
+                "format": "gguf",
+                "family": "qwen35",
+                "families": [
+                  "qwen35"
+                ],
+                "parameter_size": "4.2B",
+                "quantization_level": "Q4_K_M"
+              },
+              "expires_at": "2026-10-05T14:28:03.5790229+05:30",
+              "size_vram": 0,
+              "context_length": 8192
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "refinement": {
+      "cases": 1,
+      "validated": 1,
+      "passed": 1,
+      "median_case_wall_seconds": 17.532139100003405,
+      "attempts": 1
+    },
+    "documentation": {
+      "cases": 1,
+      "validated": 1,
+      "passed": 1,
+      "median_case_wall_seconds": 89.51146359999984,
+      "attempts": 1,
+      "decisions": {
+        "tp": 1,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1.0,
+        "recall": 1.0
+      },
+      "tasks": {
+        "tp": 1,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1.0,
+        "recall": 1.0
+      },
+      "task_field_errors": 0
+    }
+  },
+  "finished_at": "2026-10-05T08:53:03.688094+00:00"
+}

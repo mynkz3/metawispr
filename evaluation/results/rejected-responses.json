@@ -1,0 +1,386 @@
+[
+  {
+    "run": "qwen9-gpu",
+    "case": "cross_group_reassignment",
+    "role": "documentation",
+    "call_key": "0ba884b6753d8b51a71c951837d9e5267ee4f29c113a63755a604fea1da59edb-1",
+    "error": "tasks-1-0: retirement/replacement needs later supporting evidence; use keep for unchanged items",
+    "response": {
+      "model": "qwen3.5:9b",
+      "created_at": "2026-10-05T08:42:44.2543599Z",
+      "message": {
+        "role": "assistant",
+        "content": "{\n  \"resolutions\": [\n    {\n      \"candidate_id\": \"decisions-0-0\",\n      \"disposition\": \"keep\",\n      \"replacement\": null,\n      \"evidence\": [\n        {\n          \"segment_id\": \"s00001\",\n          \"quote\": \"We agreed to use Docker.\"\n        }\n      ],\n      \"reason\": \"The decision to use Docker remains active and unchanged. No later revisions affect this specific commitment.\"\n    },\n    {\n      \"candidate_id\": \"tasks-0-0\",\n      \"disposition\": \"retire\",\n      \"replacement\": null,\n      \"evidence\": [\n        {\n          \"segment_id\": \"s00001\",\n          \"quote\": \"Sara will send the migration checklist by Friday.\"\n        },\n        {\n          \"segment_id\": \"s00002\",\n          \"quote\": \"Correction: the migration checklist is reassigned from Sara to Omar, and its deadline changes from Friday to Tuesday.\"\n        }\n      ],\n      \"reason\": \"This task is superseded by the revision directive which explicitly reassigns the migration checklist from Sara to Omar and changes the deadline from Friday to Tuesday. The original assignment is now part of history.\"\n    },\n    {\n      \"candidate_id\": \"tasks-1-0\",\n      \"disposition\": \"replace\",\n      \"replacement\": {\n        \"kind\": \"task\",\n        \"text\": \"Omar will send the migration checklist by Tuesday.\",\n        \"owner\": \"Omar\",\n        \"deadline\": \"Tuesday\",\n        \"evidence\": [\n          {\n            \"segment_id\": \"s00002\",\n            \"quote\": \"Omar will send the migration checklist by Tuesday.\"\n          },\n          {\n            \"segment_id\": \"s00002\",\n            \"quote\": \"Correction: the migration checklist is reassigned from Sara to Omar, and its deadline changes from Friday to Tuesday.\"\n          }\n        ]\n      },\n      \"evidence\": [\n        {\n          \"segment_id\": \"s00002\",\n          \"quote\": \"Omar will send the migration checklist by Tuesday.\"\n        },\n        {\n          \"segment_id\": \"s00002\",\n          \"quote\": \"Correction: the migration checklist is reassigned from Sara to Omar, and its deadline changes from Friday to Tuesday.\"\n        }\n      ],\n      \"reason\": \"This item represents the corrected state of the migration checklist task. It incorporates the revision directive which confirms the reassignment to Omar and the new Tuesday deadline. The text and metadata are consistent with the latest authoritative statement.\"\n    }\n  ]\n}"
+      },
+      "done": true,
+      "done_reason": "stop",
+      "total_duration": 19545068600,
+      "load_duration": 5619200,
+      "prompt_eval_count": 895,
+      "prompt_eval_cached_count": 0,
+      "prompt_eval_duration": 673795000,
+      "eval_count": 605,
+      "eval_duration": 18725465000
+    }
+  },
+  {
+    "run": "granite-gpu",
+    "case": "unspecified_fields",
+    "role": "documentation",
+    "call_key": "12bef8428ddaa95951cd2899239e8be833fe4d87cab563754b48f725e87d3832-1",
+    "error": "Evidence does not match segment s00001",
+    "response": {
+      "model": "metawispr-granite4-h-micro:q4_k_m",
+      "created_at": "2026-10-05T09:07:07.7496063Z",
+      "message": {
+        "role": "assistant",
+        "content": "{\n  \"record\": {\n    \"decisions\": [\n      {\n        \"evidence\": [\n          {\n            \"quote\": \"We have not agreed to launch\",\n            \"segment_id\": \"s00001\"\n          }\n        ],\n        \"text\": \"We have not agreed to launch\"\n      }\n    ],\n    \"summary\": [\n      {\n        \"evidence\": [\n          {\n            \"quote\": \"Action item: check the logs. We have not assigned an owner or a deadline. Sara is attending this meeting.\",\n            \"segment_id\": \"s00001\"\n          }\n        ],\n        \"text\": \"Action item: check the logs. We have not assigned an owner or a deadline. Sara is attending this meeting.\"\n      }\n    ],\n    \"tasks\": [\n      {\n        \"deadline\": \"null\",\n        \"evidence\": [\n          {\n            \"quote\": \"Action item: check the logs. We have not assigned an owner or a deadline. Sara is attending this meeting.\",\n            \"segment_id\": \"s00001\"\n          }\n        ],\n        \"owner\": \"null\",\n        \"text\": \"check the logs\"\n      }\n    ],\n    \"topics\": [\n      {\n        \"points\": [\n          {\n            \"evidence\": [\n              {\n                \"quote\": \"We have not assigned an owner or a deadline\",\n                \"segment_id\": \"s00001\"\n              },\n              {\n                \"quote\": \"Sara is attending this meeting\",\n                \"segment_id\": \"s00001\"\n              }\n            ],\n            \"text\": \"We have not assigned an owner or a deadline. Sara is attending this meeting.\"\n          }\n        ],\n        \"title\": \"Meeting agenda and attendance\"\n      }\n    ],\n    \"uncertainties\": []\n  },\n  \"revisions\": []\n}"
+      },
+      "done": true,
+      "done_reason": "stop",
+      "total_duration": 7454661200,
+      "load_duration": 2358511700,
+      "prompt_eval_count": 1125,
+      "prompt_eval_cached_count": 0,
+      "prompt_eval_duration": 605023000,
+      "eval_count": 370,
+      "eval_duration": 4452751000
+    }
+  },
+  {
+    "run": "granite-gpu",
+    "case": "unspecified_fields",
+    "role": "documentation",
+    "call_key": "12bef8428ddaa95951cd2899239e8be833fe4d87cab563754b48f725e87d3832-2",
+    "error": "Evidence does not match segment s00001",
+    "response": {
+      "model": "metawispr-granite4-h-micro:q4_k_m",
+      "created_at": "2026-10-05T09:07:13.0365347Z",
+      "message": {
+        "role": "assistant",
+        "content": "{\n  \"record\": {\n    \"decisions\": [\n      {\n        \"evidence\": [\n          {\n            \"quote\": \"We have not agreed to launch\",\n            \"segment_id\": \"s00001\"\n          }\n        ],\n        \"text\": \"We have not agreed to launch\"\n      }\n    ],\n    \"summary\": [\n      {\n        \"evidence\": [\n          {\n            \"quote\": \"Action item: check the logs. We have not assigned an owner or a deadline. Sara is attending this meeting.\",\n            \"segment_id\": \"s00001\"\n          }\n        ],\n        \"text\": \"Action item: check the logs. We have not assigned an owner or a deadline. Sara is attending this meeting.\"\n      }\n    ],\n    \"tasks\": [\n      {\n        \"deadline\": \"null\",\n        \"evidence\": [\n          {\n            \"quote\": \"Action item: check the logs. We have not assigned an owner or a deadline. Sara is attending this meeting.\",\n            \"segment_id\": \"s00001\"\n          }\n        ],\n        \"owner\": \"null\",\n        \"text\": \"Check the logs\"\n      }\n    ],\n    \"topics\": [\n      {\n        \"points\": [\n          {\n            \"evidence\": [\n              {\n                \"quote\": \"We have not assigned an owner or a deadline\",\n                \"segment_id\": \"s00001\"\n              }\n            ],\n            \"text\": \"We have not assigned an owner or a deadline\"\n          },\n          {\n            \"evidence\": [\n              {\n                \"quote\": \"Sara is attending this meeting\",\n                \"segment_id\": \"s00001\"\n              }\n            ],\n            \"text\": \"Sara is attending this meeting\"\n          }\n        ],\n        \"title\": \"Meeting agenda and attendance\"\n      }\n    ],\n    \"uncertainties\": []\n  },\n  \"revisions\": []\n}"
+      },
+      "done": true,
+      "done_reason": "stop",
+      "total_duration": 5154466400,
+      "load_duration": 7525900,
+      "prompt_eval_count": 1149,
+      "prompt_eval_cached_count": 1121,
+      "prompt_eval_duration": 277159000,
+      "eval_count": 388,
+      "eval_duration": 4810006000
+    }
+  },
+  {
+    "run": "granite-gpu",
+    "case": "within_group_withdrawal",
+    "role": "documentation",
+    "call_key": "5a7e3fa87c2e7a7c6a68f0844cc3a36dafb684a81776b48f5aa540e2eb3b1992-1",
+    "error": "Evidence does not match segment s00001",
+    "response": {
+      "model": "metawispr-granite4-h-micro:q4_k_m",
+      "created_at": "2026-10-05T09:07:47.7535233Z",
+      "message": {
+        "role": "assistant",
+        "content": "{\n  \"record\": {\n    \"decisions\": [\n      {\n        \"evidence\": [\n          {\n            \"quote\": \"We agreed to launch on Friday.\",\n            \"segment_id\": \"s00001\"\n          }\n        ],\n        \"text\": \"We agreed to launch on Friday.\"\n      },\n      {\n        \"evidence\": [\n          {\n            \"quote\": \"We withdraw the Friday launch decision.\",\n            \"segment_id\": \"s00001\"\n          }\n        ],\n        \"text\": \"We withdraw the Friday launch decision.\"\n      }\n    ],\n    \"summary\": [\n      {\n        \"evidence\": [\n          {\n            \"quote\": \"We agreed to launch on Friday.\",\n            \"segment_id\": \"s00001\"\n          }\n        ],\n        \"text\": \"We agreed to launch on Friday.\"\n      },\n      {\n        \"evidence\": [\n          {\n            \"quote\": \"We withdraw the Friday launch decision.\",\n            \"segment_id\": \"s00001\"\n          }\n        ],\n        \"text\": \"We withdraw the Friday launch decision.\"\n      }\n    ],\n    \"tasks\": [\n      {\n        \"deadline\": \"Friday\",\n        \"evidence\": [\n          {\n            \"quote\": \"Maya will send the release report by Friday.\",\n            \"segment_id\": \"s00001\"\n          }\n        ],\n        \"owner\": \"Maya\",\n        \"text\": \"Maya will send the release report by Friday.\"\n      },\n      {\n        \"deadline\": \"Monday\",\n        \"evidence\": [\n          {\n            \"quote\": \"Alex will send the revised draft by Monday.\",\n            \"segment_id\": \"s00001\"\n          }\n        ],\n        \"owner\": \"Alex\",\n        \"text\": \"Alex will send the revised draft by Monday.\"\n      }\n    ],\n    \"topics\": [\n      {\n        \"points\": [\n          {\n            \"evidence\": [\n              {\n                \"quote\": \"We agreed to launch on Friday.\",\n                \"segment_id\": \"s00001\"\n              }\n            ],\n            \"text\": \"We agreed to launch on Friday.\"\n          },\n          {\n            \"evidence\": [\n              {\n                \"quote\": \"We withdraw the Friday launch decision.\",\n                \"segment_id\": \"s00001\"\n              }\n            ],\n            \"text\": \"We withdraw the Friday launch decision.\"\n          }\n        ],\n        \"title\": \"Launch decision\"\n      },\n      {\n        \"points\": [\n          {\n            \"evidence\": [\n              {\n                \"quote\": \"Alex will send the revised draft by Monday.\",\n                \"segment_id\": \"s00001\"\n              }\n            ],\n            \"text\": \"Alex will send the revised draft by Monday.\"\n          }\n        ],\n        \"title\": \"Draft delivery\"\n      }\n    ],\n    \"uncertainties\": []\n  },\n  \"revisions\": [\n    {\n      \"evidence\": [\n        {\n          \"quote\": \"Instead, Alex will send the revised draft by Monday.\",\n          \"segment_id\": \"s00001\"\n        }\n      ],\n      \"text\": \"Instead, Alex will send the revised draft by Monday.\"\n    }\n  ]\n}"
+      },
+      "done": true,
+      "done_reason": "stop",
+      "total_duration": 10608752900,
+      "load_duration": 2326140800,
+      "prompt_eval_count": 1150,
+      "prompt_eval_cached_count": 0,
+      "prompt_eval_duration": 640668000,
+      "eval_count": 643,
+      "eval_duration": 7589452000
+    }
+  },
+  {
+    "run": "granite-gpu",
+    "case": "within_group_withdrawal",
+    "role": "documentation",
+    "call_key": "5a7e3fa87c2e7a7c6a68f0844cc3a36dafb684a81776b48f5aa540e2eb3b1992-2",
+    "error": "Evidence does not match segment s00001",
+    "response": {
+      "model": "metawispr-granite4-h-micro:q4_k_m",
+      "created_at": "2026-10-05T09:07:53.6576071Z",
+      "message": {
+        "role": "assistant",
+        "content": "{\n  \"record\": {\n    \"decisions\": [\n      {\n        \"evidence\": [\n          {\n            \"quote\": \"We agreed to launch on Friday.\",\n            \"segment_id\": \"s00001\"\n          },\n          {\n            \"quote\": \"Later in this meeting, we withdraw the Friday launch decision.\",\n            \"segment_id\": \"s00001\"\n          }\n        ],\n        \"text\": \"We agreed to launch on Friday.\"\n      }\n    ],\n    \"summary\": [\n      {\n        \"evidence\": [\n          {\n            \"quote\": \"We agreed to launch on Friday.\",\n            \"segment_id\": \"s00001\"\n          }\n        ],\n        \"text\": \"We agreed to launch on Friday.\"\n      }\n    ],\n    \"tasks\": [\n      {\n        \"deadline\": \"Friday\",\n        \"evidence\": [\n          {\n            \"quote\": \"Maya will send the release report by Friday.\",\n            \"segment_id\": \"s00001\"\n          }\n        ],\n        \"owner\": \"Maya\",\n        \"text\": \"Maya will send the release report by Friday.\"\n      },\n      {\n        \"deadline\": \"Monday\",\n        \"evidence\": [\n          {\n            \"quote\": \"Instead, Alex will send the revised draft by Monday.\",\n            \"segment_id\": \"s00001\"\n          }\n        ],\n        \"owner\": \"Alex\",\n        \"text\": \"Alex will send the revised draft by Monday.\"\n      }\n    ],\n    \"topics\": [\n      {\n        \"points\": [\n          {\n            \"evidence\": [\n              {\n                \"quote\": \"We agreed to launch on Friday.\",\n                \"segment_id\": \"s00001\"\n              }\n            ],\n            \"text\": \"We agreed to launch on Friday.\"\n          }\n        ],\n        \"title\": \"Launch Date\"\n      }\n    ],\n    \"uncertainties\": []\n  },\n  \"revisions\": [\n    {\n      \"evidence\": [\n        {\n          \"quote\": \"Instead, Alex will send the revised draft by Monday.\",\n          \"segment_id\": \"s00001\"\n        }\n      ],\n      \"text\": \"Instead, Alex will send the revised draft by Monday.\"\n    }\n  ]\n}"
+      },
+      "done": true,
+      "done_reason": "stop",
+      "total_duration": 5818342200,
+      "load_duration": 6125400,
+      "prompt_eval_count": 1174,
+      "prompt_eval_cached_count": 1146,
+      "prompt_eval_duration": 256017999,
+      "eval_count": 453,
+      "eval_duration": 5495410000
+    }
+  },
+  {
+    "run": "granite-gpu",
+    "case": "cross_group_withdrawal",
+    "role": "documentation",
+    "call_key": "29f861be9885849cc0448ebb20f263f92bcc1828c4369e99833b488abda6c0f3-1",
+    "error": "Task deadline must be null or literal text in its supporting quotes",
+    "response": {
+      "model": "metawispr-granite4-h-micro:q4_k_m",
+      "created_at": "2026-10-05T09:08:08.8106109Z",
+      "message": {
+        "role": "assistant",
+        "content": "{\n  \"record\": {\n    \"decisions\": [\n      {\n        \"evidence\": [\n          {\n            \"quote\": \"We agreed to launch on Friday.\",\n            \"segment_id\": \"s00001\"\n          }\n        ],\n        \"text\": \"We agreed to launch on Friday.\"\n      }\n    ],\n    \"summary\": [\n      {\n        \"evidence\": [\n          {\n            \"quote\": \"The team reviewed background context.\",\n            \"segment_id\": \"s00001\"\n          }\n        ],\n        \"text\": \"The team reviewed background context.\"\n      }\n    ],\n    \"tasks\": [\n      {\n        \"deadline\": \"Friday\",\n        \"evidence\": [\n          {\n            \"quote\": \"Maya will send the release report by Friday.\",\n            \"segment_id\": \"s00001\"\n          }\n        ],\n        \"owner\": \"Maya\",\n        \"text\": \"Maya will send the release report by Friday.\"\n      },\n      {\n        \"deadline\": \"Friday\",\n        \"evidence\": [\n          {\n            \"quote\": \"We agreed to launch on Friday.\",\n            \"segment_id\": \"s00001\"\n          }\n        ],\n        \"owner\": null,\n        \"text\": \"We agreed to launch on Friday.\"\n      },\n      {\n        \"deadline\": \"null\",\n        \"evidence\": [\n          {\n            \"quote\": \"Action item: check the logs.\",\n            \"segment_id\": \"s00001\"\n          }\n        ],\n        \"owner\": null,\n        \"text\": \"Action item: check the logs.\"\n      }\n    ],\n    \"topics\": [\n      {\n        \"points\": [\n          {\n            \"evidence\": [\n              {\n                \"quote\": \"The team reviewed background context.\",\n                \"segment_id\": \"s00001\"\n              }\n            ],\n            \"text\": \"The team reviewed background context.\"\n          }\n        ],\n        \"title\": \"Background context review\"\n      }\n    ],\n    \"uncertainties\": []\n  },\n  \"revisions\": []\n}"
+      },
+      "done": true,
+      "done_reason": "stop",
+      "total_duration": 8038121500,
+      "load_duration": 2358087300,
+      "prompt_eval_count": 1151,
+      "prompt_eval_cached_count": 0,
+      "prompt_eval_duration": 654868000,
+      "eval_count": 415,
+      "eval_duration": 4968801000
+    }
+  },
+  {
+    "run": "granite-gpu",
+    "case": "cross_group_withdrawal",
+    "role": "documentation",
+    "call_key": "ba8aa556555add3ab893b30323a62f19064162fc1c5ad60c6e31a7c8a102a4f2-1",
+    "error": "decisions-1-0: retirement/replacement needs later supporting evidence; use keep for unchanged items",
+    "response": {
+      "model": "metawispr-granite4-h-micro:q4_k_m",
+      "created_at": "2026-10-05T09:08:34.5568531Z",
+      "message": {
+        "role": "assistant",
+        "content": "{\n  \"resolutions\": [\n    {\n      \"candidate_id\": \"decisions-0-0\",\n      \"disposition\": \"keep\",\n      \"evidence\": [\n        {\n          \"quote\": \"We agreed to launch on Friday.\",\n          \"segment_id\": \"s00001\"\n        }\n      ],\n      \"reason\": \"The launch decision remains unchanged from the original commitment.\",\n      \"replacement\": null\n    },\n    {\n      \"candidate_id\": \"decisions-0-1\",\n      \"disposition\": \"keep\",\n      \"evidence\": [\n        {\n          \"quote\": \"Maya will send the release report by Friday.\",\n          \"segment_id\": \"s00001\"\n        }\n      ],\n      \"reason\": \"Maya's commitment to send the release report by Friday is still valid.\",\n      \"replacement\": null\n    },\n    {\n      \"candidate_id\": \"tasks-0-0\",\n      \"disposition\": \"keep\",\n      \"evidence\": [\n        {\n          \"quote\": \"Maya will send the release report by Friday.\",\n          \"segment_id\": \"s00001\"\n        }\n      ],\n      \"reason\": \"The task to send the release report remains active with Maya as the owner.\",\n      \"replacement\": null\n    },\n    {\n      \"candidate_id\": \"tasks-0-1\",\n      \"disposition\": \"keep\",\n      \"evidence\": [\n        {\n          \"quote\": \"We agreed to launch on Friday.\",\n          \"segment_id\": \"s00001\"\n        }\n      ],\n      \"reason\": \"The launch action is still active as per the original commitment.\",\n      \"replacement\": null\n    },\n    {\n      \"candidate_id\": \"decisions-1-0\",\n      \"disposition\": \"retire\",\n      \"evidence\": [\n        {\n          \"quote\": \"We withdraw the Friday launch decision\",\n          \"segment_id\": \"s00002\"\n        }\n      ],\n      \"reason\": \"The decision to launch on Friday has been withdrawn.\",\n      \"replacement\": null\n    },\n    {\n      \"candidate_id\": \"decisions-1-1\",\n      \"disposition\": \"retire\",\n      \"evidence\": [\n        {\n          \"quote\": \"We withdraw the Friday launch decision and cancel Maya's release report task.\",\n          \"segment_id\": \"s00002\"\n        }\n      ],\n      \"reason\": \"Both the launch decision and Maya's release report task have been withdrawn.\",\n      \"replacement\": null\n    },\n    {\n      \"candidate_id\": \"tasks-1-0\",\n      \"disposition\": \"replace\",\n      \"evidence\": [\n        {\n          \"quote\": \"Alex will send the revised draft by Monday.\",\n          \"segment_id\": \"s00002\"\n        }\n      ],\n      \"reason\": \"Alex has provided a new commitment to send the revised draft by Monday.\",\n      \"replacement\": {\n        \"deadline\": \"Monday\",\n        \"evidence\": [\n          {\n            \"quote\": \"Alex will send the revised draft by Monday.\",\n            \"segment_id\": \"s00002\"\n          }\n        ],\n        \"kind\": \"task\",\n        \"owner\": \"Alex\",\n        \"text\": \"Alex will send the revised draft by Monday\"\n      }\n    },\n    {\n      \"candidate_id\": \"tasks-1-1\",\n      \"disposition\": \"keep\",\n      \"evidence\": [\n        {\n          \"quote\": \"The log-check action remains unassigned with no deadline.\",\n          \"segment_id\": \"s00002\"\n        }\n      ],\n      \"reason\": \"The log-check action has no owner or deadline, so it remains unassigned.\",\n      \"replacement\": null\n    }\n  ]\n}"
+      },
+      "done": true,
+      "done_reason": "stop",
+      "total_duration": 9201277400,
+      "load_duration": 2507200,
+      "prompt_eval_count": 1089,
+      "prompt_eval_cached_count": 0,
+      "prompt_eval_duration": 400518000,
+      "eval_count": 766,
+      "eval_duration": 8683607000
+    }
+  },
+  {
+    "run": "granite-gpu",
+    "case": "cross_group_withdrawal",
+    "role": "documentation",
+    "call_key": "ba8aa556555add3ab893b30323a62f19064162fc1c5ad60c6e31a7c8a102a4f2-2",
+    "error": "decisions-1-1: retirement/replacement needs later supporting evidence; use keep for unchanged items",
+    "response": {
+      "model": "metawispr-granite4-h-micro:q4_k_m",
+      "created_at": "2026-10-05T09:08:42.6487779Z",
+      "message": {
+        "role": "assistant",
+        "content": "{\n  \"resolutions\": [\n    {\n      \"candidate_id\": \"decisions-0-0\",\n      \"disposition\": \"keep\",\n      \"evidence\": [\n        {\n          \"quote\": \"We agreed to launch on Friday.\",\n          \"segment_id\": \"s00001\"\n        }\n      ],\n      \"reason\": \"No later evidence to retire or replace this decision.\",\n      \"replacement\": null\n    },\n    {\n      \"candidate_id\": \"decisions-0-1\",\n      \"disposition\": \"keep\",\n      \"evidence\": [\n        {\n          \"quote\": \"Maya will send the release report by Friday.\",\n          \"segment_id\": \"s00001\"\n        }\n      ],\n      \"reason\": \"No later evidence to retire or replace this decision.\",\n      \"replacement\": null\n    },\n    {\n      \"candidate_id\": \"tasks-0-0\",\n      \"disposition\": \"keep\",\n      \"evidence\": [\n        {\n          \"quote\": \"Maya will send the release report by Friday.\",\n          \"segment_id\": \"s00001\"\n        }\n      ],\n      \"reason\": \"The task deadline is fixed to Friday and no later evidence changes it.\",\n      \"replacement\": null\n    },\n    {\n      \"candidate_id\": \"tasks-0-1\",\n      \"disposition\": \"keep\",\n      \"evidence\": [\n        {\n          \"quote\": \"We agreed to launch on Friday.\",\n          \"segment_id\": \"s00001\"\n        }\n      ],\n      \"reason\": \"The launch decision and the launch task refer to the same commitment.\",\n      \"replacement\": null\n    },\n    {\n      \"candidate_id\": \"decisions-1-0\",\n      \"disposition\": \"keep\",\n      \"evidence\": [\n        {\n          \"quote\": \"We withdraw the Friday launch decision\",\n          \"segment_id\": \"s00002\"\n        }\n      ],\n      \"reason\": \"The retirement statement is the only evidence for this decision.\",\n      \"replacement\": null\n    },\n    {\n      \"candidate_id\": \"decisions-1-1\",\n      \"disposition\": \"retire\",\n      \"evidence\": [\n        {\n          \"quote\": \"We withdraw the Friday launch decision and cancel Maya's release report task.\",\n          \"segment_id\": \"s00002\"\n        }\n      ],\n      \"reason\": \"The combined statement both withdraws the launch decision and cancels the related task.\",\n      \"replacement\": null\n    },\n    {\n      \"candidate_id\": \"tasks-1-0\",\n      \"disposition\": \"keep\",\n      \"evidence\": [\n        {\n          \"quote\": \"Alex will send the revised draft by Monday.\",\n          \"segment_id\": \"s00002\"\n        }\n      ],\n      \"reason\": \"The task deadline is explicitly set to Monday with no later evidence to change it.\",\n      \"replacement\": null\n    },\n    {\n      \"candidate_id\": \"tasks-1-1\",\n      \"disposition\": \"keep\",\n      \"evidence\": [\n        {\n          \"quote\": \"The log-check action remains unassigned with no deadline.\",\n          \"segment_id\": \"s00002\"\n        }\n      ],\n      \"reason\": \"No later evidence assigns a deadline or changes the status of this task.\",\n      \"replacement\": null\n    }\n  ]\n}"
+      },
+      "done": true,
+      "done_reason": "stop",
+      "total_duration": 7992231400,
+      "load_duration": 4032100,
+      "prompt_eval_count": 1124,
+      "prompt_eval_cached_count": 1085,
+      "prompt_eval_duration": 157903000,
+      "eval_count": 691,
+      "eval_duration": 7799718000
+    }
+  },
+  {
+    "run": "qwen4-16k",
+    "case": "cross_group_withdrawal",
+    "role": "documentation",
+    "call_key": "91d3fc1a02ee44f80df78c987fe58c0198646d564b14ff39324b8de25b5db3cf-1",
+    "error": "decisions-1-0: retirement/replacement needs later supporting evidence; use keep for unchanged items",
+    "response": {
+      "model": "qwen3.5:4b",
+      "created_at": "2026-10-05T08:45:35.2437859Z",
+      "message": {
+        "role": "assistant",
+        "content": "{\"resolutions\":[{\"candidate_id\":\"decisions-0-0\",\"disposition\":\"retire\",\"replacement\":null,\"evidence\":[{\"segment_id\":\"s00002\",\"quote\":\"We withdraw the Friday launch decision and cancel Maya's release report task.\"}],\"reason\":\"The decision to launch on Friday was explicitly withdrawn in batch 1.\"},{\"candidate_id\":\"tasks-0-0\",\"disposition\":\"retire\",\"replacement\":null,\"evidence\":[{\"segment_id\":\"s00002\",\"quote\":\"We withdraw the Friday launch decision and cancel Maya's release report task.\"}],\"reason\":\"The task assigned to Maya was cancelled as part of the withdrawal of the Friday launch.\"},{\"candidate_id\":\"tasks-0-1\",\"disposition\":\"keep\",\"replacement\":null,\"evidence\":[{\"segment_id\":\"s00001\",\"quote\":\"Action item: check the logs.\"},{\"segment_id\":\"s00002\",\"quote\":\"The log-check action remains unassigned with no deadline.\"}],\"reason\":\"The action remains active and unassigned; no revision indicates it should be retired or replaced.\"},{\"candidate_id\":\"decisions-1-0\",\"disposition\":\"retire\",\"replacement\":null,\"evidence\":[{\"segment_id\":\"s00002\",\"quote\":\"We withdraw the Friday launch decision and cancel Maya's release report task.\"}],\"reason\":\"This revision directive belongs in history as it supersedes the earlier decision.\"},{\"candidate_id\":\"decisions-1-1\",\"disposition\":\"retire\",\"replacement\":null,\"evidence\":[{\"segment_id\":\"s00002\",\"quote\":\"We withdraw the Friday launch decision and cancel Maya's release report task.\"}],\"reason\":\"This revision directive belongs in history as it supersedes the earlier decision.\"},{\"candidate_id\":\"tasks-1-0\",\"disposition\":\"keep\",\"replacement\":null,\"evidence\":[{\"segment_id\":\"s00002\",\"quote\":\"Instead, Alex will send the revised draft by Monday.\"}],\"reason\":\"This task is the active replacement for the cancelled tasks in batch 0.\"},{\"candidate_id\":\"tasks-1-1\",\"disposition\":\"keep\",\"replacement\":null,\"evidence\":[{\"segment_id\":\"s00002\",\"quote\":\"The log-check action remains unassigned with no deadline.\"}],\"reason\":\"This task remains active with null owner/deadline as stated in the revision.\"}]}"
+      },
+      "done": true,
+      "done_reason": "stop",
+      "total_duration": 8929812600,
+      "load_duration": 6479900,
+      "prompt_eval_count": 1127,
+      "prompt_eval_cached_count": 0,
+      "prompt_eval_duration": 601805000,
+      "eval_count": 498,
+      "eval_duration": 8129326000
+    }
+  },
+  {
+    "run": "qwen9-16k",
+    "case": "cross_group_reassignment",
+    "role": "documentation",
+    "call_key": "1d2e9ac0aceb2f71077fd3c6b0202dbe1ac667ac39e3e152fd8da7f3cff154b8-1",
+    "error": "decisions-1-0: retirement/replacement needs later supporting evidence; use keep for unchanged items",
+    "response": {
+      "model": "qwen3.5:9b",
+      "created_at": "2026-10-05T08:50:44.2208264Z",
+      "message": {
+        "role": "assistant",
+        "content": "{\n  \"resolutions\": [\n    {\n      \"candidate_id\": \"decisions-0-0\",\n      \"disposition\": \"keep\",\n      \"replacement\": null,\n      \"evidence\": [\n        {\n          \"segment_id\": \"s00001\",\n          \"quote\": \"We agreed to use Docker.\"\n        },\n        {\n          \"segment_id\": \"s00002\",\n          \"quote\": \"The Docker decision remains unchanged.\"\n        }\n      ],\n      \"reason\": \"The decision to use Docker was made in batch 0 and reaffirmed as unchanged in batch 1. No revision directives affect this item.\"\n    },\n    {\n      \"candidate_id\": \"tasks-0-0\",\n      \"disposition\": \"retire\",\n      \"replacement\": null,\n      \"evidence\": [\n        {\n          \"segment_id\": \"s00001\",\n          \"quote\": \"Sara will send the migration checklist by Friday.\"\n        },\n        {\n          \"segment_id\": \"s00002\",\n          \"quote\": \"Correction: the migration checklist is reassigned from Sara to Omar, and its deadline changes from Friday to Tuesday.\"\n        }\n      ],\n      \"reason\": \"This task was superseded by a revision directive in batch 1 that explicitly reassigns the task from Sara to Omar and changes the deadline from Friday to Tuesday. The later statement overrides the earlier one.\"\n    },\n    {\n      \"candidate_id\": \"decisions-1-0\",\n      \"disposition\": \"retire\",\n      \"replacement\": null,\n      \"evidence\": [\n        {\n          \"segment_id\": \"s00002\",\n          \"quote\": \"The Docker decision remains unchanged.\"\n        }\n      ],\n      \"reason\": \"This item is a revision directive stating 'The Docker decision remains unchanged.' Revision directives are intended to move themselves out of current decisions into history. Since the decision it references (decisions-0-0) is already active and unchanged, this directive is retired as a historical note rather than a current decision.\"\n    },\n    {\n      \"candidate_id\": \"tasks-1-0\",\n      \"disposition\": \"replace\",\n      \"replacement\": {\n        \"kind\": \"task\",\n        \"text\": \"Omar will send the migration checklist by Tuesday.\",\n        \"owner\": \"Omar\",\n        \"deadline\": \"Tuesday\",\n        \"evidence\": [\n          {\n            \"segment_id\": \"s00002\",\n            \"quote\": \"Omar will send the migration checklist by Tuesday.\"\n          },\n          {\n            \"segment_id\": \"s00002\",\n            \"quote\": \"Correction: the migration checklist is reassigned from Sara to Omar, and its deadline changes from Friday to Tuesday.\"\n          }\n        ]\n      },\n      \"evidence\": [\n        {\n          \"segment_id\": \"s00002\",\n          \"quote\": \"Omar will send the migration checklist by Tuesday.\"\n        },\n        {\n          \"segment_id\": \"s00002\",\n          \"quote\": \"Correction: the migration checklist is reassigned from Sara to Omar, and its deadline changes from Friday to Tuesday.\"\n        }\n      ],\n      \"reason\": \"This task correctly reflects the revised assignment from the revision directive. It replaces the retired task (tasks-0-0) with the updated owner (Omar) and deadline (Tuesday). The text and evidence are preserved exactly as stated in the later revision.\"\n    }\n  ]\n}"
+      },
+      "done": true,
+      "done_reason": "stop",
+      "total_duration": 32099050700,
+      "load_duration": 5090200,
+      "prompt_eval_count": 948,
+      "prompt_eval_cached_count": 0,
+      "prompt_eval_duration": 748238000,
+      "eval_count": 804,
+      "eval_duration": 31236041000
+    }
+  },
+  {
+    "run": "qwen9-16k",
+    "case": "cross_group_reassignment",
+    "role": "documentation",
+    "call_key": "1d2e9ac0aceb2f71077fd3c6b0202dbe1ac667ac39e3e152fd8da7f3cff154b8-2",
+    "error": "tasks-1-0: retirement/replacement needs later supporting evidence; use keep for unchanged items",
+    "response": {
+      "model": "qwen3.5:9b",
+      "created_at": "2026-10-05T08:51:15.0224538Z",
+      "message": {
+        "role": "assistant",
+        "content": "{\n  \"resolutions\": [\n    {\n      \"candidate_id\": \"decisions-0-0\",\n      \"disposition\": \"keep\",\n      \"replacement\": null,\n      \"evidence\": [\n        {\n          \"segment_id\": \"s00001\",\n          \"quote\": \"We agreed to use Docker.\"\n        },\n        {\n          \"segment_id\": \"s00002\",\n          \"quote\": \"The Docker decision remains unchanged.\"\n        }\n      ],\n      \"reason\": \"The decision to use Docker was made in batch 0 and confirmed unchanged in batch 1. No revision affects this item.\"\n    },\n    {\n      \"candidate_id\": \"tasks-0-0\",\n      \"disposition\": \"retire\",\n      \"replacement\": null,\n      \"evidence\": [\n        {\n          \"segment_id\": \"s00001\",\n          \"quote\": \"Sara will send the migration checklist by Friday.\"\n        },\n        {\n          \"segment_id\": \"s00002\",\n          \"quote\": \"Correction: the migration checklist is reassigned from Sara to Omar, and its deadline changes from Friday to Tuesday.\"\n        }\n      ],\n      \"reason\": \"This task was superseded by a revision in batch 1 which explicitly reassigns the task from Sara to Omar and changes the deadline. The original commitment is now history.\"\n    },\n    {\n      \"candidate_id\": \"decisions-1-0\",\n      \"disposition\": \"keep\",\n      \"replacement\": null,\n      \"evidence\": [\n        {\n          \"segment_id\": \"s00002\",\n          \"quote\": \"The Docker decision remains unchanged.\"\n        }\n      ],\n      \"reason\": \"This item is a confirmation of the state of the Docker decision. It is not a new decision but a statement of fact regarding the existing one. It remains active as a record of the current state.\"\n    },\n    {\n      \"candidate_id\": \"tasks-1-0\",\n      \"disposition\": \"replace\",\n      \"replacement\": {\n        \"kind\": \"task\",\n        \"text\": \"Omar will send the migration checklist by Tuesday.\",\n        \"owner\": \"Omar\",\n        \"deadline\": \"Tuesday\",\n        \"evidence\": [\n          {\n            \"segment_id\": \"s00002\",\n            \"quote\": \"Omar will send the migration checklist by Tuesday.\"\n          },\n          {\n            \"segment_id\": \"s00002\",\n            \"quote\": \"Correction: the migration checklist is reassigned from Sara to Omar, and its deadline changes from Friday to Tuesday.\"\n          }\n        ]\n      },\n      \"evidence\": [\n        {\n          \"segment_id\": \"s00002\",\n          \"quote\": \"Omar will send the migration checklist by Tuesday.\"\n        },\n        {\n          \"segment_id\": \"s00002\",\n          \"quote\": \"Correction: the migration checklist is reassigned from Sara to Omar, and its deadline changes from Friday to Tuesday.\"\n        }\n      ],\n      \"reason\": \"This candidate represents the corrected state of the migration checklist task after the revision. It replaces the retired task (tasks-0-0) with the updated owner (Omar) and deadline (Tuesday). The text and evidence are derived from the revision directive and the supporting fact in batch 1.\"\n    }\n  ]\n}"
+      },
+      "done": true,
+      "done_reason": "stop",
+      "total_duration": 30705644400,
+      "load_duration": 4787900,
+      "prompt_eval_count": 983,
+      "prompt_eval_cached_count": 436,
+      "prompt_eval_duration": 519631999,
+      "eval_count": 781,
+      "eval_duration": 30169404000
+    }
+  },
+  {
+    "run": "granite-16k",
+    "case": "cross_group_withdrawal",
+    "role": "documentation",
+    "call_key": "a46bd98cb1cf747636de12db6289551ee9897498624f976bfe9492078f660099-1",
+    "error": "Task owner must be null or literal text in its supporting quotes",
+    "response": {
+      "model": "metawispr-granite4-h-micro:q4_k_m",
+      "created_at": "2026-10-05T09:09:18.1034329Z",
+      "message": {
+        "role": "assistant",
+        "content": "{\n  \"record\": {\n    \"decisions\": [\n      {\n        \"evidence\": [\n          {\n            \"quote\": \"We agreed to launch on Friday.\",\n            \"segment_id\": \"s00001\"\n          }\n        ],\n        \"text\": \"We agreed to launch on Friday.\"\n      }\n    ],\n    \"summary\": [\n      {\n        \"evidence\": [\n          {\n            \"quote\": \"The team reviewed background context.\",\n            \"segment_id\": \"s00001\"\n          }\n        ],\n        \"text\": \"The team reviewed background context multiple times.\"\n      }\n    ],\n    \"tasks\": [\n      {\n        \"deadline\": \"Friday\",\n        \"evidence\": [\n          {\n            \"quote\": \"Maya will send the release report by Friday.\",\n            \"segment_id\": \"s00001\"\n          }\n        ],\n        \"owner\": \"Maya\",\n        \"text\": \"Maya will send the release report by Friday.\"\n      },\n      {\n        \"deadline\": \"null\",\n        \"evidence\": [\n          {\n            \"quote\": \"Action item: check the logs.\",\n            \"segment_id\": \"s00001\"\n          }\n        ],\n        \"owner\": \"null\",\n        \"text\": \"Action item: check the logs.\"\n      }\n    ],\n    \"topics\": [\n      {\n        \"points\": [\n          {\n            \"evidence\": [\n              {\n                \"quote\": \"The team reviewed background context.\",\n                \"segment_id\": \"s00001\"\n              }\n            ],\n            \"text\": \"The team reviewed background context multiple times during the meeting.\"\n          }\n        ],\n        \"title\": \"Background Context Review\"\n      }\n    ],\n    \"uncertainties\": []\n  },\n  \"revisions\": []\n}"
+      },
+      "done": true,
+      "done_reason": "stop",
+      "total_duration": 7860860100,
+      "load_duration": 2354881300,
+      "prompt_eval_count": 1799,
+      "prompt_eval_cached_count": 0,
+      "prompt_eval_duration": 826127000,
+      "eval_count": 360,
+      "eval_duration": 4638039000
+    }
+  },
+  {
+    "run": "granite-16k",
+    "case": "cross_group_withdrawal",
+    "role": "documentation",
+    "call_key": "d7d1e4a5b40b599c74f700a11eced11cf91111e881be6642e3190f26525da95f-1",
+    "error": "decisions-1-0: retirement/replacement needs later supporting evidence; use keep for unchanged items",
+    "response": {
+      "model": "metawispr-granite4-h-micro:q4_k_m",
+      "created_at": "2026-10-05T09:09:39.6070164Z",
+      "message": {
+        "role": "assistant",
+        "content": "{\n  \"resolutions\": [\n    {\n      \"candidate_id\": \"decisions-0-0\",\n      \"disposition\": \"keep\",\n      \"evidence\": [\n        {\n          \"quote\": \"We agreed to launch on Friday.\",\n          \"segment_id\": \"s00001\"\n        }\n      ],\n      \"reason\": \"No revision directive found to retire or replace this decision.\",\n      \"replacement\": null\n    },\n    {\n      \"candidate_id\": \"decisions-0-1\",\n      \"disposition\": \"keep\",\n      \"evidence\": [\n        {\n          \"quote\": \"Maya will send the release report by Friday.\",\n          \"segment_id\": \"s00001\"\n        }\n      ],\n      \"reason\": \"No revision directive found to retire or replace this decision.\",\n      \"replacement\": null\n    },\n    {\n      \"candidate_id\": \"tasks-0-0\",\n      \"disposition\": \"keep\",\n      \"evidence\": [\n        {\n          \"quote\": \"Maya will send the release report by Friday.\",\n          \"segment_id\": \"s00001\"\n        }\n      ],\n      \"reason\": \"The task deadline matches the decision deadline.\",\n      \"replacement\": null\n    },\n    {\n      \"candidate_id\": \"tasks-0-1\",\n      \"disposition\": \"keep\",\n      \"evidence\": [\n        {\n          \"quote\": \"We agreed to launch on Friday.\",\n          \"segment_id\": \"s00001\"\n        }\n      ],\n      \"reason\": \"The task aligns with the decision to launch on Friday.\",\n      \"replacement\": null\n    },\n    {\n      \"candidate_id\": \"decisions-1-0\",\n      \"disposition\": \"retire\",\n      \"evidence\": [\n        {\n          \"quote\": \"We withdraw the Friday launch decision\",\n          \"segment_id\": \"s00002\"\n        }\n      ],\n      \"reason\": \"A revision directive explicitly withdraws the Friday launch decision.\",\n      \"replacement\": null\n    },\n    {\n      \"candidate_id\": \"decisions-1-1\",\n      \"disposition\": \"retire\",\n      \"evidence\": [\n        {\n          \"quote\": \"We withdraw the Friday launch decision and cancel Maya's release report task.\",\n          \"segment_id\": \"s00002\"\n        }\n      ],\n      \"reason\": \"A revision directive withdraws both the Friday launch decision and the release report task.\",\n      \"replacement\": null\n    },\n    {\n      \"candidate_id\": \"tasks-1-0\",\n      \"disposition\": \"replace\",\n      \"evidence\": [\n        {\n          \"quote\": \"Alex will send the revised draft by Monday.\",\n          \"segment_id\": \"s00002\"\n        }\n      ],\n      \"reason\": \"The task deadline was changed to Monday in the revision.\",\n      \"replacement\": {\n        \"deadline\": \"Monday\",\n        \"evidence\": [\n          {\n            \"quote\": \"Alex will send the revised draft by Monday.\",\n            \"segment_id\": \"s00002\"\n          }\n        ],\n        \"kind\": \"task\",\n        \"owner\": \"Alex\",\n        \"text\": \"Alex will send the revised draft by Monday.\"\n      }\n    },\n    {\n      \"candidate_id\": \"tasks-1-1\",\n      \"disposition\": \"keep\",\n      \"evidence\": [\n        {\n          \"quote\": \"The log-check action remains unassigned with no deadline.\",\n          \"segment_id\": \"s00002\"\n        }\n      ],\n      \"reason\": \"No revision directive found to change the status of this task.\",\n      \"replacement\": null\n    }\n  ]\n}"
+      },
+      "done": true,
+      "done_reason": "stop",
+      "total_duration": 10129082800,
+      "load_duration": 4129000,
+      "prompt_eval_count": 1092,
+      "prompt_eval_cached_count": 0,
+      "prompt_eval_duration": 416004000,
+      "eval_count": 752,
+      "eval_duration": 9578965000
+    }
+  },
+  {
+    "run": "granite-16k",
+    "case": "cross_group_withdrawal",
+    "role": "documentation",
+    "call_key": "d7d1e4a5b40b599c74f700a11eced11cf91111e881be6642e3190f26525da95f-2",
+    "error": "decisions-1-1: retirement/replacement needs later supporting evidence; use keep for unchanged items",
+    "response": {
+      "model": "metawispr-granite4-h-micro:q4_k_m",
+      "created_at": "2026-10-05T09:09:48.9555196Z",
+      "message": {
+        "role": "assistant",
+        "content": "{\n  \"resolutions\": [\n    {\n      \"candidate_id\": \"decisions-0-0\",\n      \"disposition\": \"keep\",\n      \"evidence\": [\n        {\n          \"quote\": \"We agreed to launch on Friday.\",\n          \"segment_id\": \"s00001\"\n        }\n      ],\n      \"reason\": \"No later evidence to retire or replace this decision.\",\n      \"replacement\": null\n    },\n    {\n      \"candidate_id\": \"decisions-0-1\",\n      \"disposition\": \"keep\",\n      \"evidence\": [\n        {\n          \"quote\": \"Maya will send the release report by Friday.\",\n          \"segment_id\": \"s00001\"\n        }\n      ],\n      \"reason\": \"No later evidence to retire or replace this decision.\",\n      \"replacement\": null\n    },\n    {\n      \"candidate_id\": \"tasks-0-0\",\n      \"disposition\": \"keep\",\n      \"evidence\": [\n        {\n          \"quote\": \"Maya will send the release report by Friday.\",\n          \"segment_id\": \"s00001\"\n        }\n      ],\n      \"reason\": \"The task deadline is Friday and no later evidence changes it.\",\n      \"replacement\": null\n    },\n    {\n      \"candidate_id\": \"tasks-0-1\",\n      \"disposition\": \"keep\",\n      \"evidence\": [\n        {\n          \"quote\": \"We agreed to launch on Friday.\",\n          \"segment_id\": \"s00001\"\n        }\n      ],\n      \"reason\": \"The launch decision and task are linked; no later evidence changes the launch.\",\n      \"replacement\": null\n    },\n    {\n      \"candidate_id\": \"decisions-1-0\",\n      \"disposition\": \"keep\",\n      \"evidence\": [\n        {\n          \"quote\": \"We withdraw the Friday launch decision\",\n          \"segment_id\": \"s00002\"\n        }\n      ],\n      \"reason\": \"The decision was explicitly withdrawn with no later evidence to replace it.\",\n      \"replacement\": null\n    },\n    {\n      \"candidate_id\": \"decisions-1-1\",\n      \"disposition\": \"retire\",\n      \"evidence\": [\n        {\n          \"quote\": \"We withdraw the Friday launch decision and cancel Maya's release report task.\",\n          \"segment_id\": \"s00002\"\n        }\n      ],\n      \"reason\": \"The combined withdrawal statement cancels both the launch decision and the task.\",\n      \"replacement\": null\n    },\n    {\n      \"candidate_id\": \"tasks-1-0\",\n      \"disposition\": \"keep\",\n      \"evidence\": [\n        {\n          \"quote\": \"Alex will send the revised draft by Monday.\",\n          \"segment_id\": \"s00002\"\n        }\n      ],\n      \"reason\": \"The task deadline is Monday and no later evidence changes it.\",\n      \"replacement\": null\n    },\n    {\n      \"candidate_id\": \"tasks-1-1\",\n      \"disposition\": \"keep\",\n      \"evidence\": [\n        {\n          \"quote\": \"The log-check action remains unassigned with no deadline.\",\n          \"segment_id\": \"s00002\"\n        }\n      ],\n      \"reason\": \"No later evidence assigns or changes the deadline for this task.\",\n      \"replacement\": null\n    }\n  ]\n}"
+      },
+      "done": true,
+      "done_reason": "stop",
+      "total_duration": 9220937800,
+      "load_duration": 6526100,
+      "prompt_eval_count": 1127,
+      "prompt_eval_cached_count": 1088,
+      "prompt_eval_duration": 306023000,
+      "eval_count": 685,
+      "eval_duration": 8849721000
+    }
+  },
+  {
+    "run": "granite-16k",
+    "case": "cross_group_reassignment",
+    "role": "documentation",
+    "call_key": "08e854765afa15c341c743c227c867999975ab09c5096d51fbed2ca2f43c6cc6-1",
+    "error": "Consolidation introduced evidence outside its input batches",
+    "response": {
+      "model": "metawispr-granite4-h-micro:q4_k_m",
+      "created_at": "2026-10-05T09:10:13.2950026Z",
+      "message": {
+        "role": "assistant",
+        "content": "{\n  \"summary\": [\n    {\n      \"evidence\": [\n        {\n          \"quote\": \"The team reviewed background context\",\n          \"segment_id\": \"s00001\"\n        },\n        {\n          \"quote\": \"The team reviewed background context\",\n          \"segment_id\": \"s00002\"\n        }\n      ],\n      \"text\": \"The team reviewed background context\"\n    }\n  ],\n  \"topics\": [\n    {\n      \"points\": [\n        {\n          \"evidence\": [\n            {\n              \"quote\": \"The team reviewed background context\",\n              \"segment_id\": \"s00001\"\n            }\n          ],\n          \"text\": \"Background context review\"\n        }\n      ],\n      \"title\": \"Background context review\"\n    },\n    {\n      \"points\": [\n        {\n          \"evidence\": [\n            {\n              \"quote\": \"Migration checklist reassignment and deadline change\",\n              \"segment_id\": \"s00002\"\n            }\n          ],\n          \"text\": \"Migration checklist reassignment\"\n        }\n      ],\n      \"title\": \"Migration checklist reassignment\"\n    }\n  ],\n  \"uncertainties\": []\n}"
+      },
+      "done": true,
+      "done_reason": "stop",
+      "total_duration": 3652010800,
+      "load_duration": 6825900,
+      "prompt_eval_count": 1019,
+      "prompt_eval_cached_count": 0,
+      "prompt_eval_duration": 411591000,
+      "eval_count": 233,
+      "eval_duration": 3064875000
+    }
+  },
+  {
+    "run": "granite-16k",
+    "case": "cross_group_reassignment",
+    "role": "documentation",
+    "call_key": "08e854765afa15c341c743c227c867999975ab09c5096d51fbed2ca2f43c6cc6-2",
+    "error": "Consolidation introduced evidence outside its input batches",
+    "response": {
+      "model": "metawispr-granite4-h-micro:q4_k_m",
+      "created_at": "2026-10-05T09:10:14.7759501Z",
+      "message": {
+        "role": "assistant",
+        "content": "{\"summary\":[{\"evidence\":[{\"quote\":\"The team reviewed background context\",\"segment_id\":\"s00001\"}],\"text\":\"The team reviewed background context\"}],\"topics\":[{\"points\":[{\"evidence\":[{\"quote\":\"The team reviewed background context\",\"segment_id\":\"s00002\"}],\"text\":\"The team reviewed background context\"}],\"title\":\"Background context review\"}],\"uncertainties\":[]}"
+      },
+      "done": true,
+      "done_reason": "stop",
+      "total_duration": 1368818000,
+      "load_duration": 7369500,
+      "prompt_eval_count": 1043,
+      "prompt_eval_cached_count": 1015,
+      "prompt_eval_duration": 293199000,
+      "eval_count": 77,
+      "eval_duration": 1007857000
+    }
+  }
+]
