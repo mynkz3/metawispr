@@ -29,6 +29,22 @@ const refined = {
 const document = { record, revision_audit: [{ text: 'The earlier release decision was withdrawn.', evidence: evidence('Withdraw the earlier release decision.') }], warnings: [] };
 const view = { meeting, raw: { segments: rawSegments, warnings: [] }, refined, document };
 const health = { transcription_ready: true, conversion_ready: true, llm_ready: true, llm_error: null, limits: { upload_bytes: 209715200, audio_seconds: 7200, pending_jobs: 3 } };
+
+test('Gemini upload discloses cloud transcript processing and server key setup', async ({ page }) => {
+  await mock(page, () => view, false);
+  await page.route('**/api/health', route => route.fulfill({ json: {
+    ...health, llm_backend: 'gemini', transcript_processing: 'google_api', llm_ready: false,
+    llm_error: 'Set GEMINI_API_KEY in the server environment, then restart.' } }));
+  await page.goto('/');
+  await expect(page.locator('.privacy-note')).toContainText('Google’s Gemini API');
+  await expect(page.locator('.rail-footer')).toContainText('Transcript text is sent to Google');
+  await expect(page.locator('.local-badge')).toContainText('Gemini API');
+  await page.getByText('Processing setup needs attention', { exact: true }).click();
+  await expect(page.locator('.setup')).toContainText('GEMINI_API_KEY');
+  await expect(page.locator('.setup')).not.toContainText('ollama pull');
+  await expect(page.getByText('Audio and notes stay on this machine.', { exact: true })).toHaveCount(0);
+  await accessible(page);
+});
 const screenshots = resolve('..', '.cache', 'ui-qa');
 function wav(seconds = 60) {
   const frames = seconds * 16000; const bytes = Buffer.alloc(44 + frames * 2);

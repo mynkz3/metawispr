@@ -20,6 +20,7 @@ export type View = {
   } | null;
 };
 export type Health = {
+  llm_backend?: 'ollama' | 'gemini'; transcript_processing?: 'local' | 'google_api';
   transcription_ready: boolean; conversion_ready: boolean; llm_ready: boolean; llm_error: string | null;
   limits: { upload_bytes: number; audio_seconds: number; pending_jobs: number };
 };

@@ -23,7 +23,7 @@ from metawispr.llm import digest, prompt
 from metawispr.pipeline import Runner
 from metawispr.schemas import RawTranscript
 from ami import read, save, GLOSSARY
-from run import MeasuredOllama, available_ram
+from run import measured_llm, available_ram
 
 
 def tokens(text):
@@ -100,7 +100,7 @@ def main():
     if args.tokens is not None:
         settings = replace(settings, llm_output_tokens=args.tokens)
     runner = Runner(settings)
-    llm = MeasuredOllama(settings, cpu=False)
+    llm = measured_llm(settings)
     runner.llm = llm
     models = llm.models()
     identity = {"meeting": args.meeting, "split": args.split, "input_sha256": file_sha256(source),
@@ -179,7 +179,7 @@ def main():
                   "dataset": manifest, "host": platform.platform(), "ram_at_start": available_ram(),
                   "git_head": subprocess.check_output(["git", "rev-parse", "HEAD"], text=True).strip(),
                   "started_at": datetime.now(timezone.utc).isoformat(), "runs": [],
-                  "scope": "Uploaded full AMI audio through genuine Parakeet and both shared-Qwen stages. References excluded from generation. Public corpus pretraining exposure unknown. Semantic grading requires source review."}
+                  "scope": f"Uploaded full AMI audio through genuine Parakeet and both {settings.llm_backend} LLM stages. References excluded from generation. Public corpus pretraining exposure unknown. Semantic grading requires source review."}
         if args.reuse_asr:
             cached = RawTranscript.model_validate(read(args.reuse_asr))
             prepared = args.reuse_asr.parent / "prepared.wav"

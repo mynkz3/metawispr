@@ -15,7 +15,7 @@ import gc
 from .audio import Parakeet, asr_profile_matches, file_sha256, inspect_pcm, prepare_audio
 from .config import InputError, Settings, SetupError, SUPPORTED_SUFFIXES
 from .schemas import Meeting, RawTranscript, RefinedTranscript, DocumentedMeeting
-from .llm import Ollama, digest
+from .llm import llm_client, digest
 from .documentation import Documentation, apply_edits, validate_record, refinement_policy, documentation_policy, glossary_terms
 
 
@@ -149,7 +149,7 @@ class Runner:
         self.settings = settings
         self.store = Store(settings)
         self.asr = Parakeet(settings)
-        self.llm = Ollama(settings)
+        self.llm = llm_client(settings)
 
     def run(self, meeting_id: str):
         meeting = self.store.get(meeting_id)

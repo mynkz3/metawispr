@@ -12,6 +12,12 @@ Statuses describe actual work, not an estimate of model quality. Each phase has 
 
 ## Definition of done
 
+The owner selected Gemini Flash on 6 October 2026, keeping Qwen aside. The active
+environment profile is Parakeet CUDA + Gemini for both LLM stages. Integration
+checks pass, but genuine Gemini inference and the two-meeting accuracy comparison
+remain pending an API key. See [Gemini profile](GEMINI_FLASH.md); historical
+Qwen scores below are retained and do not measure the new provider.
+
 An implemented adapter is not a verified model. Phase 5 remains open until real inference and representative meeting evaluation have been completed. Synthetic or stubbed test outputs must never be presented as real model results.
 
 ## Active workplan inside Phase 5

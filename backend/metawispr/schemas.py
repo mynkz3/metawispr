@@ -169,7 +169,7 @@ class SourceResolutions(Contract):
 
 class LLMModel(Contract):
     tag: str
-    digest: str = Field(pattern=r"^(sha256:)?[a-f0-9]{64}$")
+    digest: str = Field(pattern=r"^(sha256:|metadata_sha256:)?[a-f0-9]{64}$")
     runtime_version: str
     parameter_size: str
     quantization: str
@@ -185,12 +185,15 @@ class LLMCall(Contract):
     output_tokens: int
     temperature: float = 0.0
     seed: int = 0
-    thinking: Literal[False] = False
+    thinking: bool = False
+    thinking_level: str | None = None
+    response_model_version: str | None = None
+    thought_tokens: int | None = Field(default=None, ge=0)
     presence_penalty: float | None = None
     repeat_penalty: float | None = None
     elapsed_seconds: float = Field(ge=0)
-    prompt_tokens: int = Field(ge=0)
-    generated_tokens: int = Field(ge=0)
+    prompt_tokens: int | None = Field(ge=0)
+    generated_tokens: int | None = Field(ge=0)
     attempts: int = Field(ge=1, le=2)
 
 

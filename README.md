@@ -1,5 +1,10 @@
 # Metawispr
 
+**Active profile (6 October 2026):** Parakeet CUDA + Gemini Flash for both ordered
+LLM stages. Qwen is retained as an explicit local alternative. See
+[Gemini setup, transcript data flow and verification](docs/GEMINI_FLASH.md).
+Genuine Gemini evaluation is pending an API key; historical accuracy failures remain open.
+
 A meeting workspace that turns uploaded English recordings into a raw transcript, a terminology-refined transcript, minutes, agreed decisions, and actionable tasks. Claims in the meeting record link back to their source audio.
 
 **Build status:** the recorded-meeting pipeline and responsive React review workspace are implemented. **74 backend tests pass**; frontend build, browser behavior, accessibility and real model compatibility are documented in the phase logs. See [the design](docs/DESIGN.md), [phase gates](docs/PHASES.md), [Phase 2 verification](docs/PHASE2.md), [Phase 3 verification](docs/PHASE3.md) and [Phase 4 plan/verification](docs/PHASE4.md). Representative meeting-quality evaluation remains Phase 5 work.

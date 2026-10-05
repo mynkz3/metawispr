@@ -11,7 +11,7 @@ from metawispr.llm import digest, prompt
 from metawispr.pipeline import Store
 from metawispr.schemas import RawTranscript
 from ami import read, save
-from run import MeasuredOllama
+from run import measured_llm
 
 
 def main():
@@ -27,7 +27,7 @@ def main():
     if baseline["source_sha256"] != digest(raw.model_dump()):
         parser.error("Glossary baseline belongs to a different ASR transcript")
     settings = replace(Settings.from_env(), data_dir=args.output.parent / "data")
-    store, llm = Store(settings), MeasuredOllama(settings, cpu=False)
+    store, llm = Store(settings), measured_llm(settings)
     meeting = store.begin(f"{args.meeting}.wav", f"AMI {args.meeting}", "")
     model = llm.models()[0]
     started = time.perf_counter()

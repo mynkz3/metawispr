@@ -41,6 +41,14 @@ and focused documentation changes are planned work, not current implementation.
 
 ## 3. Model decisions
 
+**Active profile, 6 October 2026:** the owner selected Gemini Flash through
+Google's API for both ordered LLM stages, with Parakeet on CUDA. Environment
+defaults now select `gemini-3.8-flash`; Qwen remains available by explicit
+Ollama configuration. The local Qwen choices and evaluations below are retained
+as historical evidence. No Gemini accuracy improvement has been measured yet.
+See [Gemini setup and verification](GEMINI_FLASH.md). Transcript text goes to
+Google; uploaded audio, checkpoints and exports remain in the local workspace.
+
 | Role | Current exact selection | Execution | Decision status |
 | --- | --- | --- | --- |
 | Speech recognition | `nvidia/parakeet-tdt-0.6b-v2`, sherpa-onnx v2 INT8 export | sherpa-onnx CPU runtime initially; 4 threads; 16 kHz input | Provisional primary ASR; must pass real-audio checks |
@@ -78,9 +86,9 @@ flowchart TD
     WORKER --> AUDIO[FFmpeg audio preparation]
     AUDIO --> ASR[Parakeet v2 INT8]
     ASR --> RAW[Immutable raw segments]
-    RAW --> REF[Qwen3.5 4B edit proposals]
+    RAW --> REF[Gemini Flash edit proposals]
     REF --> GUARD[Validate and apply supported edits]
-    GUARD --> DOC[Shared Qwen3.5 4B extraction and consolidation]
+    GUARD --> DOC[Gemini Flash extraction and consolidation]
     DOC --> CHECK[Schema and evidence checks]
     CHECK --> RECORD[Canonical meeting record]
     RECORD --> UI
