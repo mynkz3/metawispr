@@ -21,7 +21,7 @@ from metawispr.config import Settings, SetupError
 from metawispr.documentation import Documentation, groups
 from metawispr.llm import Ollama, digest, prompt
 from metawispr.pipeline import Store, atomic_write
-from metawispr.schemas import DocumentationBatch, LLMModel, Segment
+from metawispr.schemas import SourceBatch, LLMModel, Segment
 
 
 def segments(texts):
@@ -87,7 +87,7 @@ def expand_case(case, llm):
         payload = lambda items: {"title": case["id"], "segments": [item.model_dump() for item in items]}
         for count in range(1, 150):
             items = segments([text + " The team reviewed background context." * count for text in case["texts"]])
-            batches = groups(items, payload, lambda value: llm.fits("document", DocumentationBatch, value))
+            batches = groups(items, payload, lambda value: llm.fits("document", SourceBatch, value))
             if len(batches) == 2:
                 case["texts"] = [item.text for item in items]
                 case["filler_repetitions"] = count

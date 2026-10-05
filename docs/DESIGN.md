@@ -132,6 +132,12 @@ Save raw transcript, refined transcript, accepted edits, rejected edits and reas
 
 ### Documentation and long meetings
 
+Phase 5.1 uses source-ID response contracts for documentation, reconciliation and
+notes. Python constructs exact quotations from those immutable sources before
+canonical validation/storage. Models cannot supply quote text. Canonical API and
+export evidence objects retain segment IDs and quotations. See [PHASE5.md](PHASE5.md)
+for actual checks; focused action extraction remains planned.
+
 The documentation stage extracts facts from bounded segment groups, then reconciles adjacent groups when multiple groups exist. A typed response must give every candidate decision/task exactly one disposition: keep, retire or replace. Changes require explicit later evidence; identical replacements preserve the original. A separate notes-only call writes summary/topics/uncertainties while Python copies the resolved current decisions/tasks into the canonical record. Multi-call execution uses the configured documentation weights, shared with refinement by default, and separate documentation checkpoints.
 
 Intermediate batches carry a meeting record plus evidence-backed revision signals, including changes whose earlier targets are outside the current group. Adjacent chronological batches consolidate in a hierarchy. Consolidation may only quote evidence supplied by its inputs, compacted into a deduplicated quote table. Revision signals and original/later resolution quotes remain in a separate `revision_audit` for review, rather than becoming current tasks or uncertainties. This carries later changes forward; interpreting them correctly remains a model/human quality check.

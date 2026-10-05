@@ -7,10 +7,11 @@ import re
 from .config import InputError, SetupError
 from .llm import digest, prompt
 from .schemas import (ConsolidatedNotes, DocumentationBatch, DocumentedMeeting, Edit, EditBatch,
-                      Fact, MeetingRecord, RefinedTranscript, RejectedEdit, ResolutionBatch, Task)
+                      Evidence, Fact, MeetingRecord, RefinedTranscript, RejectedEdit, ResolutionBatch,
+                      SourceBatch, SourceNotes, SourceResolutions, Task)
 
 
-POLICY_VERSION = 2
+POLICY_VERSION = 3
 PROTECTED = re.compile(
     r"(?<!\w)[+-]?\d+(?:[.,:/-]\d+)*(?:%|\b)|\b(?:zero|one|two|three|four|five|six|seven|eight|nine|ten|"
     r"eleven|twelve|thirteen|fourteen|fifteen|sixteen|seventeen|eighteen|nineteen|twenty|thirty|forty|fifty|"
@@ -117,6 +118,43 @@ def groups(items, make_payload, fits):
         current.append(item)
     if current:
         result.append(current)
+    return result
+
+
+def attach_evidence(output, contract, sources):
+    """Resolve selected IDs in Python; model responses cannot supply quote text."""
+    def expand(value):
+        if isinstance(value, list):
+            return [expand(item) for item in value]
+        if not isinstance(value, dict):
+            return value
+        result = {key: expand(item) for key, item in value.items() if key != "evidence_ids"}
+        if "evidence_ids" in value:
+            ids = value["evidence_ids"]
+            if len(set(ids)) != len(ids) or any(identifier not in sources for identifier in ids):
+                raise ValueError("Evidence IDs must be unique and belong to the supplied sources")
+            result["evidence"] = [sources[identifier].model_dump() for identifier in ids]
+        return result
+    return contract.model_validate(expand(output.model_dump()))
+
+
+def source_payload(value, sources):
+    """Send each immutable source once across candidate facts and revision signals."""
+    identifiers = {(item.segment_id, item.quote): identifier for identifier, item in sources.items()}
+    used = set()
+    def select(value):
+        if isinstance(value, list):
+            return [select(item) for item in value]
+        if not isinstance(value, dict):
+            return value
+        result = {key: select(item) for key, item in value.items() if key != "evidence"}
+        if "evidence" in value:
+            ids = [identifiers[(item["segment_id"], item["quote"])] for item in value["evidence"]]
+            used.update(ids)
+            result["evidence_ids"] = ids
+        return result
+    result = select(value)
+    result["sources"] = [{"id": identifier, "text": item.quote} for identifier, item in sources.items() if identifier in used]
     return result
 
 
@@ -258,13 +296,18 @@ class Documentation:
 
     def document(self, meeting, refined, model, progress):
         payload = lambda items: {"title": meeting.title, "segments": [item.model_dump() for item in items]}
-        batches = groups(refined.segments, payload, lambda value: self.llm.fits("document", DocumentationBatch, value))
+        sources = {item.id: Evidence(segment_id=item.id, quote=item.text) for item in refined.segments}
+        batches = groups(refined.segments, payload, lambda value: self.llm.fits("document", SourceBatch, value))
         outputs, calls = [], []
         try:
             for batch in batches:
-                output, call = self.llm.generate(model, "document", DocumentationBatch, payload(batch), self.store,
-                                                 meeting.id, "documenting",
-                                                 lambda output: validate_record(output.record, batch, output.revisions))
+                batch_sources = {item.id: sources[item.id] for item in batch}
+                def validate_batch(result):
+                    expanded = attach_evidence(result, DocumentationBatch, batch_sources)
+                    validate_record(expanded.record, batch, expanded.revisions)
+                selected, call = self.llm.generate(model, "document", SourceBatch, payload(batch), self.store,
+                                                  meeting.id, "documenting", validate_batch)
+                output = attach_evidence(selected, DocumentationBatch, batch_sources)
                 outputs.append(output)
                 calls.append(call)
                 progress(len(calls))
@@ -279,27 +322,36 @@ class Documentation:
                         continue
                     allowed = {(ev.segment_id, ev.quote) for batch in pair
                                for fact in [*facts(batch.record), *batch.revisions] for ev in fact.evidence}
-                    value = consolidation_payload(meeting.title, pair)
                     candidates = candidate_items(pair)
                     if candidates:
-                        resolution_input = {"candidates": [{**item, "fact": item["fact"].model_dump()} for item in candidates],
-                                            "revisions": [item.model_dump() for batch in pair for item in batch.revisions]}
-                        resolution, call = self.llm.generate(model, "reconcile", ResolutionBatch, resolution_input,
-                                                            self.store, meeting.id, "documenting",
-                                                            lambda result: resolve_candidates(result, candidates, refined.segments, allowed))
+                        resolution_input = source_payload({"candidates": [{**item, "fact": item["fact"].model_dump()} for item in candidates],
+                                                           "revisions": [item.model_dump() for batch in pair for item in batch.revisions]}, sources)
+                        allowed_sources = {identifier: item for identifier, item in sources.items()
+                                           if (item.segment_id, item.quote) in allowed}
+                        selected, call = self.llm.generate(model, "reconcile", SourceResolutions, resolution_input,
+                                                          self.store, meeting.id, "documenting",
+                                                          lambda result: resolve_candidates(attach_evidence(result, ResolutionBatch, allowed_sources),
+                                                                                            candidates, refined.segments, allowed))
+                        resolution = attach_evidence(selected, ResolutionBatch, allowed_sources)
                         decisions, tasks, revisions = resolve_candidates(resolution, candidates, refined.segments, allowed)
                         calls.append(call)
                         progress(len(calls))
                     else:
                         decisions, tasks, revisions = [], [], []
-                    value["resolved_current"] = {"decisions": [item.model_dump() for item in decisions],
-                                                 "tasks": [item.model_dump() for item in tasks]}
+                    value = source_payload({"title": meeting.title,
+                                            "chronological_batches": [batch.model_dump() for batch in pair],
+                                            "resolved_current": {"decisions": [item.model_dump() for item in decisions],
+                                                                 "tasks": [item.model_dump() for item in tasks]}}, sources)
                     # Notes cannot overwrite the separately resolved canonical arrays.
-                    def validate_notes(notes):
+                    allowed_sources = {identifier: item for identifier, item in sources.items()
+                                       if (item.segment_id, item.quote) in allowed}
+                    def validate_notes(selected):
+                        notes = attach_evidence(selected, ConsolidatedNotes, allowed_sources)
                         record = MeetingRecord(**notes.model_dump(), decisions=decisions, tasks=tasks)
                         validate_record(record, refined.segments, allowed=allowed)
-                    notes, call = self.llm.generate(model, "consolidate", ConsolidatedNotes, value, self.store,
-                                                    meeting.id, "documenting", validate_notes)
+                    selected, call = self.llm.generate(model, "consolidate", SourceNotes, value, self.store,
+                                                      meeting.id, "documenting", validate_notes)
+                    notes = attach_evidence(selected, ConsolidatedNotes, allowed_sources)
                     record = MeetingRecord(**notes.model_dump(), decisions=decisions, tasks=tasks)
                     carried = [item for batch in pair for item in batch.revisions]
                     carried.extend(item for item in revisions if item not in carried)

@@ -3,9 +3,9 @@ from tempfile import TemporaryDirectory
 import unittest
 
 from metawispr.config import Settings, SetupError
-from metawispr.documentation import Documentation, apply_edits, validate_record, resolve_candidates, candidate_items, consolidation_payload
+from metawispr.documentation import Documentation, apply_edits, validate_record, resolve_candidates, candidate_items, consolidation_payload, attach_evidence, source_payload
 from metawispr.pipeline import Runner
-from metawispr.schemas import DocumentationBatch, Edit, Evidence, Fact, MeetingRecord, ResolvedItem, Resolution, ResolutionBatch, Segment, Task
+from metawispr.schemas import DocumentationBatch, Edit, Evidence, Fact, MeetingRecord, ResolvedItem, Resolution, ResolutionBatch, Segment, SourceRecord, Task
 from support import FixtureASR, FixtureLLM, wav_bytes
 from metawispr.audio import file_sha256
 
@@ -65,6 +65,29 @@ class DocumentationTests(unittest.TestCase):
             value.decisions.append(Fact(text="fixture", evidence=[evidence]))
             with self.assertRaisesRegex(ValueError, "Evidence"):
                 validate_record(value, [self.segment])
+
+    def test_source_selection_constructs_exact_cross_segment_evidence_and_rejects_forgery(self):
+        later = Segment(id="s2", start=10.0, end=20.0, text="The report is due Friday.")
+        sources = {item.id: Evidence(segment_id=item.id, quote=item.text) for item in [self.segment, later]}
+        wire = {"summary": [], "topics": [], "decisions": [], "uncertainties": [], "tasks": [
+            {"text": "Send the report", "owner": "Maya", "deadline": "Friday", "evidence_ids": ["s1", "s2"]}]}
+        selected = SourceRecord.model_validate(wire)
+        expanded = attach_evidence(selected, MeetingRecord, sources)
+        validate_record(expanded, [self.segment, later])
+        self.assertEqual(expanded.tasks[0].evidence, list(sources.values()))
+        payload = source_payload(expanded.model_dump(), sources)
+        self.assertEqual(payload["tasks"][0]["evidence_ids"], ["s1", "s2"])
+        self.assertEqual(payload["sources"], [{"id": key, "text": value.quote} for key, value in sources.items()])
+        for ids in [["missing"], ["s1", "s1"]]:
+            wire["tasks"][0]["evidence_ids"] = ids
+            with self.assertRaisesRegex(ValueError, "Evidence IDs"):
+                attach_evidence(SourceRecord.model_validate(wire), MeetingRecord, sources)
+        wire["tasks"][0]["evidence_ids"] = ["s1", "s2"]
+        with self.assertRaisesRegex(ValueError, "Evidence IDs"):
+            attach_evidence(SourceRecord.model_validate(wire), MeetingRecord, {"s1": sources["s1"]})
+        wire["tasks"][0]["quote"] = "Invented quote"
+        with self.assertRaises(ValueError):
+            SourceRecord.model_validate(wire)
 
     def test_owner_and_deadline_must_be_in_supporting_quote(self):
         evidence = [Evidence(segment_id="s1", quote="Maya will send it by Friday.")]

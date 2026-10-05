@@ -76,13 +76,11 @@ class FixtureLLM(Ollama):
             record = {"summary": [], "topics": [], "decisions": [], "tasks": [], "uncertainties": []}
             if "segments" in payload:
                 segment = payload["segments"][0]
-                record["summary"] = [{"text": "Explicit test-double summary", "evidence": [
-                    {"segment_id": segment["id"], "quote": segment["text"]}]}]
+                record["summary"] = [{"text": "Explicit test-double summary", "evidence_ids": [segment["id"]]}]
             else:
                 for batch in payload["chronological_batches"]:
                     for fact in batch["record"]["summary"]:
-                        record["summary"].append({"text": fact["text"],
-                                                   "evidence": [payload["evidence"][index] for index in fact["evidence_ids"]]})
+                        record["summary"].append(fact)
             output = ({key: record[key] for key in ("summary", "topics", "uncertainties")}
                       if "resolved_current" in payload else {"record": record, "revisions": []})
         return {"done": True, "done_reason": "stop", "message": {"content": json.dumps(output)},

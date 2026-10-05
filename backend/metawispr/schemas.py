@@ -101,6 +101,53 @@ class ConsolidatedNotes(Contract):
     uncertainties: list[str]
 
 
+class SourceFact(Contract):
+    text: str = Field(min_length=1)
+    evidence_ids: list[str] = Field(min_length=1)
+
+
+class SourceTask(SourceFact):
+    owner: str | None
+    deadline: str | None
+
+
+class SourceTopic(Contract):
+    title: str = Field(min_length=1)
+    points: list[SourceFact] = Field(min_length=1)
+
+
+class SourceNotes(Contract):
+    summary: list[SourceFact]
+    topics: list[SourceTopic]
+    uncertainties: list[str]
+
+
+class SourceRecord(SourceNotes):
+    decisions: list[SourceFact]
+    tasks: list[SourceTask]
+
+
+class SourceBatch(Contract):
+    record: SourceRecord
+    revisions: list[SourceFact]
+
+
+class SourceItem(SourceTask):
+    kind: Literal["decision", "task"]
+
+
+class SourceResolution(Contract):
+    candidate_id: str
+    disposition: Literal["keep", "retire", "replace"]
+    replacement: SourceItem | None
+    evidence_ids: list[str] = Field(min_length=1)
+    reason: str = Field(min_length=1)
+
+
+class SourceResolutions(Contract):
+    resolutions: list[SourceResolution]
+
+
 class LLMModel(Contract):
     tag: str
     digest: str = Field(pattern=r"^(sha256:)?[a-f0-9]{64}$")

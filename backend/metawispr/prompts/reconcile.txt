@@ -14,4 +14,5 @@ Do not retire an unrelated action just because another action was cancelled.
 Unassigned tasks remain active with null owner/deadline until explicitly changed.
 Preserve stated numbers, names, negation and commitment strength. Replacements
 must not invent owners/deadlines: use null or literal text in supporting quotes.
-Copy exact segment_id and quote from input evidence. Explain each disposition.
+Select exact source IDs from the sources table in evidence_ids; never write quotes.
+Python attaches unchanged quotations. Explain each disposition.

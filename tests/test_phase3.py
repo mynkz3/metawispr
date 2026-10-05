@@ -194,7 +194,7 @@ class Phase3Tests(unittest.TestCase):
             revisions = []
             if "segments" in payload:
                 segment = payload["segments"][0]
-                fact = {"text": segment["text"], "evidence": [{"segment_id": segment["id"], "quote": segment["text"]}]}
+                fact = {"text": segment["text"], "evidence_ids": [segment["id"]]}
                 if segment["id"] == "s1":
                     value["decisions"] = [fact]
                 else:
@@ -203,7 +203,7 @@ class Phase3Tests(unittest.TestCase):
                 reconciliation_inputs.append(payload)
                 output = {"resolutions": [{"candidate_id": item["candidate_id"], "disposition": "retire",
                                              "replacement": None, "reason": "Friday deployment cancelled",
-                                             "evidence": [{"segment_id": "s2", "quote": "Cancel the Friday deployment."}]}
+                                             "evidence_ids": ["s2"]}
                                             for item in payload["candidates"]]}
                 return {"done": True, "done_reason": "stop", "message": {"content": json.dumps(output)}}
             else:

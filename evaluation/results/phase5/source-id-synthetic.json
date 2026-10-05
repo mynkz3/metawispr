@@ -1,0 +1,270 @@
+{
+  "kind": "Synthetic audio through genuine Parakeet and shared Qwen 4B; first attempt failed capacity, then reused ASR/refinement after prompt compression",
+  "meeting": {
+    "id": "5f1c91f5-46eb-4348-afe5-3dacaba3303c",
+    "title": "Synthetic source-ID quality check",
+    "filename": "meeting.wav",
+    "source_name": "original.wav",
+    "glossary": "Docker",
+    "created_at": "2026-10-05T13:36:40.497860+00:00",
+    "updated_at": "2026-10-05T13:39:16.547009+00:00",
+    "stage": "complete",
+    "input_sha256": "d5e44fa5d2eaeb68b436a21adf8f85c20f9ecbe8d3cffb97f7a6ec7269ab0c99",
+    "size_bytes": 0,
+    "duration_seconds": 14.9970625,
+    "processed_audio_seconds": 14.9970625,
+    "prepare_seconds": 0.18429390000528656,
+    "transcribed_at": "2026-10-05T13:36:40.720612+00:00",
+    "failed_stage": null,
+    "error": null,
+    "retryable": false,
+    "target": "complete",
+    "llm_completed_calls": 1,
+    "refined_at": "2026-10-05T13:36:51.672520+00:00",
+    "documented_at": "2026-10-05T13:39:16.543793+00:00"
+  },
+  "raw": {
+    "schema_version": "1.0",
+    "input_sha256": "d5e44fa5d2eaeb68b436a21adf8f85c20f9ecbe8d3cffb97f7a6ec7269ab0c99",
+    "audio_sha256": "53382e8d4913baef840ff22cc99ee24ca8fa9c6bd41954a6de30a152bbefad43",
+    "duration_seconds": 14.9970625,
+    "timing": "audio_window",
+    "segments": [
+      {
+        "id": "s00001",
+        "start": 0.0,
+        "end": 14.9970625,
+        "text": "This is a synthetic meeting for testing. We agreed to use Docker for the release. Maya will send the report by Friday. The budget is$15, not$50. We have not agreed to deploy tomorrow."
+      }
+    ],
+    "model": {
+      "model_id": "nvidia/parakeet-tdt-0.6b-v2",
+      "package": "sherpa-onnx-nemo-parakeet-tdt-0.6b-v2-int8",
+      "runtime": "sherpa-onnx",
+      "runtime_version": "1.13.8",
+      "provider": "cpu",
+      "num_threads": 4,
+      "file_sha256": {
+        "encoder.int8.onnx": "a32b12d17bbbc309d0686fbbcc2987b5e9b8333a7da83fa6b089f0a2acd651ab",
+        "decoder.int8.onnx": "b6bb64963457237b900e496ee9994b59294526439fbcc1fecf705b31a15c6b4e",
+        "joiner.int8.onnx": "7946164367946e7f9f29a122407c3252b680dbae9a51343eb2488d057c3c43d2",
+        "tokens.txt": "ec182b70dd42113aff6c5372c75cac58c952443eb22322f57bbd7f53977d497d"
+      }
+    },
+    "load_seconds": 3.299847000002046,
+    "decode_seconds": 0.9392768999969121,
+    "created_at": "2026-10-05T13:36:40.720612+00:00",
+    "warnings": [
+      "Timestamps identify audio windows, not individual word boundaries."
+    ]
+  },
+  "refined": {
+    "schema_version": "1.0",
+    "source_sha256": "9818550e6c6206d23374bb05b69ae8254fde005690cdd5fe8e0c381904193092",
+    "policy_sha256": "67e7e91c8166f0e1655f45bedb59e677351bab91048ad62677181ca8668b1672",
+    "created_at": "2026-10-05T13:36:51.672520+00:00",
+    "segments": [
+      {
+        "id": "s00001",
+        "start": 0.0,
+        "end": 14.9970625,
+        "text": "This is a synthetic meeting for testing. We agreed to use Docker for the release. Maya will send the report by Friday. The budget is$15, not$50. We have not agreed to deploy tomorrow."
+      }
+    ],
+    "accepted": [],
+    "rejected": [],
+    "calls": [
+      {
+        "key": "2ca951380e2ab7cc136f4ab6b65bcf2e3bda84e25985dd99c2eb582381df869e",
+        "model": {
+          "tag": "qwen3.5:4b",
+          "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+          "runtime_version": "0.35.1",
+          "parameter_size": "4.2B",
+          "quantization": "Q4_K_M"
+        },
+        "prompt_sha256": "cac298a4702e7b57ea57a5471ae389881de308a0343057e76975d89c919f9581",
+        "input_sha256": "29498ac8e17122e220697b718b58af3660e92ebae1ed8fc91c69e9e4ce9b70e8",
+        "schema_sha256": "09b0f26550718f3d68a0d1a8a5d672491e5a73acec334aaf5fe3fe189939530f",
+        "context": 8192,
+        "output_tokens": 2048,
+        "temperature": 0.0,
+        "seed": 0,
+        "thinking": false,
+        "presence_penalty": 0.0,
+        "repeat_penalty": 1.0,
+        "elapsed_seconds": 6.363980399997672,
+        "prompt_tokens": 463,
+        "generated_tokens": 6,
+        "attempts": 1
+      }
+    ],
+    "warnings": [
+      "Automatic edit guards cannot establish meaning. Review accepted and rejected edits."
+    ]
+  },
+  "document": {
+    "schema_version": "1.0",
+    "source_sha256": "36538939c13bd4a5fc53e47b80c024156629b545971ceb90a30bebb7c51a6781",
+    "policy_sha256": "8bbd8bb0faaf59e9579d4553e4dacd0b1f60f48242176ad5d954bc01de4c75f7",
+    "created_at": "2026-10-05T13:39:16.543793+00:00",
+    "record": {
+      "summary": [
+        {
+          "text": "The team agreed to use Docker for the release.",
+          "evidence": [
+            {
+              "segment_id": "s00001",
+              "quote": "This is a synthetic meeting for testing. We agreed to use Docker for the release. Maya will send the report by Friday. The budget is$15, not$50. We have not agreed to deploy tomorrow."
+            }
+          ]
+        },
+        {
+          "text": "Maya is assigned to send the report by Friday.",
+          "evidence": [
+            {
+              "segment_id": "s00001",
+              "quote": "This is a synthetic meeting for testing. We agreed to use Docker for the release. Maya will send the report by Friday. The budget is$15, not$50. We have not agreed to deploy tomorrow."
+            }
+          ]
+        },
+        {
+          "text": "The stated budget is $15, not $50.",
+          "evidence": [
+            {
+              "segment_id": "s00001",
+              "quote": "This is a synthetic meeting for testing. We agreed to use Docker for the release. Maya will send the report by Friday. The budget is$15, not$50. We have not agreed to deploy tomorrow."
+            }
+          ]
+        },
+        {
+          "text": "The team has not agreed to deploy tomorrow.",
+          "evidence": [
+            {
+              "segment_id": "s00001",
+              "quote": "This is a synthetic meeting for testing. We agreed to use Docker for the release. Maya will send the report by Friday. The budget is$15, not$50. We have not agreed to deploy tomorrow."
+            }
+          ]
+        }
+      ],
+      "topics": [
+        {
+          "title": "Release Strategy",
+          "points": [
+            {
+              "text": "Agreement to use Docker for the release.",
+              "evidence": [
+                {
+                  "segment_id": "s00001",
+                  "quote": "This is a synthetic meeting for testing. We agreed to use Docker for the release. Maya will send the report by Friday. The budget is$15, not$50. We have not agreed to deploy tomorrow."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Reporting",
+          "points": [
+            {
+              "text": "Maya will send the report by Friday.",
+              "evidence": [
+                {
+                  "segment_id": "s00001",
+                  "quote": "This is a synthetic meeting for testing. We agreed to use Docker for the release. Maya will send the report by Friday. The budget is$15, not$50. We have not agreed to deploy tomorrow."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Budget",
+          "points": [
+            {
+              "text": "The budget is $15, not $50.",
+              "evidence": [
+                {
+                  "segment_id": "s00001",
+                  "quote": "This is a synthetic meeting for testing. We agreed to use Docker for the release. Maya will send the report by Friday. The budget is$15, not$50. We have not agreed to deploy tomorrow."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Deployment Schedule",
+          "points": [
+            {
+              "text": "The team has not agreed to deploy tomorrow.",
+              "evidence": [
+                {
+                  "segment_id": "s00001",
+                  "quote": "This is a synthetic meeting for testing. We agreed to use Docker for the release. Maya will send the report by Friday. The budget is$15, not$50. We have not agreed to deploy tomorrow."
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "decisions": [
+        {
+          "text": "Agreement to use Docker for the release.",
+          "evidence": [
+            {
+              "segment_id": "s00001",
+              "quote": "This is a synthetic meeting for testing. We agreed to use Docker for the release. Maya will send the report by Friday. The budget is$15, not$50. We have not agreed to deploy tomorrow."
+            }
+          ]
+        }
+      ],
+      "tasks": [
+        {
+          "text": "Maya will send the report by Friday.",
+          "evidence": [
+            {
+              "segment_id": "s00001",
+              "quote": "This is a synthetic meeting for testing. We agreed to use Docker for the release. Maya will send the report by Friday. The budget is$15, not$50. We have not agreed to deploy tomorrow."
+            }
+          ],
+          "owner": "Maya",
+          "deadline": "Friday"
+        }
+      ],
+      "uncertainties": [
+        "Deployment for tomorrow has not been agreed upon.",
+        "The specific deadline for Maya's report is relative ('Friday') and not an absolute date."
+      ]
+    },
+    "revision_audit": [],
+    "calls": [
+      {
+        "key": "66a2c161661721d354675f371a91b26bec20fbd737245583892ccc5f486fce84",
+        "model": {
+          "tag": "qwen3.5:4b",
+          "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+          "runtime_version": "0.35.1",
+          "parameter_size": "4.2B",
+          "quantization": "Q4_K_M"
+        },
+        "prompt_sha256": "1c69e6e820a9360d459d8eecb0922f4b673341a5f4a6af9ffbbc9b7f360e8ed7",
+        "input_sha256": "f63f5ab94044aad260bb1b2b0051cd77e78ec1ce28c6e5fcbf48a26fbb122bfd",
+        "schema_sha256": "dab4e2b497df2af181caa7b5d38ec8f1f9898423a884f413cfb3143369fb2b37",
+        "context": 8192,
+        "output_tokens": 2048,
+        "temperature": 0.0,
+        "seed": 0,
+        "thinking": false,
+        "presence_penalty": 0.0,
+        "repeat_penalty": 1.0,
+        "elapsed_seconds": 15.905762800000957,
+        "prompt_tokens": 882,
+        "generated_tokens": 642,
+        "attempts": 1
+      }
+    ],
+    "warnings": [
+      "Exact evidence matching verifies provenance, not interpretation. Review decisions, tasks and revisions."
+    ]
+  },
+  "whole_source_quotes_valid": true,
+  "export_members_match": 8
+}

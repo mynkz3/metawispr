@@ -23,7 +23,7 @@ from metawispr.config import Settings, SetupError
 from metawispr.documentation import Documentation, groups
 from metawispr.llm import digest, prompt
 from metawispr.pipeline import Store, atomic_write
-from metawispr.schemas import DocumentationBatch, Segment, RawTranscript
+from metawispr.schemas import SourceBatch, Segment, RawTranscript
 from run import MeasuredOllama, available_ram, model_metadata
 
 
@@ -217,7 +217,7 @@ def run(args):
         job["input_sha256"] = digest(input_value)
         if role != "asr-refinement":
             payload = lambda items: {"title": meeting.title, "segments": [item.model_dump() for item in items]}
-            job["initial_groups"] = len(groups(source.segments, payload, lambda value: llm.fits("document", DocumentationBatch, value)))
+            job["initial_groups"] = len(groups(source.segments, payload, lambda value: llm.fits("document", SourceBatch, value)))
         llm.measurements = []
         llm.unload(model)
         started = time.perf_counter()
