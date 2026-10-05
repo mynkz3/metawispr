@@ -1,5 +1,5 @@
 {
-  "status": "Final documentation policy 14 frozen before first held-out LLM generation; previous ASR-only identities preserved.",
+  "status": "Final documentation policy 15 frozen before first held-out LLM generation. No further tuning from held-out results.",
   "dataset": "AMI Meeting Corpus",
   "dataset_url": "https://groups.inf.ed.ac.uk/ami/corpus/",
   "license": "CC BY 4.0",
@@ -93,7 +93,7 @@
       "reconcile": "67f021ddb8638d48a6f3ca24b9a3ad12d85f013f89370b0b51672a193b7b7676",
       "consolidate": "938e3ac0422737f310ed286a9fdf0b6379e9a1ce1c5c5662de448016baaaf9e4"
     },
-    "documentation_policy": "ec028132b709c622af7a301b6f44f9cc9832010949e59508ad5c8042943289f1",
+    "documentation_policy": "b42904b29ef0d42cd62247782b3cbab092873f70fae1dfd3a175d6fd2d1be16c",
     "refinement_policy": "07a79e6a4943973bda2763c83ca80e037beae8ded6be87619683c042e1b7181f",
     "glossary": "Real Reaction\nremote control\nindustrial designer\nuser interface designer\nmarketing executive\nproject manager\nLCD\ninfrared",
     "source_sha256": {
@@ -102,7 +102,7 @@
       "backend/metawispr/api.py": "5ea166f72b9b7a0eed783150d4e54caa85d362869b721705ccf3908d573d9825",
       "backend/metawispr/audio.py": "f053ec04671fc28c13f626dc21b46cda69e0b61dd660fbbc912c23ea93a4c3da",
       "backend/metawispr/config.py": "74e167ea956ff9b89c20408f6489eec9aa57c3e3bb67666ab08abaea3d6271be",
-      "backend/metawispr/documentation.py": "5e84afecc756932777fa3d16d454390f12c14f0490b78ebc72ddedad7e7ebdcf",
+      "backend/metawispr/documentation.py": "85a02b400610897b0f8cb02fad9ea237687aa4896f5a945b94c3dc619a1ca4af",
       "backend/metawispr/exports.py": "812dc4deb48906288d40cddc5a0ff3cef1ca475162d460abab29fe10c83d5361",
       "backend/metawispr/llm.py": "7565682a129d35650a0d1649d751779b2dfa3a6fea50b9a191c8d4c062d55b2b",
       "backend/metawispr/models.py": "b22cdb84c42bca0fe9061e7cc61264ccddb93d980e24f2d2ac2857bef0081508",
@@ -129,9 +129,9 @@
       "evaluation/references/phase5/IS1000b.json": "70f019a469c47482a2fd767d835d878160b92ad1a5220d04f7c587ecdd449f5c",
       "evaluation/references/phase5/TS3003b.json": "6061f3b6599d9d3458fea5a6d5893ebf64542d9b39af815793897b3b6341f07a"
     },
-    "frozen_at": "2026-10-05T16:55:08.056559+00:00",
-    "git_head": "4b453500b4b3f77b3913bb276a08dc7c291669c9",
-    "review_note": "Development-only fixes for context repetitions and unspecified pronoun owners, before first held-out LLM generation. ASR configuration/gold unchanged. Earlier ASR-only runs disclosed and preserved. Independent human/audio audit pending."
+    "frozen_at": "2026-10-05T17:03:42.663910+00:00",
+    "git_head": "ecffcda65bf73d9ad64194caa60c7d946070dd33",
+    "review_note": "Policy 15 development-only separation of extraction reclassification from meeting history; no held-out LLM generation occurred before this freeze. ASR configuration and reviewed gold unchanged. Earlier ASR-only identities retained. Agent-reviewed references; independent human/audio adjudication pending."
   },
   "freeze_history": [
     {
@@ -267,6 +267,73 @@
       "frozen_at": "2026-10-05T16:46:04.483722+00:00",
       "git_head": "00f0f46f16e0b56457470b4b7676b79bb1ee44d2",
       "review_note": "Development-only validator false-positive fix before held-out LLM inference. Held-out ASR already completed with unchanged ASR profile; no held-out output drove tuning. Agent-reviewed gold unchanged; independent human/audio audit pending."
+    },
+    {
+      "models": [
+        {
+          "tag": "qwen3.5:4b",
+          "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+          "runtime_version": "0.35.1",
+          "parameter_size": "4.2B",
+          "quantization": "Q4_K_M"
+        },
+        {
+          "tag": "qwen3.5:4b",
+          "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+          "runtime_version": "0.35.1",
+          "parameter_size": "4.2B",
+          "quantization": "Q4_K_M"
+        }
+      ],
+      "context": 16384,
+      "output_tokens": 3072,
+      "prompts": {
+        "refine": "b09d5b798d1c2425a4f650c6b70f709748fb068bcdf35d94f9bd6c8ae4d4c807",
+        "document": "8885ab788cbf3b009ce8afb83d6343359c66d18bd732e0d8d462d38718889509",
+        "review": "fbf38c8ccb915a45c44f890cd11b35d047d918d6058cbd1a22500f5cca5ea3d6",
+        "notes": "dc00a1c75332a51b9f273194bde8323ecf59f9e4589ce67eeb40db23fb7cb01b",
+        "reconcile": "67f021ddb8638d48a6f3ca24b9a3ad12d85f013f89370b0b51672a193b7b7676",
+        "consolidate": "938e3ac0422737f310ed286a9fdf0b6379e9a1ce1c5c5662de448016baaaf9e4"
+      },
+      "documentation_policy": "ec028132b709c622af7a301b6f44f9cc9832010949e59508ad5c8042943289f1",
+      "refinement_policy": "07a79e6a4943973bda2763c83ca80e037beae8ded6be87619683c042e1b7181f",
+      "glossary": "Real Reaction\nremote control\nindustrial designer\nuser interface designer\nmarketing executive\nproject manager\nLCD\ninfrared",
+      "source_sha256": {
+        "backend/metawispr/__init__.py": "d06b9ddd4d403ca7fc4ebbbb2d6a4ce2b8953c7b2998ddfb6d6526461734e53a",
+        "backend/metawispr/__main__.py": "5f8d7c1fb971b9c1e764cb78288a0617fe0113a62a4a3b2fdc60445869313b9f",
+        "backend/metawispr/api.py": "5ea166f72b9b7a0eed783150d4e54caa85d362869b721705ccf3908d573d9825",
+        "backend/metawispr/audio.py": "f053ec04671fc28c13f626dc21b46cda69e0b61dd660fbbc912c23ea93a4c3da",
+        "backend/metawispr/config.py": "74e167ea956ff9b89c20408f6489eec9aa57c3e3bb67666ab08abaea3d6271be",
+        "backend/metawispr/documentation.py": "5e84afecc756932777fa3d16d454390f12c14f0490b78ebc72ddedad7e7ebdcf",
+        "backend/metawispr/exports.py": "812dc4deb48906288d40cddc5a0ff3cef1ca475162d460abab29fe10c83d5361",
+        "backend/metawispr/llm.py": "7565682a129d35650a0d1649d751779b2dfa3a6fea50b9a191c8d4c062d55b2b",
+        "backend/metawispr/models.py": "b22cdb84c42bca0fe9061e7cc61264ccddb93d980e24f2d2ac2857bef0081508",
+        "backend/metawispr/pipeline.py": "11356cdd4bf51cf5a604ba6d84cb0e230a692e4dd0652518d50c8dbc8a5d094b",
+        "backend/metawispr/prompts/consolidate.txt": "02fa11a9c7ea612dc931a93905f781fdc6769f3fda1da8447a0ae1ab40b44b2b",
+        "backend/metawispr/prompts/document.txt": "85f06ff4884427fdbbe71b2c54845fe178ab320cb604eedea4cf13469fab3352",
+        "backend/metawispr/prompts/notes.txt": "03a8d7eb440508c8667c41f2618c88ff12d159f2d1d837af5ba1c38e3cd0abf0",
+        "backend/metawispr/prompts/reconcile.txt": "1e0d71ff42145f9e8b7a9c1a52eb328cfecaad3a5634d59567a327ab3c877892",
+        "backend/metawispr/prompts/refine.txt": "08a76f01e95d5aee0a83fca4c20a58024026d6629e9bec2319bda99b15670668",
+        "backend/metawispr/prompts/review.txt": "8be9b92c0b28e06fcaad20654ed36bc9be4659e6a2523b7b8dfa49986e81fdd6",
+        "backend/metawispr/schemas.py": "4175e76eb81d94f3b106024f8998d3abd99285a8835631ac317c0fbde8d2861f",
+        "evaluation/ami.py": "acc3da2e99f73b7de66dad436f33b8f02643961692def09c0d22eedd8daedf88",
+        "evaluation/phase5.py": "b56f8547483744ac4c1f649074a3aaa6a08712ab37cadf629ed31c6b50c3eaea",
+        "evaluation/run.py": "4ccd1506c4e719784cd7ef5ca4c787f6fe67035d2e84f8ae3d042f8395e3630d",
+        "models/sherpa-onnx-nemo-parakeet-tdt-0.6b-v2-int8/encoder.int8.onnx": "a32b12d17bbbc309d0686fbbcc2987b5e9b8333a7da83fa6b089f0a2acd651ab",
+        "models/sherpa-onnx-nemo-parakeet-tdt-0.6b-v2-int8/decoder.int8.onnx": "b6bb64963457237b900e496ee9994b59294526439fbcc1fecf705b31a15c6b4e",
+        "models/sherpa-onnx-nemo-parakeet-tdt-0.6b-v2-int8/joiner.int8.onnx": "7946164367946e7f9f29a122407c3252b680dbae9a51343eb2488d057c3c43d2",
+        "models/sherpa-onnx-nemo-parakeet-tdt-0.6b-v2-int8/tokens.txt": "ec182b70dd42113aff6c5372c75cac58c952443eb22322f57bbd7f53977d497d"
+      },
+      "gold_sha256": {
+        "evaluation/references/phase5/ES2002a.json": "9140af8aa77ab12b28d1ea8fb889b9719a84ad53c80b7c2a502710d1b7876bc1",
+        "evaluation/references/phase5/ES2002b.json": "a3c4c6a26a99b55dbd53722b7faf6fd722e8162096d3701ae9b712f8aed8f0b6",
+        "evaluation/references/phase5/ES2004a.json": "074fadfd9211c4a61b679bafd62708206e627e1f7275e0b35011e45d63b2890a",
+        "evaluation/references/phase5/IS1000b.json": "70f019a469c47482a2fd767d835d878160b92ad1a5220d04f7c587ecdd449f5c",
+        "evaluation/references/phase5/TS3003b.json": "6061f3b6599d9d3458fea5a6d5893ebf64542d9b39af815793897b3b6341f07a"
+      },
+      "frozen_at": "2026-10-05T16:55:08.056559+00:00",
+      "git_head": "4b453500b4b3f77b3913bb276a08dc7c291669c9",
+      "review_note": "Development-only fixes for context repetitions and unspecified pronoun owners, before first held-out LLM generation. ASR configuration/gold unchanged. Earlier ASR-only runs disclosed and preserved. Independent human/audio audit pending."
     }
   ]
 }
