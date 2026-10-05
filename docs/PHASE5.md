@@ -148,3 +148,15 @@ can populate that audit. The existing reclassification test now asserts an empty
 meeting audit, while cancellation/reassignment tests retain their source history.
 This development-only fix precedes all held-out LLM generation. Semantic accuracy
 failures remain failures; category/history separation is not an accuracy claim.
+
+
+Post-evaluation delivery compatibility check found one of eleven existing
+records could not be read: newer optional provenance fields changed the typed
+serialization digest of its saved refinement. The reader now accepts the exact
+stored serialization digest after validating that refinement, while retaining
+source/quote checks. Unknown legacy sampling penalties stay null; new calls
+record their actual options explicitly. A regression checks readable legacy
+metadata and rejects changed provenance. 87 tests pass; all eleven existing
+records remain readable without modifying their original artifacts. This is a
+post-benchmark read-compatibility fix, not model/prompt tuning. Benchmark code
+and the final held-out freeze remain identified in their recorded manifests.

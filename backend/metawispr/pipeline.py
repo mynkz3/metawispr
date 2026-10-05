@@ -137,7 +137,8 @@ class Store:
             return None
         result = DocumentedMeeting.model_validate(saved)
         refined = self.refined(meeting_id)
-        if refined is None or result.source_sha256 != digest(refined.model_dump()):
+        if refined is None or result.source_sha256 not in {
+                digest(refined.model_dump()), digest(self.read_json(meeting_id, "refined.json"))}:
             raise SetupError("Documentation checkpoint does not match the refined transcript.")
         validate_record(result.record, refined.segments, result.revision_audit)
         return result

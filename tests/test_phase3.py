@@ -170,6 +170,26 @@ class Phase3Tests(unittest.TestCase):
         self.assertEqual(runner.llm.unloaded, [self.settings.refiner_model, self.settings.documenter_model,
                                               self.settings.documenter_model])
 
+    def test_legacy_serialized_provenance_hash_remains_readable_without_invented_options(self):
+        runner, meeting = self.runner_and_meeting()
+        runner.run(meeting.id)
+        original = runner.store.raw(meeting.id).model_dump()
+        refined = runner.store.read_json(meeting.id, "refined.json")
+        for call in refined["calls"]:
+            call.pop("presence_penalty")
+            call.pop("repeat_penalty")
+        document = runner.store.read_json(meeting.id, "document.json")
+        document["source_sha256"] = digest(refined)
+        runner.store.write_json(meeting.id, "refined.json", refined)
+        runner.store.write_json(meeting.id, "document.json", document)
+        self.assertIsNotNone(runner.store.document(meeting.id))
+        self.assertIsNone(runner.store.refined(meeting.id).calls[0].repeat_penalty)
+        self.assertEqual(runner.store.raw(meeting.id).model_dump(), original)
+        refined["calls"][0]["seed"] = 1
+        runner.store.write_json(meeting.id, "refined.json", refined)
+        with self.assertRaisesRegex(SetupError, "does not match"):
+            runner.store.document(meeting.id)
+
     def test_shared_weights_keep_separate_validated_stage_checkpoints(self):
         runner, meeting = self.runner_and_meeting()
         runner.run(meeting.id)

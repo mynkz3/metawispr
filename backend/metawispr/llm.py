@@ -163,7 +163,8 @@ class Ollama:
                            context=self.settings.llm_context, output_tokens=self.settings.llm_output_tokens,
                            elapsed_seconds=time.perf_counter() - started,
                            prompt_tokens=result.get("prompt_eval_count", 0),
-                           generated_tokens=result.get("eval_count", 0), attempts=attempt)
+                           generated_tokens=result.get("eval_count", 0), attempts=attempt,
+                           presence_penalty=options["presence_penalty"], repeat_penalty=options["repeat_penalty"])
             store.write_json(meeting_id, filename, {"output": output.model_dump(), "call": call.model_dump()})
             return output, call
 

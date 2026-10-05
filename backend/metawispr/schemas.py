@@ -186,8 +186,8 @@ class LLMCall(Contract):
     temperature: float = 0.0
     seed: int = 0
     thinking: Literal[False] = False
-    presence_penalty: float = 0.0
-    repeat_penalty: float = 1.0
+    presence_penalty: float | None = None
+    repeat_penalty: float | None = None
     elapsed_seconds: float = Field(ge=0)
     prompt_tokens: int = Field(ge=0)
     generated_tokens: int = Field(ge=0)
