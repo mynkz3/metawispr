@@ -1,0 +1,112 @@
+{
+  "scope": "Genuine authored 15-second compatibility check; not AMI quality or independent semantic review.",
+  "wall_seconds": 7.541794500008109,
+  "meeting": {
+    "id": "2d77a1d8-fc55-40eb-a6b9-b45bde65603d",
+    "title": "Authored Gemini compatibility recording",
+    "filename": "meeting.wav",
+    "source_name": "original.wav",
+    "glossary": "Docker",
+    "created_at": "2026-10-05T21:57:23.823374+00:00",
+    "updated_at": "2026-10-05T21:59:04.061427+00:00",
+    "stage": "failed",
+    "input_sha256": "d5e44fa5d2eaeb68b436a21adf8f85c20f9ecbe8d3cffb97f7a6ec7269ab0c99",
+    "size_bytes": 661414,
+    "duration_seconds": 14.9970625,
+    "processed_audio_seconds": 14.9970625,
+    "prepare_seconds": 1.407187500008149,
+    "transcribed_at": "2026-10-05T21:57:25.283512+00:00",
+    "failed_stage": "documenting",
+    "error": "Gemini returned HTTP 503. Check Gemini availability and request configuration, then retry.",
+    "retryable": true,
+    "target": "complete",
+    "llm_completed_calls": 2,
+    "refined_at": "2026-10-05T21:57:51.489002+00:00",
+    "documented_at": null
+  },
+  "raw": {
+    "schema_version": "1.0",
+    "input_sha256": "d5e44fa5d2eaeb68b436a21adf8f85c20f9ecbe8d3cffb97f7a6ec7269ab0c99",
+    "audio_sha256": "88c9ee4c5e948b18549e5962bcb687762ed766039ed02432d32c2f90f580778b",
+    "duration_seconds": 14.9970625,
+    "timing": "audio_window",
+    "segments": [
+      {
+        "id": "s00001",
+        "start": 0.0,
+        "end": 14.9970625,
+        "text": "This is a synthetic meeting for testing. We agreed to use Docker for the release. Maya will send the report by Friday. The budget is$15, not$50. We have not agreed to deploy tomorrow."
+      }
+    ],
+    "model": {
+      "model_id": "nvidia/parakeet-tdt-0.6b-v2",
+      "package": "sherpa-onnx-nemo-parakeet-tdt-0.6b-v2-int8",
+      "runtime": "sherpa-onnx",
+      "runtime_version": "1.13.8+cuda12.cudnn9",
+      "provider": "cuda",
+      "num_threads": 4,
+      "file_sha256": {
+        "encoder.int8.onnx": "a32b12d17bbbc309d0686fbbcc2987b5e9b8333a7da83fa6b089f0a2acd651ab",
+        "decoder.int8.onnx": "b6bb64963457237b900e496ee9994b59294526439fbcc1fecf705b31a15c6b4e",
+        "joiner.int8.onnx": "7946164367946e7f9f29a122407c3252b680dbae9a51343eb2488d057c3c43d2",
+        "tokens.txt": "ec182b70dd42113aff6c5372c75cac58c952443eb22322f57bbd7f53977d497d"
+      }
+    },
+    "load_seconds": 15.93601160000253,
+    "decode_seconds": 3.596556500007864,
+    "created_at": "2026-10-05T21:57:25.283512+00:00",
+    "warnings": [
+      "Timestamps identify audio windows, not individual word boundaries."
+    ]
+  },
+  "refined": {
+    "schema_version": "1.0",
+    "source_sha256": "fbd0a291c74453e6f3389b0b7c6d881393b9512b43533a244fdd2bb6201336b8",
+    "policy_sha256": "c91df422ecfb26e2849b2870ad378d190659c9269e82829a450bf7cb98b66a96",
+    "created_at": "2026-10-05T21:57:51.489002+00:00",
+    "segments": [
+      {
+        "id": "s00001",
+        "start": 0.0,
+        "end": 14.9970625,
+        "text": "This is a synthetic meeting for testing. We agreed to use Docker for the release. Maya will send the report by Friday. The budget is$15, not$50. We have not agreed to deploy tomorrow."
+      }
+    ],
+    "accepted": [],
+    "rejected": [],
+    "calls": [
+      {
+        "key": "ff353448d4ea920dacf3dcf8d893626a2ce23ec968e1b9fa51496769837bc9cb",
+        "model": {
+          "tag": "gemini-3.8-flash",
+          "digest": "metadata_sha256:4b4e84e488249db1a9046bbf2fb4c430c79172ea30f4f7f9b54a1e8ea2203631",
+          "runtime_version": "gemini-api/v1beta; model 3.0",
+          "parameter_size": "not disclosed",
+          "quantization": "not disclosed"
+        },
+        "prompt_sha256": "08a76f01e95d5aee0a83fca4c20a58024026d6629e9bec2319bda99b15670668",
+        "input_sha256": "58a02627a083b54bfc1614bd0f9f0b15ffd0a5051dd7a5d65d22fefadcb380cd",
+        "schema_sha256": "7d155bff322772657d33e792bb2f965f07192c70a0844fc3c86b00830a6d8515",
+        "context": 16384,
+        "output_tokens": 3072,
+        "temperature": 0.0,
+        "seed": 0,
+        "thinking": true,
+        "thinking_level": "LOW",
+        "response_model_version": "gemini-3.8-flash",
+        "thought_tokens": 99,
+        "presence_penalty": null,
+        "repeat_penalty": null,
+        "elapsed_seconds": 5.541715500003193,
+        "prompt_tokens": 530,
+        "generated_tokens": 5,
+        "attempts": 1
+      }
+    ],
+    "warnings": [
+      "Automatic edit guards cannot establish meaning. Review accepted and rejected edits."
+    ]
+  },
+  "document": null,
+  "checks": {}
+}

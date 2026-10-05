@@ -118,3 +118,26 @@ Official sources checked on 6 October 2026:
 - [Structured outputs](https://ai.google.dev/gemini-api/docs/structured-output)
 - [Pricing and data use](https://ai.google.dev/gemini-api/docs/pricing)
 - [Project rate limits](https://ai.google.dev/gemini-api/docs/rate-limits)
+
+## Genuine key and compatibility check, 6 October 2026
+
+The private key was configured and Google's model metadata endpoint confirmed
+access to `gemini-3.8-flash`. The initial sandboxed connection failed; reviewed
+network access succeeded. The idle local backend was restarted with network
+access and the existing CUDA/cuDNN library paths. Its health endpoint now reports
+Gemini ready, CUDA ASR ready and no LLM setup error. Credentials are not published.
+
+The existing authored 14.997-second audio was processed in an isolated data
+directory using real Parakeet INT8 CUDA and Gemini. ASR decoding took 3.60 seconds.
+Gemini completed one refinement call (no edits accepted) and two documentation
+calls. The next request returned HTTP 503. A checkpoint-preserving retry reused
+completed stages/calls and encountered HTTP 503 again. No canonical document or
+exports were produced. The original failed report remains intact.
+
+Both genuine attempts are saved under
+[evaluation/results/gemini-compatibility](../evaluation/results/gemini-compatibility/).
+Their contents were checked against the configured credential before publication.
+The sample is an authored compatibility test, not an AMI benchmark or independently
+reviewed quality result. Model access is verified; complete Gemini generation,
+export parity and the two-meeting quality comparison remain open. A 503 response
+does not establish an authentication failure or a model accuracy score.
