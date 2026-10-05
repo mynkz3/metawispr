@@ -12,7 +12,7 @@ import httpx
 
 from metawispr.config import Settings, SetupError
 from metawispr.documentation import documentation_policy, refinement_policy
-from metawispr.llm import Gemini, Ollama, llm_client, llm_readiness
+from metawispr.llm import Gemini, Ollama, gemini_key, llm_client, llm_readiness
 from metawispr.pipeline import Runner, Store
 from metawispr.schemas import EditBatch
 from support import FixtureASR, FixtureLLM, wav_bytes
@@ -66,6 +66,17 @@ class GeminiTests(unittest.TestCase):
             self.assertEqual(Settings.from_env().refiner_model, "qwen3.5:4b")
         with self.assertRaises(ValueError):
             replace(self.settings, refiner_model="../other-endpoint")
+
+    def test_private_key_file_supports_quotes_without_overriding_environment(self):
+        path = Path(self.folder.name) / ".env"
+        path.write_text('# Private fixture\nGEMINI_API_KEY="file-fixture-key"\nMETAWISPR_LLM_BACKEND=ignored\n', encoding="utf-8")
+        with patch("metawispr.llm.Path", return_value=path):
+            self.assertEqual(gemini_key(), "synthetic-key")
+            with patch.dict(os.environ, {}, clear=True):
+                self.assertEqual(gemini_key(), "file-fixture-key")
+                self.assertIsNone(os.getenv("METAWISPR_LLM_BACKEND"))
+                path.write_text('GEMINI_API_KEY=\n', encoding="utf-8")
+                self.assertIsNone(gemini_key())
 
     def test_wire_auth_schema_usage_provenance_and_checkpoint_reuse(self):
         models = self.llm.models()

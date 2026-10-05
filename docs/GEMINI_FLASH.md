@@ -11,8 +11,13 @@ Gemini and no new Python dependency is required: the adapter uses existing httpx
 Obtain an API key from [Google AI Studio](https://aistudio.google.com/apikey).
 Set `GEMINI_API_KEY` in the environment of the backend process using your local
 secret-management method. Never paste the key into the browser, a tracked file,
-an issue, or evaluation reports. The application reads process environment; it
-does not automatically load `.env` files. `.env.example` is a configuration guide.
+an issue, or evaluation reports. Alternatively, place `GEMINI_API_KEY=your-key`
+in the repository's private `.env` file, which Git ignores. Start the server from
+the repository root. Process credentials take precedence. The backend reads only
+Gemini credentials from that file; other `.env` settings are not automatically
+loaded. `.env.example` remains a configuration guide. Keep one key assignment
+per line, optionally quoted, without an inline comment. The key file is read on
+each request, so saving the key is enough once the updated backend is running.
 
 From the repository root, in the same environment containing your key:
 

@@ -4,6 +4,7 @@ from hashlib import sha256
 from importlib.resources import files
 import json
 import os
+from pathlib import Path
 import time
 
 import httpx
@@ -185,14 +186,36 @@ class Ollama:
                                                "keep_alive": 0})
 
 
+def gemini_key():
+    key = os.getenv("GEMINI_API_KEY") or os.getenv("GOOGLE_API_KEY")
+    if key and key.strip():
+        return key.strip()
+    # Only read these credentials; this is not a general dotenv interpreter.
+    path = Path(".env")
+    if not path.is_file():
+        return None
+    try:
+        values = {}
+        for line in path.read_text(encoding="utf-8-sig").splitlines():
+            name, separator, value = line.strip().partition("=")
+            if separator and name.strip() in {"GEMINI_API_KEY", "GOOGLE_API_KEY"}:
+                value = value.strip()
+                if len(value) >= 2 and value[0] == value[-1] and value[0] in "\"'":
+                    value = value[1:-1]
+                values[name.strip()] = value.strip()
+        return values.get("GEMINI_API_KEY") or values.get("GOOGLE_API_KEY")
+    except (OSError, UnicodeError):
+        raise SetupError("Cannot read the private .env key file in the repository directory.") from None
+
+
 class Gemini(Ollama):
     """Reuse checkpoint/retry validation; send only structured transcript requests."""
     thinking = True
 
     def request(self, method, path, body=None, timeout=None):
-        key = os.getenv("GEMINI_API_KEY") or os.getenv("GOOGLE_API_KEY")
+        key = gemini_key()
         if not key or not key.strip():
-            raise SetupError("Set GEMINI_API_KEY in the server environment, then restart. Do not put the key in the browser or Git.")
+            raise SetupError("Set GEMINI_API_KEY in the server environment or private repository .env file. Do not put the key in the browser or Git.")
         try:
             with httpx.Client(base_url="https://generativelanguage.googleapis.com/v1beta/",
                               headers={"x-goog-api-key": key.strip()}, trust_env=False,
