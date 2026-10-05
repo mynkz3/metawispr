@@ -11,7 +11,7 @@ from .schemas import (ConsolidatedNotes, DocumentationBatch, DocumentedMeeting, 
                       SelectedNotes, SourceActions, SourceBatch, SourceNotes, SourceRecord, SourceResolutions, Task, Topic)
 
 
-REFINEMENT_POLICY_VERSION = 9
+REFINEMENT_POLICY_VERSION = 10
 POLICY_VERSION = 16
 PROTECTED = re.compile(
     r"(?<!\w)[+-]?\d+(?:[.,:/-]\d+)*(?:%|\b)|\b(?:zero|one|two|three|four|five|six|seven|eight|nine|ten|"
@@ -75,9 +75,19 @@ def apply_edits(segments, edits, glossary):
                 DATES.findall(edit.original.casefold()) != DATES.findall(edit.replacement.casefold())):
             reason = "Changes a number, date, negation or commitment marker"
         else:
+            before, after = re.findall(r"\w+", edit.original.casefold()), re.findall(r"\w+", edit.replacement.casefold())
+            if len(before) > len(after) and set(before) & set(after):
+                reason = "Deletes a spoken word rather than correcting terminology"
+            elif len(before) == len(after) and any(
+                    left != right and
+                    (left.startswith(right) and len(left) - len(right) > 1 or
+                     aliases.get(edit.original.casefold()) != edit.replacement and
+                     SequenceMatcher(None, left, right).ratio() < 0.65)
+                    for left, right in zip(before, after)):
+                reason = "Replaces an already recognizable word rather than correcting spelling"
             letters = lambda value: re.sub(r"\W+", "", value.casefold())
             original, replacement = letters(edit.original), letters(edit.replacement)
-            if aliases.get(edit.original.casefold()) != edit.replacement:
+            if reason is None and aliases.get(edit.original.casefold()) != edit.replacement:
                 if len(replacement) > len(original) * 1.25:
                     reason = "Adds unsupported speech or completes a role"
                 elif original in {replacement + 's', replacement + 'es'} or replacement in {original + 's', original + 'es'}:

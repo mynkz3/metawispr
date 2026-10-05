@@ -74,6 +74,23 @@ class DocumentationTests(unittest.TestCase):
                             replacement=replacement, reason="Regression fixture")
             self.assertEqual(apply_edits([segment], [proposal], replacement)[1], [])
 
+    def test_terminology_cannot_delete_a_spoken_word_or_replace_a_correct_term(self):
+        source = Segment(id="s1", start=0.0, end=10.0,
+                         text="remote motor control; techie; speech recognition")
+        proposals = [
+            Edit(segment_id="s1", start=source.text.index(before),
+                 end=source.text.index(before) + len(before), original=before,
+                 replacement=after, reason="Model terminology proposal")
+            for before, after in (("remote motor control", "remote control"),
+                                  ("techie", "tech"),
+                                  ("speech recognition", "voice recognition"))
+        ]
+        refined, accepted, rejected = apply_edits([source], proposals,
+                                                  "remote control\ntech\nvoice recognition")
+        self.assertEqual(refined[0].text, source.text)
+        self.assertEqual(accepted, [])
+        self.assertEqual(len(rejected), 3)
+
     def test_quote_and_segment_must_match_exactly(self):
         for evidence in [Evidence(segment_id="missing", quote="Maya"), Evidence(segment_id="s1", quote="maya")]:
             value = record()
