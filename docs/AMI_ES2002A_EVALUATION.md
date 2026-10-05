@@ -3,7 +3,9 @@
 5 October 2026. Genuine local inference on one public English meeting, using
 unmodified production prompts, contracts and validation. This is a development
 evaluation of one selected meeting, not a corpus-wide or independently adjudicated
-benchmark. The application defaults and distinct-weight policy remain unchanged.
+benchmark. This comparison did not change the then-current application defaults
+or distinct-weight policy. The later owner-selected [shared-4B deployment](SHARED_QWEN4B.md)
+is a separate storage decision; this report and its original results are unchanged.
 
 **Qwen 9B produced the strongest validated narrative documentation, but none of
 the three models produced a complete meeting record that meets our requirements.**

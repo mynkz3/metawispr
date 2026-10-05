@@ -2,7 +2,10 @@
 
 This is a fixed, hand-authored regression suite with genuine inference. It is not
 a representative meeting benchmark, an ASR evaluation, or a production profile
-switch. The application defaults and distinct-weight Runner policy remain unchanged.
+switch. These comparisons did not change the then-current application defaults
+or distinct-weight Runner policy. The subsequent owner-selected [shared-4B
+deployment](../docs/SHARED_QWEN4B.md) is recorded separately; reproducing an old
+comparison requires installing its named models again.
 
 The 6 refinement and 10 documentation cases were written before model execution.
 They exercise aliases, protected facts, no-op/absent-glossary behavior, repeated

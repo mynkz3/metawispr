@@ -34,7 +34,7 @@ class Settings:
     max_pending_jobs: int = 3
     ollama_url: str = "http://127.0.0.1:11434"
     refiner_model: str = "qwen3.5:4b"
-    documenter_model: str = "qwen3.5:9b"
+    documenter_model: str = "qwen3.5:4b"
     llm_context: int = 8192
     llm_output_tokens: int = 2048
     llm_timeout_seconds: int = 300
@@ -54,8 +54,8 @@ class Settings:
                 or endpoint.username or endpoint.password or endpoint.query or endpoint.fragment
                 or endpoint.path not in {"", "/"}):
             raise ValueError("Ollama must use a local HTTP endpoint, without credentials or a path")
-        if not self.refiner_model.strip() or not self.documenter_model.strip() or self.refiner_model == self.documenter_model:
-            raise ValueError("Refinement and documentation require two distinct installed model tags")
+        if not self.refiner_model.strip() or not self.documenter_model.strip():
+            raise ValueError("Refinement and documentation require nonempty installed model tags")
 
     @classmethod
     def from_env(cls):
@@ -74,7 +74,7 @@ class Settings:
             max_pending_jobs=integer("MAX_PENDING_JOBS", 3),
             ollama_url=os.getenv("METAWISPR_OLLAMA_URL", "http://127.0.0.1:11434").rstrip("/"),
             refiner_model=os.getenv("METAWISPR_REFINER_MODEL", "qwen3.5:4b"),
-            documenter_model=os.getenv("METAWISPR_DOCUMENTER_MODEL", "qwen3.5:9b"),
+            documenter_model=os.getenv("METAWISPR_DOCUMENTER_MODEL", "qwen3.5:4b"),
             llm_context=integer("LLM_CONTEXT", 8192),
             llm_output_tokens=integer("LLM_OUTPUT_TOKENS", 2048),
             llm_timeout_seconds=integer("LLM_TIMEOUT_SECONDS", 300),

@@ -59,15 +59,18 @@ class FixtureLLM(Ollama):
     def models(self):
         return tuple(LLMModel(tag=tag, digest=character * 64, runtime_version="test-double",
                               parameter_size="test-double", quantization="test-double")
-                     for tag, character in ((self.settings.refiner_model, "a"), (self.settings.documenter_model, "b")))
+                     for tag, character in ((self.settings.refiner_model, "a"),
+                                            (self.settings.documenter_model,
+                                             "a" if self.settings.documenter_model == self.settings.refiner_model else "b")))
 
     def request(self, method, path, body=None, timeout=None):
         from metawispr.config import SetupError
         self.requests.append((path, body))
-        if self.fail_document and body["model"] == self.settings.documenter_model:
+        refining = "edits" in body["format"]["properties"]
+        if self.fail_document and not refining:
             raise SetupError("Explicit test-double documentation failure")
         payload = json.loads(body["messages"][1]["content"])
-        if body["model"] == self.settings.refiner_model:
+        if refining:
             output = {"edits": []}
         else:
             record = {"summary": [], "topics": [], "decisions": [], "tasks": [], "uncertainties": []}

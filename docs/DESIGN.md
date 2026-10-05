@@ -1,6 +1,6 @@
 # Metawispr design
 
-Version 0.3 · 5 October 2026 · implementation specification
+Version 0.4 · 5 October 2026 · implementation specification
 
 This document separates the problem statement's requirements from our engineering choices. The first release serves the recorded English meeting task. Mainstream open-source distribution is a later release goal; present architecture should be understandable and reproducible without building that future platform now.
 
@@ -37,18 +37,18 @@ See [PHASES.md](PHASES.md) for current status. Commit after each phase and each 
 
 ## 3. Model decisions
 
-| Role | Initial exact selection | Execution | Decision status |
+| Role | Current exact selection | Execution | Decision status |
 | --- | --- | --- | --- |
 | Speech recognition | `nvidia/parakeet-tdt-0.6b-v2`, sherpa-onnx v2 INT8 export | sherpa-onnx CPU runtime initially; 4 threads; 16 kHz input | Provisional primary ASR; must pass real-audio checks |
 | Terminology refinement | `Qwen/Qwen3.5-4B`; Ollama `qwen3.5:4b` | Local structured JSON generation; thinking disabled | Genuine compatibility/terminology probe passed; representative quality pending |
-| Meeting documentation | `Qwen/Qwen3.5-9B`; Ollama `qwen3.5:9b` | Local structured JSON generation; thinking disabled | Genuine synthetic record passed manual compatibility review; representative quality pending |
+| Meeting documentation | `Qwen/Qwen3.5-4B`; Ollama `qwen3.5:4b` | Reuses refinement weights with a separate prompt/schema; thinking disabled | Owner-selected lightweight default; representative quality pending |
 | ASR evaluation baseline | Whisper `large-v3` via faster-whisper | Separate benchmark, not a second production ASR | Comparison only, no automatic dual-model ensemble |
 
-This is a deliberate local default, not a claim that these are universally best. A hosted quality profile is a future decision if local extraction fails the quality gate. The application must not silently change models or fall back to fabricated output.
+This is a deliberate local default, not a claim that these are universally best. The owner selected shared Qwen 4B to reduce installed model storage, retiring Qwen 9B and Granite locally. Both LLM roles remain separate ordered stages with independent prompts, schemas, audit artifacts and call identities. Custom role tags may still select different models. See [the profile verification and improvement plan](SHARED_QWEN4B.md). The application must not silently change models or fall back to fabricated output.
 
-The [local LLM regression study](LLM_EVALUATION.md) compares both roles using Qwen 4B, Qwen 9B and Granite H-Micro 3B. It identifies Qwen 4B as the preferred lightweight shared-weight candidate for further evaluation, without changing this default or the production distinct-weight policy. Authored regression cases do not establish representative meeting accuracy.
+The [local LLM regression study](LLM_EVALUATION.md) compares both roles using Qwen 4B, Qwen 9B and Granite H-Micro 3B. It identified Qwen 4B as a lightweight shared-weight candidate without changing the then-current 4B/9B profile. Authored regression cases do not establish representative meeting accuracy.
 
-The [AMI ES2002a evaluation](AMI_ES2002A_EVALUATION.md) does not validate that shared-4B preference on a real meeting. Qwen 9B produces the strongest validated narrative notes, but misses the assigned tasks; no tested profile meets complete record requirements. The default stays provisional while citation handling, assignment extraction and context budgeting are improved and tested on further meetings.
+The [AMI ES2002a evaluation](AMI_ES2002A_EVALUATION.md) does not validate shared 4B as a quality winner on a real meeting. Qwen 9B produced the strongest validated narrative notes, but missed the assigned tasks; no tested profile met complete record requirements. The shared-4B default is provisional while citation handling, assignment extraction and context budgeting are improved and tested on further meetings.
 
 Verified primary sources:
 
@@ -60,7 +60,7 @@ Verified primary sources:
 
 ### Hardware and reproducibility
 
-The development machine was observed to have an RTX 4060 Laptop GPU with 8 GB VRAM. This does not establish end-to-end speed or memory requirements. Run LLM roles sequentially and unload between stages. Use an 8,192-token configured context initially, with bounded input groups and output reserves; do not allocate a model's advertised maximum context by default. Ollama may offload to CPU. Do not promise that both LLMs fit together on the GPU.
+The development machine was observed to have an RTX 4060 Laptop GPU with 8 GB VRAM. This does not establish end-to-end speed or memory requirements. Run LLM roles sequentially and unload between stages, even when their weights match. Use an 8,192-token configured context initially, with bounded input groups and output reserves; do not allocate a model's advertised maximum context by default. Ollama may offload to CPU. Model storage and runtime memory are different measurements.
 
 Record ASR file SHA-256 hashes, package/runtime versions, requested LLM tag, resolved LLM digest, generation options, prompt version/hash, input hashes, call duration and completion state per meeting. `uv.lock` is committed after genuine Windows runtime verification. Matching sherpa-onnx and Windows binary-package versions prevent use of an incompatible system ONNX Runtime DLL. The frontend lockfile records the Phase 4 build and browser-check dependencies. Model downloads remain outside Git. Quantized checkpoints require quality measurement.
 
@@ -76,7 +76,7 @@ flowchart TD
     ASR --> RAW[Immutable raw segments]
     RAW --> REF[Qwen3.5 4B edit proposals]
     REF --> GUARD[Validate and apply supported edits]
-    GUARD --> DOC[Qwen3.5 9B extraction and consolidation]
+    GUARD --> DOC[Shared Qwen3.5 4B extraction and consolidation]
     DOC --> CHECK[Schema and evidence checks]
     CHECK --> RECORD[Canonical meeting record]
     RECORD --> UI
@@ -128,7 +128,7 @@ Save raw transcript, refined transcript, accepted edits, rejected edits and reas
 
 ### Documentation and long meetings
 
-LLM 2 extracts facts from bounded segment groups, then reconciles adjacent groups when multiple groups exist. A typed response must give every candidate decision/task exactly one disposition: keep, retire or replace. Changes require explicit later evidence; identical replacements preserve the original. A separate notes-only call writes summary/topics/uncertainties while Python copies the resolved current decisions/tasks into the canonical record. Multi-call execution uses the same distinct documentation checkpoint.
+The documentation stage extracts facts from bounded segment groups, then reconciles adjacent groups when multiple groups exist. A typed response must give every candidate decision/task exactly one disposition: keep, retire or replace. Changes require explicit later evidence; identical replacements preserve the original. A separate notes-only call writes summary/topics/uncertainties while Python copies the resolved current decisions/tasks into the canonical record. Multi-call execution uses the configured documentation weights, shared with refinement by default, and separate documentation checkpoints.
 
 Intermediate batches carry a meeting record plus evidence-backed revision signals, including changes whose earlier targets are outside the current group. Adjacent chronological batches consolidate in a hierarchy. Consolidation may only quote evidence supplied by its inputs, compacted into a deduplicated quote table. Revision signals and original/later resolution quotes remain in a separate `revision_audit` for review, rather than becoming current tasks or uncertainties. This carries later changes forward; interpreting them correctly remains a model/human quality check.
 

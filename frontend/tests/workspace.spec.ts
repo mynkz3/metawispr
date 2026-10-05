@@ -173,7 +173,7 @@ test('desktop upload visual and accessibility check', async ({ page }) => {
 });
 
 test('genuine saved record and browser upload through installed models', async ({ page }) => {
-  test.skip(!process.env.METAWISPR_SMOKE_AUDIO || !process.env.METAWISPR_SMOKE_ID, 'Opt-in real local three-model compatibility check; needs installed models and authored audio.');
+  test.skip(!process.env.METAWISPR_SMOKE_AUDIO || !process.env.METAWISPR_SMOKE_ID, 'Opt-in real local pipeline compatibility check; needs installed models and authored audio.');
   test.setTimeout(240000);
   const errors: string[] = []; page.on('pageerror', e => errors.push(e.message));
   await page.goto(`/?meeting=${process.env.METAWISPR_SMOKE_ID}`);
@@ -194,7 +194,8 @@ test('genuine saved record and browser upload through installed models', async (
   const result = await (await page.request.get(`/api/meetings/${created}`)).json();
   expect(result.meeting.stage).toBe('complete');
   expect(result.raw.model.runtime).not.toBe('test-double');
-  expect(result.document.calls[0].model.tag).toBe('qwen3.5:9b');
+  expect(result.refined.calls[0].model.tag).toBe('qwen3.5:4b');
+  expect(result.document.calls[0].model).toEqual(result.refined.calls[0].model);
   expect(result.document.record.decisions).toHaveLength(1);
   expect(result.document.record.tasks).toHaveLength(1);
   expect(result.document.record.tasks[0].owner).toBe('Maya');

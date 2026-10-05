@@ -50,10 +50,23 @@ class Phase3Tests(unittest.TestCase):
         self.assertEqual(runner.store.get(meeting.id).stage, "complete")
         for name, content in original.items():
             self.assertEqual((directory / name).read_bytes(), content)
-        refine_calls = [body for _, body in runner.llm.requests if body["model"] == self.settings.refiner_model]
+        refine_calls = [body for _, body in runner.llm.requests if "edits" in body["format"]["properties"]]
         self.assertEqual(len(refine_calls), 1)
         self.assertEqual(runner.llm.unloaded, [self.settings.refiner_model, self.settings.documenter_model,
                                               self.settings.documenter_model])
+
+    def test_shared_weights_keep_separate_validated_stage_checkpoints(self):
+        runner, meeting = self.runner_and_meeting()
+        runner.run(meeting.id)
+        self.assertEqual(runner.store.get(meeting.id).stage, "complete")
+        refined = runner.store.refined(meeting.id)
+        document = runner.store.document(meeting.id)
+        self.assertEqual(refined.calls[0].model, document.calls[0].model)
+        self.assertNotEqual(refined.calls[0].prompt_sha256, document.calls[0].prompt_sha256)
+        self.assertNotEqual(refined.calls[0].key, document.calls[0].key)
+        directory = runner.store.directory(meeting.id)
+        self.assertTrue((directory / "refining" / "calls" / f"{refined.calls[0].key}.json").is_file())
+        self.assertTrue((directory / "documenting" / "calls" / f"{document.calls[0].key}.json").is_file())
 
     def test_completed_record_does_not_need_a_model_server_to_resume(self):
         runner, meeting = self.runner_and_meeting()

@@ -2,15 +2,17 @@
 
 A meeting workspace that turns uploaded English recordings into a raw transcript, a terminology-refined transcript, minutes, agreed decisions, and actionable tasks. Claims in the meeting record link back to their source audio.
 
-**Build status:** the recorded-meeting pipeline and responsive React review workspace are implemented. **71 backend tests pass**; frontend build, browser behavior, accessibility and real model compatibility are documented in the phase logs. See [the design](docs/DESIGN.md), [phase gates](docs/PHASES.md), [Phase 2 verification](docs/PHASE2.md), [Phase 3 verification](docs/PHASE3.md) and [Phase 4 plan/verification](docs/PHASE4.md). Representative meeting-quality evaluation remains Phase 5 work.
+**Build status:** the recorded-meeting pipeline and responsive React review workspace are implemented. **74 backend tests pass**; frontend build, browser behavior, accessibility and real model compatibility are documented in the phase logs. See [the design](docs/DESIGN.md), [phase gates](docs/PHASES.md), [Phase 2 verification](docs/PHASE2.md), [Phase 3 verification](docs/PHASE3.md) and [Phase 4 plan/verification](docs/PHASE4.md). Representative meeting-quality evaluation remains Phase 5 work.
 
 ## Architecture
 
-React + TypeScript interface → FastAPI → Parakeet v2 INT8 ONNX → Qwen3.5 4B terminology refinement → Qwen3.5 9B documentation → validation → Markdown / JSON / ZIP.
+React + TypeScript interface → FastAPI → Parakeet v2 INT8 ONNX → Qwen3.5 4B terminology refinement → Qwen3.5 4B documentation → validation → Markdown / JSON / ZIP.
 
-The two Qwen checkpoints are local deployment defaults pending project-specific evaluation. Only one ASR runs in the product. Faster-whisper large-v3 is an evaluation baseline.
+One Qwen 4B weight set serves both ordered LLM stages with separate prompts, schemas, checkpoints and provenance. This owner-selected default reduces model storage to approximately 4 GB including Parakeet; dependencies and caches are additional. It is not a claim of release-ready meeting accuracy. See the [shared-4B profile and improvement plan](docs/SHARED_QWEN4B.md). Only one ASR runs in the product. Faster-whisper large-v3 is an evaluation baseline.
 
-A [genuine local LLM regression comparison](docs/LLM_EVALUATION.md) now covers Qwen 4B, Qwen 9B and Granite H-Micro 3B on fixed authored cases, plus CPU subsets. Qwen 4B is the preferred lightweight single-model candidate for further testing; the application defaults remain unchanged. The [evaluation runner and actual outputs](evaluation/README.md) are included. These results do not establish representative meeting accuracy.
+The shared-4B switch passed backend tests, build, readiness and genuine synthetic audio/export checks. Five browser fixture checks passed; the genuine browser test failed its decision-quality assertion because 4B classified a budget fact as an agreed decision. That failure is retained and remains Phase 5 work.
+
+A [genuine local LLM regression comparison](docs/LLM_EVALUATION.md) covers Qwen 4B, Qwen 9B and Granite H-Micro 3B on fixed authored cases, plus CPU subsets. It identified Qwen 4B as a lightweight candidate; the later shared-4B default is a separate storage decision. The [evaluation runner and actual outputs](evaluation/README.md) are included. These results do not establish representative meeting accuracy.
 
 The [real AMI ES2002a comparison](docs/AMI_ES2002A_EVALUATION.md) now tests the same models on a 21-minute recording and official manual transcript. Qwen 9B produced the strongest validated narrative notes, but omitted the assigned tasks; no model met the complete meeting-record quality requirements. The earlier single-4B preference is not validated by this meeting. Citation handling, action extraction and context budgeting need work before selecting a production winner. Public derived inputs and genuine outputs are included; audio and weights remain outside Git.
 
@@ -23,7 +25,6 @@ uv sync --locked
 uv run python -m unittest discover -s tests -v
 uv run python -m metawispr download-model
 ollama pull qwen3.5:4b
-ollama pull qwen3.5:9b
 uv run python -m metawispr doctor
 cd frontend
 npm ci
@@ -60,7 +61,7 @@ For an offline model install, download the [official v2 INT8 archive](https://gi
 uv run python -m metawispr download-model --archive /path/to/package.tar.bz2
 ```
 
-An optional `--sha256 EXPECTED_HASH` checks a checksum you obtained independently. The installer records archive/file hashes and attribution, rejects unsafe archives, and never overwrites an existing model directory. `doctor` reports prerequisites, including two installed distinct LLM digests; `doctor --asr-only` checks the ASR setup independently. Neither certifies recognition or extraction quality.
+An optional `--sha256 EXPECTED_HASH` checks a checksum you obtained independently. The installer records archive/file hashes and attribution, rejects unsafe archives, and never overwrites an existing model directory. `doctor` reports prerequisites for both LLM roles, which share one installed model by default; `doctor --asr-only` checks the ASR setup independently. Neither certifies recognition or extraction quality.
 
 ## API
 

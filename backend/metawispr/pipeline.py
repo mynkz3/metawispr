@@ -226,9 +226,6 @@ class Runner:
             document = self.store.document(meeting_id)
             if document is None:
                 models = models or self.llm.models()
-                if any(call.model.digest.removeprefix("sha256:") == models[1].digest.removeprefix("sha256:")
-                       for call in refined.calls):
-                    raise SetupError("Documentation weights match the saved refinement weights; use a distinct model.")
                 document = worker.document(meeting, refined, models[1], llm_progress)
                 self.store.write_json(meeting_id, "document.json", document.model_dump())
             elif document.policy_sha256 != documentation_policy(self.settings):

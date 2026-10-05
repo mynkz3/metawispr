@@ -36,4 +36,6 @@ Revalidate the published copies from the repository root:
 ```
 
 Download and inference commands are in [evaluation/README.md](../../README.md).
-The application defaults and distinct-weight Runner policy were not changed.
+These comparison runs did not change the then-current application defaults or
+distinct-weight Runner policy. The later [shared-4B deployment](../../../docs/SHARED_QWEN4B.md)
+does not alter these original results.

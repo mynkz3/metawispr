@@ -79,16 +79,28 @@ class LLMTests(unittest.TestCase):
         with self.assertRaisesRegex(SetupError, "saved LLM call"):
             self.generate()
 
-    def test_missing_and_same_weight_models_are_explicit_errors(self):
+    def test_missing_model_is_an_explicit_error(self):
         llm = Ollama(self.settings)
         with patch.object(llm, "request", return_value={"models": [], "version": "fixture"}):
             with self.assertRaisesRegex(SetupError, "missing"):
                 llm.models()
-        tags = {"models": [{"name": tag, "digest": "a" * 64, "details": {}} for tag in
-                            (self.settings.refiner_model, self.settings.documenter_model)]}
+
+    def test_one_installed_model_serves_both_roles(self):
+        llm = Ollama(self.settings)
+        tags = {"models": [{"name": self.settings.refiner_model, "digest": "a" * 64, "details": {}}]}
         with patch.object(llm, "request", side_effect=[tags, {"version": "fixture"}]):
-            with self.assertRaisesRegex(SetupError, "same weights"):
-                llm.models()
+            refiner, documenter = llm.models()
+        self.assertEqual(refiner, documenter)
+        self.assertEqual(refiner.tag, "qwen3.5:4b")
+
+    def test_aliases_of_the_same_weights_are_allowed(self):
+        llm = Ollama(Settings(documenter_model="documentation-alias"))
+        tags = {"models": [{"name": tag, "digest": "a" * 64, "details": {}}
+                           for tag in ("qwen3.5:4b", "documentation-alias")]}
+        with patch.object(llm, "request", side_effect=[tags, {"version": "fixture"}]):
+            refiner, documenter = llm.models()
+        self.assertEqual(refiner.digest, documenter.digest)
+        self.assertNotEqual(refiner.tag, documenter.tag)
 
     def test_network_failure_is_actionable(self):
         with patch("metawispr.llm.httpx.Client") as client:
@@ -97,8 +109,8 @@ class LLMTests(unittest.TestCase):
                 Ollama(self.settings).models()
             self.assertFalse(client.call_args.kwargs["trust_env"])
 
-    def test_remote_endpoint_and_identical_tags_are_rejected(self):
-        for changes in ({"ollama_url": "https://example.com"}, {"documenter_model": "qwen3.5:4b"}):
+    def test_remote_endpoint_and_empty_tags_are_rejected(self):
+        for changes in ({"ollama_url": "https://example.com"}, {"documenter_model": " "}, {"refiner_model": ""}):
             with self.assertRaises(ValueError):
                 Settings(**changes)
 

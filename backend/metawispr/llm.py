@@ -64,8 +64,6 @@ class Ollama:
                                        quantization=details.get("quantization_level", "unknown")))
             except (KeyError, ValueError) as exc:
                 raise SetupError("Ollama returned incomplete model metadata.") from exc
-        if result[0].digest.removeprefix("sha256:") == result[1].digest.removeprefix("sha256:"):
-            raise SetupError("Refinement and documentation resolve to the same weights. Install two distinct models.")
         return tuple(result)
 
     def fits(self, name, contract, payload, feedback="") -> bool:

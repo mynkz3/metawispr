@@ -4,6 +4,10 @@
 transcript cases. It is a development regression study, not representative meeting
 accuracy, an ASR benchmark, or a completed Phase 5 release evaluation.
 
+The comparison below ran before the owner's later [shared-4B deployment](SHARED_QWEN4B.md).
+That storage decision changed the application defaults and removed the distinct-weight
+restriction; the original inputs, inference reports and scores are retained.
+
 ## Protocol
 
 The [corpus](../evaluation/cases.json) contains six refinement cases and ten
@@ -18,8 +22,8 @@ temperature/seed zero, thinking disabled, presence penalty zero, repeat penalty
 one, two attempts maximum. Every component case unloads its model before and after
 execution. Inputs and settings are identical across models. Two cases use neutral
 filler to force two bounded documentation groups. The same selected weights are
-tested in both roles through component functions; the production Runner's
-distinct-weight restriction and the application's defaults remain unchanged.
+tested in both roles through component functions; this study left the then-current
+production Runner's distinct-weight restriction and application defaults unchanged.
 
 Hardware: Windows, Intel Core i7-14700HX, 28 logical processors, approximately
 16 GB installed RAM, RTX 4060 Laptop GPU with 8 GB VRAM, Ollama 0.35.1. GPU runs
@@ -169,8 +173,8 @@ the authored-case recommendation scoped to this regression study.
 Before changing the default, address explicit-deadline omissions, semantic task
 duplication and consolidation capacity, then evaluate representative recordings
 with reviewed references. Enabling the shared-weight production profile also
-requires changing its deliberate distinct-weight policy and verifying an actual
-audio-to-export run; this component experiment does not silently change that policy.
+required changing its deliberate distinct-weight policy and verifying an actual
+audio-to-export run; that later work is reported separately in the shared-4B note.
 
 ## Verification
 
@@ -193,5 +197,6 @@ The [evaluation instructions](../evaluation/README.md) explain scoring, retries,
 provenance, separate CPU runs and checkpoint reuse. Successful generation,
 evidence matching and exact-reference assertions are different checks. Model
 selection for a public release still needs representative recordings and manual
-reference annotations. The application defaults remain Qwen 4B refinement plus
-Qwen 9B documentation after this comparison.
+reference annotations. The application still used Qwen 4B refinement plus Qwen 9B
+documentation immediately after this comparison; see the shared-4B note for the
+subsequent owner-selected deployment.
