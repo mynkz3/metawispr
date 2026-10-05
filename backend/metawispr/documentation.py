@@ -12,7 +12,7 @@ from .schemas import (ConsolidatedNotes, DocumentationBatch, DocumentedMeeting, 
 
 
 REFINEMENT_POLICY_VERSION = 9
-POLICY_VERSION = 15
+POLICY_VERSION = 16
 PROTECTED = re.compile(
     r"(?<!\w)[+-]?\d+(?:[.,:/-]\d+)*(?:%|\b)|\b(?:zero|one|two|three|four|five|six|seven|eight|nine|ten|"
     r"eleven|twelve|thirteen|fourteen|fifteen|sixteen|seventeen|eighteen|nineteen|twenty|thirty|forty|fifty|"
@@ -294,6 +294,16 @@ def candidate_items(batches):
             for offset, fact in enumerate(getattr(batch.record, kind))]
 
 
+def reconciliation_inputs(candidates, revisions, sources, llm):
+    """Bound every resolution call while giving each one the full revision context."""
+    def payload(items):
+        return source_payload(
+            {"candidates": [{**item, "fact": item["fact"].model_dump()} for item in items],
+             "revisions": [item.model_dump() for item in revisions]}, sources)
+    return [payload(batch) for batch in groups(
+        candidates, payload, lambda value: llm.fits("reconcile", SourceResolutions, value))]
+
+
 def resolve_candidates(output, candidates, segments, allowed):
     by_id = {item["candidate_id"]: item for item in candidates}
     if len(output.resolutions) != len(by_id) or {item.candidate_id for item in output.resolutions} != set(by_id):
@@ -499,17 +509,21 @@ class Documentation:
                                for fact in [*facts(batch.record), *batch.revisions] for ev in fact.evidence}
                     candidates = candidate_items(pair)
                     if candidates:
-                        resolution_input = source_payload({"candidates": [{**item, "fact": item["fact"].model_dump()} for item in candidates],
-                                                           "revisions": [item.model_dump() for batch in pair for item in batch.revisions]}, sources)
-                        allowed_sources = {item["id"]: sources[item["id"]] for item in resolution_input["sources"]}
-                        selected, call = self.llm.generate(model, "reconcile", SourceResolutions, resolution_input,
-                                                          self.store, meeting.id, "documenting",
-                                                          lambda result: resolve_candidates(attach_evidence(result, ResolutionBatch, allowed_sources),
-                                                                                            candidates, refined.segments, allowed))
-                        resolution = attach_evidence(selected, ResolutionBatch, allowed_sources)
-                        decisions, tasks, revisions = resolve_candidates(resolution, candidates, refined.segments, allowed)
-                        calls.append(call)
-                        progress(len(calls))
+                        decisions, tasks, revisions = [], [], []
+                        for resolution_input in reconciliation_inputs(
+                                candidates, [item for batch in pair for item in batch.revisions], sources, self.llm):
+                            chunk = [item for item in candidates if item["candidate_id"] in
+                                     {value["candidate_id"] for value in resolution_input["candidates"]}]
+                            allowed_sources = {item["id"]: sources[item["id"]] for item in resolution_input["sources"]}
+                            def resolved(result):
+                                return resolve_candidates(attach_evidence(result, ResolutionBatch, allowed_sources),
+                                                          chunk, refined.segments, allowed)
+                            selected, call = self.llm.generate(model, "reconcile", SourceResolutions, resolution_input,
+                                                               self.store, meeting.id, "documenting", resolved)
+                            for target, values in zip((decisions, tasks, revisions), resolved(selected)):
+                                target.extend(value for value in values if value not in target)
+                            calls.append(call)
+                            progress(len(calls))
                     else:
                         decisions, tasks, revisions = [], [], []
                     def consolidate_notes(batches):

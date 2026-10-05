@@ -3,7 +3,7 @@ from tempfile import TemporaryDirectory
 import unittest
 
 from metawispr.config import Settings, SetupError
-from metawispr.documentation import Documentation, apply_edits, validate_record, resolve_candidates, candidate_items, attach_evidence, source_payload, source_units, selection_input, expand_selection
+from metawispr.documentation import Documentation, apply_edits, validate_record, resolve_candidates, candidate_items, reconciliation_inputs, attach_evidence, source_payload, source_units, selection_input, expand_selection
 from metawispr.pipeline import Runner
 from metawispr.schemas import DocumentationBatch, Edit, Evidence, Fact, MeetingRecord, ResolvedItem, Resolution, ResolutionBatch, Segment, SourceRecord, Task, SelectedNotes
 from support import FixtureASR, FixtureLLM, wav_bytes
@@ -238,6 +238,30 @@ class DocumentationTests(unittest.TestCase):
                                 replacement=None, evidence=task.evidence, reason="Still active")
         decisions, tasks, revisions = resolve_candidates(ResolutionBatch(resolutions=[resolution]), candidates, segments, allowed)
         self.assertEqual((decisions, tasks, revisions), ([], [task], []))
+
+    def test_reconciliation_chunks_all_candidates_and_repeats_revision_context(self):
+        quotes = ["Maya will write the plan.", "Lee will test it.", "Cancel Lee's task."]
+        segments = [Segment(id=f"s{i}", start=i, end=i + 1, text=text) for i, text in enumerate(quotes)]
+        sources = source_units(segments)[1]
+        tasks = [Task(text=action, owner=owner, deadline=None,
+                      evidence=[sources[f"s{i}:u000"]]) for i, (action, owner) in
+                 enumerate([("Write the plan", "Maya"), ("Test it", "Lee")])]
+        first = DocumentationBatch(record=record(), revisions=[])
+        second = DocumentationBatch(record=record(), revisions=[
+            Fact(text="Lee's task was cancelled", evidence=[sources["s2:u000"]])])
+        first.record.tasks = tasks
+        candidates = candidate_items([first, second])
+
+        class Bounded:
+            def fits(self, name, contract, payload):
+                return name == "reconcile" and len(payload["candidates"]) <= 1
+
+        chunks = reconciliation_inputs(candidates, second.revisions, sources, Bounded())
+        self.assertEqual([len(item["candidates"]) for item in chunks], [1, 1])
+        self.assertEqual([item["candidates"][0]["candidate_id"] for item in chunks],
+                         [item["candidate_id"] for item in candidates])
+        self.assertTrue(all(item["revisions"][0]["evidence_ids"] == ["s2:u000"] for item in chunks))
+        self.assertTrue(all(any(source["id"] == "s2:u000" for source in item["sources"]) for item in chunks))
 
     def test_retirement_requires_later_evidence_and_preserves_an_audit(self):
         original, cancellation = "We agree to launch Friday.", "Withdraw the Friday launch decision."
