@@ -7,7 +7,7 @@ import unittest
 import httpx
 
 from metawispr.config import Settings, SetupError
-from metawispr.llm import Ollama
+from metawispr.llm import Ollama, FEEDBACK_BYTES, compact, prompt, repair_feedback
 from metawispr.pipeline import Store
 from metawispr.schemas import EditBatch
 from support import FixtureLLM
@@ -63,6 +63,25 @@ class LLMTests(unittest.TestCase):
                 self.generate()
         self.assertEqual(request.call_count, 2)
         self.assertEqual(list(self.store.directory(self.meeting.id).glob("refining/calls/*.json")), [])
+
+    def test_boundary_request_reserves_unicode_repair_without_changing_source(self):
+        payload = {"segments": ["x"]}
+        overhead = len((prompt("refine") + "\nJSON schema: " + compact(EditBatch.model_json_schema()) + compact(payload)).encode())
+        payload["segments"][0] += "x" * (self.settings.llm_context - self.settings.llm_output_tokens - 512 - FEEDBACK_BYTES - overhead)
+        self.assertTrue(self.llm.fits("refine", EditBatch, payload))
+        self.assertFalse(self.llm.fits("refine", EditBatch, {"segments": [payload["segments"][0] + "x"]}))
+        attempts = []
+        def validate(result):
+            attempts.append(result)
+            if len(attempts) == 1:
+                raise ValueError("\U0001f9e0" * 400)
+        _, call = self.llm.generate(self.model, "refine", EditBatch, payload, self.store,
+                                   self.meeting.id, "refining", validate)
+        self.assertEqual(call.attempts, 2)
+        first, retry = (body for _, body in self.llm.requests)
+        self.assertEqual(first["messages"][:2], retry["messages"][:2])
+        self.assertLessEqual(len(retry["messages"][-1]["content"].encode()), FEEDBACK_BYTES)
+        self.assertEqual(retry["messages"][-1]["content"], repair_feedback(ValueError("\U0001f9e0" * 400)))
 
     def test_changed_digest_does_not_reuse_old_calls(self):
         self.generate()

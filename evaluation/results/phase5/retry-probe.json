@@ -1,0 +1,68 @@
+{
+  "kind": "Genuine Qwen structured-generation probe with a deliberately forced validation error; not meeting accuracy evidence",
+  "meeting_id": "b9b4c448-d76a-4d73-a46c-39c2ecc9e967",
+  "model": {
+    "tag": "qwen3.5:4b",
+    "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+    "runtime_version": "0.35.1",
+    "parameter_size": "4.2B",
+    "quantization": "Q4_K_M"
+  },
+  "input_sha256": "8bbe5227c2b3674cd3d9de0c25971d5488b9e86ddb437b84f506d7c366a27d3b",
+  "source_unchanged": true,
+  "context": 8192,
+  "output_allowance": 2048,
+  "feedback_bytes": 463,
+  "reserved_feedback_bytes": 463,
+  "call": {
+    "key": "055fa80291deb144abc47894946979a3f97bcb6057d1967cf2d4b487a77a379b",
+    "model": {
+      "tag": "qwen3.5:4b",
+      "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+      "runtime_version": "0.35.1",
+      "parameter_size": "4.2B",
+      "quantization": "Q4_K_M"
+    },
+    "prompt_sha256": "cac298a4702e7b57ea57a5471ae389881de308a0343057e76975d89c919f9581",
+    "input_sha256": "8bbe5227c2b3674cd3d9de0c25971d5488b9e86ddb437b84f506d7c366a27d3b",
+    "schema_sha256": "09b0f26550718f3d68a0d1a8a5d672491e5a73acec334aaf5fe3fe189939530f",
+    "context": 8192,
+    "output_tokens": 2048,
+    "temperature": 0.0,
+    "seed": 0,
+    "thinking": false,
+    "presence_penalty": 0.0,
+    "repeat_penalty": 1.0,
+    "elapsed_seconds": 11.2530270999996,
+    "prompt_tokens": 737,
+    "generated_tokens": 6,
+    "attempts": 2
+  },
+  "output": {
+    "edits": []
+  },
+  "checkpoint_reused": true,
+  "resident_snapshot": {
+    "models": [
+      {
+        "name": "qwen3.5:4b",
+        "model": "qwen3.5:4b",
+        "size": 3343929834,
+        "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+        "details": {
+          "parent_model": "",
+          "format": "gguf",
+          "family": "qwen35",
+          "families": [
+            "qwen35"
+          ],
+          "parameter_size": "4.2B",
+          "quantization_level": "Q4_K_M"
+        },
+        "expires_at": "2026-10-05T19:03:14.3903122+05:30",
+        "size_vram": 3343929834,
+        "context_length": 8192
+      }
+    ]
+  }
+}

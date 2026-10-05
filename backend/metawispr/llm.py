@@ -11,6 +11,17 @@ from .config import Settings, SetupError
 from .schemas import LLMCall, LLMModel
 
 
+FEEDBACK_PREFIX = "The previous answer failed validation: "
+FEEDBACK_SUFFIX = ". Return corrected JSON."
+FEEDBACK_ERROR_BYTES = 400
+FEEDBACK_BYTES = len((FEEDBACK_PREFIX + FEEDBACK_SUFFIX).encode()) + FEEDBACK_ERROR_BYTES
+
+
+def repair_feedback(error):
+    detail = str(error).encode("utf-8")[:FEEDBACK_ERROR_BYTES].decode("utf-8", errors="ignore")
+    return FEEDBACK_PREFIX + detail + FEEDBACK_SUFFIX
+
+
 def compact(value) -> str:
     return json.dumps(value, ensure_ascii=False, separators=(",", ":"), sort_keys=True)
 
@@ -70,7 +81,9 @@ class Ollama:
         system = prompt(name) + "\nJSON schema: " + compact(contract.model_json_schema())
         # A conservative byte bound for the selected byte-level tokenizers. Reserve
         # output and chat framing; reject capacity overflow instead of truncating text.
-        size = len((system + compact(payload) + feedback).encode("utf-8"))
+        # Grouping and both attempts share the same reservation, including UTF-8
+        # validation feedback. A valid first request must also fit its repair.
+        size = len((system + compact(payload)).encode("utf-8")) + max(FEEDBACK_BYTES, len(feedback.encode("utf-8")))
         return size + self.settings.llm_output_tokens + 512 <= self.settings.llm_context
 
     def generate(self, model, name, contract, payload, store, meeting_id, stage, validate):
@@ -80,7 +93,7 @@ class Ollama:
                    "num_predict": self.settings.llm_output_tokens, "presence_penalty": 0,
                    "repeat_penalty": 1}
         identity = {"model": model.model_dump(), "prompt": system, "schema": schema,
-                    "input": payload, "options": options, "think": False, "policy": 1}
+                    "input": payload, "options": options, "think": False, "policy": 2}
         key = digest(identity)
         filename = f"{stage}/calls/{key}.json"
         saved = store.read_json(meeting_id, filename)
@@ -116,7 +129,7 @@ class Ollama:
                 store.write_json(meeting_id, f"{stage}/failed/{key}-{attempt}.json",
                                  {"error": str(exc)[:400], "response": result})
                 # Small feedback avoids echoing the transcript or enormous validation errors.
-                feedback = "The previous answer failed validation: " + str(exc)[:400] + ". Return corrected JSON."
+                feedback = repair_feedback(exc)
                 if attempt == 2:
                     raise SetupError(f"{stage.capitalize()} model returned invalid output twice. "
                                      "Completed calls are saved; retry after checking the model/context settings.") from exc
