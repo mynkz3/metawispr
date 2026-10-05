@@ -12,7 +12,7 @@ from .schemas import (ConsolidatedNotes, DocumentationBatch, DocumentedMeeting, 
 
 
 REFINEMENT_POLICY_VERSION = 9
-POLICY_VERSION = 13
+POLICY_VERSION = 14
 PROTECTED = re.compile(
     r"(?<!\w)[+-]?\d+(?:[.,:/-]\d+)*(?:%|\b)|\b(?:zero|one|two|three|four|five|six|seven|eight|nine|ten|"
     r"eleven|twelve|thirteen|fourteen|fifteen|sixteen|seventeen|eighteen|nineteen|twenty|thirty|forty|fifty|"
@@ -22,6 +22,7 @@ PROTECTED = re.compile(
     r"cancel|cancelled|withdraw|withdrawn)\b", re.IGNORECASE)
 DATES = re.compile(r"\b(?:monday|tuesday|wednesday|thursday|friday|saturday|sunday|"
                    r"january|february|march|april|may|june|july|august|september|october|november|december)\b", re.I)
+ANONYMOUS = re.compile(r"(?:I|me|we|us|you|he|she|they|him|her|them|my|our|your|their|it)", re.I)
 
 
 def glossary_terms(text):
@@ -124,7 +125,7 @@ def validate_record(record, segments, revisions=(), allowed=None):
             if allowed is not None and (evidence.segment_id, evidence.quote) not in allowed:
                 raise ValueError("Consolidation introduced evidence outside its input batches")
     for task in record.tasks:
-        if task.owner is not None and task.owner.casefold().strip() in {"i", "me", "my", "we", "us", "our", "you", "your", "he", "she", "they", "them", "it"}:
+        if task.owner is not None and ANONYMOUS.fullmatch(task.owner.strip()):
             raise ValueError("Owner must be an identified literal name/role, or null; pronouns do not identify a person.")
         for name in ("owner", "deadline"):
             value = getattr(task, name)
@@ -213,6 +214,8 @@ def attach_evidence(output, contract, sources):
                         if match:
                             result[field] = match.group()
                             break
+            if isinstance(result.get("owner"), str) and ANONYMOUS.fullmatch(result["owner"].strip()):
+                result["owner"] = None
         return result
     return contract.model_validate(expand(output.model_dump()))
 
@@ -393,7 +396,7 @@ class Documentation:
     def document(self, meeting, refined, model, progress):
         sources, batches, payload = document_groups(meeting, refined.segments, self.llm)
         identifiers = {evidence_key(item): identifier for identifier, item in sources.items()}
-        outputs, calls = [], []
+        outputs, calls, context_repeats = [], [], 0
         try:
             index = 0
             while index < len(batches):
@@ -405,9 +408,17 @@ class Documentation:
                     return SourceBatch(record=SourceRecord(summary=[], topics=[], uncertainties=[],
                                                           decisions=actions.decisions, tasks=actions.tasks),
                                        revisions=actions.revisions)
+                def active_actions(actions):
+                    # Context has already been processed in chronological order.
+                    # Keep the original answer in its call checkpoint, while
+                    # canonicalizing only items supported by new source units.
+                    for item in [*actions.decisions, *actions.tasks, *actions.revisions]:
+                        if not set(item.evidence_ids) <= batch_sources.keys() or len(item.evidence_ids) != len(set(item.evidence_ids)):
+                            raise ValueError("Evidence IDs must be distinct supplied source IDs")
+                    return actions.model_copy(update={kind: [item for item in getattr(actions, kind)
+                        if active.intersection(item.evidence_ids)] for kind in ("decisions", "tasks", "revisions")})
                 def validate_batch(result, draft=False):
-                    if any(not active.intersection(item.evidence_ids) for item in [*result.decisions, *result.tasks, *result.revisions]):
-                        raise ValueError("New items must cite a segments ID; context only helps interpret new speech. Do not repeat context-only items.")
+                    result = active_actions(result)
                     expanded = attach_evidence(action_batch(result), DocumentationBatch, batch_sources)
                     if draft:
                         for task in expanded.record.tasks:
@@ -438,7 +449,9 @@ class Documentation:
                 reviewed, call = self.llm.generate(model, "review", SourceActions,
                                                    review_input, self.store,
                                                    meeting.id, "documenting", validate_batch)
-                output = attach_evidence(action_batch(reviewed), DocumentationBatch, batch_sources)
+                filtered = active_actions(reviewed)
+                context_repeats += sum(len(getattr(reviewed, kind)) - len(getattr(filtered, kind)) for kind in ("decisions", "tasks", "revisions"))
+                output = attach_evidence(action_batch(filtered), DocumentationBatch, batch_sources)
                 calls.append(call)
                 progress(len(calls))
                 # Budget notes against the actual extracted actions. If they consume
@@ -533,4 +546,5 @@ class Documentation:
                                  policy_sha256=documentation_policy(self.settings), record=record, calls=calls,
                                  revision_audit=outputs[0].revisions,
                                  created_at=datetime.now(timezone.utc).isoformat(),
-                                 warnings=["Exact evidence matching verifies provenance, not interpretation. Review decisions, tasks and revisions."])
+                                 warnings=["Exact evidence matching verifies provenance, not interpretation. Review decisions, tasks and revisions.",
+                                           f"Excluded {context_repeats} preceding-context-only items. Original proposals remain in saved call checkpoints."])

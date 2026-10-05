@@ -102,6 +102,44 @@ class Phase3Tests(unittest.TestCase):
         self.assertEqual(len(reviews), 2)
         self.assertTrue(all(len(payload["segments"]) == 1 for payload in reviews))
 
+    def test_context_repeats_excluded_and_anonymous_owner_remains_unspecified(self):
+        runner, meeting = self.runner_and_meeting()
+        raw = FixtureASR().transcribe(runner.store.directory(meeting.id) / meeting.source_name,
+                                      meeting.input_sha256, "fixture")
+        raw.duration_seconds = 20
+        raw.segments = [Segment(id="s1", start=0, end=10, text="I will send the report by Friday."),
+                        Segment(id="s2", start=10, end=20, text="Sam will review the draft.")]
+        llm = runner.llm
+        worker = Documentation(self.settings, runner.store, llm)
+        refined = worker.refine(meeting, raw, llm.models()[0], lambda count: None)
+        def request(method, path, body=None, timeout=None):
+            payload = json.loads(body["messages"][1]["content"])
+            if "segments" in payload:
+                if "tasks" in body["format"]["properties"]:
+                    # Deliberately repeats preceding context and returns an
+                    # unidentified speaker as an owner; neither is canonical.
+                    items = [*payload.get("context", []), *payload["segments"]]
+                    output = {"tasks": [{"text": item["text"], "owner": "I" if item["id"] == "s1:u000" else "Sam",
+                                         "deadline": "by Friday" if item["id"] == "s1:u000" else None,
+                                         "evidence_ids": [item["id"]]} for item in items], "decisions": [], "revisions": []}
+                else:
+                    output = {"summary": [], "topics": [], "uncertainties": []}
+            elif "candidates" in payload:
+                output = {"resolutions": [{"candidate_id": item["candidate_id"], "disposition": "keep", "replacement": None,
+                                            "reason": "No later revision", "evidence_ids": item["fact"]["evidence_ids"]} for item in payload["candidates"]]}
+            else:
+                output = {"summary_ids": [], "topics": [], "uncertainty_ids": []}
+            return {"done": True, "done_reason": "stop", "message": {"content": json.dumps(output)}}
+        original_fits = llm.fits
+        def fits(name, contract, payload, feedback=""):
+            return not (name == "document" and len(payload["segments"]) > 1) and original_fits(name, contract, payload, feedback)
+        with patch.object(llm, "request", side_effect=request), patch.object(llm, "fits", side_effect=fits):
+            result = worker.document(meeting, refined, llm.models()[1], lambda count: None)
+        self.assertEqual([(task.owner, task.deadline) for task in result.record.tasks], [(None, "by Friday"), ("Sam", None)])
+        self.assertIn("Excluded 1 preceding-context-only items", result.warnings[1])
+        saved = [json.loads(path.read_text())["output"] for path in (runner.store.directory(meeting.id) / "documenting/calls").glob("*.json")]
+        self.assertTrue(any(len(output.get("tasks", [])) == 2 and output["tasks"][0]["owner"] == "I" for output in saved))
+
     def runner_and_meeting(self):
         runner = Runner(self.settings)
         runner.asr, runner.llm = FixtureASR(), FixtureLLM(self.settings)

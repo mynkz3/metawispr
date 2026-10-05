@@ -124,3 +124,16 @@ from ES2002a development, before any held-out LLM generation. Held-out ASR was
 already started under the same ASR profile. Its saved genuine checkpoints will
 be reused with their old identities disclosed; a revised LLM/source freeze is
 recorded before held-out LLM generation. No held-out output drove this fix.
+
+
+ES2002b failed after 28 completed calls because extraction repeated context-only
+items. IS1000b failed after one call because review repeatedly emitted anonymous
+owners. The latest development fix excludes context-only items from canonical
+new actions while retaining original model proposals in call checkpoints and
+counting exclusions in warnings. Chronological source processing still visits
+every source unit. Unknown source IDs remain errors. Pronoun-only owners become
+null at canonicalization; the original model field remains in its checkpoint.
+No speaker/name is inferred. These changes follow the existing requirement for
+unspecified ownership. 86 backend tests pass, including repeat deduplication,
+anonymous ownership and preservation of original model output. No held-out LLM
+output was used; the source/LLM freeze is amended before its first generation.
