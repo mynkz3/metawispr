@@ -1,0 +1,171 @@
+{
+  "meeting": "IS1000b",
+  "review": "Agent review of timed AMI manual transcription and official summary links before held-out inference; independent human/audio audit pending.",
+  "manual_sha256": "0dc2dc974cc022cb0671ff16e80d0127761d37808d3f63b9284409af3646d5d8",
+  "attribution": "AMI Meeting Corpus, AMI Project / Edinburgh / Idiap / TNO; CC BY 4.0; https://groups.inf.ed.ac.uk/ami/corpus/",
+  "rubric": "Pending project task atoms only; one output may cover multiple atoms explicitly. Proposals/requirements are not new meeting agreements; retain qualifiers. Literal stated roles or null owners; no speaker identity inferred from ASR windows. Completed social exercises excluded.",
+  "tasks": [
+    {
+      "id": "industrial-components",
+      "text": "Find required components",
+      "owner": null,
+      "deadline": null,
+      "evidence": [
+        {
+          "id": "m0484",
+          "start": 2241.456,
+          "end": 2243.52,
+          "text": "So given we are going for this uh"
+        },
+        {
+          "id": "m0485",
+          "start": 2244.912,
+          "end": 2263.168,
+          "text": "uh universal type uh m maybe it is good when you try to find out which components you therefore need and y you will try to get more specific uh user interface content and uh maybe you can look on on what trends are in this uh in this type of market."
+        },
+        {
+          "id": "m0486",
+          "start": 2252.224,
+          "end": 2252.688,
+          "text": "Yes."
+        }
+      ]
+    },
+    {
+      "id": "interface-content",
+      "text": "Get more specific user interface content",
+      "owner": null,
+      "deadline": null,
+      "evidence": [
+        {
+          "id": "m0485",
+          "start": 2244.912,
+          "end": 2263.168,
+          "text": "uh universal type uh m maybe it is good when you try to find out which components you therefore need and y you will try to get more specific uh user interface content and uh maybe you can look on on what trends are in this uh in this type of market."
+        },
+        {
+          "id": "m0486",
+          "start": 2252.224,
+          "end": 2252.688,
+          "text": "Yes."
+        }
+      ]
+    },
+    {
+      "id": "market-trends",
+      "text": "Research trends in the market",
+      "owner": null,
+      "deadline": null,
+      "evidence": [
+        {
+          "id": "m0485",
+          "start": 2244.912,
+          "end": 2263.168,
+          "text": "uh universal type uh m maybe it is good when you try to find out which components you therefore need and y you will try to get more specific uh user interface content and uh maybe you can look on on what trends are in this uh in this type of market."
+        },
+        {
+          "id": "m0486",
+          "start": 2252.224,
+          "end": 2252.688,
+          "text": "Yes."
+        }
+      ]
+    }
+  ],
+  "decisions": [
+    {
+      "id": "target-age",
+      "text": "Target twenty to forty",
+      "evidence": [
+        {
+          "id": "m0438",
+          "start": 2108.656,
+          "end": 2116.224,
+          "text": "But if we're going for the say fifteen to twenty five age group then not many of them would actually own T_V_s to use a remote control on."
+        },
+        {
+          "id": "m0439",
+          "start": 2116.928,
+          "end": 2122.656,
+          "text": "Mm yes but w we're targeting I think on more on the on the twenty to forty group."
+        },
+        {
+          "id": "m0440",
+          "start": 2122.88,
+          "end": 2126.272,
+          "text": "Okay. So they're yeah."
+        },
+        {
+          "id": "m0441",
+          "start": 2125.408,
+          "end": 2131.938,
+          "text": "People yes. Who just have or already have a job and have the money but"
+        }
+      ]
+    },
+    {
+      "id": "universal-devices",
+      "text": "Pursue a universal remote for multiple devices, subject to component and cost research",
+      "evidence": [
+        {
+          "id": "m0472",
+          "start": 2219.792,
+          "end": 2229.344,
+          "text": "Yeah. So I guess what I'd like from a universal remote is maybe choosing between three devices, being able to switch between them, there may be stereo, V_C_R_ and T_V_."
+        },
+        {
+          "id": "m0474",
+          "start": 2225.523,
+          "end": 2225.967,
+          "text": "Yes."
+        },
+        {
+          "id": "m0475",
+          "start": 2229.264,
+          "end": 2229.472,
+          "text": "Yeah."
+        },
+        {
+          "id": "m0476",
+          "start": 2229.44,
+          "end": 2230.583,
+          "text": "Exactly."
+        },
+        {
+          "id": "m0477",
+          "start": 2230.352,
+          "end": 2233.792,
+          "text": "And just be able to s use them all from the same remote, but not at the same time."
+        },
+        {
+          "id": "m0478",
+          "start": 2230.547,
+          "end": 2231.15,
+          "text": "Yes."
+        },
+        {
+          "id": "m0484",
+          "start": 2241.456,
+          "end": 2243.52,
+          "text": "So given we are going for this uh"
+        },
+        {
+          "id": "m0485",
+          "start": 2244.912,
+          "end": 2263.168,
+          "text": "uh universal type uh m maybe it is good when you try to find out which components you therefore need and y you will try to get more specific uh user interface content and uh maybe you can look on on what trends are in this uh in this type of market."
+        }
+      ]
+    }
+  ],
+  "key_topics": [
+    "market use patterns",
+    "younger 20-40 customers and reliable trendy design",
+    "universal TV/VCR/stereo concept",
+    "standards, components and budget feasibility unresolved",
+    "three research assignments"
+  ],
+  "cautions": [
+    "Closing assignments use deictic you without literal role/name attribution in the supplied source. Safe owner is null; official role labels are not injected into the input. The future meeting/work timing is stated after the assignments; no explicit per-task deadline is imposed in gold. Teletext is debated, not clearly excluded."
+  ]
+}

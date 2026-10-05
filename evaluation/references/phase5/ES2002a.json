@@ -1,0 +1,68 @@
+{
+  "meeting": "ES2002a",
+  "review": "Agent review of timed AMI manual transcription and official summary links before held-out inference; independent human/audio audit pending.",
+  "manual_sha256": "d4f2f04f56f5028c1d944d9b76c692b93eb55761beed07ad8e595543980f7940",
+  "attribution": "AMI Meeting Corpus, AMI Project / Edinburgh / Idiap / TNO; CC BY 4.0; https://groups.inf.ed.ac.uk/ami/corpus/",
+  "rubric": "Pending project task atoms only; one output may cover multiple atoms explicitly. Proposals/requirements are not new meeting agreements; retain qualifiers. Literal stated roles or null owners; no speaker identity inferred from ASR windows. Completed social exercises excluded.",
+  "tasks": [
+    {
+      "id": "industrial-design",
+      "text": "Work on the actual working design",
+      "owner": "industrial designer",
+      "deadline": "inbetween now and then",
+      "evidence": [
+        {
+          "id": "m0202",
+          "start": 977.152,
+          "end": 1008.784,
+          "text": "Right, well um so just to wrap up, the next meeting's gonna be in thirty minutes. So that's about um about ten to twelve by my watch. Um so inbetween now and then, um as the industrial designer, you're gonna be working on you know the actual working design of it so y you know what you're doing there. Um for user interface, technical functions, I guess that's you know like what we've been talking about, what it'll actually do. Um and uh marketing executive,"
+        }
+      ]
+    },
+    {
+      "id": "interface-functions",
+      "text": "Define technical functions",
+      "owner": "user interface",
+      "deadline": "inbetween now and then",
+      "evidence": [
+        {
+          "id": "m0202",
+          "start": 977.152,
+          "end": 1008.784,
+          "text": "Right, well um so just to wrap up, the next meeting's gonna be in thirty minutes. So that's about um about ten to twelve by my watch. Um so inbetween now and then, um as the industrial designer, you're gonna be working on you know the actual working design of it so y you know what you're doing there. Um for user interface, technical functions, I guess that's you know like what we've been talking about, what it'll actually do. Um and uh marketing executive,"
+        }
+      ]
+    },
+    {
+      "id": "marketing-requirements",
+      "text": "Determine product requirements",
+      "owner": "marketing executive",
+      "deadline": "inbetween now and then",
+      "evidence": [
+        {
+          "id": "m0202",
+          "start": 977.152,
+          "end": 1008.784,
+          "text": "Right, well um so just to wrap up, the next meeting's gonna be in thirty minutes. So that's about um about ten to twelve by my watch. Um so inbetween now and then, um as the industrial designer, you're gonna be working on you know the actual working design of it so y you know what you're doing there. Um for user interface, technical functions, I guess that's you know like what we've been talking about, what it'll actually do. Um and uh marketing executive,"
+        },
+        {
+          "id": "m0204",
+          "start": 1010.0,
+          "end": 1019.344,
+          "text": "you'll be just thinking about what it actually what, you know, what requirements it has to has to fulfil and you'll all get instructions emailed to you, I guess."
+        }
+      ]
+    }
+  ],
+  "decisions": [],
+  "key_topics": [
+    "original, trendy, user-friendly remote-control brief",
+    "25 Euro retail and 12.50 Euro production cost",
+    "50 million Euro profit aim and international market",
+    "feature ideas remain exploratory",
+    "three next-stage assignments"
+  ],
+  "cautions": [
+    "Introductory role names are available in manual text, but audio-window transcription is not diarized. Role owners suffice. Brainstormed locator, touchscreen and combined-device ideas are proposals. Scheduling is reported in notes, not counted as a product decision."
+  ]
+}

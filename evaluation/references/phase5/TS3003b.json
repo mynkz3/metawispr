@@ -1,0 +1,204 @@
+{
+  "meeting": "TS3003b",
+  "review": "Agent review of timed AMI manual transcription and official summary links before held-out inference; independent human/audio audit pending.",
+  "manual_sha256": "15d72f74fb7a67e1c51f95567720f1b5fe8ab6fd89b253986373a5872d40bfc0",
+  "attribution": "AMI Meeting Corpus, AMI Project / Edinburgh / Idiap / TNO; CC BY 4.0; https://groups.inf.ed.ac.uk/ami/corpus/",
+  "rubric": "Pending project task atoms only; one output may cover multiple atoms explicitly. Proposals/requirements are not new meeting agreements; retain qualifiers. Literal stated roles or null owners; no speaker identity inferred from ASR windows. Completed social exercises excluded.",
+  "tasks": [
+    {
+      "id": "publish-minutes",
+      "text": "Put minutes in the project document folder",
+      "owner": null,
+      "deadline": null,
+      "evidence": [
+        {
+          "id": "m0398",
+          "start": 2105.696,
+          "end": 2124.481,
+          "text": "Uh okay. I will put the minutes in the project uh project document folder. Um what we're going to do for the next meeting is the Industrial Designer will do the components concept, User Interface Designer the user interface concept, and the trend-watching."
+        }
+      ]
+    },
+    {
+      "id": "industrial-concept",
+      "text": "Prepare the components concept",
+      "owner": "Industrial Designer",
+      "deadline": "next meeting",
+      "evidence": [
+        {
+          "id": "m0398",
+          "start": 2105.696,
+          "end": 2124.481,
+          "text": "Uh okay. I will put the minutes in the project uh project document folder. Um what we're going to do for the next meeting is the Industrial Designer will do the components concept, User Interface Designer the user interface concept, and the trend-watching."
+        }
+      ]
+    },
+    {
+      "id": "interface-concept",
+      "text": "Prepare the user interface concept",
+      "owner": "User Interface Designer",
+      "deadline": "next meeting",
+      "evidence": [
+        {
+          "id": "m0398",
+          "start": 2105.696,
+          "end": 2124.481,
+          "text": "Uh okay. I will put the minutes in the project uh project document folder. Um what we're going to do for the next meeting is the Industrial Designer will do the components concept, User Interface Designer the user interface concept, and the trend-watching."
+        }
+      ]
+    },
+    {
+      "id": "trend-watching",
+      "text": "Do trend watching",
+      "owner": null,
+      "deadline": "next meeting",
+      "evidence": [
+        {
+          "id": "m0398",
+          "start": 2105.696,
+          "end": 2124.481,
+          "text": "Uh okay. I will put the minutes in the project uh project document folder. Um what we're going to do for the next meeting is the Industrial Designer will do the components concept, User Interface Designer the user interface concept, and the trend-watching."
+        }
+      ]
+    }
+  ],
+  "decisions": [
+    {
+      "id": "teletext",
+      "text": "Keep teletext with the stated cost-feasibility qualification",
+      "evidence": [
+        {
+          "id": "m0197",
+          "start": 1433.157,
+          "end": 1440.766,
+          "text": "No we we haven't voted yet, so Uh I think teletext can be uh"
+        },
+        {
+          "id": "m0198",
+          "start": 1441.877,
+          "end": 1447.871,
+          "text": "um can be a function as well. But only if uh if it won't"
+        },
+        {
+          "id": "m0199",
+          "start": 1448.645,
+          "end": 1457.13,
+          "text": "higher the the cost, because I don't know if it will be a lot more money to implement teletext as well, but I don't think it will be a problem."
+        },
+        {
+          "id": "m0209",
+          "start": 1470.512,
+          "end": 1473.808,
+          "text": "Is anybody um really against teletext?"
+        },
+        {
+          "id": "m0210",
+          "start": 1474.212,
+          "end": 1474.886,
+          "text": "No."
+        },
+        {
+          "id": "m0211",
+          "start": 1474.886,
+          "end": 1479.633,
+          "text": "No? Just that, that we just keep the teletext."
+        },
+        {
+          "id": "m0212",
+          "start": 1481.653,
+          "end": 1484.886,
+          "text": "I think that's a good idea as well, especially for the subtitles."
+        }
+      ]
+    },
+    {
+      "id": "few-buttons",
+      "text": "Use few buttons with important basic functions",
+      "evidence": [
+        {
+          "id": "m0220",
+          "start": 1523.216,
+          "end": 1526.201,
+          "text": "Functionality should be few buttons, you said."
+        },
+        {
+          "id": "m0221",
+          "start": 1527.455,
+          "end": 1528.162,
+          "text": "Yes."
+        },
+        {
+          "id": "m0222",
+          "start": 1528.087,
+          "end": 1532.565,
+          "text": "I think uh that's very important we have a few buttons."
+        },
+        {
+          "id": "m0223",
+          "start": 1528.332,
+          "end": 1529.039,
+          "text": "Yeah."
+        },
+        {
+          "id": "m0224",
+          "start": 1532.808,
+          "end": 1533.549,
+          "text": "Mm-hmm."
+        }
+      ]
+    },
+    {
+      "id": "focus-extras",
+      "text": "Focus design effort on extras rather than prolonged button-layout work",
+      "evidence": [
+        {
+          "id": "m0286",
+          "start": 1736.91,
+          "end": 1744.486,
+          "text": "Yeah. So you suggest we could better um focus on for example the docking station."
+        },
+        {
+          "id": "m0291",
+          "start": 1754.041,
+          "end": 1758.452,
+          "text": "yeah I think, mean we obviously need a good way to position all the buttons and"
+        },
+        {
+          "id": "m0292",
+          "start": 1759.193,
+          "end": 1761.785,
+          "text": "But I don't think we should spend very much time in that."
+        },
+        {
+          "id": "m0304",
+          "start": 1794.73,
+          "end": 1795.909,
+          "text": "Docking station."
+        },
+        {
+          "id": "m0305",
+          "start": 1796.826,
+          "end": 1799.519,
+          "text": "So we're just gonna focus on the extras?"
+        },
+        {
+          "id": "m0306",
+          "start": 1800.319,
+          "end": 1801.363,
+          "text": "I think so."
+        }
+      ]
+    }
+  ],
+  "key_topics": [
+    "market research: attractiveness, limited button use, loss and learning difficulty",
+    "TV-only and corporate-image external requirements",
+    "teletext debate and cost qualification",
+    "few buttons, docking station, locator and LCD feasibility",
+    "elderly 60-80 target considered with further research",
+    "four next-stage task atoms"
+  ],
+  "cautions": [
+    "Trend-watching follows the user-interface clause; owner attachment is ambiguous. Null owner is conservative; compound interface/trends outputs may match both task atoms only with explicit coverage and no unsupported attribution. Elderly 60-80 target remains qualified by I would have to look into that a little more. Docking station versus LCD has unresolved cost tradeoffs. Tentative multilingual variants must retain qualifiers."
+  ]
+}

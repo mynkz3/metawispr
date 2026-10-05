@@ -1,0 +1,52 @@
+{
+  "meeting": "ES2004a",
+  "review": "Agent review of timed AMI manual transcription and official summary links before held-out inference; independent human/audio audit pending.",
+  "manual_sha256": "4b24dd2dce4752a87810d07e0ef7f6bb1dffa83bb2740acf644e3f7b37be26bb",
+  "attribution": "AMI Meeting Corpus, AMI Project / Edinburgh / Idiap / TNO; CC BY 4.0; https://groups.inf.ed.ac.uk/ami/corpus/",
+  "rubric": "Pending project task atoms only; one output may cover multiple atoms explicitly. Proposals/requirements are not new meeting agreements; retain qualifiers. Literal stated roles or null owners; no speaker identity inferred from ASR windows. Completed social exercises excluded.",
+  "tasks": [
+    {
+      "id": "functional-preparation",
+      "text": "Do individual work to prepare functional design needs and effects",
+      "owner": null,
+      "deadline": "half an hour",
+      "evidence": [
+        {
+          "id": "m0020",
+          "start": 117.6,
+          "end": 161.04,
+          "text": "Now, we're developing a remote control which you probably already know. Um, we want it to be original, something that's uh people haven't thought of, that's not out in the shops, um, trendy, appealing to a wide market, but you know, not a hunk of metal, and user-friendly, grannies to kids, maybe even pooches should be able to use it. Okay, um, first is the functional design, um this is where we all go off and do our individual work, um what needs need to be fulfilled by the product, um what effects the product has to have and how it's actually going to do that. Um, conceptual design,"
+        },
+        {
+          "id": "m0238",
+          "start": 970.976,
+          "end": 980.032,
+          "text": "Um, right, okay we've got half an hour before the next meeting, so we're all gonna go off and do our individual things. Um"
+        },
+        {
+          "id": "m0239",
+          "start": 981.049,
+          "end": 989.552,
+          "text": "I think that's probably about it and then we'll come back and liaise again and I get to do another fantastic PowerPoint presentation."
+        },
+        {
+          "id": "m0256",
+          "start": 1042.327,
+          "end": 1044.208,
+          "text": "Okay? So, see you in half an hour."
+        }
+      ]
+    }
+  ],
+  "decisions": [],
+  "key_topics": [
+    "original, trendy, user-friendly remote brief",
+    "25 Euro selling price and 12.50 production cost",
+    "50 million Euro profit aim and international market",
+    "LCD/menu usability versus budget and older-user concerns",
+    "individual functional-design work before next meeting"
+  ],
+  "cautions": [
+    "Official decision entry NA is not a decision. LCD, plastic construction and fashion discussions are proposals, not approved designs. Immediate completed drawing exercise is not a pending project task."
+  ]
+}

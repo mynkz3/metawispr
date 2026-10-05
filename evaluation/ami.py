@@ -20,10 +20,10 @@ from zipfile import ZipFile
 
 from metawispr.audio import Parakeet, file_sha256, prepare_audio
 from metawispr.config import Settings, SetupError
-from metawispr.documentation import Documentation, groups
+from metawispr.documentation import Documentation, document_groups
 from metawispr.llm import digest, prompt
 from metawispr.pipeline import Store, atomic_write
-from metawispr.schemas import SourceBatch, Segment, RawTranscript
+from metawispr.schemas import SourceActions, Segment, RawTranscript
 from run import MeasuredOllama, available_ram, model_metadata
 
 
@@ -66,15 +66,15 @@ def render_words(words):
     return re.sub(r"\s+([,.;:!?])", r"\1", " ".join((item.text or "") for item in words)).strip()
 
 
-def prepare(root):
+def prepare(root, meeting=MEETING):
     archive = root.parent / "ami_public_manual_1.6.2.zip"
     with ZipFile(archive) as zipped:
         selected = {name: zipped.read(name) for name in zipped.namelist()
-                    if MEETING in Path(name).name and name.endswith(".xml")}
+                    if meeting in Path(name).name and name.endswith(".xml")}
     trees = {Path(name).name: ET.fromstring(data) for name, data in selected.items()}
     segments, mapping, covered = [], [], []
     for speaker in "ABCD":
-        for element in trees[f"{MEETING}.{speaker}.segments.xml"]:
+        for element in trees[f"{meeting}.{speaker}.segments.xml"]:
             words = words_for(element, trees)
             text = render_words(words)
             if not text:
@@ -86,7 +86,7 @@ def prepare(root):
             segments.append(item)
             covered.extend(item["word_ids"])
     expected = [word.get(NITE + "id") for speaker in "ABCD"
-                for word in trees[f"{MEETING}.{speaker}.words.xml"] if word.tag == "w"]
+                for word in trees[f"{meeting}.{speaker}.words.xml"] if word.tag == "w"]
     if len(covered) != len(set(covered)) or set(covered) != set(expected):
         raise ValueError("Manual transcript lost or duplicated annotated word tokens")
     segments.sort(key=lambda item: (item["start"], item["speaker"], item["end"]))
@@ -96,13 +96,13 @@ def prepare(root):
     items = [Segment(id=item["id"], start=item["start"], end=item["end"], text=item["text"])
              for item in mapping]
     transcript = {"origin": "AMI manual orthographic transcription v1.6.2; no ASR inference",
-                  "meeting": MEETING, "speaker_labels_in_model_text": False,
+                  "meeting": meeting, "speaker_labels_in_model_text": False,
                   "segments": [item.model_dump() for item in items]}
     reference = {section.tag: [{"id": sentence.get(NITE + "id"), "text": sentence.text.strip()}
                               for sentence in section.findall("sentence")]
-                 for section in trees[f"{MEETING}.abssumm.xml"]}
+                 for section in trees[f"{meeting}.abssumm.xml"]}
     links = []
-    for element in trees[f"{MEETING}.summlink.xml"]:
+    for element in trees[f"{meeting}.summlink.xml"]:
         pointers = {item.get("role"): item.get("href") for item in element.findall(NITE + "pointer")}
         utterances = referenced(pointers["extractive"], trees)
         words = [word for utterance in utterances for word in words_for(utterance, trees)]
@@ -111,15 +111,16 @@ def prepare(root):
     reference["source_links"] = links
     reference["decision_spans"] = [{"id": item.get(NITE + "id"), "external": item.get("external"),
                                      "text": render_words(words_for(item, trees))}
-                                    for item in trees[f"{MEETING}.decision.xml"]]
-    manifest = {"meeting": MEETING, "prepared_at": datetime.now(timezone.utc).isoformat(),
+                                    for item in trees.get(f"{meeting}.decision.xml", [])]
+    manifest = {"meeting": meeting, "prepared_at": datetime.now(timezone.utc).isoformat(),
                 "source": "AMI Meeting Corpus, Edinburgh/Idiap/TNO; AMI Project",
                 "license": "CC BY 4.0", "license_url": "https://creativecommons.org/licenses/by/4.0/",
                 "dataset_url": "https://groups.inf.ed.ac.uk/ami/corpus/",
                 "annotations_url": ANNOTATIONS_URL, "annotations_sha256": file_sha256(archive),
-                "audio_url": AUDIO_URL, "annotation_file_sha256": {name: sha256(data).hexdigest()
+                "audio_url": f"https://groups.inf.ed.ac.uk/ami/AMICorpusMirror/amicorpus/{meeting}/audio/{meeting}.Mix-Headset.wav", "annotation_file_sha256": {name: sha256(data).hexdigest()
                                                                       for name, data in selected.items()},
                 "manual_segments": len(items), "lexical_tokens_with_punctuation": len(expected),
+                "decision_span_annotations_available": f"{meeting}.decision.xml" in trees,
                 "manual_input_sha256": digest(transcript), "reference_sha256": digest(reference),
                 "glossary": GLOSSARY, "speaker_prefixes_added": False,
                 "manual_timestamp_note": "Original annotation segment times; overlapping speaker turns are retained.",
@@ -177,7 +178,7 @@ def run(args):
                 "manual_input_sha256": digest(manual), "asr_input_sha256": digest(raw),
                 "glossary": GLOSSARY, "reference_sha256": manifest["reference_sha256"],
                 "rubric_sha256": file_sha256(Path(__file__).with_name("ami-es2002a-rubric.json")),
-                "prompts": {name: digest(prompt(name)) for name in ("refine", "document", "reconcile", "consolidate")}}
+                "prompts": {name: digest(prompt(name)) for name in ("refine", "document", "review", "notes", "reconcile", "consolidate")}}
     if args.output.exists():
         report = read(args.output)
         if report["identity_sha256"] != digest(identity):
@@ -209,15 +210,12 @@ def run(args):
             save(args.output, report)
         else:
             meeting = store.get(job["meeting_id"])
-        other = "qwen3.5:9b" if args.model != "qwen3.5:9b" else "qwen3.5:4b"
-        role_settings = replace(settings, refiner_model=args.model if role == "asr-refinement" else other,
-                                documenter_model=other if role == "asr-refinement" else args.model)
+        role_settings = replace(settings, refiner_model=args.model, documenter_model=args.model)
         worker = Documentation(role_settings, store, llm)
         source = source_input(input_value)
         job["input_sha256"] = digest(input_value)
         if role != "asr-refinement":
-            payload = lambda items: {"title": meeting.title, "segments": [item.model_dump() for item in items]}
-            job["initial_groups"] = len(groups(source.segments, payload, lambda value: llm.fits("document", SourceBatch, value)))
+            job["initial_groups"] = len(document_groups(meeting, source.segments, llm)[1])
         llm.measurements = []
         llm.unload(model)
         started = time.perf_counter()
@@ -241,14 +239,17 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("command", choices=["prepare", "asr", "run"])
     parser.add_argument("--root", type=Path, default=Path(".cache/ami/es2002a"))
+    parser.add_argument("--meeting", default=MEETING, help="Meeting ID for annotation preparation")
     parser.add_argument("--model")
     parser.add_argument("--output", type=Path)
     parser.add_argument("--context", type=int, default=32768)
     parser.add_argument("--tokens", type=int, default=4096)
     args = parser.parse_args()
+    if args.command != "prepare" and args.meeting != MEETING:
+        parser.error("--meeting applies to annotation preparation; use the Phase 5 runner for other recordings")
     if args.command == "run" and (not args.model or args.output is None):
         parser.error("run requires --model and --output")
-    {"prepare": lambda: prepare(args.root), "asr": lambda: transcribe(args.root), "run": lambda: run(args)}[args.command]()
+    {"prepare": lambda: prepare(args.root, args.meeting), "asr": lambda: transcribe(args.root), "run": lambda: run(args)}[args.command]()
 
 
 if __name__ == "__main__":

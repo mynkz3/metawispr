@@ -2,7 +2,7 @@
 
 Run from the repository root with its installed Python environment. Reuses the
 production prompts, schemas, guards and grouping functions. The production
-Runner's distinct-weight policy is deliberately unchanged by this experiment.
+Separate production stages are preserved; each component uses the selected tag.
 """
 
 import argparse
@@ -18,10 +18,10 @@ import time
 from types import SimpleNamespace
 
 from metawispr.config import Settings, SetupError
-from metawispr.documentation import Documentation, groups
+from metawispr.documentation import Documentation, document_groups
 from metawispr.llm import Ollama, digest, prompt
 from metawispr.pipeline import Store, atomic_write
-from metawispr.schemas import SourceBatch, LLMModel, Segment
+from metawispr.schemas import SourceActions, LLMModel, Segment
 
 
 def segments(texts):
@@ -84,10 +84,10 @@ def score_document(result, case):
 def expand_case(case, llm):
     case = dict(case)
     if case.get("force_two_groups"):
-        payload = lambda items: {"title": case["id"], "segments": [item.model_dump() for item in items]}
+        meeting = SimpleNamespace(title=case["id"], glossary="")
         for count in range(1, 150):
             items = segments([text + " The team reviewed background context." * count for text in case["texts"]])
-            batches = groups(items, payload, lambda value: llm.fits("document", SourceBatch, value))
+            batches = document_groups(meeting, items, llm)[1]
             if len(batches) == 2:
                 case["texts"] = [item.text for item in items]
                 case["filler_repetitions"] = count
@@ -192,7 +192,7 @@ def main():
         parser.error("No cases selected")
     identity = {"model": model.model_dump(), "cpu": args.cpu, "context": settings.llm_context,
                 "output_tokens": settings.llm_output_tokens, "cases": cases,
-                "prompt_sha256": {name: digest(prompt(name)) for name in ("refine", "document", "reconcile", "consolidate")}}
+                "prompt_sha256": {name: digest(prompt(name)) for name in ("refine", "document", "review", "notes", "reconcile", "consolidate")}}
     args.output.parent.mkdir(parents=True, exist_ok=True)
     if args.output.exists():
         report = json.loads(args.output.read_text(encoding="utf-8"))
@@ -210,11 +210,9 @@ def main():
         if job and job["status"] != "pending":
             print(f"Saved {args.model} {role}/{case['id']}: {job['status']}", flush=True)
             continue
-        # Each component gets correct role-specific policy metadata. The unused
-        # configured role remains distinct; the real Runner is not exercised here.
-        other = "qwen3.5:9b" if args.model != "qwen3.5:9b" else "qwen3.5:4b"
-        role_settings = replace(settings, refiner_model=args.model if role == "refinement" else other,
-                                documenter_model=args.model if role == "documentation" else other)
+        # Component probes preserve both configured shared-weight roles. The real
+        # uploaded-audio Runner is exercised separately by phase5.py.
+        role_settings = replace(settings, refiner_model=args.model, documenter_model=args.model)
         worker = Documentation(role_settings, store, llm)
         if job is None:
             meeting = store.begin("authored-component-input.wav", case["id"], case.get("glossary", ""))

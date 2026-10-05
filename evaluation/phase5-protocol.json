@@ -1,0 +1,69 @@
+{
+  "status": "Development in progress; final model/prompt/reference freeze pending. Do not run held-out inference yet.",
+  "dataset": "AMI Meeting Corpus",
+  "dataset_url": "https://groups.inf.ed.ac.uk/ami/corpus/",
+  "license": "CC BY 4.0",
+  "datasets": [
+    {
+      "meeting": "ES2002a",
+      "series": "ES2002",
+      "split": "development",
+      "audio_sha256": "9c76866990fcc8b84006dc32d273ad99df439090b748ebe72103bb78c3216ee7",
+      "manual_sha256": "d4f2f04f56f5028c1d944d9b76c692b93eb55761beed07ad8e595543980f7940",
+      "reference_sha256": "74e45342636161402e5710e0f8998ffab281391235993731b67283c0ca079f99",
+      "official_audio_url": "https://groups.inf.ed.ac.uk/ami/AMICorpusMirror/amicorpus/ES2002a/audio/ES2002a.Mix-Headset.wav"
+    },
+    {
+      "meeting": "ES2002b",
+      "series": "ES2002",
+      "split": "development",
+      "audio_sha256": "977fbf6cd473cfb1984b41755762eea4d7ffdad3fb15adcfdebcb8842163ec66",
+      "manual_sha256": "5f26d01bffb8bc5aa7bc58e8ff372aa747c260f1fb4f9ea2b36a2eaa528838d0",
+      "reference_sha256": "98c60b5102c23747cb1ad9375fcc66e993e57e153110322444890e6f7a59c0d2",
+      "official_audio_url": "https://groups.inf.ed.ac.uk/ami/AMICorpusMirror/amicorpus/ES2002b/audio/ES2002b.Mix-Headset.wav"
+    },
+    {
+      "meeting": "IS1000b",
+      "series": "IS1000",
+      "split": "development",
+      "audio_sha256": "0f71e5018a283adf85e949f456a4c360d4fb8d9c195d29ed82b4b38d0d9a724d",
+      "manual_sha256": "0dc2dc974cc022cb0671ff16e80d0127761d37808d3f63b9284409af3646d5d8",
+      "reference_sha256": "dd36afbaada143ef109bd67b850d5bdd5ad22ced1204f380477388fbc98c9676",
+      "official_audio_url": "https://groups.inf.ed.ac.uk/ami/AMICorpusMirror/amicorpus/IS1000b/audio/IS1000b.Mix-Headset.wav"
+    },
+    {
+      "meeting": "ES2004a",
+      "series": "ES2004",
+      "split": "held-out",
+      "audio_sha256": "3e2560b19bee6952c7c7ce041b0f1ea8a7ea9468044c4eea79d2a2c67e24ab0f",
+      "manual_sha256": "4b24dd2dce4752a87810d07e0ef7f6bb1dffa83bb2740acf644e3f7b37be26bb",
+      "reference_sha256": "0206dd9f5e4bba6d113e2c4dc3a1e367b2a251ca917896cc7733760a805b45a1",
+      "official_audio_url": "https://groups.inf.ed.ac.uk/ami/AMICorpusMirror/amicorpus/ES2004a/audio/ES2004a.Mix-Headset.wav"
+    },
+    {
+      "meeting": "TS3003b",
+      "series": "TS3003",
+      "split": "held-out",
+      "audio_sha256": "0c94f3a09ab747caa7714efe8852f5ff37d36cf272b75709344991df1aa266ca",
+      "manual_sha256": "15d72f74fb7a67e1c51f95567720f1b5fe8ab6fd89b253986373a5872d40bfc0",
+      "reference_sha256": "3527b657036911688bb98ec803230ba27c4b5dc04dd79d9fca1f5e54806c04f5",
+      "official_audio_url": "https://groups.inf.ed.ac.uk/ami/AMICorpusMirror/amicorpus/TS3003b/audio/TS3003b.Mix-Headset.wav"
+    }
+  ],
+  "split_rule": "Keep related meeting series together. ES2002a/b both development; final recordings use different series.",
+  "targets": {
+    "task_precision": 0.95,
+    "task_recall": 0.9,
+    "decision_precision": 0.95,
+    "decision_recall": 0.9,
+    "invented_assignments_owners_deadlines": 0,
+    "unsupported_agreed_decisions": 0,
+    "introduced_protected_fact_changes": 0,
+    "source_reference_validity": 1.0,
+    "export_parity": 1.0
+  },
+  "target_note": "Engineering targets from WORKPLAN.md, not organizer thresholds. Denominators and N/A categories required. Semantic reference review and final freeze still pending.",
+  "pretraining_note": "Public AMI exposure in model training is unknown; held out from our development does not guarantee unseen by the pretrained model.",
+  "raw_immutable": true,
+  "reference_excluded_from_model_requests": true
+}

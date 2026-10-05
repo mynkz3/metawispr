@@ -1,0 +1,174 @@
+{
+  "meeting": "ES2002b",
+  "review": "Agent review of timed AMI manual transcription and official summary links before held-out inference; independent human/audio audit pending.",
+  "manual_sha256": "5f26d01bffb8bc5aa7bc58e8ff372aa747c260f1fb4f9ea2b36a2eaa528838d0",
+  "attribution": "AMI Meeting Corpus, AMI Project / Edinburgh / Idiap / TNO; CC BY 4.0; https://groups.inf.ed.ac.uk/ami/corpus/",
+  "rubric": "Pending project task atoms only; one output may cover multiple atoms explicitly. Proposals/requirements are not new meeting agreements; retain qualifiers. Literal stated roles or null owners; no speaker identity inferred from ASR windows. Completed social exercises excluded.",
+  "tasks": [
+    {
+      "id": "publish-minutes",
+      "text": "Put meeting minutes in the project documents folder",
+      "owner": null,
+      "deadline": null,
+      "evidence": [
+        {
+          "id": "m0388",
+          "start": 1965.048,
+          "end": 2025.683,
+          "text": "Okay, right. Um, okay well I gotta kind of got five minutes to wrap up now. Um next thing we're doing is having lunch. Whoohoo. Um and then we're gonna have thirty minutes of working on the next stage. Um so I'll be putting the minutes of this uh this meeting into the project documents folder. Um so uh I guess just to just to confirm that we know what we're doing in the next well in the thirty minutes after lunch anyway, um for uh our Industrial Designer, you're gonna be thinking about the components concept. Um User Interface Designer gonna be thinking about our user interface, and marketing you're gonna be thinking about trend watching. Um and you'll all get specific instructions as well. So um I dunno, just just to to ask now if you've got anything else you've thought about while we've been talking. Um, do you wanna start with David. Anything else to say at all? No, okay. Andrew?"
+        }
+      ]
+    },
+    {
+      "id": "industrial-concept",
+      "text": "Work on the components concept",
+      "owner": "Industrial Designer",
+      "deadline": "thirty minutes after lunch",
+      "evidence": [
+        {
+          "id": "m0388",
+          "start": 1965.048,
+          "end": 2025.683,
+          "text": "Okay, right. Um, okay well I gotta kind of got five minutes to wrap up now. Um next thing we're doing is having lunch. Whoohoo. Um and then we're gonna have thirty minutes of working on the next stage. Um so I'll be putting the minutes of this uh this meeting into the project documents folder. Um so uh I guess just to just to confirm that we know what we're doing in the next well in the thirty minutes after lunch anyway, um for uh our Industrial Designer, you're gonna be thinking about the components concept. Um User Interface Designer gonna be thinking about our user interface, and marketing you're gonna be thinking about trend watching. Um and you'll all get specific instructions as well. So um I dunno, just just to to ask now if you've got anything else you've thought about while we've been talking. Um, do you wanna start with David. Anything else to say at all? No, okay. Andrew?"
+        }
+      ]
+    },
+    {
+      "id": "interface-concept",
+      "text": "Work on the user interface",
+      "owner": "User Interface Designer",
+      "deadline": "thirty minutes after lunch",
+      "evidence": [
+        {
+          "id": "m0388",
+          "start": 1965.048,
+          "end": 2025.683,
+          "text": "Okay, right. Um, okay well I gotta kind of got five minutes to wrap up now. Um next thing we're doing is having lunch. Whoohoo. Um and then we're gonna have thirty minutes of working on the next stage. Um so I'll be putting the minutes of this uh this meeting into the project documents folder. Um so uh I guess just to just to confirm that we know what we're doing in the next well in the thirty minutes after lunch anyway, um for uh our Industrial Designer, you're gonna be thinking about the components concept. Um User Interface Designer gonna be thinking about our user interface, and marketing you're gonna be thinking about trend watching. Um and you'll all get specific instructions as well. So um I dunno, just just to to ask now if you've got anything else you've thought about while we've been talking. Um, do you wanna start with David. Anything else to say at all? No, okay. Andrew?"
+        }
+      ]
+    },
+    {
+      "id": "marketing-trends",
+      "text": "Work on trend watching",
+      "owner": "marketing",
+      "deadline": "thirty minutes after lunch",
+      "evidence": [
+        {
+          "id": "m0388",
+          "start": 1965.048,
+          "end": 2025.683,
+          "text": "Okay, right. Um, okay well I gotta kind of got five minutes to wrap up now. Um next thing we're doing is having lunch. Whoohoo. Um and then we're gonna have thirty minutes of working on the next stage. Um so I'll be putting the minutes of this uh this meeting into the project documents folder. Um so uh I guess just to just to confirm that we know what we're doing in the next well in the thirty minutes after lunch anyway, um for uh our Industrial Designer, you're gonna be thinking about the components concept. Um User Interface Designer gonna be thinking about our user interface, and marketing you're gonna be thinking about trend watching. Um and you'll all get specific instructions as well. So um I dunno, just just to to ask now if you've got anything else you've thought about while we've been talking. Um, do you wanna start with David. Anything else to say at all? No, okay. Andrew?"
+        }
+      ]
+    }
+  ],
+  "decisions": [
+    {
+      "id": "target-age",
+      "text": "Target fifteen to thirty five",
+      "evidence": [
+        {
+          "id": "m0359",
+          "start": 1823.849,
+          "end": 1862.351,
+          "text": "Um, right. So basically the um I'm just gonna just recap uh what I said at the start, was that um the the whole point of this meeting was to f absolutely finalise who we're gonna aim this at, and what exactly the product's gonna do. So um just to recap on Are we all happy about the idea of um aiming the product at um the fifteen to thirty five bracket? Um and also the funct the the actual functions of what it's gonna do. Do you wanna recap on that, Craig?"
+        },
+        {
+          "id": "m0360",
+          "start": 1841.073,
+          "end": 1841.701,
+          "text": "Okay."
+        },
+        {
+          "id": "m0361",
+          "start": 1842.959,
+          "end": 1843.625,
+          "text": "Okay."
+        },
+        {
+          "id": "m0362",
+          "start": 1854.051,
+          "end": 1855.456,
+          "text": "Yeah, that's good."
+        }
+      ]
+    },
+    {
+      "id": "basic-functions",
+      "text": "Basic power, channel and volume controls including direct channel selection",
+      "evidence": [
+        {
+          "id": "m0363",
+          "start": 1863.166,
+          "end": 1872.801,
+          "text": "Um. I think we just say that it was gonna be the the most basic stuff possible. Um on off, up and down channels, up and down volume and uh skip to a channel."
+        },
+        {
+          "id": "m0364",
+          "start": 1874.399,
+          "end": 1875.79,
+          "text": "Okay, right."
+        }
+      ]
+    },
+    {
+      "id": "regular-batteries",
+      "text": "Use regular batteries rather than rechargeable power",
+      "evidence": [
+        {
+          "id": "m0343",
+          "start": 1768.581,
+          "end": 1790.439,
+          "text": "Yeah. W Well well we've um In the new requirement spec they said just to focus on the T_V_, so that's what we should do for now I think. Something I was wondering about was the power. Um, is it worth considering like having like a charging unit as opposed to just regular batteries? I mean is that something we really want to go into, do you think, or should we just consider running on regular batteries?"
+        },
+        {
+          "id": "m0353",
+          "start": 1804.629,
+          "end": 1805.848,
+          "text": "Okay, so"
+        },
+        {
+          "id": "m0354",
+          "start": 1809.976,
+          "end": 1810.531,
+          "text": "Yeah."
+        },
+        {
+          "id": "m0355",
+          "start": 1816.043,
+          "end": 1816.745,
+          "text": "Yeah."
+        },
+        {
+          "id": "m0356",
+          "start": 1819.692,
+          "end": 1820.233,
+          "text": "Yeah."
+        },
+        {
+          "id": "m0357",
+          "start": 1819.969,
+          "end": 1822.444,
+          "text": "Okay, so just stick to to regular"
+        },
+        {
+          "id": "m0358",
+          "start": 1822.444,
+          "end": 1823.849,
+          "text": "Okay."
+        }
+      ]
+    }
+  ],
+  "key_topics": [
+    "market research and usability",
+    "company requirements: TV-only, no teletext, corporate identity",
+    "15-35 target group",
+    "basic functions and optional advanced controls",
+    "infrared line-of-sight and regular batteries",
+    "next-stage assignments"
+  ],
+  "cautions": [
+    "Company requirements are labelled external requirements rather than new meeting approvals. Infrared is proposed as tried-and-tested; definitive approval is uncertain. Categorization and advanced functions remain partly exploratory. Optional mute/hidden controls may be reported with qualifiers; do not turn them into unconditional final choices."
+  ]
+}
