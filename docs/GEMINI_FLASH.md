@@ -141,3 +141,10 @@ The sample is an authored compatibility test, not an AMI benchmark or independen
 reviewed quality result. Model access is verified; complete Gemini generation,
 export parity and the two-meeting quality comparison remain open. A 503 response
 does not establish an authentication failure or a model accuracy score.
+
+Two later owner-requested checks still stopped at the same call. Inspecting the
+structured provider response confirmed `503 UNAVAILABLE` and a high-demand message.
+A tiny JSON generation then succeeded with normal STOP and reported usage of
+9 input / 9 candidate tokens. The model endpoint and generation access work;
+the meeting call remains incomplete. No quota-exhaustion response was observed,
+and remaining project quota was not inferred from metadata or this tiny success.
