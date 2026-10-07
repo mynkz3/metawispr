@@ -45,12 +45,8 @@ class Settings:
     llm_context: int = 16384
     llm_output_tokens: int = 3072
     llm_timeout_seconds: int = 300
-    hybrid_enabled: bool = False
-    hybrid_model_dir: Path = Path("models/hybrid")
 
     def __post_init__(self):
-        if type(self.hybrid_enabled) is not bool:
-            raise ValueError("hybrid_enabled must be a boolean")
         for name in ("max_upload_bytes", "max_audio_seconds", "asr_threads", "chunk_seconds",
                      "decode_timeout_seconds", "max_pending_jobs", "llm_context",
                      "llm_output_tokens", "llm_timeout_seconds"):
@@ -76,9 +72,6 @@ class Settings:
             return int(os.getenv(f"METAWISPR_{name}", str(default)))
 
         precision = os.getenv("METAWISPR_ASR_PRECISION", "int8")
-        hybrid = os.getenv("METAWISPR_HYBRID_ENABLED", "0")
-        if hybrid not in {"0", "1"}:
-            raise ValueError("METAWISPR_HYBRID_ENABLED must be 0 or 1")
         if precision not in ASR_VARIANTS:
             raise ValueError("ASR precision must be int8 or fp16")
         return cls(
@@ -99,6 +92,4 @@ class Settings:
             llm_context=integer("LLM_CONTEXT", 16384),
             llm_output_tokens=integer("LLM_OUTPUT_TOKENS", 3072),
             llm_timeout_seconds=integer("LLM_TIMEOUT_SECONDS", 300),
-            hybrid_enabled=hybrid == "1",
-            hybrid_model_dir=Path(os.getenv("METAWISPR_HYBRID_MODEL_DIR", "models/hybrid")).resolve(),
         )

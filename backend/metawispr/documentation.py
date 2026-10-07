@@ -8,11 +8,11 @@ from .config import InputError, SetupError
 from .llm import digest, prompt
 from .schemas import (ClaimAudit, ConsolidatedNotes, DocumentationBatch, DocumentedMeeting, Edit, EditBatch,
                       Evidence, Fact, MeetingRecord, RefinedTranscript, RejectedEdit, ResolutionBatch,
-                      SelectedNotes, SourceActions, SourceBatch, SourceNotes, SourceRecord, SourceResolutions, Task, TaskLedgerEvent, Topic)
+                      SelectedNotes, SourceActions, SourceBatch, SourceNotes, SourceRecord, SourceResolutions, Task, Topic)
 
 
 REFINEMENT_POLICY_VERSION = 10
-POLICY_VERSION = 18
+POLICY_VERSION = 17
 PROTECTED = re.compile(
     r"(?<!\w)[+-]?\d+(?:[.,:/-]\d+)*(?:%|\b)|\b(?:zero|one|two|three|four|five|six|seven|eight|nine|ten|"
     r"eleven|twelve|thirteen|fourteen|fifteen|sixteen|seventeen|eighteen|nineteen|twenty|thirty|forty|fifty|"
@@ -185,7 +185,7 @@ def document_input(title, items):
                                           "parent_id": item.id.rsplit(":u", 1)[0]} for item in items]}
 
 
-def document_groups(meeting, segments, llm, extraction_hints=()):
+def document_groups(meeting, segments, llm):
     units, sources = source_units(segments)
     positions = {item.id: index for index, item in enumerate(units)}
     def payload(items):
@@ -193,9 +193,6 @@ def document_groups(meeting, segments, llm, extraction_hints=()):
         value["glossary"] = meeting.glossary
         start = positions[items[0].id]
         value["context"] = document_input(meeting.title, units[max(0, start - 6):start])["segments"]
-        if extraction_hints:
-            ids = {item["id"] for item in [*value["segments"], *value["context"]]}
-            value["extraction_candidates"] = [item for item in extraction_hints if item["source_id"] in ids]
         return value
     batches = groups(units, payload, lambda value: llm.fits("document", SourceActions, value)
                      and (len(value["segments"]) == 1 or
@@ -297,9 +294,8 @@ def expand_selection(selected, catalogue, uncertainties):
 
 
 def documentation_policy(settings):
-    from .semantic import identity
     return digest({"version": POLICY_VERSION, "prompts": [prompt("document"), prompt("review"), prompt("notes"), prompt("reconcile"), prompt("consolidate"), prompt("audit")],
-                   "model": settings.documenter_model, "hybrid": identity(settings.hybrid_model_dir) if settings.hybrid_enabled else None})
+                   "model": settings.documenter_model})
 
 
 def claim_candidates(record):
@@ -365,17 +361,12 @@ def reconciliation_inputs(candidates, revisions, sources, llm):
         candidates, payload, lambda value: llm.fits("reconcile", SourceResolutions, value))]
 
 
-def resolve_candidates(output, candidates, segments, allowed, ledger=None):
+def resolve_candidates(output, candidates, segments, allowed):
     by_id = {item["candidate_id"]: item for item in candidates}
     if len(output.resolutions) != len(by_id) or {item.candidate_id for item in output.resolutions} != set(by_id):
         raise ValueError("Resolve every candidate_id exactly once")
     source = {item.id: item for item in segments}
     decisions, tasks, revisions = [], [], []
-    def log(resolution, original, replacement=None):
-        if ledger is not None and isinstance(original, Task):
-            ledger.append(TaskLedgerEvent(task_id=digest(original.model_dump()), event=resolution.disposition,
-                                           task=original, replacement=replacement if isinstance(replacement, Task) else None,
-                                           reason=resolution.reason, evidence=resolution.evidence))
     for resolution in output.resolutions:
         candidate = by_id[resolution.candidate_id]
         original = candidate["fact"]
@@ -386,7 +377,6 @@ def resolve_candidates(output, candidates, segments, allowed, ledger=None):
                 raise ValueError("Discard needs original evidence and no replacement")
             # An extraction error is not a withdrawal made in the meeting.
             # Its explanation remains in the saved resolution call, not minutes.
-            log(resolution, original)
             continue
         if resolution.disposition == "keep":
             if resolution.replacement is not None or not any(old == new for old in original.evidence for new in resolution.evidence):
@@ -424,7 +414,6 @@ def resolve_candidates(output, candidates, segments, allowed, ledger=None):
             if resolution.disposition == "retire":
                 if resolution.replacement is not None:
                     raise ValueError("Retire cannot include a replacement")
-                log(resolution, original)
                 continue
             test = MeetingRecord(summary=[], topics=[], decisions=[], tasks=[], uncertainties=[])
             (test.tasks if isinstance(current, Task) else test.decisions).append(current)
@@ -432,7 +421,6 @@ def resolve_candidates(output, candidates, segments, allowed, ledger=None):
         target = tasks if isinstance(current, Task) else decisions
         if current not in target:
             target.append(current)
-        log(resolution, original, current if current != original else None)
     return decisions, tasks, revisions
 
 
@@ -499,13 +487,9 @@ class Documentation:
                                  warnings=["Automatic edit guards cannot establish meaning. Review accepted and rejected edits."])
 
     def document(self, meeting, refined, model, progress):
-        from .semantic import hints, score_claims
-        extraction_hints = (hints(source_units(refined.segments)[0], self.settings, self.store, meeting.id)
-                            if self.settings.hybrid_enabled else [])
-        sources, batches, payload = document_groups(meeting, refined.segments, self.llm, extraction_hints)
+        sources, batches, payload = document_groups(meeting, refined.segments, self.llm)
         identifiers = {evidence_key(item): identifier for identifier, item in sources.items()}
         outputs, calls, context_repeats = [], [], 0
-        ledger = []
         try:
             index = 0
             while index < len(batches):
@@ -561,9 +545,6 @@ class Documentation:
                 filtered = active_actions(reviewed)
                 context_repeats += sum(len(getattr(reviewed, kind)) - len(getattr(filtered, kind)) for kind in ("decisions", "tasks", "revisions"))
                 output = attach_evidence(action_batch(filtered), DocumentationBatch, batch_sources)
-                ledger.extend(TaskLedgerEvent(task_id=digest(task.model_dump()), event="proposed", task=task,
-                                               reason="Reviewed extraction candidate", evidence=task.evidence)
-                              for task in output.record.tasks)
                 calls.append(call)
                 progress(len(calls))
                 # Budget notes against the actual extracted actions. If they consume
@@ -617,12 +598,12 @@ class Documentation:
                             chunk = [item for item in candidates if item["candidate_id"] in
                                      {value["candidate_id"] for value in resolution_input["candidates"]}]
                             allowed_sources = {item["id"]: sources[item["id"]] for item in resolution_input["sources"]}
-                            def resolved(result, capture=False):
+                            def resolved(result):
                                 return resolve_candidates(attach_evidence(result, ResolutionBatch, allowed_sources),
-                                                          chunk, refined.segments, allowed, ledger if capture else None)
+                                                          chunk, refined.segments, allowed)
                             selected, call = self.llm.generate(model, "reconcile", SourceResolutions, resolution_input,
                                                                self.store, meeting.id, "documenting", resolved)
-                            for target, values in zip((decisions, tasks, revisions), resolved(selected, capture=True)):
+                            for target, values in zip((decisions, tasks, revisions), resolved(selected)):
                                 target.extend(value for value in values if value not in target)
                             calls.append(call)
                             progress(len(calls))
@@ -657,24 +638,12 @@ class Documentation:
             record, withheld, duplicates = self.audit(meeting, outputs[0].record, sources, model, progress, calls)
         finally:
             self.llm.unload(model)
-        support_checks = []
-        if self.settings.hybrid_enabled:
-            support_checks = score_claims(claim_candidates(record), self.settings, self.store, meeting.id)
-            record, _ = publish_supported(record, {item["candidate_id"] for item in support_checks if item["verdict"] == "supported"})
-        for task in outputs[0].record.tasks:
-            ledger.append(TaskLedgerEvent(task_id=digest(task.model_dump()),
-                                           event="pending" if task in record.tasks else "withheld", task=task,
-                                           reason="Final support gates", evidence=task.evidence))
         validate_record(record, refined.segments)
         return DocumentedMeeting(source_sha256=digest(refined.model_dump()),
                                  policy_sha256=documentation_policy(self.settings), record=record, calls=calls,
                                  revision_audit=outputs[0].revisions,
-                                 task_ledger=ledger, support_checks=support_checks,
                                  created_at=datetime.now(timezone.utc).isoformat(),
                                  warnings=["Exact evidence matching verifies provenance, not interpretation. Review decisions, tasks and revisions.",
                                            f"Excluded {context_repeats} preceding-context-only items. Original proposals remain in saved call checkpoints.",
                                            f"Support audit withheld {withheld} unsupported or uncertain claims and removed {duplicates} exact duplicates. "
-                                           "Judgments and original candidates remain in saved calls. The same-model audit is not independent verification.",
-                                           f"GLiNER2 supplied {len(extraction_hints)} source hints; DeBERTa withheld "
-                                           f"{sum(item['verdict'] != 'supported' for item in support_checks)} claims. "
-                                           "NLI scores are uncalibrated; review remains necessary."])
+                                           "Judgments and original candidates remain in saved calls. The same-model audit is not independent verification."])

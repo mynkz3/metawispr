@@ -55,11 +55,6 @@ def markdown(meeting, refined, document):
         for fact in document.revision_audit:
             add_fact(fact)
         lines.append("")
-    if document.task_ledger:
-        lines.extend(["## Task lifecycle", ""])
-        for event in document.task_ledger:
-            lines.append(f"- {markdown_text(event.event)}: {markdown_text(event.task.text)} — {markdown_text(event.reason)}")
-        lines.append("")
     lines.extend(["## Review notes", ""])
     for note in [*record.uncertainties, *document.warnings]:
         lines.append("- " + markdown_text(note))
@@ -84,7 +79,6 @@ def export_files(meeting, raw=None, refined=None, document=None, include_bundle=
         result["provenance.json"] = json_bytes({"asr": raw.model_dump(mode="json")["model"],
                                                 "refinement": [item.model_dump() for item in refined.calls],
                                                 "documentation": [item.model_dump() for item in document.calls],
-                                                "support_checks": document.support_checks,
                                                 "input_sha256": raw.input_sha256})
         if include_bundle:
             buffer = BytesIO()

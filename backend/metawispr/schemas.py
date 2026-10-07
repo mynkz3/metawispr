@@ -225,15 +225,6 @@ class RefinedTranscript(Contract):
     warnings: list[str]
 
 
-class TaskLedgerEvent(Contract):
-    task_id: str
-    event: Literal["proposed", "keep", "replace", "retire", "discard", "withheld", "pending"]
-    task: Task
-    replacement: Task | None = None
-    reason: str
-    evidence: list[Evidence] = Field(min_length=1)
-
-
 class DocumentedMeeting(Contract):
     schema_version: Literal["1.0"] = "1.0"
     source_sha256: str
@@ -243,8 +234,6 @@ class DocumentedMeeting(Contract):
     revision_audit: list[Fact] = Field(default_factory=list)
     calls: list[LLMCall] = Field(min_length=1)
     warnings: list[str]
-    task_ledger: list[TaskLedgerEvent] = Field(default_factory=list)
-    support_checks: list[dict] = Field(default_factory=list)
 
 
 Stage = Literal[

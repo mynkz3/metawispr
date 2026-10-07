@@ -258,3 +258,23 @@ The DeBERTa diagnostic scored four rejected-draft task claims: two supported
 and two uncertain at the fixed 0.8 threshold. The user-interface-owner claim
 received 0.023 entailment and 0.972 neutral; these are model scores, not measured
 accuracy. They do not justify automatically repairing or publishing the draft.
+
+
+## Hybrid experiment retired, 7 October 2026
+
+At the owner's request, GLiNER2, DeBERTa, the experimental task ledger,
+execution code and optional dependency lock entries were removed. The single
+ES2002a run did not complete a validated record or establish overall benefit;
+the historical reports above remain unchanged. This is a project-specific
+retirement, not a claim that the models are universally ineffective.
+
+Both user-downloaded weights, installed copies and experiment-only working
+caches were deleted (2,591,246,365 bytes). Twenty-six experiment dependency
+packages were uninstalled. Parakeet's CUDA runtime and shared Qwen3.5 4B
+remain, with documentation policy 17 and its existing final claim audit.
+
+After dependency removal, all 96 backend tests pass. Active backend, tests,
+configuration and dependency files have no hybrid model/ledger references;
+experimental imports are absent. No prompt changes, training or full-meeting
+rerun were performed. Existing accuracy limitations and the owner/evidence
+validation failure remain open.
