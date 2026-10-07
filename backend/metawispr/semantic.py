@@ -1,5 +1,7 @@
 """Local pretrained extraction and NLI; no training or remote inference."""
 from importlib.metadata import version
+from contextlib import redirect_stdout
+from io import StringIO
 from pathlib import Path
 import gc
 import json
@@ -66,7 +68,9 @@ def hints(units, settings, store, meeting_id):
     torch, _, _, GLiNER2 = dependencies()
     started = time.perf_counter()
     torch.set_num_threads(4)
-    model = GLiNER2.from_pretrained(metadata["models"]["gliner"]["path"], local_files_only=True).eval()
+    # The library prints an emoji banner, which fails on Windows cp1252 pipes.
+    with redirect_stdout(StringIO()):
+        model = GLiNER2.from_pretrained(metadata["models"]["gliner"]["path"], local_files_only=True).eval()
     output = []
     try:
         with torch.inference_mode():

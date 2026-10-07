@@ -11,19 +11,1532 @@
     "consolidate": "938e3ac0422737f310ed286a9fdf0b6379e9a1ce1c5c5662de448016baaaf9e4",
     "audit": "b47d4ba06dc981785263765c9186f0ba24d9050bf710928bc1cb6112fc528a01"
   },
-  "meeting_id": "9cffa557-a41f-4f44-8989-993a1fda4e8b",
-  "wall_seconds": 1.1689280999999028,
+  "meeting_id": "df03b877-2f2d-412a-9501-e22f399c0ba8",
+  "wall_seconds": 335.8266244000115,
   "stage": "failed",
-  "error": "Hybrid models are not installed. Install the hybrid extra and run python -m metawispr.semantic models/hybrid.",
+  "error": "Documenting model returned invalid output twice. Completed calls are saved; retry after checking the model/context settings.",
   "baseline_tasks": 15,
   "accuracy_status": "Not independently graded; model support scores are not precision or recall.",
-  "hybrid_checkpoints": [],
+  "hybrid_checkpoints": [
+    {
+      "identity": {
+        "models": {
+          "gliner": {
+            "repo": "fastino/gliner2-base-v1",
+            "revision": "f9634218e53580c56edf0de97ca1a7d3f1c2354e",
+            "path": "C:\\Users\\mayan\\Desktop\\ML\\metawispr\\models\\hybrid\\cache\\models--fastino--gliner2-base-v1\\snapshots\\f9634218e53580c56edf0de97ca1a7d3f1c2354e",
+            "weights_sha256": "845fc4bd93c525b86124c58ab4f56c9eacf8587953086b14c501fab25957c007"
+          },
+          "nli": {
+            "repo": "MoritzLaurer/DeBERTa-v3-base-mnli-fever-anli",
+            "revision": "6f5cf0a2b59cabb106aca4c287eed12e357e90eb",
+            "path": "C:\\Users\\mayan\\Desktop\\ML\\metawispr\\models\\hybrid\\deberta",
+            "weights_sha256": "06d6fd89edd4f97816831626daafbdb0b029cf63bae8edc0bccab1d64e2e7707"
+          }
+        },
+        "gliner2": "2.0.0",
+        "transformers": "4.57.6",
+        "torch": "2.14.1+cpu",
+        "threshold": 0.8,
+        "labels": [
+          "person",
+          "role",
+          "deadline",
+          "pending work assignment"
+        ],
+        "version": 1
+      },
+      "hints": [
+        {
+          "source_id": "s00001:u000",
+          "entities": {
+            "person": [],
+            "role": [],
+            "deadline": [],
+            "pending work assignment": [
+              "PowerPoint"
+            ]
+          }
+        },
+        {
+          "source_id": "s00001:u001",
+          "entities": {
+            "person": [],
+            "role": [],
+            "deadline": [],
+            "pending work assignment": [
+              "it"
+            ]
+          }
+        },
+        {
+          "source_id": "s00001:u002",
+          "entities": {
+            "person": [
+              "God"
+            ],
+            "role": [],
+            "deadline": [],
+            "pending work assignment": []
+          }
+        },
+        {
+          "source_id": "s00002:u000",
+          "entities": {
+            "person": [
+              "I"
+            ],
+            "role": [],
+            "deadline": [],
+            "pending work assignment": []
+          }
+        },
+        {
+          "source_id": "s00003:u000",
+          "entities": {
+            "person": [],
+            "role": [],
+            "deadline": [
+              "25 minutes"
+            ],
+            "pending work assignment": []
+          }
+        },
+        {
+          "source_id": "s00003:u001",
+          "entities": {
+            "person": [
+              "Laura"
+            ],
+            "role": [
+              "project manager"
+            ],
+            "deadline": [],
+            "pending work assignment": []
+          }
+        },
+        {
+          "source_id": "s00003:u002",
+          "entities": {
+            "person": [
+              "you",
+              "yourself"
+            ],
+            "role": [],
+            "deadline": [],
+            "pending work assignment": []
+          }
+        },
+        {
+          "source_id": "s00003:u003",
+          "entities": {
+            "person": [
+              "David"
+            ],
+            "role": [
+              "industrial designer"
+            ],
+            "deadline": [],
+            "pending work assignment": []
+          }
+        },
+        {
+          "source_id": "s00003:u005",
+          "entities": {
+            "person": [
+              "Andrew"
+            ],
+            "role": [
+              "marketing"
+            ],
+            "deadline": [],
+            "pending work assignment": []
+          }
+        },
+        {
+          "source_id": "s00004:u000",
+          "entities": {
+            "person": [],
+            "role": [
+              "Expert"
+            ],
+            "deadline": [],
+            "pending work assignment": []
+          }
+        },
+        {
+          "source_id": "s00004:u001",
+          "entities": {
+            "person": [
+              "Craig"
+            ],
+            "role": [
+              "user interface"
+            ],
+            "deadline": [],
+            "pending work assignment": []
+          }
+        },
+        {
+          "source_id": "s00004:u004",
+          "entities": {
+            "person": [
+              "he"
+            ],
+            "role": [],
+            "deadline": [],
+            "pending work assignment": []
+          }
+        },
+        {
+          "source_id": "s00004:u005",
+          "entities": {
+            "person": [
+              "David",
+              "Andrew",
+              "Craig"
+            ],
+            "role": [],
+            "deadline": [],
+            "pending work assignment": []
+          }
+        },
+        {
+          "source_id": "s00004:u006",
+          "entities": {
+            "person": [
+              "you"
+            ],
+            "role": [],
+            "deadline": [],
+            "pending work assignment": []
+          }
+        },
+        {
+          "source_id": "s00005:u001",
+          "entities": {
+            "person": [],
+            "role": [],
+            "deadline": [],
+            "pending work assignment": [
+              "brief"
+            ]
+          }
+        },
+        {
+          "source_id": "s00005:u003",
+          "entities": {
+            "person": [
+              "Um"
+            ],
+            "role": [],
+            "deadline": [],
+            "pending work assignment": []
+          }
+        },
+        {
+          "source_id": "s00005:u004",
+          "entities": {
+            "person": [
+              "you"
+            ],
+            "role": [],
+            "deadline": [],
+            "pending work assignment": []
+          }
+        },
+        {
+          "source_id": "s00005:u005",
+          "entities": {
+            "person": [],
+            "role": [],
+            "deadline": [],
+            "pending work assignment": [
+              "project announcement project"
+            ]
+          }
+        },
+        {
+          "source_id": "s00005:u006",
+          "entities": {
+            "person": [
+              "anybody"
+            ],
+            "role": [],
+            "deadline": [],
+            "pending work assignment": []
+          }
+        },
+        {
+          "source_id": "s00006:u000",
+          "entities": {
+            "person": [],
+            "role": [],
+            "deadline": [],
+            "pending work assignment": [
+              "individual work"
+            ]
+          }
+        },
+        {
+          "source_id": "s00006:u002",
+          "entities": {
+            "person": [
+              "you"
+            ],
+            "role": [],
+            "deadline": [],
+            "pending work assignment": []
+          }
+        },
+        {
+          "source_id": "s00008:u001",
+          "entities": {
+            "person": [],
+            "role": [
+              "Character"
+            ],
+            "deadline": [],
+            "pending work assignment": []
+          }
+        },
+        {
+          "source_id": "s00008:u004",
+          "entities": {
+            "person": [
+              "animal"
+            ],
+            "role": [],
+            "deadline": [],
+            "pending work assignment": []
+          }
+        },
+        {
+          "source_id": "s00009:u000",
+          "entities": {
+            "person": [
+              "family"
+            ],
+            "role": [],
+            "deadline": [],
+            "pending work assignment": []
+          }
+        },
+        {
+          "source_id": "s00009:u001",
+          "entities": {
+            "person": [
+              "family"
+            ],
+            "role": [],
+            "deadline": [],
+            "pending work assignment": []
+          }
+        },
+        {
+          "source_id": "s00010:u000",
+          "entities": {
+            "person": [
+              "I"
+            ],
+            "role": [],
+            "deadline": [],
+            "pending work assignment": []
+          }
+        },
+        {
+          "source_id": "s00011:u000",
+          "entities": {
+            "person": [
+              "You"
+            ],
+            "role": [],
+            "deadline": [
+              "this"
+            ],
+            "pending work assignment": []
+          }
+        },
+        {
+          "source_id": "s00011:u002",
+          "entities": {
+            "person": [
+              "you"
+            ],
+            "role": [],
+            "deadline": [],
+            "pending work assignment": []
+          }
+        },
+        {
+          "source_id": "s00011:u003",
+          "entities": {
+            "person": [
+              "you",
+              "I"
+            ],
+            "role": [],
+            "deadline": [],
+            "pending work assignment": []
+          }
+        },
+        {
+          "source_id": "s00011:u004",
+          "entities": {
+            "person": [
+              "Joe"
+            ],
+            "role": [],
+            "deadline": [],
+            "pending work assignment": []
+          }
+        },
+        {
+          "source_id": "s00011:u005",
+          "entities": {
+            "person": [
+              "you"
+            ],
+            "role": [],
+            "deadline": [],
+            "pending work assignment": []
+          }
+        },
+        {
+          "source_id": "s00011:u006",
+          "entities": {
+            "person": [
+              "I"
+            ],
+            "role": [],
+            "deadline": [],
+            "pending work assignment": [
+              "mine"
+            ]
+          }
+        },
+        {
+          "source_id": "s00011:u007",
+          "entities": {
+            "person": [
+              "I"
+            ],
+            "role": [],
+            "deadline": [],
+            "pending work assignment": []
+          }
+        },
+        {
+          "source_id": "s00011:u008",
+          "entities": {
+            "person": [
+              "Impressionist"
+            ],
+            "role": [
+              "Impressionist"
+            ],
+            "deadline": [],
+            "pending work assignment": []
+          }
+        },
+        {
+          "source_id": "s00012:u002",
+          "entities": {
+            "person": [
+              "I"
+            ],
+            "role": [],
+            "deadline": [],
+            "pending work assignment": []
+          }
+        },
+        {
+          "source_id": "s00012:u003",
+          "entities": {
+            "person": [
+              "I"
+            ],
+            "role": [],
+            "deadline": [],
+            "pending work assignment": []
+          }
+        },
+        {
+          "source_id": "s00012:u006",
+          "entities": {
+            "person": [
+              "whales"
+            ],
+            "role": [],
+            "deadline": [],
+            "pending work assignment": []
+          }
+        },
+        {
+          "source_id": "s00012:u007",
+          "entities": {
+            "person": [
+              "You"
+            ],
+            "role": [],
+            "deadline": [],
+            "pending work assignment": []
+          }
+        },
+        {
+          "source_id": "s00012:u008",
+          "entities": {
+            "person": [
+              "They"
+            ],
+            "role": [],
+            "deadline": [],
+            "pending work assignment": []
+          }
+        },
+        {
+          "source_id": "s00013:u002",
+          "entities": {
+            "person": [
+              "I"
+            ],
+            "role": [],
+            "deadline": [],
+            "pending work assignment": [
+              "write"
+            ]
+          }
+        },
+        {
+          "source_id": "s00013:u003",
+          "entities": {
+            "person": [],
+            "role": [],
+            "deadline": [],
+            "pending work assignment": [
+              "sketch"
+            ]
+          }
+        },
+        {
+          "source_id": "s00013:u005",
+          "entities": {
+            "person": [
+              "I"
+            ],
+            "role": [],
+            "deadline": [],
+            "pending work assignment": []
+          }
+        },
+        {
+          "source_id": "s00013:u007",
+          "entities": {
+            "person": [
+              "him"
+            ],
+            "role": [],
+            "deadline": [],
+            "pending work assignment": []
+          }
+        },
+        {
+          "source_id": "s00014:u000",
+          "entities": {
+            "person": [
+              "He",
+              "pig"
+            ],
+            "role": [],
+            "deadline": [],
+            "pending work assignment": []
+          }
+        },
+        {
+          "source_id": "s00014:u004",
+          "entities": {
+            "person": [
+              "you"
+            ],
+            "role": [],
+            "deadline": [],
+            "pending work assignment": []
+          }
+        },
+        {
+          "source_id": "s00014:u007",
+          "entities": {
+            "person": [
+              "he"
+            ],
+            "role": [],
+            "deadline": [],
+            "pending work assignment": []
+          }
+        },
+        {
+          "source_id": "s00015:u000",
+          "entities": {
+            "person": [
+              "him"
+            ],
+            "role": [],
+            "deadline": [],
+            "pending work assignment": []
+          }
+        },
+        {
+          "source_id": "s00015:u002",
+          "entities": {
+            "person": [
+              "he",
+              "you"
+            ],
+            "role": [],
+            "deadline": [],
+            "pending work assignment": []
+          }
+        },
+        {
+          "source_id": "s00015:u003",
+          "entities": {
+            "person": [
+              "Um"
+            ],
+            "role": [],
+            "deadline": [],
+            "pending work assignment": []
+          }
+        },
+        {
+          "source_id": "s00016:u000",
+          "entities": {
+            "person": [
+              "he"
+            ],
+            "role": [],
+            "deadline": [],
+            "pending work assignment": []
+          }
+        },
+        {
+          "source_id": "s00016:u002",
+          "entities": {
+            "person": [
+              "he"
+            ],
+            "role": [],
+            "deadline": [],
+            "pending work assignment": []
+          }
+        },
+        {
+          "source_id": "s00016:u003",
+          "entities": {
+            "person": [
+              "I"
+            ],
+            "role": [],
+            "deadline": [],
+            "pending work assignment": []
+          }
+        },
+        {
+          "source_id": "s00016:u004",
+          "entities": {
+            "person": [
+              "he"
+            ],
+            "role": [],
+            "deadline": [
+              "dinner"
+            ],
+            "pending work assignment": []
+          }
+        },
+        {
+          "source_id": "s00016:u005",
+          "entities": {
+            "person": [
+              "he",
+              "his"
+            ],
+            "role": [],
+            "deadline": [],
+            "pending work assignment": []
+          }
+        },
+        {
+          "source_id": "s00016:u006",
+          "entities": {
+            "person": [],
+            "role": [],
+            "deadline": [
+              "after-dinner"
+            ],
+            "pending work assignment": []
+          }
+        },
+        {
+          "source_id": "s00016:u008",
+          "entities": {
+            "person": [
+              "he"
+            ],
+            "role": [],
+            "deadline": [],
+            "pending work assignment": []
+          }
+        },
+        {
+          "source_id": "s00016:u009",
+          "entities": {
+            "person": [
+              "he"
+            ],
+            "role": [],
+            "deadline": [],
+            "pending work assignment": []
+          }
+        },
+        {
+          "source_id": "s00017:u002",
+          "entities": {
+            "person": [],
+            "role": [
+              "project finance"
+            ],
+            "deadline": [],
+            "pending work assignment": []
+          }
+        },
+        {
+          "source_id": "s00017:u003",
+          "entities": {
+            "person": [
+              "Um"
+            ],
+            "role": [
+              "um"
+            ],
+            "deadline": [],
+            "pending work assignment": []
+          }
+        },
+        {
+          "source_id": "s00018:u003",
+          "entities": {
+            "person": [],
+            "role": [],
+            "deadline": [
+              "twelve"
+            ],
+            "pending work assignment": []
+          }
+        },
+        {
+          "source_id": "s00018:u006",
+          "entities": {
+            "person": [],
+            "role": [
+              "selling price",
+              "production cost"
+            ],
+            "deadline": [],
+            "pending work assignment": []
+          }
+        },
+        {
+          "source_id": "s00019:u000",
+          "entities": {
+            "person": [],
+            "role": [
+              "wholesale",
+              "retail"
+            ],
+            "deadline": [],
+            "pending work assignment": []
+          }
+        },
+        {
+          "source_id": "s00019:u003",
+          "entities": {
+            "person": [
+              "I"
+            ],
+            "role": [],
+            "deadline": [],
+            "pending work assignment": []
+          }
+        },
+        {
+          "source_id": "s00019:u004",
+          "entities": {
+            "person": [],
+            "role": [
+              "retailer"
+            ],
+            "deadline": [],
+            "pending work assignment": []
+          }
+        },
+        {
+          "source_id": "s00019:u005",
+          "entities": {
+            "person": [
+              "I"
+            ],
+            "role": [],
+            "deadline": [],
+            "pending work assignment": []
+          }
+        },
+        {
+          "source_id": "s00020:u001",
+          "entities": {
+            "person": [
+              "I"
+            ],
+            "role": [],
+            "deadline": [],
+            "pending work assignment": []
+          }
+        },
+        {
+          "source_id": "s00020:u004",
+          "entities": {
+            "person": [],
+            "role": [
+              "characters",
+              "symbols",
+              "keypad styles"
+            ],
+            "deadline": [],
+            "pending work assignment": []
+          }
+        },
+        {
+          "source_id": "s00021:u006",
+          "entities": {
+            "person": [],
+            "role": [
+              "international"
+            ],
+            "deadline": [],
+            "pending work assignment": []
+          }
+        },
+        {
+          "source_id": "s00022:u000",
+          "entities": {
+            "person": [
+              "people"
+            ],
+            "role": [],
+            "deadline": [],
+            "pending work assignment": []
+          }
+        },
+        {
+          "source_id": "s00022:u001",
+          "entities": {
+            "person": [],
+            "role": [
+              "product positioning"
+            ],
+            "deadline": [],
+            "pending work assignment": []
+          }
+        },
+        {
+          "source_id": "s00022:u005",
+          "entities": {
+            "person": [
+              "god"
+            ],
+            "role": [],
+            "deadline": [],
+            "pending work assignment": []
+          }
+        },
+        {
+          "source_id": "s00022:u007",
+          "entities": {
+            "person": [],
+            "role": [
+              "Marketing"
+            ],
+            "deadline": [],
+            "pending work assignment": []
+          }
+        },
+        {
+          "source_id": "s00022:u009",
+          "entities": {
+            "person": [
+              "I"
+            ],
+            "role": [],
+            "deadline": [],
+            "pending work assignment": []
+          }
+        },
+        {
+          "source_id": "s00024:u000",
+          "entities": {
+            "person": [
+              "I"
+            ],
+            "role": [],
+            "deadline": [],
+            "pending work assignment": []
+          }
+        },
+        {
+          "source_id": "s00025:u002",
+          "entities": {
+            "person": [
+              "I"
+            ],
+            "role": [],
+            "deadline": [],
+            "pending work assignment": []
+          }
+        },
+        {
+          "source_id": "s00027:u000",
+          "entities": {
+            "person": [
+              "people"
+            ],
+            "role": [],
+            "deadline": [],
+            "pending work assignment": []
+          }
+        },
+        {
+          "source_id": "s00028:u000",
+          "entities": {
+            "person": [],
+            "role": [],
+            "deadline": [
+              "five minutes"
+            ],
+            "pending work assignment": []
+          }
+        },
+        {
+          "source_id": "s00028:u002",
+          "entities": {
+            "person": [
+              "We"
+            ],
+            "role": [],
+            "deadline": [],
+            "pending work assignment": []
+          }
+        },
+        {
+          "source_id": "s00028:u003",
+          "entities": {
+            "person": [
+              "I"
+            ],
+            "role": [],
+            "deadline": [],
+            "pending work assignment": []
+          }
+        },
+        {
+          "source_id": "s00028:u006",
+          "entities": {
+            "person": [
+              "people"
+            ],
+            "role": [],
+            "deadline": [],
+            "pending work assignment": []
+          }
+        },
+        {
+          "source_id": "s00028:u007",
+          "entities": {
+            "person": [
+              "parents"
+            ],
+            "role": [],
+            "deadline": [],
+            "pending work assignment": []
+          }
+        },
+        {
+          "source_id": "s00029:u000",
+          "entities": {
+            "person": [],
+            "role": [],
+            "deadline": [
+              "Right times"
+            ],
+            "pending work assignment": []
+          }
+        },
+        {
+          "source_id": "s00029:u003",
+          "entities": {
+            "person": [],
+            "role": [
+              "function one"
+            ],
+            "deadline": [],
+            "pending work assignment": []
+          }
+        },
+        {
+          "source_id": "s00029:u008",
+          "entities": {
+            "person": [],
+            "role": [
+              "POM POM pilots"
+            ],
+            "deadline": [],
+            "pending work assignment": []
+          }
+        },
+        {
+          "source_id": "s00030:u000",
+          "entities": {
+            "person": [],
+            "role": [],
+            "deadline": [],
+            "pending work assignment": [
+              "agenda"
+            ]
+          }
+        },
+        {
+          "source_id": "s00030:u001",
+          "entities": {
+            "person": [
+              "me"
+            ],
+            "role": [],
+            "deadline": [],
+            "pending work assignment": []
+          }
+        },
+        {
+          "source_id": "s00031:u002",
+          "entities": {
+            "person": [
+              "they"
+            ],
+            "role": [],
+            "deadline": [],
+            "pending work assignment": []
+          }
+        },
+        {
+          "source_id": "s00032:u000",
+          "entities": {
+            "person": [],
+            "role": [],
+            "deadline": [
+              "next couple of minutes"
+            ],
+            "pending work assignment": []
+          }
+        },
+        {
+          "source_id": "s00032:u003",
+          "entities": {
+            "person": [
+              "anybody"
+            ],
+            "role": [],
+            "deadline": [],
+            "pending work assignment": []
+          }
+        },
+        {
+          "source_id": "s00032:u005",
+          "entities": {
+            "person": [
+              "You",
+              "them"
+            ],
+            "role": [],
+            "deadline": [],
+            "pending work assignment": []
+          }
+        },
+        {
+          "source_id": "s00032:u006",
+          "entities": {
+            "person": [
+              "them",
+              "You"
+            ],
+            "role": [],
+            "deadline": [],
+            "pending work assignment": []
+          }
+        },
+        {
+          "source_id": "s00032:u007",
+          "entities": {
+            "person": [
+              "you"
+            ],
+            "role": [],
+            "deadline": [],
+            "pending work assignment": []
+          }
+        },
+        {
+          "source_id": "s00033:u001",
+          "entities": {
+            "person": [
+              "family"
+            ],
+            "role": [],
+            "deadline": [],
+            "pending work assignment": []
+          }
+        },
+        {
+          "source_id": "s00033:u004",
+          "entities": {
+            "person": [
+              "they"
+            ],
+            "role": [],
+            "deadline": [],
+            "pending work assignment": []
+          }
+        },
+        {
+          "source_id": "s00035:u001",
+          "entities": {
+            "person": [],
+            "role": [],
+            "deadline": [
+              "ten to twelve"
+            ],
+            "pending work assignment": []
+          }
+        },
+        {
+          "source_id": "s00035:u002",
+          "entities": {
+            "person": [
+              "um"
+            ],
+            "role": [
+              "industrial designer"
+            ],
+            "deadline": [],
+            "pending work assignment": [
+              "working design"
+            ]
+          }
+        },
+        {
+          "source_id": "s00035:u003",
+          "entities": {
+            "person": [],
+            "role": [
+              "user interface"
+            ],
+            "deadline": [],
+            "pending work assignment": []
+          }
+        },
+        {
+          "source_id": "s00036:u000",
+          "entities": {
+            "person": [],
+            "role": [
+              "marketing executive",
+              "technical functions"
+            ],
+            "deadline": [],
+            "pending work assignment": []
+          }
+        },
+        {
+          "source_id": "s00037:u000",
+          "entities": {
+            "person": [],
+            "role": [],
+            "deadline": [],
+            "pending work assignment": [
+              "functional design"
+            ]
+          }
+        },
+        {
+          "source_id": "s00037:u002",
+          "entities": {
+            "person": [
+              "I"
+            ],
+            "role": [],
+            "deadline": [],
+            "pending work assignment": []
+          }
+        },
+        {
+          "source_id": "s00038:u002",
+          "entities": {
+            "person": [],
+            "role": [
+              "television features"
+            ],
+            "deadline": [],
+            "pending work assignment": []
+          }
+        },
+        {
+          "source_id": "s00038:u003",
+          "entities": {
+            "person": [
+              "we"
+            ],
+            "role": [],
+            "deadline": [
+              "now",
+              "finish"
+            ],
+            "pending work assignment": []
+          }
+        },
+        {
+          "source_id": "s00039:u002",
+          "entities": {
+            "person": [
+              "um"
+            ],
+            "role": [],
+            "deadline": [
+              "cap"
+            ],
+            "pending work assignment": []
+          }
+        },
+        {
+          "source_id": "s00039:u009",
+          "entities": {
+            "person": [
+              "they"
+            ],
+            "role": [
+              "us"
+            ],
+            "deadline": [],
+            "pending work assignment": []
+          }
+        },
+        {
+          "source_id": "s00040:u001",
+          "entities": {
+            "person": [],
+            "role": [
+              "it function"
+            ],
+            "deadline": [],
+            "pending work assignment": []
+          }
+        },
+        {
+          "source_id": "s00041:u000",
+          "entities": {
+            "person": [],
+            "role": [
+              "um"
+            ],
+            "deadline": [],
+            "pending work assignment": []
+          }
+        },
+        {
+          "source_id": "s00042:u000",
+          "entities": {
+            "person": [
+              "you guys"
+            ],
+            "role": [],
+            "deadline": [],
+            "pending work assignment": [
+              "um target"
+            ]
+          }
+        },
+        {
+          "source_id": "s00043:u000",
+          "entities": {
+            "person": [],
+            "role": [],
+            "deadline": [
+              "next"
+            ],
+            "pending work assignment": []
+          }
+        },
+        {
+          "source_id": "s00044:u000",
+          "entities": {
+            "person": [
+              "I"
+            ],
+            "role": [],
+            "deadline": [],
+            "pending work assignment": []
+          }
+        },
+        {
+          "source_id": "s00044:u002",
+          "entities": {
+            "person": [
+              "I"
+            ],
+            "role": [],
+            "deadline": [],
+            "pending work assignment": []
+          }
+        },
+        {
+          "source_id": "s00045:u001",
+          "entities": {
+            "person": [
+              "ki"
+            ],
+            "role": [
+              "ki"
+            ],
+            "deadline": [],
+            "pending work assignment": []
+          }
+        }
+      ],
+      "elapsed_seconds": 76.11808719998226
+    }
+  ],
+  "nli_diagnostic": {
+    "scope": "Separate component check of the saved rejected draft. No Qwen/meeting rerun; not a canonical meeting record or ground-truth accuracy score.",
+    "checks": [
+      {
+        "candidate_id": "c0000",
+        "kind": "task",
+        "fact": {
+          "text": "working design of it",
+          "evidence": [
+            {
+              "segment_id": "s00035",
+              "quote": "Um so in between now and then um as the industrial designer you're gonna be working on you know the actual working design of it so you know what you're doing there.",
+              "start_char": 158,
+              "end_char": 322
+            }
+          ],
+          "owner": "the industrial designer",
+          "deadline": null
+        },
+        "verdict": "supported",
+        "scores": {
+          "entailment": 0.9815215468406677,
+          "neutral": 0.016933772712945938,
+          "contradiction": 0.0015447575133293867
+        },
+        "identity": {
+          "models": {
+            "gliner": {
+              "repo": "fastino/gliner2-base-v1",
+              "revision": "f9634218e53580c56edf0de97ca1a7d3f1c2354e",
+              "path": "C:\\Users\\mayan\\Desktop\\ML\\metawispr\\models\\hybrid\\cache\\models--fastino--gliner2-base-v1\\snapshots\\f9634218e53580c56edf0de97ca1a7d3f1c2354e",
+              "weights_sha256": "845fc4bd93c525b86124c58ab4f56c9eacf8587953086b14c501fab25957c007"
+            },
+            "nli": {
+              "repo": "MoritzLaurer/DeBERTa-v3-base-mnli-fever-anli",
+              "revision": "6f5cf0a2b59cabb106aca4c287eed12e357e90eb",
+              "path": "C:\\Users\\mayan\\Desktop\\ML\\metawispr\\models\\hybrid\\deberta",
+              "weights_sha256": "06d6fd89edd4f97816831626daafbdb0b029cf63bae8edc0bccab1d64e2e7707"
+            }
+          },
+          "gliner2": "2.0.0",
+          "transformers": "4.57.6",
+          "torch": "2.14.1+cpu",
+          "threshold": 0.8,
+          "labels": [
+            "person",
+            "role",
+            "deadline",
+            "pending work assignment"
+          ],
+          "version": 1
+        },
+        "reason": "Pretrained NLI support score"
+      },
+      {
+        "candidate_id": "c0001",
+        "kind": "task",
+        "fact": {
+          "text": "working design of it",
+          "evidence": [
+            {
+              "segment_id": "s00035",
+              "quote": "Um for user interface.",
+              "start_char": 323,
+              "end_char": 345
+            }
+          ],
+          "owner": "the user interface designer",
+          "deadline": null
+        },
+        "verdict": "uncertain",
+        "scores": {
+          "entailment": 0.023313285782933235,
+          "neutral": 0.9716037511825562,
+          "contradiction": 0.005082912277430296
+        },
+        "identity": {
+          "models": {
+            "gliner": {
+              "repo": "fastino/gliner2-base-v1",
+              "revision": "f9634218e53580c56edf0de97ca1a7d3f1c2354e",
+              "path": "C:\\Users\\mayan\\Desktop\\ML\\metawispr\\models\\hybrid\\cache\\models--fastino--gliner2-base-v1\\snapshots\\f9634218e53580c56edf0de97ca1a7d3f1c2354e",
+              "weights_sha256": "845fc4bd93c525b86124c58ab4f56c9eacf8587953086b14c501fab25957c007"
+            },
+            "nli": {
+              "repo": "MoritzLaurer/DeBERTa-v3-base-mnli-fever-anli",
+              "revision": "6f5cf0a2b59cabb106aca4c287eed12e357e90eb",
+              "path": "C:\\Users\\mayan\\Desktop\\ML\\metawispr\\models\\hybrid\\deberta",
+              "weights_sha256": "06d6fd89edd4f97816831626daafbdb0b029cf63bae8edc0bccab1d64e2e7707"
+            }
+          },
+          "gliner2": "2.0.0",
+          "transformers": "4.57.6",
+          "torch": "2.14.1+cpu",
+          "threshold": 0.8,
+          "labels": [
+            "person",
+            "role",
+            "deadline",
+            "pending work assignment"
+          ],
+          "version": 1
+        },
+        "reason": "Pretrained NLI support score"
+      },
+      {
+        "candidate_id": "c0002",
+        "kind": "task",
+        "fact": {
+          "text": "what requirements it has to fulfil",
+          "evidence": [
+            {
+              "segment_id": "s00036",
+              "quote": "technical functions i guess that's you know like what we've been talking about what it'll actually do um and uh marketing executive you'll be just thinking about what it actually what you know what requirements it has to has to fulfil and you'll all get instructions emailed to you i guess okay um",
+              "start_char": 0,
+              "end_char": 297
+            }
+          ],
+          "owner": "the marketing executive",
+          "deadline": null
+        },
+        "verdict": "uncertain",
+        "scores": {
+          "entailment": 0.7339796423912048,
+          "neutral": 0.2534710168838501,
+          "contradiction": 0.01254938542842865
+        },
+        "identity": {
+          "models": {
+            "gliner": {
+              "repo": "fastino/gliner2-base-v1",
+              "revision": "f9634218e53580c56edf0de97ca1a7d3f1c2354e",
+              "path": "C:\\Users\\mayan\\Desktop\\ML\\metawispr\\models\\hybrid\\cache\\models--fastino--gliner2-base-v1\\snapshots\\f9634218e53580c56edf0de97ca1a7d3f1c2354e",
+              "weights_sha256": "845fc4bd93c525b86124c58ab4f56c9eacf8587953086b14c501fab25957c007"
+            },
+            "nli": {
+              "repo": "MoritzLaurer/DeBERTa-v3-base-mnli-fever-anli",
+              "revision": "6f5cf0a2b59cabb106aca4c287eed12e357e90eb",
+              "path": "C:\\Users\\mayan\\Desktop\\ML\\metawispr\\models\\hybrid\\deberta",
+              "weights_sha256": "06d6fd89edd4f97816831626daafbdb0b029cf63bae8edc0bccab1d64e2e7707"
+            }
+          },
+          "gliner2": "2.0.0",
+          "transformers": "4.57.6",
+          "torch": "2.14.1+cpu",
+          "threshold": 0.8,
+          "labels": [
+            "person",
+            "role",
+            "deadline",
+            "pending work assignment"
+          ],
+          "version": 1
+        },
+        "reason": "Pretrained NLI support score"
+      },
+      {
+        "candidate_id": "c0003",
+        "kind": "task",
+        "fact": {
+          "text": "functional design",
+          "evidence": [
+            {
+              "segment_id": "s00037",
+              "quote": "Yeah, so it's the functional design stage is next, I guess.",
+              "start_char": 0,
+              "end_char": 59
+            }
+          ],
+          "owner": null,
+          "deadline": null
+        },
+        "verdict": "supported",
+        "scores": {
+          "entailment": 0.9287126064300537,
+          "neutral": 0.06950642913579941,
+          "contradiction": 0.0017809424316510558
+        },
+        "identity": {
+          "models": {
+            "gliner": {
+              "repo": "fastino/gliner2-base-v1",
+              "revision": "f9634218e53580c56edf0de97ca1a7d3f1c2354e",
+              "path": "C:\\Users\\mayan\\Desktop\\ML\\metawispr\\models\\hybrid\\cache\\models--fastino--gliner2-base-v1\\snapshots\\f9634218e53580c56edf0de97ca1a7d3f1c2354e",
+              "weights_sha256": "845fc4bd93c525b86124c58ab4f56c9eacf8587953086b14c501fab25957c007"
+            },
+            "nli": {
+              "repo": "MoritzLaurer/DeBERTa-v3-base-mnli-fever-anli",
+              "revision": "6f5cf0a2b59cabb106aca4c287eed12e357e90eb",
+              "path": "C:\\Users\\mayan\\Desktop\\ML\\metawispr\\models\\hybrid\\deberta",
+              "weights_sha256": "06d6fd89edd4f97816831626daafbdb0b029cf63bae8edc0bccab1d64e2e7707"
+            }
+          },
+          "gliner2": "2.0.0",
+          "transformers": "4.57.6",
+          "torch": "2.14.1+cpu",
+          "threshold": 0.8,
+          "labels": [
+            "person",
+            "role",
+            "deadline",
+            "pending work assignment"
+          ],
+          "version": 1
+        },
+        "reason": "Pretrained NLI support score"
+      }
+    ]
+  },
+  "failure_detail": "Task owner 'the user interface designer' needs literal text and its source ID. Matching available IDs: []. Cite applicable sources or use null.",
   "setup_status": {
-    "dependencies_installed": true,
-    "imports_verified": true,
-    "weights_available": false,
-    "download_attempts": 2,
-    "download_outcome": "GLiNER2 weight transfer remained at zero bytes; both attempts stopped. No additional retries.",
-    "new_hybrid_inference_executed": false
+    "weights_verified": true,
+    "gliner_executed": true,
+    "deberta_executed": true,
+    "qwen_meeting_calls_completed": 16,
+    "prompts_changed": false,
+    "meeting_rerun_after_failure": false
   }
 }

@@ -229,3 +229,32 @@ and historical records were not modified. No prompts or thresholds were
 tuned, and no automatic meeting rerun followed. Qwen-only stays the default
 until model setup and explicit activation. Hybrid readiness, real model
 execution and accuracy remain unverified. See [HYBRID.md](HYBRID.md).
+
+
+## Manual weights and single hybrid run, 7 October 2026
+
+The owner supplied both weights in the parent ML folder. Complete safetensors
+payloads and official SHA256 values were verified; small tokenizer/configuration
+files were downloaded, and the local manifest was written. A genuine GLiNER2
+loading check exposed a Windows cp1252 failure on the library's emoji banner.
+Suppressing the banner fixes loading without changing model inputs/prompts.
+99 backend tests still pass. Both original downloaded files remain intact.
+
+The single ES2002a run reused genuine GPU ASR/refinement and stopped after
+335.83 seconds, with 16 successful Qwen calls. GLiNER2 supplied 111 source hints
+in 76.1 seconds. A review call twice returned owner `the user interface designer`
+without a matching literal cited source, and the existing validator stopped
+publication. No prompts/thresholds changed and no meeting rerun followed.
+The new report is `evaluation/results/hybrid-es2002a.json`; the earlier setup
+failure is retained separately as `hybrid-es2002a-setup-blocked.json`.
+
+DeBERTa is checked separately against the saved rejected draft, with its scores
+recorded as component diagnostics rather than a canonical record or accuracy
+score. Full hybrid documentation/export completion and precision/recall remain
+unverified; Qwen-only stays the default. The failed owner/evidence linkage is
+the next known issue, not a missing model download.
+
+The DeBERTa diagnostic scored four rejected-draft task claims: two supported
+and two uncertain at the fixed 0.8 threshold. The user-interface-owner claim
+received 0.023 entailment and 0.972 neutral; these are model scores, not measured
+accuracy. They do not justify automatically repairing or publishing the draft.
