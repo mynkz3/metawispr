@@ -326,3 +326,28 @@ judgments without independent human/audio review. The older ASR baseline
 lacks the current final claim audit, and this run includes a validation repair,
 so the comparison does not isolate the effect of transcript quality. The
 quality/release gate remains unmet. No further run or prompt tuning followed.
+
+
+## GTCRN paired excerpt probe, 7 October 2026
+
+One preselected ES2002a interval (450-630 seconds) was decoded before and
+after GTCRN denoising using identical Parakeet v2 INT8 CUDA weights, greedy
+decoding, 30-second windows and the existing Phase 5 word normalization.
+The 535,638-byte official ONNX export ran through the installed sherpa runtime
+on CPU; duration/sample rate were preserved. No additional dependencies or
+production changes were made. Existing CUDA/cuDNN library folders had to be
+added to the subprocess PATH before ASR could load. Earlier setup failures
+produced no ASR result; no parameter or prompt tuning followed.
+
+For 455 reference words, original WER was 28.13%
+and enhanced WER was 23.96%: 4.18
+percentage points lower (14.8% relative
+reduction). GTCRN loading/enhancement took 11.91 seconds.
+Source/model hashes, edit counts and both transcripts are saved in
+`evaluation/results/gtcrn-es2002a-excerpt.json`; the guarded reproduction script
+is `evaluation/gtcrn_probe.py`. Scoring and identical-profile assertions pass.
+
+This three-minute result is not directly comparable to the historical 18.7%
+WER measured on a longer interval. The fixed historical baseline remains
+unchanged. Full-meeting performance, clean-speech regressions and downstream
+Qwen benefits are unmeasured; GTCRN is not enabled in production.

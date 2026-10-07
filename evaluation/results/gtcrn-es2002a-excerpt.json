@@ -1,0 +1,79 @@
+{
+  "meeting": "ES2002a",
+  "scope": "Single preselected excerpt, not full-meeting WER.",
+  "interval_seconds": [
+    450,
+    630
+  ],
+  "duration_seconds": 180,
+  "model_bytes": 535638,
+  "model_sha256": "e77603ac0c23dac3227dd2d7135b3a585cbee2679048aecfa886657d3ae1b534",
+  "model_url": "https://github.com/k2-fsa/sherpa-onnx/releases/download/speech-enhancement-models/gtcrn_simple.onnx",
+  "source_sha256": "9c76866990fcc8b84006dc32d273ad99df439090b748ebe72103bb78c3216ee7",
+  "annotations_sha256": "b56e5babb2496b8795deeeda7e71178d7fbc9963f94276cf2a3f4b56ebbc9f9d",
+  "enhancement_seconds": 11.906747500004712,
+  "denoiser_provider": "cpu",
+  "normalization": "Existing Phase 5 lowercase/punctuation/apostrophe tokenization; no number expansion.",
+  "alignment": "Reference word midpoint within excerpt; overlapping speakers sorted by start and speaker file.",
+  "chunk_seconds": 30,
+  "reference_words": 455,
+  "arms": {
+    "original": {
+      "reference_words": 455,
+      "hypothesis_words": 352,
+      "substitutions": 21,
+      "deletions": 105,
+      "insertions": 2,
+      "wer": 0.2813186813186813,
+      "transcript": "Where did you find this? Just down here. Okay. What are we doing next? Okay, we now need to discuss the project finance. So, according to the brief, we're going to be selling this remote control for 25 euro and we're. Aiming to make 15 million euro. Um so we're gonna be selling this on an international scale and uh we don't want it to cost any more than uh 1250 euro, so fifty percent of the selling price. Um can we just go over that again? Sure. Uh so basically all right, yeah. Okay. So cost like production cost is twelve fifty but selling price is is that wholesale or retail? Like on the shelf? Um I don't know. I imagine that's a good our sale. Our sale. I imagine it probably is our sale actually because it's probably up to the the um the retailer to uh sell it for whatever price they want um but I I don't know. I mean do you think the fact that it's going to be sold internationally will have a bearing on How we design it at all. Yes. I think it will. Um well right away I'm wondering if there's um uh like with D V D players if there are zones frequencies or something. Yeah. Okay. As well as um characters, um different uh keypad styles and symbols. Yeah. But for remote control, do you think that would be I suppose it depends on how complicated our remote control is. Yeah, yeah. Yeah. Okay. And then and then oh the other thing, international, is on the topic of price. I'm thinking the price might might appeal to a certain Market in one region, whereas in another, it'll be different. So, just like the rest of the country, like how much money people have to spend on things, or just like basic product positioning. The 25-euro remote control might be a big hit in London, might not be such a big hit in Greece. Who knows? Yeah, marketing, good marketing thoughts. Oh gosh, I should be writing all this down. Um",
+      "decode_seconds": 12.950941400020383,
+      "load_seconds": 7.501710599986836,
+      "audio_sha256": "45e98ad65af0973cba62b7bcb8d5fe29b832c2863a9b7a7095488127482949e7",
+      "asr_model": {
+        "model_id": "nvidia/parakeet-tdt-0.6b-v2",
+        "package": "sherpa-onnx-nemo-parakeet-tdt-0.6b-v2-int8",
+        "runtime": "sherpa-onnx",
+        "runtime_version": "1.13.8+cuda12.cudnn9",
+        "provider": "cuda",
+        "num_threads": 4,
+        "file_sha256": {
+          "encoder.int8.onnx": "a32b12d17bbbc309d0686fbbcc2987b5e9b8333a7da83fa6b089f0a2acd651ab",
+          "decoder.int8.onnx": "b6bb64963457237b900e496ee9994b59294526439fbcc1fecf705b31a15c6b4e",
+          "joiner.int8.onnx": "7946164367946e7f9f29a122407c3252b680dbae9a51343eb2488d057c3c43d2",
+          "tokens.txt": "ec182b70dd42113aff6c5372c75cac58c952443eb22322f57bbd7f53977d497d"
+        }
+      }
+    },
+    "enhanced": {
+      "reference_words": 455,
+      "hypothesis_words": 378,
+      "substitutions": 26,
+      "deletions": 80,
+      "insertions": 3,
+      "wer": 0.23956043956043957,
+      "transcript": "Right, um where did you find this? Just down here. Okay. Um what are we doing next? Um okay uh we now need to discuss the project finance um so according to the brief um we're going to be selling this remote control for 25 euro um and we're Aiming to make 50 million euro. Um, so we're gonna be selling this on an international scale, and uh, we don't want it to cost any more than uh 1250 euro, so fifty percent of the selling price. Um can we just go over that again? Sure. Uh so basically all right, yeah. Okay. So cost like production cost is altogether twelve fifty but selling price is is that wholesale or retail like on the shelf um I don't know I imagine that's a good question I imagine it probably is our sale actually because it's probably up to the the um the retailer to uh sell it for whatever price they want and but I I don't know I mean do you think the fact that it's going to be sold internationally will have a bearing on How we design it at all. Yes. I think it will. Um well right away I'm wondering if there's um uh like with D V D players if there are zones oh yeah regions and stuff frequencies or something. Yeah. Okay. As well as um characters, um different uh keypad styles and symbols. Yeah. But for remote control do you think that would be I suppose it depends on how complicated our remote control is. It does make sense from maybe the design company because we have more complicated characters like European languages and yeah yeah okay and then and then o the other thing international is on the topic of price I'm thinking the price might might appeal to a certain Market in one region, whereas in another, it'll be different. So it just a characteristic country, like how much money people have to spend on things. Or just like basic product positioning. The 25 Euro remote control might be a big hit in London, might not be such a big hit in Greece. Who knows? Yeah. Marketing. Good marketing thoughts. Oh, Bosch. I should be writing all this down.",
+      "decode_seconds": 12.152657699916745,
+      "load_seconds": 0.0,
+      "audio_sha256": "152f1881e52c2ef854c4171cd9dff18cd1bda65aeb3043b4ab71ee12ba18fc56",
+      "asr_model": {
+        "model_id": "nvidia/parakeet-tdt-0.6b-v2",
+        "package": "sherpa-onnx-nemo-parakeet-tdt-0.6b-v2-int8",
+        "runtime": "sherpa-onnx",
+        "runtime_version": "1.13.8+cuda12.cudnn9",
+        "provider": "cuda",
+        "num_threads": 4,
+        "file_sha256": {
+          "encoder.int8.onnx": "a32b12d17bbbc309d0686fbbcc2987b5e9b8333a7da83fa6b089f0a2acd651ab",
+          "decoder.int8.onnx": "b6bb64963457237b900e496ee9994b59294526439fbcc1fecf705b31a15c6b4e",
+          "joiner.int8.onnx": "7946164367946e7f9f29a122407c3252b680dbae9a51343eb2488d057c3c43d2",
+          "tokens.txt": "ec182b70dd42113aff6c5372c75cac58c952443eb22322f57bbd7f53977d497d"
+        }
+      }
+    }
+  },
+  "wer_change_percentage_points": -4.175824175824175,
+  "relative_wer_reduction_percent": 14.843749999999998,
+  "decision": "Promising excerpt result; not enabled in production. Full-meeting and clean-speech regression remain untested.",
+  "runtime_setup": "Windows subprocess PATH included existing D:/Lib/site-packages/torch/lib and .cache/ollama-runtime/lib/ollama/cuda_v12. No runtime packages or ASR weights changed.",
+  "setup_note": "Initial launches stopped before ASR inference due to missing CUDA library search paths; corrected locally. No settings sweep or threshold tuning."
+}
