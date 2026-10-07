@@ -1,0 +1,328 @@
+{
+  "meeting": "ES2002a",
+  "scope": "Full recording denoised; WER on unchanged historical aligned interval.",
+  "baseline_source_sha256": "eedb83e97091e891499f6a2f57cef3d32ffa05989dc399c8f53841f36dab06b4",
+  "source_audio_sha256": "9c76866990fcc8b84006dc32d273ad99df439090b748ebe72103bb78c3216ee7",
+  "model_sha256": "e77603ac0c23dac3227dd2d7135b3a585cbee2679048aecfa886657d3ae1b534",
+  "model_bytes": 535638,
+  "denoiser_provider": "cpu",
+  "denoiser_threads": 1,
+  "enhancement_seconds": 238.58,
+  "original_metrics": {
+    "reference_words": 2565,
+    "hypothesis_words": 2244,
+    "substitutions": 117,
+    "deletions": 342,
+    "insertions": 21,
+    "wer": 0.1871345029239766,
+    "aligned_start_seconds": 55.6,
+    "aligned_end_seconds": 1084.0,
+    "excluded_leading_seconds": 55.6,
+    "excluded_trailing_seconds": 188.6400000000001,
+    "normalization": "Lowercase; punctuation to separators; apostrophes retained; no number expansion.",
+    "alignment": "Complete ASR windows inside lexical annotation coverage; reference words by midpoint. Overlapping speakers sorted by start and speaker file. Not an official AMI benchmark."
+  },
+  "enhanced_metrics": {
+    "reference_words": 2565,
+    "hypothesis_words": 2205,
+    "substitutions": 132,
+    "deletions": 379,
+    "insertions": 19,
+    "wer": 0.20662768031189083,
+    "aligned_start_seconds": 55.6,
+    "aligned_end_seconds": 1084.0,
+    "excluded_leading_seconds": 55.6,
+    "excluded_trailing_seconds": 188.6400000000001,
+    "normalization": "Lowercase; punctuation to separators; apostrophes retained; no number expansion.",
+    "alignment": "Complete ASR windows inside lexical annotation coverage; reference words by midpoint. Overlapping speakers sorted by start and speaker file. Not an official AMI benchmark."
+  },
+  "wer_change_percentage_points": 1.949317738791423,
+  "raw": {
+    "schema_version": "1.0",
+    "input_sha256": "9c76866990fcc8b84006dc32d273ad99df439090b748ebe72103bb78c3216ee7",
+    "audio_sha256": "79abd1f0c68449b3645ca39810f8348be2bafefaf1b707fa50546a65e4eeaa40",
+    "duration_seconds": 1272.64,
+    "timing": "audio_window",
+    "segments": [
+      {
+        "id": "s00001",
+        "start": 0.0,
+        "end": 28.5,
+        "text": "Um, you've already just produced a PowerPoint brand new. I think it's already on, actually. God, how do you say? Uh I have to"
+      },
+      {
+        "id": "s00002",
+        "start": 28.5,
+        "end": 55.6,
+        "text": "I place it in the back, but okay, right. I know it's right. Okay. Right."
+      },
+      {
+        "id": "s00003",
+        "start": 55.6,
+        "end": 84.9,
+        "text": "Um well this is the kickoff meeting for our our project and um this is just what we're going to be doing over the next 25 minutes. Um so first of all just to kind of make sure that we all know each other I'm Laura and I'm the project manager. Do you want to introduce yourself again? Hi, I'm David and I'm supposed to be an industrial designer. Okay. And I'm Andrew and I'm the our marketing"
+      },
+      {
+        "id": "s00004",
+        "start": 84.9,
+        "end": 112.8,
+        "text": "Expert. I'm Craig and I'm user interface. Great, okay. Um so we're designing a new remote control and um oh I have to record who's here actually. So that's David, Andrew and Craig isn't it? And you all arrived on time. Um yes we did uh design a new remote control um"
+      },
+      {
+        "id": "s00005",
+        "start": 112.8,
+        "end": 142.1,
+        "text": "As you can see it's supposed to be original, trendy and user friendly. Um so that's kind of our our brief as it were. Um and so there are three different stages to the design. Um I'm not really sure what what you guys have already received um in your emails. What did you get? Um I just got the project announcement from designing control. Yeah, that's that what anybody got? Okay."
+      },
+      {
+        "id": "s00006",
+        "start": 142.1,
+        "end": 170.4,
+        "text": "So we're going to have like individual work and then a meeting about it and repeat that process three times. And at this point we get to try out the whiteboard over there. So you get to draw your favourite animal and sum up your favourite characteristics of it. So who would like to go first? Very good."
+      },
+      {
+        "id": "s00007",
+        "start": 170.4,
+        "end": 199.1,
+        "text": "All right, so this one here, right? Okay, nice. All right, my favorite animal is like"
+      },
+      {
+        "id": "s00008",
+        "start": 199.1,
+        "end": 226.6,
+        "text": "A beagle favorite characteristics of it? Is that right? Yeah. Right, well, basically, high priority for any animal for me is that they be willing to take a lot of physical affection."
+      },
+      {
+        "id": "s00009",
+        "start": 226.6,
+        "end": 253.7,
+        "text": "From their family, and yeah, they have lots of personality and be fit and in robust good health. So, this is blue beagle, my family's beagle."
+      },
+      {
+        "id": "s00010",
+        "start": 253.7,
+        "end": 283.4,
+        "text": "My favourite animal would be a monkey. I'm small, cute, and furry, and if my plant needs becomes real, I'm going to be up there with them. Just too much gear."
+      },
+      {
+        "id": "s00011",
+        "start": 283.4,
+        "end": 311.3,
+        "text": "You can take as long over this as you like because we haven't got an awful lot to discuss. Oh, we do, we do. Don't feel like you're in a rush anyway. I could have told you a whole lot more about the eagles. Okay, too. Well, we might have to get you up again. I don't know what mine is. I'm gonna have to think on the spot now. Impressionist."
+      },
+      {
+        "id": "s00012",
+        "start": 311.3,
+        "end": 340.8,
+        "text": "Is that a whale? Yeah? Um oh my I don't know, it's just the first animal I can think of off the top of my head. Yes, big reason is because I'm allergic to most animals. Allergic to animal first, so um fish was a natural choice. Um yeah and I kinda like whales. You come in and go eat everything inside. They're quite harmless and mild and"
+      },
+      {
+        "id": "s00013",
+        "start": 340.8,
+        "end": 370.7,
+        "text": "Interesting. I still don't know what I'm going to write about. Superb sketch, by the way. I'm spinning a chooser dog as well. But I just draw a different kind of dog. But my favourite animal is my own dog at home. That doesn't really look like him, actually."
+      },
+      {
+        "id": "s00014",
+        "start": 370.7,
+        "end": 399.6,
+        "text": "He looks more like a pig actually. I see a dog in there. Dear. Oh, that's very good of you. Now I see a rooster. What kind is it? Um, he's a mixture of uh various things. Um"
+      },
+      {
+        "id": "s00015",
+        "start": 399.6,
+        "end": 427.3,
+        "text": "And what do I like about him? Um that's supposed to suggest that his tail went. Um he's very friendly and cheery and always pleased to see you and very kind of affectionate and um and and he's quite quite wee as well so you know he can doesn't take up too much space. Um and uh"
+      },
+      {
+        "id": "s00016",
+        "start": 427.3,
+        "end": 455.0,
+        "text": "And he does a funny thing where he chases his tail as well. This is quite amusing. Is he aware that it's his own check tail he's chasing? It is, I think it is. He only does it after he's had his dinner. And he'll just all of a sudden just get up and start chasing his tail and surround the living room. After dinner, yeah. Probably when he was little, he got lots of attention for doing it. Yeah. He's forever been conditioned. Maybe. Right, um, where did you find this? Just down here."
+      },
+      {
+        "id": "s00017",
+        "start": 455.0,
+        "end": 482.1,
+        "text": "Okay. Um what are we doing next? Um okay, uh we now need to discuss the project finance. Um so according to the brief, um we're going to be selling this remote control for twenty five euro um and we're aiming to make fifty million euro."
+      },
+      {
+        "id": "s00018",
+        "start": 482.1,
+        "end": 510.8,
+        "text": "Um so we're gonna be selling this on an international scale and uh we don't want it to cost any more than uh 1250 euros, so fifty percent of the selling price. Um can we just go over that again? Sure. Uh so basically all right yeah okay so cost like production cost is twelve fifty but selling price is"
+      },
+      {
+        "id": "s00019",
+        "start": 510.8,
+        "end": 538.5,
+        "text": "Is that wholesale or retail? Like on the shelf? Um I don't know. I imagine that's a good question. I imagine it probably is our sale actually because it's probably up to the the um the retailer to uh sell it for whatever price they want. Um but I I don't know. I mean, do you think the fact that it's going to be sold internationally will have a bearing on how we design it at all?"
+      },
+      {
+        "id": "s00020",
+        "start": 538.5,
+        "end": 568.2,
+        "text": "Yes. I think it will. Um well right away I'm wondering if there's um uh like with DVD players if there are zones regions and stuff, yeah. Frequencies or something. Yeah. Okay. As well as characters, um different uh keypad styles and symbols. Yeah. Well for remote control do you think that would be"
+      },
+      {
+        "id": "s00021",
+        "start": 568.2,
+        "end": 597.1,
+        "text": "I suppose it depends on how complicated our remote control is. It does make sense from maybe the design company'cause you have more complicated characters like European languages than that. Yeah. Yeah. Yeah. Okay. And then and then o the other thing, international, is on the topic of price. I'm thinking the price might might appeal to a certain market in one region whereas in another it would be different, so."
+      },
+      {
+        "id": "s00022",
+        "start": 597.1,
+        "end": 626.8,
+        "text": "Or just like basic product positioning. The 25 Euro remote control might be a big hit in London. Might not be such a big hit in Greece. Who knows? Yeah. Marketing. Good marketing thoughts. Oh, boss. I should be writing all this down."
+      },
+      {
+        "id": "s00024",
+        "start": 654.7,
+        "end": 684.4,
+        "text": "Right away I'm making some kind of assumptions about what what information we're given here thinking Okay trendy probably means something other than just basic. Yeah, something other than just standard So I'm wondering right away is selling 25 euros is that sort of that is this gonna be like the premium product Yeah, yeah, like how much does you know a remote control cost? Well 25 euro I mean that's um"
+      },
+      {
+        "id": "s00025",
+        "start": 684.4,
+        "end": 713.7,
+        "text": "That's about like 18 pounds or something isn't it? Or no, is it as much as that? 16 17 18 pounds. Yeah, it's actually I don't know. I've never bought a remote control, so I don't know how good a remote control that would get you. But yeah, I suppose it has to look kind of cool, gimmicky. Um right we can let me just scoot on ahead here."
+      },
+      {
+        "id": "s00026",
+        "start": 713.7,
+        "end": 742.2,
+        "text": "Okay. Um well d does anybody have anything to add to uh to the finance issue at all? Do we have any other background information on like how that compares to other no actually that would be useful though wouldn't it if you knew like what your money would get you nine"
+      },
+      {
+        "id": "s00027",
+        "start": 742.2,
+        "end": 769.9,
+        "text": "The interesting thing about discussing production of remote control for me is that, as you point out, I just don't think remote control is being something people consciously assess in their purchasing habits. It's just like."
+      },
+      {
+        "id": "s00028",
+        "start": 769.9,
+        "end": 799.8,
+        "text": "getting shoelaces with shoes or something just five minutes to end a meeting oh okay we're a bit behind you know what i mean like yeah so sort of like how do you i i mean one one way of looking at it would be well the people producing television sets maybe they have to buy remote controls or another way is maybe people who have tv sets are really fed up with their remote control and they really want a better one or something my parents went and bought um remote controls because um they got fed up with having four or five different remote controls which"
+      },
+      {
+        "id": "s00029",
+        "start": 799.8,
+        "end": 828.1,
+        "text": "Right times. Right. So um the end was just how many devices in the control. Right, so in function one of the priorities might be to combine as many uses. Right, so do you think that should be like a main design aim of our remote control? Do you know do your your satellite and your regular telly and your V C R and everything? Well like um maybe what we could use as a sort of like a example of a successful other piece of technology is POM POM pilots."
+      },
+      {
+        "id": "s00030",
+        "start": 828.1,
+        "end": 855.8,
+        "text": "they're going from being just like little sort of scribble boards to cameras, MP3 players, telephones, everything, agenda. So like I wonder if we might add something new to the to the remote control market such as the lighting in your house or um or even like you know notes about um what you want to watch like you might put in there oh i want to watch such and such and look at that's a good idea so extra functionality yeah like personally for me at home i've"
+      },
+      {
+        "id": "s00031",
+        "start": 855.8,
+        "end": 885.5,
+        "text": "I've combined the um the audio video of my television set and my DVD player and my C D player. So they all work actually function together, but I have different remote controls for each of them. So it's sort of ironic that that then they're in their um you know, the sound and everything, it's just one system. But each one's got its own little partner. Um okay."
+      },
+      {
+        "id": "s00032",
+        "start": 885.5,
+        "end": 912.8,
+        "text": "Uh I well we're gonna have to wrap up pretty quickly in the next couple of minutes. Um I'll just check with nothing else. Okay. Um so anything else anybody wants to add about what they don't like about remote controls they've used, what they would really like to be part of this new one? That's all. You keep losing you keep losing them, okay. Finding them makes us usually quite small or when you might"
+      },
+      {
+        "id": "s00033",
+        "start": 912.8,
+        "end": 942.7,
+        "text": "Yeah. Yeah. You get those ones where you can if you like whistle or make a really high-pitched noise, they beep. Yeah. They're I mean is that something we'd want to include, do you think? Uh no. Sure. Okay, maybe. I remember when the first remote control my my family had was on a cable. Actually the cable between it the T V and big like buttons that sort of like like on a blender or something. My goodness. And you know, when I think about what they are now, it's better, but actually it's still kind of."
+      },
+      {
+        "id": "s00034",
+        "start": 942.7,
+        "end": 972.4,
+        "text": "I don't know, like a massive junkie thing on the table. Maybe we could think about how it could be more, you know, streamlined. Maybe like a touch screen or something. Something like that, yeah. Or whatever would be technologically reasonable. Uh-huh. Okay. Well, I guess that's something that it could be that functionally that doesn't make it any better, but that just the appeal of not having you know, these days every peop things in people's homes are becoming more and more like chic, you know? Yeah. Um nicer materials and okay."
+      },
+      {
+        "id": "s00035",
+        "start": 972.4,
+        "end": 999.7,
+        "text": "might be worth exploring any right well um so just to wrap up the next meeting's gonna be in thirty minutes so that's about um about ten to twelve by my watch um so in between now and then um as the industrial designer you're gonna be working on you know the actual working design of it so you know what you're doing there. Um for user interface."
+      },
+      {
+        "id": "s00036",
+        "start": 999.7,
+        "end": 1027.4,
+        "text": "technical functions i guess that's you know like what we've been talking about what it'll actually do um and uh marketing executive you'll be just thinking about what it actually what you know what requirements it has to has to fulfil and you'll all get instructions emailed to you i guess um"
+      },
+      {
+        "id": "s00037",
+        "start": 1027.4,
+        "end": 1054.9,
+        "text": "Yeah, so it's that the functional design stage is next, I guess. And that's the end of the meeting. So I got that little message a lot sooner than I thought I would, so before we wrap up, just to make sure we're all on the same page here, do we we were given sort of an example of a"
+      },
+      {
+        "id": "s00038",
+        "start": 1054.9,
+        "end": 1084.0,
+        "text": "Coffee machine or something, right? Well, um are we right now on the assumption that our television remote control may have features which go beyond the television? Or are we keeping sort of like a a design commitment to television features? Okay, well, just very quickly, because we're supposed to finish, now I um I guess that's up to us. I mean you probably want some kind of unique selling point of it. Okay, so um"
+      },
+      {
+        "id": "s00039",
+        "start": 1084.0,
+        "end": 1113.9,
+        "text": "Okay. Yeah, there's a cap there, so it depends on how much you can cram into that price. Okay. Yeah. I think that's the mean actor. Right, okay. Well, that's that's the end of the meeting then. Thank you all for coming. But I hope that was what they wanted us to do."
+      },
+      {
+        "id": "s00040",
+        "start": 1113.9,
+        "end": 1142.6,
+        "text": "Um right how do you turn this thing off? Is it extension and ah there we go? I think if you can just leave it on maybe and then um oh god this has turned itself off."
+      },
+      {
+        "id": "s00041",
+        "start": 1142.6,
+        "end": 1172.5,
+        "text": "Uh-huh."
+      },
+      {
+        "id": "s00045",
+        "start": 1256.8,
+        "end": 1272.64,
+        "text": "Okay. I'm going to I I wasn't expecting that fun."
+      }
+    ],
+    "model": {
+      "model_id": "nvidia/parakeet-tdt-0.6b-v2",
+      "package": "sherpa-onnx-nemo-parakeet-tdt-0.6b-v2-int8",
+      "runtime": "sherpa-onnx",
+      "runtime_version": "1.13.8+cuda12.cudnn9",
+      "provider": "cuda",
+      "num_threads": 4,
+      "file_sha256": {
+        "encoder.int8.onnx": "a32b12d17bbbc309d0686fbbcc2987b5e9b8333a7da83fa6b089f0a2acd651ab",
+        "decoder.int8.onnx": "b6bb64963457237b900e496ee9994b59294526439fbcc1fecf705b31a15c6b4e",
+        "joiner.int8.onnx": "7946164367946e7f9f29a122407c3252b680dbae9a51343eb2488d057c3c43d2",
+        "tokens.txt": "ec182b70dd42113aff6c5372c75cac58c952443eb22322f57bbd7f53977d497d"
+      }
+    },
+    "load_seconds": 8.567332900012843,
+    "decode_seconds": 197.3317443000269,
+    "created_at": "2026-10-07T19:20:48.537182+00:00",
+    "warnings": [
+      "Experimental enhanced audio; baseline nonempty windows reused."
+    ]
+  },
+  "qwen_run": false,
+  "production_enabled": false,
+  "window_scope": "Only baseline nonempty ASR windows decoded; baseline omitted windows were not retested.",
+  "empty_enhanced_windows": [
+    "s00042",
+    "s00043",
+    "s00044"
+  ],
+  "decision": "Do not enable GTCRN by default: the full-recording experiment worsened WER. Original-audio Parakeet remains the production profile.",
+  "recovery_note": "The first ASR attempt failed near the end because the harness did not handle empty text; its in-memory outputs were lost. Enhanced audio was reused, ASR was restarted once with per-window checkpoints, and empty outputs handled. No enhancement rerun, parameter tuning or Qwen run.",
+  "enhancement_timing_note": "238.58 seconds is the rounded value recovered from the first attempt console output.",
+  "runtime_setup": "Existing CUDA libraries from D:/Lib/site-packages/torch/lib and .cache/ollama-runtime/lib/ollama/cuda_v12 were on subprocess PATH.",
+  "attribution": "AMI Meeting Corpus / AMI Project / Edinburgh / Idiap / TNO; CC BY 4.0; https://groups.inf.ed.ac.uk/ami/corpus/"
+}

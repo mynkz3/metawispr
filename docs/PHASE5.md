@@ -379,3 +379,34 @@ The exact result and transcripts are preserved in
 `evaluation/gtcrn_probe.py --dpdfnet4` with the existing CUDA libraries on PATH.
 PCM/profile/alignment and WER arithmetic assertions pass. No tuning or further
 run followed this comparison.
+
+
+## Full-recording GTCRN check, 8 October 2026
+
+The complete 1,272.64-second ES2002a prepared recording was enhanced once
+with the same GTCRN export, one CPU thread and no parameter changes. Parakeet
+INT8 CUDA used the historical baseline's exact retained window boundaries;
+baseline windows without retained text were not retested. Raw original audio
+and the historical baseline remain unchanged. Evaluation used the same 2,565
+reference words, 55.6-1084.0 second interval and normalization.
+
+WER increased from 18.71% to 20.66% (+1.95 percentage points). Substitutions
+increased 117 to 132; deletions increased 342 to 379; insertions fell 21 to 19.
+This contradicts generalizing the positive three-minute excerpt result. GTCRN
+is not enabled by default; original-audio Parakeet remains production.
+
+Enhancement took 238.58 seconds (rounded console timing), and the completed
+ASR pass took 197.33 seconds decoding plus 8.57 seconds loading. An initial
+ASR attempt failed near the end because the test harness rejected an empty
+window; those in-memory outputs were lost. The already-enhanced file was
+reused for one ASR recovery with per-window checkpoints and production-style
+empty-window handling. No enhancement rerun, tuning or Qwen execution occurred.
+Recovery time is additional to these completed-pass timings.
+
+`evaluation/results/gtcrn-es2002a-full.json` preserves model/source hashes,
+raw output, error counts and limitations. Reproduction is
+`evaluation/gtcrn_full.py`, with explicit `--resume-asr` for interruptions.
+Schema, matching ASR profile, source hash, unchanged interval/normalization
+and WER arithmetic checks pass. Scoring also retains empty windows so lost
+boundary speech cannot silently shorten the evaluated interval. This is a
+single development meeting, not a general enhancement benchmark.
