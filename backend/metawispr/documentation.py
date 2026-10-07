@@ -12,7 +12,7 @@ from .schemas import (ClaimAudit, ConsolidatedNotes, DocumentationBatch, Documen
 
 
 REFINEMENT_POLICY_VERSION = 10
-POLICY_VERSION = 17
+POLICY_VERSION = 18
 PROTECTED = re.compile(
     r"(?<!\w)[+-]?\d+(?:[.,:/-]\d+)*(?:%|\b)|\b(?:zero|one|two|three|four|five|six|seven|eight|nine|ten|"
     r"eleven|twelve|thirteen|fourteen|fifteen|sixteen|seventeen|eighteen|nineteen|twenty|thirty|forty|fifty|"
@@ -121,7 +121,8 @@ def validate_record(record, segments, revisions=(), allowed=None):
         for claimed in ("revenue", "profit"):
             if (re.search(r"\b" + claimed + r"s?\b", fact.text, re.I) and
                     not re.search(r"\b" + claimed + r"s?\b", quotes, re.I) and
-                    not re.search(r"\b(?:unspecified|unknown|unclear|uncertain)\b|not stated|\bno (?:explicit )?mention\b|\bdid not (?:specify|state|mention)\b", fact.text, re.I)):
+                    not re.search(r"\b(?:unspecified|unknown|unclear|uncertain)\b|not stated|\bno (?:explicit )?mention\b|\bdid not (?:specify|state|mention)\b", fact.text, re.I) and
+                    not re.search(r"\bdoes not (?:explicitly )?label\b[^.!?]{0,80}\b" + claimed + r"\b", fact.text, re.I)):
                 raise ValueError(f"Unsupported financial label {claimed!r}: it is not stated in the cited source. "
                                  "Cite its explicit label or describe the stated financial target without guessing profit/revenue.")
         for evidence in fact.evidence:

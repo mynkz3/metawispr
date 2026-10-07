@@ -218,7 +218,7 @@ The locally tested default is 16,384 context and 3,072 output tokens; this is
 a tested profile, not a minimum hardware guarantee.
 
 
-### Final claim support gate (documentation policy 17)
+### Final claim support gate (documentation policy 18)
 
 After consolidation, a bounded Qwen audit selects supported original claims
 without rewriting text or evidence. Each claim is checked with its cited text
@@ -226,3 +226,7 @@ and nearby context; unsupported/uncertain claims are withheld and exact
 duplicates are removed. Saved audit calls retain reasons and candidates.
 This same-model gate does not prove correctness; see the actual checks and
 limitations in [PHASE5.md](PHASE5.md).
+
+Policy 18 also corrects the financial-label validator to allow explicit statements
+that a cited source does not label an amount as revenue/profit. It still rejects
+unsupported positive labels. This repair does not establish semantic accuracy.

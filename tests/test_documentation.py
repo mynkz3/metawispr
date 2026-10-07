@@ -212,10 +212,14 @@ class DocumentationTests(unittest.TestCase):
         source = Segment(id="s1", start=0, end=5, text="They discussed the recording device.")
         value = record()
         for wording in ("There was no explicit mention of profit or revenue.",
-                        "The speaker did not specify a profit amount."):
+                        "The speaker did not specify a profit amount.",
+                        "The source does not explicitly label the price as revenue or profit."):
             value.summary = [Fact(text=wording, evidence=[Evidence(segment_id="s1", quote=source.text)])]
             validate_record(value, [source])
         value.summary[0].text = "There was no profit."
+        with self.assertRaisesRegex(ValueError, "Unsupported financial"):
+            validate_record(value, [source])
+        value.summary[0].text = "The source does not explicitly label the price. Revenue is fifty million."
         with self.assertRaisesRegex(ValueError, "Unsupported financial"):
             validate_record(value, [source])
 

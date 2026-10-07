@@ -1,0 +1,63 @@
+{
+  "meeting": "ES2002a",
+  "review_status": "Provisional single-agent review against manual transcript and the same frozen project reference; no independent human/audio review.",
+  "metrics": {
+    "tasks": {
+      "predictions": 5,
+      "gold_atoms": 3,
+      "correct_predictions": 3,
+      "matched_atoms": 3,
+      "correct_prediction_indices": [
+        2,
+        3,
+        4
+      ],
+      "unsupported_predictions": 2,
+      "precision": 0.6,
+      "recall": 1.0,
+      "missed_gold_ids": []
+    },
+    "decisions": {
+      "predictions": 0,
+      "gold_atoms": 0,
+      "correct_predictions": 0,
+      "matched_atoms": 0,
+      "correct_prediction_indices": [],
+      "unsupported_predictions": 0,
+      "precision": null,
+      "recall": null,
+      "missed_gold_ids": []
+    },
+    "task_metadata": {
+      "owner_correct": 0,
+      "deadline_correct": 0,
+      "evaluated_correct_predictions": 3,
+      "all_predictions": 5,
+      "invented_owners": 0,
+      "invented_deadlines": 0
+    },
+    "notes": {
+      "facts": 24,
+      "unsupported": 7,
+      "unsupported_titles": 1
+    },
+    "key_topics": {
+      "covered": 4,
+      "expected": 5
+    }
+  },
+  "exports_consistent": null,
+  "source_reference_count": null,
+  "engineering_quality_gate_passed": false,
+  "release_verified": false,
+  "scope": "Documentation-only manual-transcript experiment; export ZIP checks not performed.",
+  "timing": {
+    "resume_seconds": 273.51007829999435,
+    "initial_failed_seconds": 73.65029210000648,
+    "total_attempt_seconds": 347.16037040000083,
+    "saved_calls_reused": 5,
+    "new_chat_requests": 36
+  },
+  "export_status": "Markdown generated; full audio-pipeline JSON/ZIP export parity was not tested.",
+  "documentation_complete": true
+}

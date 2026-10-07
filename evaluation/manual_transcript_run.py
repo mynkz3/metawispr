@@ -3,6 +3,7 @@ from dataclasses import replace
 from pathlib import Path
 import json
 import time
+import argparse
 
 from ami import read, save, source_input
 from run import MeasuredOllama
@@ -15,8 +16,12 @@ from metawispr.pipeline import Store
 
 
 def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--resume', action='store_true', help='Resume the failed test once using saved calls.')
+    args = parser.parse_args()
     root = Path('.cache/ami/es2002a')
-    output = Path('.cache/manual-es2002a/result.json')
+    previous = Path('.cache/manual-es2002a/result.json')
+    output = previous.with_name('result-resumed.json') if args.resume else previous
     if output.exists():
         raise SystemExit('Result already exists; refusing an accidental rerun.')
     manual, manifest = read(root / 'manual.json'), read(root / 'manifest.json')
@@ -24,7 +29,10 @@ def main():
     assert digest(manual) == manifest['manual_input_sha256']
     settings = replace(Settings.from_env(), data_dir=output.parent / 'data')
     store, llm = Store(settings), MeasuredOllama(settings, cpu=False)
-    meeting = store.begin('manual-transcript.wav', 'ES2002a')
+    prior = read(previous) if args.resume else None
+    if prior:
+        assert prior['stage'] == 'failed' and prior['manual_sha256'] == file_sha256(root / 'manual.json')
+    meeting = store.get(prior['meeting_id']) if prior else store.begin('manual-transcript.wav', 'ES2002a')
     report = {'scope': 'Manual-transcript documentation test; no ASR or refinement. Not a controlled audit ablation.',
               'manual_sha256': file_sha256(root / 'manual.json'), 'meeting_id': meeting.id,
               'model': llm.models()[1].model_dump(), 'context': settings.llm_context,
@@ -32,6 +40,10 @@ def main():
               'prompts': {name: digest(prompt(name)) for name in
                           ('document', 'review', 'notes', 'reconcile', 'consolidate', 'audit')}}
     started = time.perf_counter()
+    if prior:
+        assert prior['model'] == report['model'] and prior['prompts'] == report['prompts']
+        assert prior['context'] == report['context'] and prior['output_tokens'] == report['output_tokens']
+        report.update(resumed_from=str(previous), prior_wall_seconds=prior['wall_seconds'])
     try:
         document = Documentation(settings, store, llm).document(
             meeting, source_input(manual), llm.models()[1],

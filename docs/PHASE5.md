@@ -299,3 +299,30 @@ No final accuracy score or improvement percentage is available. The older
 ASR baseline lacks the current claim audit, so this is not a controlled
 transcript-only comparison. Correct transcription alone did not make the
 current documentation pipeline complete. No production code was changed.
+
+
+## Manual-transcript completion and provisional review, 7 October 2026
+
+The owner requested the remaining statistics. Policy 18 repairs a financial-label
+validation false positive for explicit `does not explicitly label` statements;
+a regression also rejects an unsupported positive claim in a subsequent sentence.
+All 96 backend tests pass. Existing prompts, weights and generation settings
+remain unchanged. `evaluation/manual_transcript_run.py --resume` resumed the
+same saved meeting, reused its first five calls and completed 33 logical calls
+in 273.51 additional seconds (347.16 seconds across both attempts).
+
+The final record and provisional source review are preserved in
+`evaluation/results/manual-es2002a-complete.json`, `manual-es2002a-review.json`
+and `manual-es2002a-score.json`. Three of five tasks match the three reference
+tasks: precision 60%, recall 100%. Two financial requirements remain wrongly
+classified as tasks. Owners and deadlines are absent for all three correct
+tasks (0/3 each); none were invented. Seven of 24 notes/uncertainties and one
+topic title are unsupported; four of five reference topics are covered.
+No decisions were extracted and the project rubric has none for this meeting.
+
+The record passes schema/source validation and Markdown was generated; full
+audio-pipeline ZIP parity was not tested. These are single-agent provisional
+judgments without independent human/audio review. The older ASR baseline
+lacks the current final claim audit, and this run includes a validation repair,
+so the comparison does not isolate the effect of transcript quality. The
+quality/release gate remains unmet. No further run or prompt tuning followed.

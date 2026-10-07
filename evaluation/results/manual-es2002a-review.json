@@ -1,0 +1,239 @@
+{
+  "meeting": "ES2002a",
+  "review_status": "Provisional single-agent review against manual transcript and the same frozen project reference; no independent human/audio review.",
+  "tasks": [
+    {
+      "index": 0,
+      "matched_gold_ids": [],
+      "source_supported": false,
+      "rationale": "International sales scope is a brief requirement, not a pending assigned task.",
+      "owner_correct": true,
+      "deadline_correct": true,
+      "invented_owner": false,
+      "invented_deadline": false
+    },
+    {
+      "index": 1,
+      "matched_gold_ids": [],
+      "source_supported": false,
+      "rationale": "Cost ceiling is a brief requirement, not a pending assigned task.",
+      "owner_correct": true,
+      "deadline_correct": true,
+      "invented_owner": false,
+      "invented_deadline": false
+    },
+    {
+      "index": 2,
+      "matched_gold_ids": [
+        "industrial-design"
+      ],
+      "source_supported": true,
+      "rationale": "Explicit industrial-design assignment in m0202.",
+      "owner_correct": false,
+      "deadline_correct": false,
+      "invented_owner": false,
+      "invented_deadline": false
+    },
+    {
+      "index": 3,
+      "matched_gold_ids": [
+        "interface-functions"
+      ],
+      "source_supported": true,
+      "rationale": "Explicit user-interface technical-functions assignment in m0202.",
+      "owner_correct": false,
+      "deadline_correct": false,
+      "invented_owner": false,
+      "invented_deadline": false
+    },
+    {
+      "index": 4,
+      "matched_gold_ids": [
+        "marketing-requirements"
+      ],
+      "source_supported": true,
+      "rationale": "Explicit marketing requirements assignment across m0202 and m0204.",
+      "owner_correct": false,
+      "deadline_correct": false,
+      "invented_owner": false,
+      "invented_deadline": false
+    }
+  ],
+  "decisions": [],
+  "notes": [
+    {
+      "path": "summary/0",
+      "source_supported": true,
+      "rationale": "Supported by the manual transcript and its surrounding context; coverage is assessed separately."
+    },
+    {
+      "path": "summary/1",
+      "source_supported": true,
+      "rationale": "Supported by the manual transcript and its surrounding context; coverage is assessed separately."
+    },
+    {
+      "path": "summary/2",
+      "source_supported": true,
+      "rationale": "Supported by the manual transcript and its surrounding context; coverage is assessed separately."
+    },
+    {
+      "path": "topics/0/0",
+      "source_supported": true,
+      "rationale": "Supported by the manual transcript and its surrounding context; coverage is assessed separately."
+    },
+    {
+      "path": "topics/0/1",
+      "source_supported": true,
+      "rationale": "Supported by the manual transcript and its surrounding context; coverage is assessed separately."
+    },
+    {
+      "path": "topics/0/2",
+      "source_supported": true,
+      "rationale": "Supported by the manual transcript and its surrounding context; coverage is assessed separately."
+    },
+    {
+      "path": "topics/1/0",
+      "source_supported": true,
+      "rationale": "Supported by the manual transcript and its surrounding context; coverage is assessed separately."
+    },
+    {
+      "path": "topics/1/1",
+      "source_supported": true,
+      "rationale": "Supported by the manual transcript and its surrounding context; coverage is assessed separately."
+    },
+    {
+      "path": "topics/1/2",
+      "source_supported": true,
+      "rationale": "Supported by the manual transcript and its surrounding context; coverage is assessed separately."
+    },
+    {
+      "path": "topics/2/0",
+      "source_supported": false,
+      "rationale": "Retail shelf interpretation remains unresolved in m0085-m0090; the output asserts it as intended."
+    },
+    {
+      "path": "topics/2/1",
+      "source_supported": true,
+      "rationale": "Supported by the manual transcript and its surrounding context; coverage is assessed separately."
+    },
+    {
+      "path": "topics/2/2",
+      "source_supported": true,
+      "rationale": "Supported by the manual transcript and its surrounding context; coverage is assessed separately."
+    },
+    {
+      "path": "topics/3/0",
+      "source_supported": false,
+      "rationale": "Invents pound currency for production cost and cites no selling-price amount in its evidence."
+    },
+    {
+      "path": "topics/3/1",
+      "source_supported": false,
+      "rationale": "Asserts retail pricing while the source asks wholesale versus retail; cited quote also lacks the amount."
+    },
+    {
+      "path": "topics/3/2",
+      "source_supported": false,
+      "rationale": "Invents pound currency; source gives Euros in m0080."
+    },
+    {
+      "path": "topics/4/0",
+      "source_supported": false,
+      "rationale": "Turns exploratory regional design considerations into a definite requirement."
+    },
+    {
+      "path": "topics/4/1",
+      "source_supported": false,
+      "rationale": "Turns wondering about regional keypads into a must-accommodate requirement."
+    },
+    {
+      "path": "topics/4/2",
+      "source_supported": true,
+      "rationale": "Supported by the manual transcript and its surrounding context; coverage is assessed separately."
+    },
+    {
+      "path": "uncertainties/0",
+      "source_supported": true,
+      "rationale": "Supported by the manual transcript and its surrounding context; coverage is assessed separately."
+    },
+    {
+      "path": "uncertainties/1",
+      "source_supported": true,
+      "rationale": "Supported by the manual transcript and its surrounding context; coverage is assessed separately."
+    },
+    {
+      "path": "uncertainties/2",
+      "source_supported": true,
+      "rationale": "Supported by the manual transcript and its surrounding context; coverage is assessed separately."
+    },
+    {
+      "path": "uncertainties/3",
+      "source_supported": false,
+      "rationale": "Introduces a Euro/Pound conversion issue not discussed by participants."
+    },
+    {
+      "path": "uncertainties/4",
+      "source_supported": true,
+      "rationale": "Supported by the manual transcript and its surrounding context; coverage is assessed separately."
+    },
+    {
+      "path": "uncertainties/5",
+      "source_supported": true,
+      "rationale": "Supported by the manual transcript and its surrounding context; coverage is assessed separately."
+    }
+  ],
+  "topic_titles": [
+    {
+      "index": 0,
+      "source_supported": true,
+      "rationale": "Title matches discussed subject."
+    },
+    {
+      "index": 1,
+      "source_supported": true,
+      "rationale": "Title matches discussed subject."
+    },
+    {
+      "index": 2,
+      "source_supported": true,
+      "rationale": "Title matches discussed subject."
+    },
+    {
+      "index": 3,
+      "source_supported": true,
+      "rationale": "Title matches discussed subject."
+    },
+    {
+      "index": 4,
+      "source_supported": false,
+      "rationale": "Exploratory considerations are presented as requirements."
+    }
+  ],
+  "key_topic_coverage": [
+    {
+      "topic": "original, trendy, user-friendly remote-control brief",
+      "covered": true,
+      "rationale": "Present in retained notes/tasks; financial target is retained without inferring profit/revenue."
+    },
+    {
+      "topic": "25 Euro retail and 12.50 Euro production cost",
+      "covered": true,
+      "rationale": "Present in retained notes/tasks; financial target is retained without inferring profit/revenue."
+    },
+    {
+      "topic": "50 million Euro profit aim and international market",
+      "covered": true,
+      "rationale": "Present in retained notes/tasks; financial target is retained without inferring profit/revenue."
+    },
+    {
+      "topic": "feature ideas remain exploratory",
+      "covered": false,
+      "rationale": "Retained record lacks the broader exploratory feature discussion."
+    },
+    {
+      "topic": "three next-stage assignments",
+      "covered": true,
+      "rationale": "Present in retained notes/tasks; financial target is retained without inferring profit/revenue."
+    }
+  ]
+}
