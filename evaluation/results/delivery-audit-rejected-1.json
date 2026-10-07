@@ -1,0 +1,20 @@
+{
+  "error": "Audit every candidate_id exactly once",
+  "response": {
+    "model": "qwen3.5:4b",
+    "created_at": "2026-10-07T19:45:10.7268509Z",
+    "message": {
+      "role": "assistant",
+      "content": "{\n  \"verdicts\": [\n    {\n      \"candidate_id\": \"c0030\",\n      \"verdict\": \"supported\",\n      \"evidence_ids\": [\n        \"s00061:u000\"\n      ],\n      \"reason\": \"The source s00061:u000 explicitly states the decision point: 'do we stay uh to to television only, the television as we as we all know it with' versus 'go further as Matthew indicated by supporting uh uh recording uh devices by DVDs and BCR\"\n    },\n    {\n      \"candidate_id\": \"c0031\",\n      \"verdict\": \"supported\",\n      \"evidence_ids\": [\n        \"s00062:u000\",\n        \"s00063:u001\",\n        \"s00063:u002\"\n      ],\n      \"reason\": \"Source s00062:u000 specifies the target as 'younger customers' and 'people uh below the age of forty'. Source s00063:u001 links this to 'friendly trendy designs', and s00063:u002 explicitly states the goal to 'make our our R C as trendy as'\"}\n    ]\n  }"
+    },
+    "done": true,
+    "done_reason": "stop",
+    "total_duration": 5691224100,
+    "load_duration": 3594100,
+    "prompt_eval_count": 2334,
+    "prompt_eval_cached_count": 0,
+    "prompt_eval_duration": 971062000,
+    "eval_count": 302,
+    "eval_duration": 4602580000
+  }
+}

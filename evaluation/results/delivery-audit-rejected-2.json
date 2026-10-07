@@ -1,0 +1,20 @@
+{
+  "error": "Audit every candidate_id exactly once",
+  "response": {
+    "model": "qwen3.5:4b",
+    "created_at": "2026-10-07T19:45:18.8005618Z",
+    "message": {
+      "role": "assistant",
+      "content": "{\n  \"verdicts\": [\n    {\n      \"candidate_id\": \"c0030\",\n      \"verdict\": \"supported\",\n      \"evidence_ids\": [\"s00061:u000\"],\n      \"reason\": \"The speaker explicitly states the decision point: 'do we stay uh to to television only... or do we uh uh go further as Matthew indicated by supporting uh uh recording uh devices by DVDs and BCRs'.\"\n    },\n    {\n      \"candidate_id\": \"c0031\",\n      \"verdict\": \"supported\",\n      \"evidence_ids\": [\"s00062:u000\", \"s00063:u001\", \"s00063:u002\"],\n      \"reason\": \"Evidence s00062:u000 defines the target as 'people uh below the age of forty'. Evidence s00063:u001 links younger people to 'friendly trendy designs'. Evidence s00063:u002 explicitly states the goal to 'make our our R C as trendy aspossible\"\n    },\n    {\n      \"candidate_id\": \"c0032\",\n      \"verdict\": \"supported\",\n      \"evidence_ids\": [\"s00069:u003\"],\n      \"reason\": \"The speaker explicitly states the action: 'Uh we should now uh try to decide um on our target group'.\"\n    },\n    {\n      \"candidate_id\": \"c0033\",\n      \"verdict\": \"supported\",\n      \"evidence_ids\": [\"s00080:u000\"],\n      \"reason\": \"The text explicitly states the action: 'try to get more specific uh user interface uh concept'.\"\n    },\n    {\n      \"candidate_id\": \"c0034\",\n      \"verdict\": \"supported\",\n      \"evidence_ids\": [\"s00080:u001\"],\n      \"reason\": \"The text explicitly states the action: 'And maybe you can look on on what trends are in this uh in this type of market'.\"\n    }\n  ]\n}"
+    },
+    "done": true,
+    "done_reason": "stop",
+    "total_duration": 8036801200,
+    "load_duration": 4536800,
+    "prompt_eval_count": 2356,
+    "prompt_eval_cached_count": 1310,
+    "prompt_eval_duration": 509684000,
+    "eval_count": 499,
+    "eval_duration": 7511036000
+  }
+}

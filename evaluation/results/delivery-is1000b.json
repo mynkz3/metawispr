@@ -1,0 +1,4534 @@
+{
+  "identity": {
+    "meeting": "IS1000b",
+    "split": "development",
+    "input_sha256": "0f71e5018a283adf85e949f456a4c360d4fb8d9c195d29ed82b4b38d0d9a724d",
+    "manual_sha256": "0dc2dc974cc022cb0671ff16e80d0127761d37808d3f63b9284409af3646d5d8",
+    "reference_sha256": "dd36afbaada143ef109bd67b850d5bdd5ad22ced1204f380477388fbc98c9676",
+    "glossary": "Real Reaction\nremote control\nindustrial designer\nuser interface designer\nmarketing executive\nproject manager\nLCD\ninfrared",
+    "asr_profile": {
+      "requested_provider": "cuda",
+      "precision": "int8",
+      "package": "sherpa-onnx-nemo-parakeet-tdt-0.6b-v2-int8",
+      "runtime_version": "1.13.8+cuda12.cudnn9",
+      "file_sha256": {
+        "encoder.int8.onnx": "a32b12d17bbbc309d0686fbbcc2987b5e9b8333a7da83fa6b089f0a2acd651ab",
+        "decoder.int8.onnx": "b6bb64963457237b900e496ee9994b59294526439fbcc1fecf705b31a15c6b4e",
+        "joiner.int8.onnx": "7946164367946e7f9f29a122407c3252b680dbae9a51343eb2488d057c3c43d2",
+        "tokens.txt": "ec182b70dd42113aff6c5372c75cac58c952443eb22322f57bbd7f53977d497d"
+      }
+    },
+    "models": [
+      {
+        "tag": "qwen3.5:4b",
+        "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+        "runtime_version": "0.35.1",
+        "parameter_size": "4.2B",
+        "quantization": "Q4_K_M"
+      },
+      {
+        "tag": "qwen3.5:4b",
+        "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+        "runtime_version": "0.35.1",
+        "parameter_size": "4.2B",
+        "quantization": "Q4_K_M"
+      }
+    ],
+    "context": 16384,
+    "output_tokens": 3072,
+    "prompts": {
+      "refine": "b09d5b798d1c2425a4f650c6b70f709748fb068bcdf35d94f9bd6c8ae4d4c807",
+      "document": "8885ab788cbf3b009ce8afb83d6343359c66d18bd732e0d8d462d38718889509",
+      "review": "fbf38c8ccb915a45c44f890cd11b35d047d918d6058cbd1a22500f5cca5ea3d6",
+      "notes": "dc00a1c75332a51b9f273194bde8323ecf59f9e4589ce67eeb40db23fb7cb01b",
+      "reconcile": "67f021ddb8638d48a6f3ca24b9a3ad12d85f013f89370b0b51672a193b7b7676",
+      "consolidate": "938e3ac0422737f310ed286a9fdf0b6379e9a1ce1c5c5662de448016baaaf9e4"
+    },
+    "refinement_policy": "418986f63c77224b8891478d861dfc8e2a165437137008a4267c8a1321af80cf",
+    "documentation_policy": "1038509dff07b4cc30ba598f0d3cec3e2ba4fd3bcd9d6e190579815044080831",
+    "source_sha256": {
+      "backend/metawispr/__init__.py": "d06b9ddd4d403ca7fc4ebbbb2d6a4ce2b8953c7b2998ddfb6d6526461734e53a",
+      "backend/metawispr/__main__.py": "3289785c7b5f19fab7757f13f0bc90b17476072f0bde8f1e05cb10f1c2121b0a",
+      "backend/metawispr/api.py": "5ea166f72b9b7a0eed783150d4e54caa85d362869b721705ccf3908d573d9825",
+      "backend/metawispr/audio.py": "b6aed3f2642c664f337e8aa7cb52ad498dbf80b9ff21b3d6ce1c5679370be00b",
+      "backend/metawispr/config.py": "c6799b7f12cbe3e5b9e49c74248f9cbf934732e68f2949452d24631e5b3e6e11",
+      "backend/metawispr/documentation.py": "03fc676bfd42c458349e0006551cf4a8118061b476616de7de56fcba3b0774b7",
+      "backend/metawispr/exports.py": "812dc4deb48906288d40cddc5a0ff3cef1ca475162d460abab29fe10c83d5361",
+      "backend/metawispr/llm.py": "461d793de9e84b0df9f0c7d86feed7921dff6a28e5d94198631e3eb7a8975803",
+      "backend/metawispr/models.py": "4004c537d11bc1bbf5d2dc42607c81da721aa15d1192f5b4c2573204b2ab7ce1",
+      "backend/metawispr/pipeline.py": "3209cc5d80d5aecfacf1b299f56e0512c8e352294a0e1c4ed38940e82e9099d5",
+      "backend/metawispr/prompts/audit.txt": "e3486988439ee43ecc443863ef4c886d0f687b7651db0dd31cbb76b8c3c3ea03",
+      "backend/metawispr/prompts/consolidate.txt": "02fa11a9c7ea612dc931a93905f781fdc6769f3fda1da8447a0ae1ab40b44b2b",
+      "backend/metawispr/prompts/document.txt": "85f06ff4884427fdbbe71b2c54845fe178ab320cb604eedea4cf13469fab3352",
+      "backend/metawispr/prompts/notes.txt": "03a8d7eb440508c8667c41f2618c88ff12d159f2d1d837af5ba1c38e3cd0abf0",
+      "backend/metawispr/prompts/reconcile.txt": "1e0d71ff42145f9e8b7a9c1a52eb328cfecaad3a5634d59567a327ab3c877892",
+      "backend/metawispr/prompts/refine.txt": "08a76f01e95d5aee0a83fca4c20a58024026d6629e9bec2319bda99b15670668",
+      "backend/metawispr/prompts/review.txt": "c26c6260d292e7c4d75d2592802147a5306661fc3a61ea549490d868fc9511c5",
+      "backend/metawispr/schemas.py": "f6d6ce113a9102963e88498de54a9824121b7bd866b9ad18569b06ec1e32e887",
+      "evaluation/ami.py": "acc3da2e99f73b7de66dad436f33b8f02643961692def09c0d22eedd8daedf88",
+      "evaluation/phase5.py": "35b25c1ca4f0092fe17a7359d022173f73c846bf8cd1dc81977009902605fa2c",
+      "evaluation/run.py": "c41061b11d28d04c7881646094112ab42fb7cd55580d4d57970a6397097f4869"
+    }
+  },
+  "identity_sha256": "a2a8b0f93822a37b0d8a4715d864f08f92bababbe9982798294efd32abafce18",
+  "meeting_id": "5c65fa7f-335b-425c-bd2d-ca9cefda3e1e",
+  "dataset": {
+    "meeting": "IS1000b",
+    "prepared_at": "2026-10-05T13:50:54.352737+00:00",
+    "source": "AMI Meeting Corpus, Edinburgh/Idiap/TNO; AMI Project",
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "dataset_url": "https://groups.inf.ed.ac.uk/ami/corpus/",
+    "annotations_url": "https://groups.inf.ed.ac.uk/ami/AMICorpusAnnotations/ami_public_manual_1.6.2.zip",
+    "annotations_sha256": "b56e5babb2496b8795deeeda7e71178d7fbc9963f94276cf2a3f4b56ebbc9f9d",
+    "audio_url": "https://groups.inf.ed.ac.uk/ami/AMICorpusMirror/amicorpus/IS1000b/audio/IS1000b.Mix-Headset.wav",
+    "annotation_file_sha256": {
+      "abstractive/IS1000b.abssumm.xml": "fef54b5226b8f5558465a7df1afd4fc554eed91d2ced61b1cff1842560dac52d",
+      "argumentation/ae/IS1000b.C.argumentstructs.xml": "8a5095285a4f593052714e7b93efd8c2cd062d503d67f10d158aad4c275a1d35",
+      "argumentation/ae/IS1000b.D.argumentstructs.xml": "fd38723c6610fd7343de6429f3457ad3fd435d82c2943a64d1cb68c2b9da441d",
+      "argumentation/ae/IS1000b.B.argumentstructs.xml": "c734b7495a87d1a6b2555e5c41f8beddb53f2ec30ae6e788ad4d1b32496a81b6",
+      "argumentation/ae/IS1000b.A.argumentstructs.xml": "857c77877648bfe0e026388ce4d3a25cccfb82080736092a60fbacb00153b7a4",
+      "argumentation/ar/IS1000b.argumentationrels.xml": "97a17c1be60304685fd79d6752edd85e8e983e0db75be0d3b72b3076c4fc7b76",
+      "argumentation/dis/IS1000b.discussions.xml": "7e3ab43db1c4040a40928268f2e60ff9741956340c2976719b68447437c8b38b",
+      "dialogueActs/IS1000b.D.dialog-act.xml": "0bccdf09c5e172283113ee6562269015a0ef5a4e1b5fc60658bbf8637677470b",
+      "dialogueActs/IS1000b.A.dialog-act.xml": "7db792d25261f72fec28b4a1c3b65c6bab97e4356949687ba5752149565a7545",
+      "dialogueActs/IS1000b.B.dialog-act.xml": "226ebe2f28f23ebf9ee3f9fff3b3e5ca2aa599fb5cabea1db955916a85db98d0",
+      "dialogueActs/IS1000b.C.dialog-act.xml": "aca4982fc5666382dcb12ed64051ca73c24f51b1513f6cb0ff53271d1e1e4de6",
+      "dialogueActs/IS1000b.adjacency-pairs.xml": "93dfb09bba82c196c12674a111a4baafc95d35430e8add12a5e84b04f5707262",
+      "extractive/IS1000b.extsumm.xml": "13b44c06cacb4f7ae6ca4c1fc27e2dad618faea653ba064a42485d6bfb830626",
+      "extractive/IS1000b.summlink.xml": "3f401072ff12bb30a98554b928e64be215894a1d2b50a157db10c50a184f7094",
+      "headGesture/IS1000b.A.head.xml": "a577eb261657bfce44346aa3066bd41754378bcf526c32158214aa375f281a30",
+      "headGesture/IS1000b.C.head.xml": "7de5915a3e108a98cab7e80319cd6e390fd792262e1a3c6b219f87b405602523",
+      "headGesture/IS1000b.B.head.xml": "059b377b17ba2fc86857e038e28be3a8c50ffcc446d0d95139fa9424d00cff6e",
+      "headGesture/IS1000b.D.head.xml": "4372a1b31c47a54796d62d1a3392f209f25ea13b89358dc5830e3187b69fae05",
+      "movement/IS1000b.D.movement.xml": "0b1d1e9055c4d3fda2ec58b843adf4105d996a25d8dcc40272fd686ff6a128c5",
+      "movement/IS1000b.B.movement.xml": "ae1abf26793db26a1e0fcb1831a134d0929852385bbdf7162e51ff413133b1b2",
+      "movement/IS1000b.A.movement.xml": "b3f526c1b08caaf7c7c91f56f8708f0f2e38597ce77b011c21c8a1e3d8b49212",
+      "movement/IS1000b.C.movement.xml": "1e8eacfc1d05373bd96f08229962e38693f20bf4603acf6b5f74dacfb8a79b92",
+      "namedEntities/IS1000b.C.ne.xml": "6c0d3a0849313aa878f1ae90277b83a892546cffb81045fd98c80910ecd00030",
+      "namedEntities/IS1000b.D.ne.xml": "c9be2d8556bc136474a7938af9541f6e005bc822ec4ae9fac8c1e9fb631e6403",
+      "namedEntities/IS1000b.B.ne.xml": "60ed185f797a87bec0927a6e7cdffe671ae5625c4ee8cd129f6258926229aa35",
+      "namedEntities/IS1000b.A.ne.xml": "917874778cd3ee2815fa37996094ce8b6b5d173513e81d1ce4a8427ab13af441",
+      "segments/IS1000b.C.segments.xml": "3c80b92558b78a1b12877dcdd237fc432162226c6b7a27396ab2ae649282bb3f",
+      "segments/IS1000b.B.segments.xml": "2b92c913b50a377909e83514d2b8de02b2f415fb00ebce91fef04a35cc7a59b2",
+      "segments/IS1000b.D.segments.xml": "29b0f1bbed32439e4c94f27c3450c9974f48095edf5beb437b9b144892f941d2",
+      "segments/IS1000b.A.segments.xml": "dabe78abdef0f6293658d3ea4703417e9fb65ae0ccd4ebc32b70590623241e5d",
+      "topics/IS1000b.topic.xml": "4b7a23cd7e3df746f2ae3046ba36adeeb5ca707165144edd252667b27bd6109b",
+      "words/IS1000b.C.words.xml": "60e1a71f09816cb194d653174a3f18596e14c2ecffc197d14a1ee9a3d5b4ef1b",
+      "words/IS1000b.A.words.xml": "45c1cf9b78cca78889786cca28d090f491674e2fd45aeb555296037ecd73e5ca",
+      "words/IS1000b.B.words.xml": "1c0373280b15bfde78478a05576eba4521073538d5ad12188965cc3996fd3592",
+      "words/IS1000b.D.words.xml": "5d0f8232fa70484c38492844be1d286361be051b431c56cf713caf5d3b080d1c"
+    },
+    "manual_segments": 507,
+    "lexical_tokens_with_punctuation": 6538,
+    "decision_span_annotations_available": false,
+    "manual_input_sha256": "7493c1d220c4ff40805fbe91a2ac9e22f4bd040515e09fede2b2f24c049e9b3c",
+    "reference_sha256": "7693beace672aaac429f74eedddec38b19ec96d65702223374f145f7553f15c9",
+    "glossary": "Real Reaction\nremote control\nindustrial designer\nuser interface designer\nmarketing executive\nproject manager\nLCD\ninfrared",
+    "speaker_prefixes_added": false,
+    "manual_timestamp_note": "Original annotation segment times; overlapping speaker turns are retained.",
+    "reference_note": "Official abstract/actions/decisions/problems plus linked evidence; excluded from all model prompts."
+  },
+  "host": "Windows-11-10.0.26200-SP0",
+  "ram_at_start": {
+    "total_bytes": 16873545728,
+    "available_bytes": 969072640
+  },
+  "git_head": "d2e0855545b97a4f3f64235fb435cca45a4b26a2",
+  "started_at": "2026-10-07T19:35:31.267883+00:00",
+  "runs": [
+    {
+      "target": "complete",
+      "wall_seconds": 586.3326613000245,
+      "measurements": [
+        {
+          "model": "qwen3.5:4b",
+          "options": {
+            "temperature": 0,
+            "seed": 0,
+            "num_ctx": 16384,
+            "num_predict": 3072,
+            "presence_penalty": 0,
+            "repeat_penalty": 1
+          },
+          "ram_before": {
+            "total_bytes": 16873545728,
+            "available_bytes": 958205952
+          },
+          "done_reason": "stop",
+          "total_duration": 17913847200,
+          "load_duration": 7239514300,
+          "prompt_eval_count": 3499,
+          "prompt_eval_duration": 1509238000,
+          "eval_count": 609,
+          "eval_duration": 9132250000,
+          "wall_seconds": 17.94639290001942,
+          "ram_after": {
+            "total_bytes": 16873545728,
+            "available_bytes": 595005440
+          },
+          "resident_models": [
+            {
+              "name": "qwen3.5:4b",
+              "model": "qwen3.5:4b",
+              "size": 3629142506,
+              "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+              "details": {
+                "parent_model": "",
+                "format": "gguf",
+                "family": "qwen35",
+                "families": [
+                  "qwen35"
+                ],
+                "parameter_size": "4.2B",
+                "quantization_level": "Q4_K_M"
+              },
+              "expires_at": "2026-10-08T01:10:51.8620218+05:30",
+              "size_vram": 3629142506,
+              "context_length": 16384
+            }
+          ]
+        },
+        {
+          "model": "qwen3.5:4b",
+          "options": {
+            "temperature": 0,
+            "seed": 0,
+            "num_ctx": 16384,
+            "num_predict": 3072,
+            "presence_penalty": 0,
+            "repeat_penalty": 1
+          },
+          "ram_before": {
+            "total_bytes": 16873545728,
+            "available_bytes": 596037632
+          },
+          "done_reason": "stop",
+          "total_duration": 9805545000,
+          "load_duration": 9553300,
+          "prompt_eval_count": 3416,
+          "prompt_eval_duration": 1364101000,
+          "eval_count": 552,
+          "eval_duration": 8265237999,
+          "wall_seconds": 9.840552199981175,
+          "ram_after": {
+            "total_bytes": 16873545728,
+            "available_bytes": 390647808
+          },
+          "resident_models": [
+            {
+              "name": "qwen3.5:4b",
+              "model": "qwen3.5:4b",
+              "size": 3629142506,
+              "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+              "details": {
+                "parent_model": "",
+                "format": "gguf",
+                "family": "qwen35",
+                "families": [
+                  "qwen35"
+                ],
+                "parameter_size": "4.2B",
+                "quantization_level": "Q4_K_M"
+              },
+              "expires_at": "2026-10-08T01:11:01.7325066+05:30",
+              "size_vram": 3629142506,
+              "context_length": 16384
+            }
+          ]
+        },
+        {
+          "model": "qwen3.5:4b",
+          "options": {
+            "temperature": 0,
+            "seed": 0,
+            "num_ctx": 16384,
+            "num_predict": 3072,
+            "presence_penalty": 0,
+            "repeat_penalty": 1
+          },
+          "ram_before": {
+            "total_bytes": 16873545728,
+            "available_bytes": 396779520
+          },
+          "done_reason": "stop",
+          "total_duration": 10626531800,
+          "load_duration": 3762100,
+          "prompt_eval_count": 3346,
+          "prompt_eval_duration": 1342173000,
+          "eval_count": 610,
+          "eval_duration": 9118258000,
+          "wall_seconds": 10.65845960000297,
+          "ram_after": {
+            "total_bytes": 16873545728,
+            "available_bytes": 1199620096
+          },
+          "resident_models": [
+            {
+              "name": "qwen3.5:4b",
+              "model": "qwen3.5:4b",
+              "size": 3629142506,
+              "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+              "details": {
+                "parent_model": "",
+                "format": "gguf",
+                "family": "qwen35",
+                "families": [
+                  "qwen35"
+                ],
+                "parameter_size": "4.2B",
+                "quantization_level": "Q4_K_M"
+              },
+              "expires_at": "2026-10-08T01:11:12.4157394+05:30",
+              "size_vram": 3629142506,
+              "context_length": 16384
+            }
+          ]
+        },
+        {
+          "model": "qwen3.5:4b",
+          "options": {
+            "temperature": 0,
+            "seed": 0,
+            "num_ctx": 16384,
+            "num_predict": 3072,
+            "presence_penalty": 0,
+            "repeat_penalty": 1
+          },
+          "ram_before": {
+            "total_bytes": 16873545728,
+            "available_bytes": 1191235584
+          },
+          "done_reason": "stop",
+          "total_duration": 1761464400,
+          "load_duration": 11447800,
+          "prompt_eval_count": 851,
+          "prompt_eval_duration": 392207000,
+          "eval_count": 84,
+          "eval_duration": 1239588000,
+          "wall_seconds": 1.794397299992852,
+          "ram_after": {
+            "total_bytes": 16873545728,
+            "available_bytes": 786853888
+          },
+          "resident_models": [
+            {
+              "name": "qwen3.5:4b",
+              "model": "qwen3.5:4b",
+              "size": 3629142506,
+              "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+              "details": {
+                "parent_model": "",
+                "format": "gguf",
+                "family": "qwen35",
+                "families": [
+                  "qwen35"
+                ],
+                "parameter_size": "4.2B",
+                "quantization_level": "Q4_K_M"
+              },
+              "expires_at": "2026-10-08T01:11:14.2594542+05:30",
+              "size_vram": 3629142506,
+              "context_length": 16384
+            }
+          ]
+        },
+        {
+          "model": "qwen3.5:4b",
+          "options": {
+            "temperature": 0,
+            "seed": 0,
+            "num_ctx": 16384,
+            "num_predict": 3072,
+            "presence_penalty": 0,
+            "repeat_penalty": 1
+          },
+          "ram_before": {
+            "total_bytes": 16873545728,
+            "available_bytes": 2502914048
+          },
+          "done_reason": "stop",
+          "total_duration": 9080802800,
+          "load_duration": 6788332300,
+          "prompt_eval_count": 4370,
+          "prompt_eval_duration": 1863510000,
+          "eval_count": 24,
+          "eval_duration": 399907000,
+          "wall_seconds": 9.109050699975342,
+          "ram_after": {
+            "total_bytes": 16873545728,
+            "available_bytes": 1393229824
+          },
+          "resident_models": [
+            {
+              "name": "qwen3.5:4b",
+              "model": "qwen3.5:4b",
+              "size": 3629142506,
+              "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+              "details": {
+                "parent_model": "",
+                "format": "gguf",
+                "family": "qwen35",
+                "families": [
+                  "qwen35"
+                ],
+                "parameter_size": "4.2B",
+                "quantization_level": "Q4_K_M"
+              },
+              "expires_at": "2026-10-08T01:11:24.3434056+05:30",
+              "size_vram": 3629142506,
+              "context_length": 16384
+            }
+          ]
+        },
+        {
+          "model": "qwen3.5:4b",
+          "options": {
+            "temperature": 0,
+            "seed": 0,
+            "num_ctx": 16384,
+            "num_predict": 3072,
+            "presence_penalty": 0,
+            "repeat_penalty": 1
+          },
+          "ram_before": {
+            "total_bytes": 16873545728,
+            "available_bytes": 1390387200
+          },
+          "done_reason": "stop",
+          "total_duration": 16467349500,
+          "load_duration": 7016000,
+          "prompt_eval_count": 3915,
+          "prompt_eval_duration": 1524490000,
+          "eval_count": 981,
+          "eval_duration": 14789550000,
+          "wall_seconds": 16.499592099979054,
+          "ram_after": {
+            "total_bytes": 16873545728,
+            "available_bytes": 1055940608
+          },
+          "resident_models": [
+            {
+              "name": "qwen3.5:4b",
+              "model": "qwen3.5:4b",
+              "size": 3629142506,
+              "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+              "details": {
+                "parent_model": "",
+                "format": "gguf",
+                "family": "qwen35",
+                "families": [
+                  "qwen35"
+                ],
+                "parameter_size": "4.2B",
+                "quantization_level": "Q4_K_M"
+              },
+              "expires_at": "2026-10-08T01:11:40.8977176+05:30",
+              "size_vram": 3629142506,
+              "context_length": 16384
+            }
+          ]
+        },
+        {
+          "model": "qwen3.5:4b",
+          "options": {
+            "temperature": 0,
+            "seed": 0,
+            "num_ctx": 16384,
+            "num_predict": 3072,
+            "presence_penalty": 0,
+            "repeat_penalty": 1
+          },
+          "ram_before": {
+            "total_bytes": 16873545728,
+            "available_bytes": 1043824640
+          },
+          "done_reason": "stop",
+          "total_duration": 18616564800,
+          "load_duration": 2221600,
+          "prompt_eval_count": 3823,
+          "prompt_eval_duration": 1515771000,
+          "eval_count": 1126,
+          "eval_duration": 16943984000,
+          "wall_seconds": 18.654775900009554,
+          "ram_after": {
+            "total_bytes": 16873545728,
+            "available_bytes": 604762112
+          },
+          "resident_models": [
+            {
+              "name": "qwen3.5:4b",
+              "model": "qwen3.5:4b",
+              "size": 3629142506,
+              "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+              "details": {
+                "parent_model": "",
+                "format": "gguf",
+                "family": "qwen35",
+                "families": [
+                  "qwen35"
+                ],
+                "parameter_size": "4.2B",
+                "quantization_level": "Q4_K_M"
+              },
+              "expires_at": "2026-10-08T01:11:59.7403714+05:30",
+              "size_vram": 3629142506,
+              "context_length": 16384
+            }
+          ]
+        },
+        {
+          "model": "qwen3.5:4b",
+          "options": {
+            "temperature": 0,
+            "seed": 0,
+            "num_ctx": 16384,
+            "num_predict": 3072,
+            "presence_penalty": 0,
+            "repeat_penalty": 1
+          },
+          "ram_before": {
+            "total_bytes": 16873545728,
+            "available_bytes": 604913664
+          },
+          "done_reason": "stop",
+          "total_duration": 4634527800,
+          "load_duration": 3217800,
+          "prompt_eval_count": 4195,
+          "prompt_eval_duration": 1664281000,
+          "eval_count": 186,
+          "eval_duration": 2805363000,
+          "wall_seconds": 4.669729400018696,
+          "ram_after": {
+            "total_bytes": 16873545728,
+            "available_bytes": 522690560
+          },
+          "resident_models": [
+            {
+              "name": "qwen3.5:4b",
+              "model": "qwen3.5:4b",
+              "size": 3629142506,
+              "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+              "details": {
+                "parent_model": "",
+                "format": "gguf",
+                "family": "qwen35",
+                "families": [
+                  "qwen35"
+                ],
+                "parameter_size": "4.2B",
+                "quantization_level": "Q4_K_M"
+              },
+              "expires_at": "2026-10-08T01:12:04.4547925+05:30",
+              "size_vram": 3629142506,
+              "context_length": 16384
+            }
+          ]
+        },
+        {
+          "model": "qwen3.5:4b",
+          "options": {
+            "temperature": 0,
+            "seed": 0,
+            "num_ctx": 16384,
+            "num_predict": 3072,
+            "presence_penalty": 0,
+            "repeat_penalty": 1
+          },
+          "ram_before": {
+            "total_bytes": 16873545728,
+            "available_bytes": 522969088
+          },
+          "done_reason": "stop",
+          "total_duration": 4731745600,
+          "load_duration": 3162400,
+          "prompt_eval_count": 3837,
+          "prompt_eval_duration": 1488477000,
+          "eval_count": 204,
+          "eval_duration": 3106721000,
+          "wall_seconds": 4.771028499992099,
+          "ram_after": {
+            "total_bytes": 16873545728,
+            "available_bytes": 405913600
+          },
+          "resident_models": [
+            {
+              "name": "qwen3.5:4b",
+              "model": "qwen3.5:4b",
+              "size": 3629142506,
+              "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+              "details": {
+                "parent_model": "",
+                "format": "gguf",
+                "family": "qwen35",
+                "families": [
+                  "qwen35"
+                ],
+                "parameter_size": "4.2B",
+                "quantization_level": "Q4_K_M"
+              },
+              "expires_at": "2026-10-08T01:12:09.251315+05:30",
+              "size_vram": 3629142506,
+              "context_length": 16384
+            }
+          ]
+        },
+        {
+          "model": "qwen3.5:4b",
+          "options": {
+            "temperature": 0,
+            "seed": 0,
+            "num_ctx": 16384,
+            "num_predict": 3072,
+            "presence_penalty": 0,
+            "repeat_penalty": 1
+          },
+          "ram_before": {
+            "total_bytes": 16873545728,
+            "available_bytes": 405716992
+          },
+          "done_reason": "stop",
+          "total_duration": 4026940500,
+          "load_duration": 2671300,
+          "prompt_eval_count": 3890,
+          "prompt_eval_duration": 491746000,
+          "eval_count": 232,
+          "eval_duration": 3517075000,
+          "wall_seconds": 4.063858500041533,
+          "ram_after": {
+            "total_bytes": 16873545728,
+            "available_bytes": 1566736384
+          },
+          "resident_models": [
+            {
+              "name": "qwen3.5:4b",
+              "model": "qwen3.5:4b",
+              "size": 3629142506,
+              "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+              "details": {
+                "parent_model": "",
+                "format": "gguf",
+                "family": "qwen35",
+                "families": [
+                  "qwen35"
+                ],
+                "parameter_size": "4.2B",
+                "quantization_level": "Q4_K_M"
+              },
+              "expires_at": "2026-10-08T01:12:13.3602428+05:30",
+              "size_vram": 3629142506,
+              "context_length": 16384
+            }
+          ]
+        },
+        {
+          "model": "qwen3.5:4b",
+          "options": {
+            "temperature": 0,
+            "seed": 0,
+            "num_ctx": 16384,
+            "num_predict": 3072,
+            "presence_penalty": 0,
+            "repeat_penalty": 1
+          },
+          "ram_before": {
+            "total_bytes": 16873545728,
+            "available_bytes": 1688977408
+          },
+          "done_reason": "stop",
+          "total_duration": 23946001900,
+          "load_duration": 4290400,
+          "prompt_eval_count": 3307,
+          "prompt_eval_duration": 1324502000,
+          "eval_count": 1499,
+          "eval_duration": 22442287000,
+          "wall_seconds": 23.97221710003214,
+          "ram_after": {
+            "total_bytes": 16873545728,
+            "available_bytes": 1107861504
+          },
+          "resident_models": [
+            {
+              "name": "qwen3.5:4b",
+              "model": "qwen3.5:4b",
+              "size": 3629142506,
+              "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+              "details": {
+                "parent_model": "",
+                "format": "gguf",
+                "family": "qwen35",
+                "families": [
+                  "qwen35"
+                ],
+                "parameter_size": "4.2B",
+                "quantization_level": "Q4_K_M"
+              },
+              "expires_at": "2026-10-08T01:12:37.4670846+05:30",
+              "size_vram": 3629142506,
+              "context_length": 16384
+            }
+          ]
+        },
+        {
+          "model": "qwen3.5:4b",
+          "options": {
+            "temperature": 0,
+            "seed": 0,
+            "num_ctx": 16384,
+            "num_predict": 3072,
+            "presence_penalty": 0,
+            "repeat_penalty": 1
+          },
+          "ram_before": {
+            "total_bytes": 16873545728,
+            "available_bytes": 1107161088
+          },
+          "done_reason": "stop",
+          "total_duration": 6482538400,
+          "load_duration": 3954900,
+          "prompt_eval_count": 3770,
+          "prompt_eval_duration": 1505602000,
+          "eval_count": 317,
+          "eval_duration": 4810305000,
+          "wall_seconds": 6.516841500008013,
+          "ram_after": {
+            "total_bytes": 16873545728,
+            "available_bytes": 778555392
+          },
+          "resident_models": [
+            {
+              "name": "qwen3.5:4b",
+              "model": "qwen3.5:4b",
+              "size": 3629142506,
+              "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+              "details": {
+                "parent_model": "",
+                "format": "gguf",
+                "family": "qwen35",
+                "families": [
+                  "qwen35"
+                ],
+                "parameter_size": "4.2B",
+                "quantization_level": "Q4_K_M"
+              },
+              "expires_at": "2026-10-08T01:12:44.0389817+05:30",
+              "size_vram": 3629142506,
+              "context_length": 16384
+            }
+          ]
+        },
+        {
+          "model": "qwen3.5:4b",
+          "options": {
+            "temperature": 0,
+            "seed": 0,
+            "num_ctx": 16384,
+            "num_predict": 3072,
+            "presence_penalty": 0,
+            "repeat_penalty": 1
+          },
+          "ram_before": {
+            "total_bytes": 16873545728,
+            "available_bytes": 777949184
+          },
+          "done_reason": "stop",
+          "total_duration": 6759388700,
+          "load_duration": 9294600,
+          "prompt_eval_count": 3505,
+          "prompt_eval_duration": 1368955000,
+          "eval_count": 347,
+          "eval_duration": 5232102000,
+          "wall_seconds": 6.791350300016347,
+          "ram_after": {
+            "total_bytes": 16873545728,
+            "available_bytes": 544669696
+          },
+          "resident_models": [
+            {
+              "name": "qwen3.5:4b",
+              "model": "qwen3.5:4b",
+              "size": 3629142506,
+              "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+              "details": {
+                "parent_model": "",
+                "format": "gguf",
+                "family": "qwen35",
+                "families": [
+                  "qwen35"
+                ],
+                "parameter_size": "4.2B",
+                "quantization_level": "Q4_K_M"
+              },
+              "expires_at": "2026-10-08T01:12:50.8868871+05:30",
+              "size_vram": 3629142506,
+              "context_length": 16384
+            }
+          ]
+        },
+        {
+          "model": "qwen3.5:4b",
+          "options": {
+            "temperature": 0,
+            "seed": 0,
+            "num_ctx": 16384,
+            "num_predict": 3072,
+            "presence_penalty": 0,
+            "repeat_penalty": 1
+          },
+          "ram_before": {
+            "total_bytes": 16873545728,
+            "available_bytes": 543993856
+          },
+          "done_reason": "stop",
+          "total_duration": 22333299300,
+          "load_duration": 3227600,
+          "prompt_eval_count": 3069,
+          "prompt_eval_duration": 1242924000,
+          "eval_count": 1398,
+          "eval_duration": 20860115000,
+          "wall_seconds": 22.347999199992046,
+          "ram_after": {
+            "total_bytes": 16873545728,
+            "available_bytes": 1692262400
+          },
+          "resident_models": [
+            {
+              "name": "qwen3.5:4b",
+              "model": "qwen3.5:4b",
+              "size": 3629142506,
+              "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+              "details": {
+                "parent_model": "",
+                "format": "gguf",
+                "family": "qwen35",
+                "families": [
+                  "qwen35"
+                ],
+                "parameter_size": "4.2B",
+                "quantization_level": "Q4_K_M"
+              },
+              "expires_at": "2026-10-08T01:13:13.3416579+05:30",
+              "size_vram": 3629142506,
+              "context_length": 16384
+            }
+          ]
+        },
+        {
+          "model": "qwen3.5:4b",
+          "options": {
+            "temperature": 0,
+            "seed": 0,
+            "num_ctx": 16384,
+            "num_predict": 3072,
+            "presence_penalty": 0,
+            "repeat_penalty": 1
+          },
+          "ram_before": {
+            "total_bytes": 16873545728,
+            "available_bytes": 1688596480
+          },
+          "done_reason": "stop",
+          "total_duration": 4498362300,
+          "load_duration": 8487900,
+          "prompt_eval_count": 4323,
+          "prompt_eval_duration": 1703618000,
+          "eval_count": 174,
+          "eval_duration": 2626625000,
+          "wall_seconds": 4.534528299991507,
+          "ram_after": {
+            "total_bytes": 16873545728,
+            "available_bytes": 1236115456
+          },
+          "resident_models": [
+            {
+              "name": "qwen3.5:4b",
+              "model": "qwen3.5:4b",
+              "size": 3629142506,
+              "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+              "details": {
+                "parent_model": "",
+                "format": "gguf",
+                "family": "qwen35",
+                "families": [
+                  "qwen35"
+                ],
+                "parameter_size": "4.2B",
+                "quantization_level": "Q4_K_M"
+              },
+              "expires_at": "2026-10-08T01:13:17.9233407+05:30",
+              "size_vram": 3629142506,
+              "context_length": 16384
+            }
+          ]
+        },
+        {
+          "model": "qwen3.5:4b",
+          "options": {
+            "temperature": 0,
+            "seed": 0,
+            "num_ctx": 16384,
+            "num_predict": 3072,
+            "presence_penalty": 0,
+            "repeat_penalty": 1
+          },
+          "ram_before": {
+            "total_bytes": 16873545728,
+            "available_bytes": 1248817152
+          },
+          "done_reason": "stop",
+          "total_duration": 4618203200,
+          "load_duration": 3284200,
+          "prompt_eval_count": 3958,
+          "prompt_eval_duration": 1536011000,
+          "eval_count": 192,
+          "eval_duration": 2928211000,
+          "wall_seconds": 4.654868500016164,
+          "ram_after": {
+            "total_bytes": 16873545728,
+            "available_bytes": 968056832
+          },
+          "resident_models": [
+            {
+              "name": "qwen3.5:4b",
+              "model": "qwen3.5:4b",
+              "size": 3629142506,
+              "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+              "details": {
+                "parent_model": "",
+                "format": "gguf",
+                "family": "qwen35",
+                "families": [
+                  "qwen35"
+                ],
+                "parameter_size": "4.2B",
+                "quantization_level": "Q4_K_M"
+              },
+              "expires_at": "2026-10-08T01:13:22.607105+05:30",
+              "size_vram": 3629142506,
+              "context_length": 16384
+            }
+          ]
+        },
+        {
+          "model": "qwen3.5:4b",
+          "options": {
+            "temperature": 0,
+            "seed": 0,
+            "num_ctx": 16384,
+            "num_predict": 3072,
+            "presence_penalty": 0,
+            "repeat_penalty": 1
+          },
+          "ram_before": {
+            "total_bytes": 16873545728,
+            "available_bytes": 967131136
+          },
+          "done_reason": "stop",
+          "total_duration": 20758183800,
+          "load_duration": 4469200,
+          "prompt_eval_count": 3352,
+          "prompt_eval_duration": 1339166000,
+          "eval_count": 1286,
+          "eval_duration": 19282228000,
+          "wall_seconds": 20.78667330002645,
+          "ram_after": {
+            "total_bytes": 16873545728,
+            "available_bytes": 675266560
+          },
+          "resident_models": [
+            {
+              "name": "qwen3.5:4b",
+              "model": "qwen3.5:4b",
+              "size": 3629142506,
+              "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+              "details": {
+                "parent_model": "",
+                "format": "gguf",
+                "family": "qwen35",
+                "families": [
+                  "qwen35"
+                ],
+                "parameter_size": "4.2B",
+                "quantization_level": "Q4_K_M"
+              },
+              "expires_at": "2026-10-08T01:13:43.5584957+05:30",
+              "size_vram": 3629142506,
+              "context_length": 16384
+            }
+          ]
+        },
+        {
+          "model": "qwen3.5:4b",
+          "options": {
+            "temperature": 0,
+            "seed": 0,
+            "num_ctx": 16384,
+            "num_predict": 3072,
+            "presence_penalty": 0,
+            "repeat_penalty": 1
+          },
+          "ram_before": {
+            "total_bytes": 16873545728,
+            "available_bytes": 675557376
+          },
+          "done_reason": "stop",
+          "total_duration": 1898842100,
+          "load_duration": 3417200,
+          "prompt_eval_count": 3215,
+          "prompt_eval_duration": 1303475000,
+          "eval_count": 24,
+          "eval_duration": 376217000,
+          "wall_seconds": 1.9352561999694444,
+          "ram_after": {
+            "total_bytes": 16873545728,
+            "available_bytes": 539176960
+          },
+          "resident_models": [
+            {
+              "name": "qwen3.5:4b",
+              "model": "qwen3.5:4b",
+              "size": 3629142506,
+              "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+              "details": {
+                "parent_model": "",
+                "format": "gguf",
+                "family": "qwen35",
+                "families": [
+                  "qwen35"
+                ],
+                "parameter_size": "4.2B",
+                "quantization_level": "Q4_K_M"
+              },
+              "expires_at": "2026-10-08T01:13:45.5239376+05:30",
+              "size_vram": 3629142506,
+              "context_length": 16384
+            }
+          ]
+        },
+        {
+          "model": "qwen3.5:4b",
+          "options": {
+            "temperature": 0,
+            "seed": 0,
+            "num_ctx": 16384,
+            "num_predict": 3072,
+            "presence_penalty": 0,
+            "repeat_penalty": 1
+          },
+          "ram_before": {
+            "total_bytes": 16873545728,
+            "available_bytes": 528756736
+          },
+          "done_reason": "stop",
+          "total_duration": 1744603400,
+          "load_duration": 3043600,
+          "prompt_eval_count": 2760,
+          "prompt_eval_duration": 1154449000,
+          "eval_count": 24,
+          "eval_duration": 378781000,
+          "wall_seconds": 1.77839299995685,
+          "ram_after": {
+            "total_bytes": 16873545728,
+            "available_bytes": 681762816
+          },
+          "resident_models": [
+            {
+              "name": "qwen3.5:4b",
+              "model": "qwen3.5:4b",
+              "size": 3629142506,
+              "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+              "details": {
+                "parent_model": "",
+                "format": "gguf",
+                "family": "qwen35",
+                "families": [
+                  "qwen35"
+                ],
+                "parameter_size": "4.2B",
+                "quantization_level": "Q4_K_M"
+              },
+              "expires_at": "2026-10-08T01:13:47.353213+05:30",
+              "size_vram": 3629142506,
+              "context_length": 16384
+            }
+          ]
+        },
+        {
+          "model": "qwen3.5:4b",
+          "options": {
+            "temperature": 0,
+            "seed": 0,
+            "num_ctx": 16384,
+            "num_predict": 3072,
+            "presence_penalty": 0,
+            "repeat_penalty": 1
+          },
+          "ram_before": {
+            "total_bytes": 16873545728,
+            "available_bytes": 679358464
+          },
+          "done_reason": "stop",
+          "total_duration": 22288813700,
+          "load_duration": 2750000,
+          "prompt_eval_count": 2464,
+          "prompt_eval_duration": 1018874000,
+          "eval_count": 1422,
+          "eval_duration": 21122134000,
+          "wall_seconds": 22.304248700034805,
+          "ram_after": {
+            "total_bytes": 16873545728,
+            "available_bytes": 863567872
+          },
+          "resident_models": [
+            {
+              "name": "qwen3.5:4b",
+              "model": "qwen3.5:4b",
+              "size": 3629142506,
+              "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+              "details": {
+                "parent_model": "",
+                "format": "gguf",
+                "family": "qwen35",
+                "families": [
+                  "qwen35"
+                ],
+                "parameter_size": "4.2B",
+                "quantization_level": "Q4_K_M"
+              },
+              "expires_at": "2026-10-08T01:14:09.7315512+05:30",
+              "size_vram": 3629142506,
+              "context_length": 16384
+            }
+          ]
+        },
+        {
+          "model": "qwen3.5:4b",
+          "options": {
+            "temperature": 0,
+            "seed": 0,
+            "num_ctx": 16384,
+            "num_predict": 3072,
+            "presence_penalty": 0,
+            "repeat_penalty": 1
+          },
+          "ram_before": {
+            "total_bytes": 16873545728,
+            "available_bytes": 864063488
+          },
+          "done_reason": "stop",
+          "total_duration": 2171922500,
+          "load_duration": 6616200,
+          "prompt_eval_count": 3949,
+          "prompt_eval_duration": 1564728000,
+          "eval_count": 24,
+          "eval_duration": 380397000,
+          "wall_seconds": 2.209069399978034,
+          "ram_after": {
+            "total_bytes": 16873545728,
+            "available_bytes": 1168154624
+          },
+          "resident_models": [
+            {
+              "name": "qwen3.5:4b",
+              "model": "qwen3.5:4b",
+              "size": 3629142506,
+              "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+              "details": {
+                "parent_model": "",
+                "format": "gguf",
+                "family": "qwen35",
+                "families": [
+                  "qwen35"
+                ],
+                "parameter_size": "4.2B",
+                "quantization_level": "Q4_K_M"
+              },
+              "expires_at": "2026-10-08T01:14:11.9831641+05:30",
+              "size_vram": 3629142506,
+              "context_length": 16384
+            }
+          ]
+        },
+        {
+          "model": "qwen3.5:4b",
+          "options": {
+            "temperature": 0,
+            "seed": 0,
+            "num_ctx": 16384,
+            "num_predict": 3072,
+            "presence_penalty": 0,
+            "repeat_penalty": 1
+          },
+          "ram_before": {
+            "total_bytes": 16873545728,
+            "available_bytes": 1165033472
+          },
+          "done_reason": "stop",
+          "total_duration": 6831611200,
+          "load_duration": 5189100,
+          "prompt_eval_count": 3494,
+          "prompt_eval_duration": 1351644000,
+          "eval_count": 358,
+          "eval_duration": 5353968000,
+          "wall_seconds": 6.8473052000044845,
+          "ram_after": {
+            "total_bytes": 16873545728,
+            "available_bytes": 805953536
+          },
+          "resident_models": [
+            {
+              "name": "qwen3.5:4b",
+              "model": "qwen3.5:4b",
+              "size": 3629142506,
+              "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+              "details": {
+                "parent_model": "",
+                "format": "gguf",
+                "family": "qwen35",
+                "families": [
+                  "qwen35"
+                ],
+                "parameter_size": "4.2B",
+                "quantization_level": "Q4_K_M"
+              },
+              "expires_at": "2026-10-08T01:14:18.8584619+05:30",
+              "size_vram": 3629142506,
+              "context_length": 16384
+            }
+          ]
+        },
+        {
+          "model": "qwen3.5:4b",
+          "options": {
+            "temperature": 0,
+            "seed": 0,
+            "num_ctx": 16384,
+            "num_predict": 3072,
+            "presence_penalty": 0,
+            "repeat_penalty": 1
+          },
+          "ram_before": {
+            "total_bytes": 16873545728,
+            "available_bytes": 806588416
+          },
+          "done_reason": "stop",
+          "total_duration": 28227312900,
+          "load_duration": 2202100,
+          "prompt_eval_count": 3264,
+          "prompt_eval_duration": 1309693000,
+          "eval_count": 1793,
+          "eval_duration": 26781756000,
+          "wall_seconds": 28.26089239999419,
+          "ram_after": {
+            "total_bytes": 16873545728,
+            "available_bytes": 696823808
+          },
+          "resident_models": [
+            {
+              "name": "qwen3.5:4b",
+              "model": "qwen3.5:4b",
+              "size": 3629142506,
+              "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+              "details": {
+                "parent_model": "",
+                "format": "gguf",
+                "family": "qwen35",
+                "families": [
+                  "qwen35"
+                ],
+                "parameter_size": "4.2B",
+                "quantization_level": "Q4_K_M"
+              },
+              "expires_at": "2026-10-08T01:14:47.2520279+05:30",
+              "size_vram": 3629142506,
+              "context_length": 16384
+            }
+          ]
+        },
+        {
+          "model": "qwen3.5:4b",
+          "options": {
+            "temperature": 0,
+            "seed": 0,
+            "num_ctx": 16384,
+            "num_predict": 3072,
+            "presence_penalty": 0,
+            "repeat_penalty": 1
+          },
+          "ram_before": {
+            "total_bytes": 16873545728,
+            "available_bytes": 697106432
+          },
+          "done_reason": "stop",
+          "total_duration": 2275415800,
+          "load_duration": 5651300,
+          "prompt_eval_count": 4222,
+          "prompt_eval_duration": 1656020000,
+          "eval_count": 24,
+          "eval_duration": 381743000,
+          "wall_seconds": 2.308947999961674,
+          "ram_after": {
+            "total_bytes": 16873545728,
+            "available_bytes": 543838208
+          },
+          "resident_models": [
+            {
+              "name": "qwen3.5:4b",
+              "model": "qwen3.5:4b",
+              "size": 3629142506,
+              "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+              "details": {
+                "parent_model": "",
+                "format": "gguf",
+                "family": "qwen35",
+                "families": [
+                  "qwen35"
+                ],
+                "parameter_size": "4.2B",
+                "quantization_level": "Q4_K_M"
+              },
+              "expires_at": "2026-10-08T01:14:49.6025097+05:30",
+              "size_vram": 3629142506,
+              "context_length": 16384
+            }
+          ]
+        },
+        {
+          "model": "qwen3.5:4b",
+          "options": {
+            "temperature": 0,
+            "seed": 0,
+            "num_ctx": 16384,
+            "num_predict": 3072,
+            "presence_penalty": 0,
+            "repeat_penalty": 1
+          },
+          "ram_before": {
+            "total_bytes": 16873545728,
+            "available_bytes": 578252800
+          },
+          "done_reason": "stop",
+          "total_duration": 2968257500,
+          "load_duration": 2769300,
+          "prompt_eval_count": 3767,
+          "prompt_eval_duration": 1473977000,
+          "eval_count": 86,
+          "eval_duration": 1309079000,
+          "wall_seconds": 2.9843308000126854,
+          "ram_after": {
+            "total_bytes": 16873545728,
+            "available_bytes": 1050324992
+          },
+          "resident_models": [
+            {
+              "name": "qwen3.5:4b",
+              "model": "qwen3.5:4b",
+              "size": 3629142506,
+              "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+              "details": {
+                "parent_model": "",
+                "format": "gguf",
+                "family": "qwen35",
+                "families": [
+                  "qwen35"
+                ],
+                "parameter_size": "4.2B",
+                "quantization_level": "Q4_K_M"
+              },
+              "expires_at": "2026-10-08T01:14:52.6188948+05:30",
+              "size_vram": 3629142506,
+              "context_length": 16384
+            }
+          ]
+        },
+        {
+          "model": "qwen3.5:4b",
+          "options": {
+            "temperature": 0,
+            "seed": 0,
+            "num_ctx": 16384,
+            "num_predict": 3072,
+            "presence_penalty": 0,
+            "repeat_penalty": 1
+          },
+          "ram_before": {
+            "total_bytes": 16873545728,
+            "available_bytes": 1026293760
+          },
+          "done_reason": "stop",
+          "total_duration": 41195475700,
+          "load_duration": 2143200,
+          "prompt_eval_count": 3236,
+          "prompt_eval_duration": 1307319000,
+          "eval_count": 2640,
+          "eval_duration": 39755025000,
+          "wall_seconds": 41.211566900019534,
+          "ram_after": {
+            "total_bytes": 16873545728,
+            "available_bytes": 424861696
+          },
+          "resident_models": [
+            {
+              "name": "qwen3.5:4b",
+              "model": "qwen3.5:4b",
+              "size": 3629142506,
+              "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+              "details": {
+                "parent_model": "",
+                "format": "gguf",
+                "family": "qwen35",
+                "families": [
+                  "qwen35"
+                ],
+                "parameter_size": "4.2B",
+                "quantization_level": "Q4_K_M"
+              },
+              "expires_at": "2026-10-08T01:15:33.9741996+05:30",
+              "size_vram": 3629142506,
+              "context_length": 16384
+            }
+          ]
+        },
+        {
+          "model": "qwen3.5:4b",
+          "options": {
+            "temperature": 0,
+            "seed": 0,
+            "num_ctx": 16384,
+            "num_predict": 3072,
+            "presence_penalty": 0,
+            "repeat_penalty": 1
+          },
+          "ram_before": {
+            "total_bytes": 16873545728,
+            "available_bytes": 421806080
+          },
+          "done_reason": "stop",
+          "total_duration": 20814070400,
+          "load_duration": 3232500,
+          "prompt_eval_count": 3266,
+          "prompt_eval_duration": 565162000,
+          "eval_count": 1350,
+          "eval_duration": 20223735000,
+          "wall_seconds": 20.83149810001487,
+          "ram_after": {
+            "total_bytes": 16873545728,
+            "available_bytes": 1209683968
+          },
+          "resident_models": [
+            {
+              "name": "qwen3.5:4b",
+              "model": "qwen3.5:4b",
+              "size": 3629142506,
+              "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+              "details": {
+                "parent_model": "",
+                "format": "gguf",
+                "family": "qwen35",
+                "families": [
+                  "qwen35"
+                ],
+                "parameter_size": "4.2B",
+                "quantization_level": "Q4_K_M"
+              },
+              "expires_at": "2026-10-08T01:15:54.8289306+05:30",
+              "size_vram": 3629142506,
+              "context_length": 16384
+            }
+          ]
+        },
+        {
+          "model": "qwen3.5:4b",
+          "options": {
+            "temperature": 0,
+            "seed": 0,
+            "num_ctx": 16384,
+            "num_predict": 3072,
+            "presence_penalty": 0,
+            "repeat_penalty": 1
+          },
+          "ram_before": {
+            "total_bytes": 16873545728,
+            "available_bytes": 1207418880
+          },
+          "done_reason": "stop",
+          "total_duration": 7822946700,
+          "load_duration": 5490800,
+          "prompt_eval_count": 4171,
+          "prompt_eval_duration": 1674562000,
+          "eval_count": 393,
+          "eval_duration": 5962171000,
+          "wall_seconds": 7.85608300002059,
+          "ram_after": {
+            "total_bytes": 16873545728,
+            "available_bytes": 869928960
+          },
+          "resident_models": [
+            {
+              "name": "qwen3.5:4b",
+              "model": "qwen3.5:4b",
+              "size": 3629142506,
+              "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+              "details": {
+                "parent_model": "",
+                "format": "gguf",
+                "family": "qwen35",
+                "families": [
+                  "qwen35"
+                ],
+                "parameter_size": "4.2B",
+                "quantization_level": "Q4_K_M"
+              },
+              "expires_at": "2026-10-08T01:16:02.7309444+05:30",
+              "size_vram": 3629142506,
+              "context_length": 16384
+            }
+          ]
+        },
+        {
+          "model": "qwen3.5:4b",
+          "options": {
+            "temperature": 0,
+            "seed": 0,
+            "num_ctx": 16384,
+            "num_predict": 3072,
+            "presence_penalty": 0,
+            "repeat_penalty": 1
+          },
+          "ram_before": {
+            "total_bytes": 16873545728,
+            "available_bytes": 869699584
+          },
+          "done_reason": "stop",
+          "total_duration": 4056618500,
+          "load_duration": 3198300,
+          "prompt_eval_count": 3929,
+          "prompt_eval_duration": 1532945000,
+          "eval_count": 155,
+          "eval_duration": 2365425000,
+          "wall_seconds": 4.091328100010287,
+          "ram_after": {
+            "total_bytes": 16873545728,
+            "available_bytes": 604848128
+          },
+          "resident_models": [
+            {
+              "name": "qwen3.5:4b",
+              "model": "qwen3.5:4b",
+              "size": 3629142506,
+              "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+              "details": {
+                "parent_model": "",
+                "format": "gguf",
+                "family": "qwen35",
+                "families": [
+                  "qwen35"
+                ],
+                "parameter_size": "4.2B",
+                "quantization_level": "Q4_K_M"
+              },
+              "expires_at": "2026-10-08T01:16:06.8645498+05:30",
+              "size_vram": 3629142506,
+              "context_length": 16384
+            }
+          ]
+        },
+        {
+          "model": "qwen3.5:4b",
+          "options": {
+            "temperature": 0,
+            "seed": 0,
+            "num_ctx": 16384,
+            "num_predict": 3072,
+            "presence_penalty": 0,
+            "repeat_penalty": 1
+          },
+          "ram_before": {
+            "total_bytes": 16873545728,
+            "available_bytes": 596602880
+          },
+          "done_reason": "stop",
+          "total_duration": 21582644600,
+          "load_duration": 2706800,
+          "prompt_eval_count": 3248,
+          "prompt_eval_duration": 1323842000,
+          "eval_count": 1314,
+          "eval_duration": 20035304000,
+          "wall_seconds": 21.61503809998976,
+          "ram_after": {
+            "total_bytes": 16873545728,
+            "available_bytes": 1623068672
+          },
+          "resident_models": [
+            {
+              "name": "qwen3.5:4b",
+              "model": "qwen3.5:4b",
+              "size": 3629142506,
+              "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+              "details": {
+                "parent_model": "",
+                "format": "gguf",
+                "family": "qwen35",
+                "families": [
+                  "qwen35"
+                ],
+                "parameter_size": "4.2B",
+                "quantization_level": "Q4_K_M"
+              },
+              "expires_at": "2026-10-08T01:16:28.6171759+05:30",
+              "size_vram": 3629142506,
+              "context_length": 16384
+            }
+          ]
+        },
+        {
+          "model": "qwen3.5:4b",
+          "options": {
+            "temperature": 0,
+            "seed": 0,
+            "num_ctx": 16384,
+            "num_predict": 3072,
+            "presence_penalty": 0,
+            "repeat_penalty": 1
+          },
+          "ram_before": {
+            "total_bytes": 16873545728,
+            "available_bytes": 1623601152
+          },
+          "done_reason": "stop",
+          "total_duration": 1459997400,
+          "load_duration": 9317100,
+          "prompt_eval_count": 1728,
+          "prompt_eval_duration": 791600000,
+          "eval_count": 24,
+          "eval_duration": 408926000,
+          "wall_seconds": 1.5171515999827534,
+          "ram_after": {
+            "total_bytes": 16873545728,
+            "available_bytes": 973860864
+          },
+          "resident_models": [
+            {
+              "name": "qwen3.5:4b",
+              "model": "qwen3.5:4b",
+              "size": 3629142506,
+              "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+              "details": {
+                "parent_model": "",
+                "format": "gguf",
+                "family": "qwen35",
+                "families": [
+                  "qwen35"
+                ],
+                "parameter_size": "4.2B",
+                "quantization_level": "Q4_K_M"
+              },
+              "expires_at": "2026-10-08T01:16:30.210767+05:30",
+              "size_vram": 3629142506,
+              "context_length": 16384
+            }
+          ]
+        },
+        {
+          "model": "qwen3.5:4b",
+          "options": {
+            "temperature": 0,
+            "seed": 0,
+            "num_ctx": 16384,
+            "num_predict": 3072,
+            "presence_penalty": 0,
+            "repeat_penalty": 1
+          },
+          "ram_before": {
+            "total_bytes": 16873545728,
+            "available_bytes": 973643776
+          },
+          "done_reason": "stop",
+          "total_duration": 1153492000,
+          "load_duration": 3658200,
+          "prompt_eval_count": 1273,
+          "prompt_eval_duration": 549287000,
+          "eval_count": 24,
+          "eval_duration": 465279000,
+          "wall_seconds": 1.1976527000078931,
+          "ram_after": {
+            "total_bytes": 16873545728,
+            "available_bytes": 750776320
+          },
+          "resident_models": [
+            {
+              "name": "qwen3.5:4b",
+              "model": "qwen3.5:4b",
+              "size": 3629142506,
+              "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+              "details": {
+                "parent_model": "",
+                "format": "gguf",
+                "family": "qwen35",
+                "families": [
+                  "qwen35"
+                ],
+                "parameter_size": "4.2B",
+                "quantization_level": "Q4_K_M"
+              },
+              "expires_at": "2026-10-08T01:16:31.4560297+05:30",
+              "size_vram": 3629142506,
+              "context_length": 16384
+            }
+          ]
+        },
+        {
+          "model": "qwen3.5:4b",
+          "options": {
+            "temperature": 0,
+            "seed": 0,
+            "num_ctx": 16384,
+            "num_predict": 3072,
+            "presence_penalty": 0,
+            "repeat_penalty": 1
+          },
+          "ram_before": {
+            "total_bytes": 16873545728,
+            "available_bytes": 756068352
+          },
+          "done_reason": "stop",
+          "total_duration": 13976485700,
+          "load_duration": 4332600,
+          "prompt_eval_count": 1177,
+          "prompt_eval_duration": 509370000,
+          "eval_count": 817,
+          "eval_duration": 13334210000,
+          "wall_seconds": 13.994839299994055,
+          "ram_after": {
+            "total_bytes": 16873545728,
+            "available_bytes": 585400320
+          },
+          "resident_models": [
+            {
+              "name": "qwen3.5:4b",
+              "model": "qwen3.5:4b",
+              "size": 3629142506,
+              "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+              "details": {
+                "parent_model": "",
+                "format": "gguf",
+                "family": "qwen35",
+                "families": [
+                  "qwen35"
+                ],
+                "parameter_size": "4.2B",
+                "quantization_level": "Q4_K_M"
+              },
+              "expires_at": "2026-10-08T01:16:45.5215136+05:30",
+              "size_vram": 3629142506,
+              "context_length": 16384
+            }
+          ]
+        },
+        {
+          "model": "qwen3.5:4b",
+          "options": {
+            "temperature": 0,
+            "seed": 0,
+            "num_ctx": 16384,
+            "num_predict": 3072,
+            "presence_penalty": 0,
+            "repeat_penalty": 1
+          },
+          "ram_before": {
+            "total_bytes": 16873545728,
+            "available_bytes": 588759040
+          },
+          "done_reason": "stop",
+          "total_duration": 18990234100,
+          "load_duration": 4922400,
+          "prompt_eval_count": 2763,
+          "prompt_eval_duration": 1209056000,
+          "eval_count": 1099,
+          "eval_duration": 17423942000,
+          "wall_seconds": 19.016392400022596,
+          "ram_after": {
+            "total_bytes": 16873545728,
+            "available_bytes": 1940914176
+          },
+          "resident_models": [
+            {
+              "name": "qwen3.5:4b",
+              "model": "qwen3.5:4b",
+              "size": 3629142506,
+              "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+              "details": {
+                "parent_model": "",
+                "format": "gguf",
+                "family": "qwen35",
+                "families": [
+                  "qwen35"
+                ],
+                "parameter_size": "4.2B",
+                "quantization_level": "Q4_K_M"
+              },
+              "expires_at": "2026-10-08T01:17:04.7620969+05:30",
+              "size_vram": 3629142506,
+              "context_length": 16384
+            }
+          ]
+        },
+        {
+          "model": "qwen3.5:4b",
+          "options": {
+            "temperature": 0,
+            "seed": 0,
+            "num_ctx": 16384,
+            "num_predict": 3072,
+            "presence_penalty": 0,
+            "repeat_penalty": 1
+          },
+          "ram_before": {
+            "total_bytes": 16873545728,
+            "available_bytes": 1937088512
+          },
+          "done_reason": "stop",
+          "total_duration": 6226548200,
+          "load_duration": 8289700,
+          "prompt_eval_count": 2655,
+          "prompt_eval_duration": 1141041000,
+          "eval_count": 276,
+          "eval_duration": 4728098000,
+          "wall_seconds": 6.267454799963161,
+          "ram_after": {
+            "total_bytes": 16873545728,
+            "available_bytes": 1540878336
+          },
+          "resident_models": [
+            {
+              "name": "qwen3.5:4b",
+              "model": "qwen3.5:4b",
+              "size": 3629142506,
+              "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+              "details": {
+                "parent_model": "",
+                "format": "gguf",
+                "family": "qwen35",
+                "families": [
+                  "qwen35"
+                ],
+                "parameter_size": "4.2B",
+                "quantization_level": "Q4_K_M"
+              },
+              "expires_at": "2026-10-08T01:17:11.1197936+05:30",
+              "size_vram": 3629142506,
+              "context_length": 16384
+            }
+          ]
+        },
+        {
+          "model": "qwen3.5:4b",
+          "options": {
+            "temperature": 0,
+            "seed": 0,
+            "num_ctx": 16384,
+            "num_predict": 3072,
+            "presence_penalty": 0,
+            "repeat_penalty": 1
+          },
+          "ram_before": {
+            "total_bytes": 16873545728,
+            "available_bytes": 1536069632
+          },
+          "done_reason": "stop",
+          "total_duration": 8326235200,
+          "load_duration": 6451700,
+          "prompt_eval_count": 1617,
+          "prompt_eval_duration": 777874000,
+          "eval_count": 470,
+          "eval_duration": 7331636000,
+          "wall_seconds": 8.385722500039265,
+          "ram_after": {
+            "total_bytes": 16873545728,
+            "available_bytes": 2126258176
+          },
+          "resident_models": [
+            {
+              "name": "qwen3.5:4b",
+              "model": "qwen3.5:4b",
+              "size": 3629142506,
+              "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+              "details": {
+                "parent_model": "",
+                "format": "gguf",
+                "family": "qwen35",
+                "families": [
+                  "qwen35"
+                ],
+                "parameter_size": "4.2B",
+                "quantization_level": "Q4_K_M"
+              },
+              "expires_at": "2026-10-08T01:17:19.6530226+05:30",
+              "size_vram": 3629142506,
+              "context_length": 16384
+            }
+          ]
+        },
+        {
+          "model": "qwen3.5:4b",
+          "options": {
+            "temperature": 0,
+            "seed": 0,
+            "num_ctx": 16384,
+            "num_predict": 3072,
+            "presence_penalty": 0,
+            "repeat_penalty": 1
+          },
+          "ram_before": {
+            "total_bytes": 16873545728,
+            "available_bytes": 2117349376
+          },
+          "done_reason": "stop",
+          "total_duration": 5814599800,
+          "load_duration": 7225100,
+          "prompt_eval_count": 2360,
+          "prompt_eval_duration": 965503000,
+          "eval_count": 291,
+          "eval_duration": 4598372000,
+          "wall_seconds": 5.862881999986712,
+          "ram_after": {
+            "total_bytes": 16873545728,
+            "available_bytes": 2245332992
+          },
+          "resident_models": [
+            {
+              "name": "qwen3.5:4b",
+              "model": "qwen3.5:4b",
+              "size": 3629142506,
+              "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+              "details": {
+                "parent_model": "",
+                "format": "gguf",
+                "family": "qwen35",
+                "families": [
+                  "qwen35"
+                ],
+                "parameter_size": "4.2B",
+                "quantization_level": "Q4_K_M"
+              },
+              "expires_at": "2026-10-08T01:17:25.6180285+05:30",
+              "size_vram": 3629142506,
+              "context_length": 16384
+            }
+          ]
+        },
+        {
+          "model": "qwen3.5:4b",
+          "options": {
+            "temperature": 0,
+            "seed": 0,
+            "num_ctx": 16384,
+            "num_predict": 3072,
+            "presence_penalty": 0,
+            "repeat_penalty": 1
+          },
+          "ram_before": {
+            "total_bytes": 16873545728,
+            "available_bytes": 2238685184
+          },
+          "done_reason": "stop",
+          "total_duration": 6403156000,
+          "load_duration": 9357800,
+          "prompt_eval_count": 1480,
+          "prompt_eval_duration": 700321000,
+          "eval_count": 331,
+          "eval_duration": 5486384000,
+          "wall_seconds": 6.434180999989621,
+          "ram_after": {
+            "total_bytes": 16873545728,
+            "available_bytes": 1896214528
+          },
+          "resident_models": [
+            {
+              "name": "qwen3.5:4b",
+              "model": "qwen3.5:4b",
+              "size": 3629142506,
+              "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+              "details": {
+                "parent_model": "",
+                "format": "gguf",
+                "family": "qwen35",
+                "families": [
+                  "qwen35"
+                ],
+                "parameter_size": "4.2B",
+                "quantization_level": "Q4_K_M"
+              },
+              "expires_at": "2026-10-08T01:17:32.173439+05:30",
+              "size_vram": 3629142506,
+              "context_length": 16384
+            }
+          ]
+        },
+        {
+          "model": "qwen3.5:4b",
+          "options": {
+            "temperature": 0,
+            "seed": 0,
+            "num_ctx": 16384,
+            "num_predict": 3072,
+            "presence_penalty": 0,
+            "repeat_penalty": 1
+          },
+          "ram_before": {
+            "total_bytes": 16873545728,
+            "available_bytes": 1896116224
+          },
+          "done_reason": "stop",
+          "total_duration": 6079997000,
+          "load_duration": 7759000,
+          "prompt_eval_count": 2385,
+          "prompt_eval_duration": 973961000,
+          "eval_count": 307,
+          "eval_duration": 4850960000,
+          "wall_seconds": 6.123934399976861,
+          "ram_after": {
+            "total_bytes": 16873545728,
+            "available_bytes": 1829249024
+          },
+          "resident_models": [
+            {
+              "name": "qwen3.5:4b",
+              "model": "qwen3.5:4b",
+              "size": 3629142506,
+              "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+              "details": {
+                "parent_model": "",
+                "format": "gguf",
+                "family": "qwen35",
+                "families": [
+                  "qwen35"
+                ],
+                "parameter_size": "4.2B",
+                "quantization_level": "Q4_K_M"
+              },
+              "expires_at": "2026-10-08T01:17:38.3948676+05:30",
+              "size_vram": 3629142506,
+              "context_length": 16384
+            }
+          ]
+        },
+        {
+          "model": "qwen3.5:4b",
+          "options": {
+            "temperature": 0,
+            "seed": 0,
+            "num_ctx": 16384,
+            "num_predict": 3072,
+            "presence_penalty": 0,
+            "repeat_penalty": 1
+          },
+          "ram_before": {
+            "total_bytes": 16873545728,
+            "available_bytes": 1813618688
+          },
+          "done_reason": "stop",
+          "total_duration": 3485191700,
+          "load_duration": 6766100,
+          "prompt_eval_count": 1090,
+          "prompt_eval_duration": 563064000,
+          "eval_count": 174,
+          "eval_duration": 2711735000,
+          "wall_seconds": 3.5321065000025555,
+          "ram_after": {
+            "total_bytes": 16873545728,
+            "available_bytes": 1491308544
+          },
+          "resident_models": [
+            {
+              "name": "qwen3.5:4b",
+              "model": "qwen3.5:4b",
+              "size": 3629142506,
+              "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+              "details": {
+                "parent_model": "",
+                "format": "gguf",
+                "family": "qwen35",
+                "families": [
+                  "qwen35"
+                ],
+                "parameter_size": "4.2B",
+                "quantization_level": "Q4_K_M"
+              },
+              "expires_at": "2026-10-08T01:17:42.030734+05:30",
+              "size_vram": 3629142506,
+              "context_length": 16384
+            }
+          ]
+        },
+        {
+          "model": "qwen3.5:4b",
+          "options": {
+            "temperature": 0,
+            "seed": 0,
+            "num_ctx": 16384,
+            "num_predict": 3072,
+            "presence_penalty": 0,
+            "repeat_penalty": 1
+          },
+          "ram_before": {
+            "total_bytes": 16873545728,
+            "available_bytes": 1486389248
+          },
+          "done_reason": "stop",
+          "total_duration": 5512642200,
+          "load_duration": 6677700,
+          "prompt_eval_count": 2123,
+          "prompt_eval_duration": 876116000,
+          "eval_count": 294,
+          "eval_duration": 4439320000,
+          "wall_seconds": 5.567096100014169,
+          "ram_after": {
+            "total_bytes": 16873545728,
+            "available_bytes": 1197350912
+          },
+          "resident_models": [
+            {
+              "name": "qwen3.5:4b",
+              "model": "qwen3.5:4b",
+              "size": 3629142506,
+              "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+              "details": {
+                "parent_model": "",
+                "format": "gguf",
+                "family": "qwen35",
+                "families": [
+                  "qwen35"
+                ],
+                "parameter_size": "4.2B",
+                "quantization_level": "Q4_K_M"
+              },
+              "expires_at": "2026-10-08T01:17:47.7077228+05:30",
+              "size_vram": 3629142506,
+              "context_length": 16384
+            }
+          ]
+        },
+        {
+          "model": "qwen3.5:4b",
+          "options": {
+            "temperature": 0,
+            "seed": 0,
+            "num_ctx": 16384,
+            "num_predict": 3072,
+            "presence_penalty": 0,
+            "repeat_penalty": 1
+          },
+          "ram_before": {
+            "total_bytes": 16873545728,
+            "available_bytes": 1203720192
+          },
+          "done_reason": "stop",
+          "total_duration": 24570339700,
+          "load_duration": 2414200,
+          "prompt_eval_count": 3499,
+          "prompt_eval_duration": 1385049000,
+          "eval_count": 1531,
+          "eval_duration": 23031053000,
+          "wall_seconds": 24.604725999990478,
+          "ram_after": {
+            "total_bytes": 16873545728,
+            "available_bytes": 1225809920
+          },
+          "resident_models": [
+            {
+              "name": "qwen3.5:4b",
+              "model": "qwen3.5:4b",
+              "size": 3629142506,
+              "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+              "details": {
+                "parent_model": "",
+                "format": "gguf",
+                "family": "qwen35",
+                "families": [
+                  "qwen35"
+                ],
+                "parameter_size": "4.2B",
+                "quantization_level": "Q4_K_M"
+              },
+              "expires_at": "2026-10-08T01:18:12.4889256+05:30",
+              "size_vram": 3629142506,
+              "context_length": 16384
+            }
+          ]
+        },
+        {
+          "model": "qwen3.5:4b",
+          "options": {
+            "temperature": 0,
+            "seed": 0,
+            "num_ctx": 16384,
+            "num_predict": 3072,
+            "presence_penalty": 0,
+            "repeat_penalty": 1
+          },
+          "ram_before": {
+            "total_bytes": 16873545728,
+            "available_bytes": 1225994240
+          },
+          "done_reason": "stop",
+          "total_duration": 6602521000,
+          "load_duration": 3414800,
+          "prompt_eval_count": 2898,
+          "prompt_eval_duration": 1138766000,
+          "eval_count": 356,
+          "eval_duration": 5287546000,
+          "wall_seconds": 6.637535799993202,
+          "ram_after": {
+            "total_bytes": 16873545728,
+            "available_bytes": 886095872
+          },
+          "resident_models": [
+            {
+              "name": "qwen3.5:4b",
+              "model": "qwen3.5:4b",
+              "size": 3629142506,
+              "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+              "details": {
+                "parent_model": "",
+                "format": "gguf",
+                "family": "qwen35",
+                "families": [
+                  "qwen35"
+                ],
+                "parameter_size": "4.2B",
+                "quantization_level": "Q4_K_M"
+              },
+              "expires_at": "2026-10-08T01:18:19.1883564+05:30",
+              "size_vram": 3629142506,
+              "context_length": 16384
+            }
+          ]
+        },
+        {
+          "model": "qwen3.5:4b",
+          "options": {
+            "temperature": 0,
+            "seed": 0,
+            "num_ctx": 16384,
+            "num_predict": 3072,
+            "presence_penalty": 0,
+            "repeat_penalty": 1
+          },
+          "ram_before": {
+            "total_bytes": 16873545728,
+            "available_bytes": 897019904
+          },
+          "done_reason": "stop",
+          "total_duration": 7829013300,
+          "load_duration": 2190500,
+          "prompt_eval_count": 1781,
+          "prompt_eval_duration": 585631000,
+          "eval_count": 479,
+          "eval_duration": 7077442000,
+          "wall_seconds": 7.862465200014412,
+          "ram_after": {
+            "total_bytes": 16873545728,
+            "available_bytes": 646328320
+          },
+          "resident_models": [
+            {
+              "name": "qwen3.5:4b",
+              "model": "qwen3.5:4b",
+              "size": 3629142506,
+              "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+              "details": {
+                "parent_model": "",
+                "format": "gguf",
+                "family": "qwen35",
+                "families": [
+                  "qwen35"
+                ],
+                "parameter_size": "4.2B",
+                "quantization_level": "Q4_K_M"
+              },
+              "expires_at": "2026-10-08T01:18:27.1262331+05:30",
+              "size_vram": 3629142506,
+              "context_length": 16384
+            }
+          ]
+        },
+        {
+          "model": "qwen3.5:4b",
+          "options": {
+            "temperature": 0,
+            "seed": 0,
+            "num_ctx": 16384,
+            "num_predict": 3072,
+            "presence_penalty": 0,
+            "repeat_penalty": 1
+          },
+          "ram_before": {
+            "total_bytes": 16873545728,
+            "available_bytes": 646410240
+          },
+          "done_reason": "stop",
+          "total_duration": 5469327600,
+          "load_duration": 2574400,
+          "prompt_eval_count": 2670,
+          "prompt_eval_duration": 1051021000,
+          "eval_count": 286,
+          "eval_duration": 4231647000,
+          "wall_seconds": 5.484395300038159,
+          "ram_after": {
+            "total_bytes": 16873545728,
+            "available_bytes": 1328201728
+          },
+          "resident_models": [
+            {
+              "name": "qwen3.5:4b",
+              "model": "qwen3.5:4b",
+              "size": 3629142506,
+              "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+              "details": {
+                "parent_model": "",
+                "format": "gguf",
+                "family": "qwen35",
+                "families": [
+                  "qwen35"
+                ],
+                "parameter_size": "4.2B",
+                "quantization_level": "Q4_K_M"
+              },
+              "expires_at": "2026-10-08T01:18:32.6601254+05:30",
+              "size_vram": 3629142506,
+              "context_length": 16384
+            }
+          ]
+        },
+        {
+          "model": "qwen3.5:4b",
+          "options": {
+            "temperature": 0,
+            "seed": 0,
+            "num_ctx": 16384,
+            "num_predict": 3072,
+            "presence_penalty": 0,
+            "repeat_penalty": 1
+          },
+          "ram_before": {
+            "total_bytes": 16873545728,
+            "available_bytes": 1311617024
+          },
+          "done_reason": "stop",
+          "total_duration": 22905521300,
+          "load_duration": 6177200,
+          "prompt_eval_count": 3507,
+          "prompt_eval_duration": 1408036000,
+          "eval_count": 1417,
+          "eval_duration": 21287050000,
+          "wall_seconds": 22.941714600019623,
+          "ram_after": {
+            "total_bytes": 16873545728,
+            "available_bytes": 1058177024
+          },
+          "resident_models": [
+            {
+              "name": "qwen3.5:4b",
+              "model": "qwen3.5:4b",
+              "size": 3629142506,
+              "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+              "details": {
+                "parent_model": "",
+                "format": "gguf",
+                "family": "qwen35",
+                "families": [
+                  "qwen35"
+                ],
+                "parameter_size": "4.2B",
+                "quantization_level": "Q4_K_M"
+              },
+              "expires_at": "2026-10-08T01:18:55.9710877+05:30",
+              "size_vram": 3629142506,
+              "context_length": 16384
+            }
+          ]
+        },
+        {
+          "model": "qwen3.5:4b",
+          "options": {
+            "temperature": 0,
+            "seed": 0,
+            "num_ctx": 16384,
+            "num_predict": 3072,
+            "presence_penalty": 0,
+            "repeat_penalty": 1
+          },
+          "ram_before": {
+            "total_bytes": 16873545728,
+            "available_bytes": 1054703616
+          },
+          "done_reason": "stop",
+          "total_duration": 8259834000,
+          "load_duration": 2815400,
+          "prompt_eval_count": 1781,
+          "prompt_eval_duration": 479553000,
+          "eval_count": 513,
+          "eval_duration": 7548671000,
+          "wall_seconds": 8.295088900020346,
+          "ram_after": {
+            "total_bytes": 16873545728,
+            "available_bytes": 969916416
+          },
+          "resident_models": [
+            {
+              "name": "qwen3.5:4b",
+              "model": "qwen3.5:4b",
+              "size": 3629142506,
+              "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+              "details": {
+                "parent_model": "",
+                "format": "gguf",
+                "family": "qwen35",
+                "families": [
+                  "qwen35"
+                ],
+                "parameter_size": "4.2B",
+                "quantization_level": "Q4_K_M"
+              },
+              "expires_at": "2026-10-08T01:19:04.3065211+05:30",
+              "size_vram": 3629142506,
+              "context_length": 16384
+            }
+          ]
+        },
+        {
+          "model": "qwen3.5:4b",
+          "options": {
+            "temperature": 0,
+            "seed": 0,
+            "num_ctx": 16384,
+            "num_predict": 3072,
+            "presence_penalty": 0,
+            "repeat_penalty": 1
+          },
+          "ram_before": {
+            "total_bytes": 16873545728,
+            "available_bytes": 948510720
+          },
+          "done_reason": "stop",
+          "total_duration": 5726209400,
+          "load_duration": 3958600,
+          "prompt_eval_count": 3286,
+          "prompt_eval_duration": 1290097000,
+          "eval_count": 286,
+          "eval_duration": 4304815000,
+          "wall_seconds": 5.7674393999623135,
+          "ram_after": {
+            "total_bytes": 16873545728,
+            "available_bytes": 752123904
+          },
+          "resident_models": [
+            {
+              "name": "qwen3.5:4b",
+              "model": "qwen3.5:4b",
+              "size": 3629142506,
+              "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+              "details": {
+                "parent_model": "",
+                "format": "gguf",
+                "family": "qwen35",
+                "families": [
+                  "qwen35"
+                ],
+                "parameter_size": "4.2B",
+                "quantization_level": "Q4_K_M"
+              },
+              "expires_at": "2026-10-08T01:19:10.1307327+05:30",
+              "size_vram": 3629142506,
+              "context_length": 16384
+            }
+          ]
+        },
+        {
+          "model": "qwen3.5:4b",
+          "options": {
+            "temperature": 0,
+            "seed": 0,
+            "num_ctx": 16384,
+            "num_predict": 3072,
+            "presence_penalty": 0,
+            "repeat_penalty": 1
+          },
+          "ram_before": {
+            "total_bytes": 16873545728,
+            "available_bytes": 757583872
+          },
+          "done_reason": "stop",
+          "total_duration": 8073544600,
+          "load_duration": 2894700,
+          "prompt_eval_count": 1788,
+          "prompt_eval_duration": 568130000,
+          "eval_count": 495,
+          "eval_duration": 7316043000,
+          "wall_seconds": 8.088985500042327,
+          "ram_after": {
+            "total_bytes": 16873545728,
+            "available_bytes": 411770880
+          },
+          "resident_models": [
+            {
+              "name": "qwen3.5:4b",
+              "model": "qwen3.5:4b",
+              "size": 3629142506,
+              "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+              "details": {
+                "parent_model": "",
+                "format": "gguf",
+                "family": "qwen35",
+                "families": [
+                  "qwen35"
+                ],
+                "parameter_size": "4.2B",
+                "quantization_level": "Q4_K_M"
+              },
+              "expires_at": "2026-10-08T01:19:18.4030971+05:30",
+              "size_vram": 3629142506,
+              "context_length": 16384
+            }
+          ]
+        },
+        {
+          "model": "qwen3.5:4b",
+          "options": {
+            "temperature": 0,
+            "seed": 0,
+            "num_ctx": 16384,
+            "num_predict": 3072,
+            "presence_penalty": 0,
+            "repeat_penalty": 1
+          },
+          "ram_before": {
+            "total_bytes": 16873545728,
+            "available_bytes": 412106752
+          },
+          "done_reason": "stop",
+          "total_duration": 5886186600,
+          "load_duration": 4862700,
+          "prompt_eval_count": 2956,
+          "prompt_eval_duration": 1190218000,
+          "eval_count": 286,
+          "eval_duration": 4354210000,
+          "wall_seconds": 5.927094999991823,
+          "ram_after": {
+            "total_bytes": 16873545728,
+            "available_bytes": 696426496
+          },
+          "resident_models": [
+            {
+              "name": "qwen3.5:4b",
+              "model": "qwen3.5:4b",
+              "size": 3629142506,
+              "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+              "details": {
+                "parent_model": "",
+                "format": "gguf",
+                "family": "qwen35",
+                "families": [
+                  "qwen35"
+                ],
+                "parameter_size": "4.2B",
+                "quantization_level": "Q4_K_M"
+              },
+              "expires_at": "2026-10-08T01:19:24.3860861+05:30",
+              "size_vram": 3629142506,
+              "context_length": 16384
+            }
+          ]
+        },
+        {
+          "model": "qwen3.5:4b",
+          "options": {
+            "temperature": 0,
+            "seed": 0,
+            "num_ctx": 16384,
+            "num_predict": 3072,
+            "presence_penalty": 0,
+            "repeat_penalty": 1
+          },
+          "ram_before": {
+            "total_bytes": 16873545728,
+            "available_bytes": 787365888
+          },
+          "done_reason": "stop",
+          "total_duration": 7913719200,
+          "load_duration": 39445800,
+          "prompt_eval_count": 1942,
+          "prompt_eval_duration": 1111230000,
+          "eval_count": 376,
+          "eval_duration": 5522468000,
+          "wall_seconds": 7.944768399989698,
+          "ram_after": {
+            "total_bytes": 16873545728,
+            "available_bytes": 1309626368
+          },
+          "resident_models": [
+            {
+              "name": "qwen3.5:4b",
+              "model": "qwen3.5:4b",
+              "size": 3629142506,
+              "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+              "details": {
+                "parent_model": "",
+                "format": "gguf",
+                "family": "qwen35",
+                "families": [
+                  "qwen35"
+                ],
+                "parameter_size": "4.2B",
+                "quantization_level": "Q4_K_M"
+              },
+              "expires_at": "2026-10-08T01:19:32.6598513+05:30",
+              "size_vram": 3629142506,
+              "context_length": 16384
+            }
+          ]
+        },
+        {
+          "model": "qwen3.5:4b",
+          "options": {
+            "temperature": 0,
+            "seed": 0,
+            "num_ctx": 16384,
+            "num_predict": 3072,
+            "presence_penalty": 0,
+            "repeat_penalty": 1
+          },
+          "ram_before": {
+            "total_bytes": 16873545728,
+            "available_bytes": 1310625792
+          },
+          "done_reason": "stop",
+          "total_duration": 8033650200,
+          "load_duration": 6953900,
+          "prompt_eval_count": 1619,
+          "prompt_eval_duration": 729350000,
+          "eval_count": 482,
+          "eval_duration": 7061745000,
+          "wall_seconds": 8.06039460003376,
+          "ram_after": {
+            "total_bytes": 16873545728,
+            "available_bytes": 1137979392
+          },
+          "resident_models": [
+            {
+              "name": "qwen3.5:4b",
+              "model": "qwen3.5:4b",
+              "size": 3629142506,
+              "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+              "details": {
+                "parent_model": "",
+                "format": "gguf",
+                "family": "qwen35",
+                "families": [
+                  "qwen35"
+                ],
+                "parameter_size": "4.2B",
+                "quantization_level": "Q4_K_M"
+              },
+              "expires_at": "2026-10-08T01:19:40.7541098+05:30",
+              "size_vram": 3629142506,
+              "context_length": 16384
+            }
+          ]
+        },
+        {
+          "model": "qwen3.5:4b",
+          "options": {
+            "temperature": 0,
+            "seed": 0,
+            "num_ctx": 16384,
+            "num_predict": 3072,
+            "presence_penalty": 0,
+            "repeat_penalty": 1
+          },
+          "ram_before": {
+            "total_bytes": 16873545728,
+            "available_bytes": 1139429376
+          },
+          "done_reason": "stop",
+          "total_duration": 8895259300,
+          "load_duration": 22483500,
+          "prompt_eval_count": 1439,
+          "prompt_eval_duration": 713928000,
+          "eval_count": 550,
+          "eval_duration": 8036304000,
+          "wall_seconds": 8.910261399985757,
+          "ram_after": {
+            "total_bytes": 16873545728,
+            "available_bytes": 1245741056
+          },
+          "resident_models": [
+            {
+              "name": "qwen3.5:4b",
+              "model": "qwen3.5:4b",
+              "size": 3629142506,
+              "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+              "details": {
+                "parent_model": "",
+                "format": "gguf",
+                "family": "qwen35",
+                "families": [
+                  "qwen35"
+                ],
+                "parameter_size": "4.2B",
+                "quantization_level": "Q4_K_M"
+              },
+              "expires_at": "2026-10-08T01:19:49.7655519+05:30",
+              "size_vram": 3629142506,
+              "context_length": 16384
+            }
+          ]
+        },
+        {
+          "model": "qwen3.5:4b",
+          "options": {
+            "temperature": 0,
+            "seed": 0,
+            "num_ctx": 16384,
+            "num_predict": 3072,
+            "presence_penalty": 0,
+            "repeat_penalty": 1
+          },
+          "ram_before": {
+            "total_bytes": 16873545728,
+            "available_bytes": 1233309696
+          },
+          "done_reason": "stop",
+          "total_duration": 6092356000,
+          "load_duration": 13509400,
+          "prompt_eval_count": 1971,
+          "prompt_eval_duration": 826008000,
+          "eval_count": 332,
+          "eval_duration": 5120524000,
+          "wall_seconds": 6.108432300039567,
+          "ram_after": {
+            "total_bytes": 16873545728,
+            "available_bytes": 953323520
+          },
+          "resident_models": [
+            {
+              "name": "qwen3.5:4b",
+              "model": "qwen3.5:4b",
+              "size": 3629142506,
+              "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+              "details": {
+                "parent_model": "",
+                "format": "gguf",
+                "family": "qwen35",
+                "families": [
+                  "qwen35"
+                ],
+                "parameter_size": "4.2B",
+                "quantization_level": "Q4_K_M"
+              },
+              "expires_at": "2026-10-08T01:19:55.9155511+05:30",
+              "size_vram": 3629142506,
+              "context_length": 16384
+            }
+          ]
+        },
+        {
+          "model": "qwen3.5:4b",
+          "options": {
+            "temperature": 0,
+            "seed": 0,
+            "num_ctx": 16384,
+            "num_predict": 3072,
+            "presence_penalty": 0,
+            "repeat_penalty": 1
+          },
+          "ram_before": {
+            "total_bytes": 16873545728,
+            "available_bytes": 967331840
+          },
+          "done_reason": "stop",
+          "total_duration": 8933750800,
+          "load_duration": 3969700,
+          "prompt_eval_count": 2169,
+          "prompt_eval_duration": 895706000,
+          "eval_count": 538,
+          "eval_duration": 7891921000,
+          "wall_seconds": 8.969923300028313,
+          "ram_after": {
+            "total_bytes": 16873545728,
+            "available_bytes": 1241686016
+          },
+          "resident_models": [
+            {
+              "name": "qwen3.5:4b",
+              "model": "qwen3.5:4b",
+              "size": 3629142506,
+              "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+              "details": {
+                "parent_model": "",
+                "format": "gguf",
+                "family": "qwen35",
+                "families": [
+                  "qwen35"
+                ],
+                "parameter_size": "4.2B",
+                "quantization_level": "Q4_K_M"
+              },
+              "expires_at": "2026-10-08T01:20:04.9828223+05:30",
+              "size_vram": 3629142506,
+              "context_length": 16384
+            }
+          ]
+        },
+        {
+          "model": "qwen3.5:4b",
+          "options": {
+            "temperature": 0,
+            "seed": 0,
+            "num_ctx": 16384,
+            "num_predict": 3072,
+            "presence_penalty": 0,
+            "repeat_penalty": 1
+          },
+          "ram_before": {
+            "total_bytes": 16873545728,
+            "available_bytes": 1239531520
+          },
+          "done_reason": "stop",
+          "total_duration": 5691224100,
+          "load_duration": 3594100,
+          "prompt_eval_count": 2334,
+          "prompt_eval_duration": 971062000,
+          "eval_count": 302,
+          "eval_duration": 4602580000,
+          "wall_seconds": 5.706019499979448,
+          "ram_after": {
+            "total_bytes": 16873545728,
+            "available_bytes": 888254464
+          },
+          "resident_models": [
+            {
+              "name": "qwen3.5:4b",
+              "model": "qwen3.5:4b",
+              "size": 3629142506,
+              "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+              "details": {
+                "parent_model": "",
+                "format": "gguf",
+                "family": "qwen35",
+                "families": [
+                  "qwen35"
+                ],
+                "parameter_size": "4.2B",
+                "quantization_level": "Q4_K_M"
+              },
+              "expires_at": "2026-10-08T01:20:10.7268509+05:30",
+              "size_vram": 3629142506,
+              "context_length": 16384
+            }
+          ]
+        },
+        {
+          "model": "qwen3.5:4b",
+          "options": {
+            "temperature": 0,
+            "seed": 0,
+            "num_ctx": 16384,
+            "num_predict": 3072,
+            "presence_penalty": 0,
+            "repeat_penalty": 1
+          },
+          "ram_before": {
+            "total_bytes": 16873545728,
+            "available_bytes": 887128064
+          },
+          "done_reason": "stop",
+          "total_duration": 8036801200,
+          "load_duration": 4536800,
+          "prompt_eval_count": 2356,
+          "prompt_eval_duration": 509684000,
+          "eval_count": 499,
+          "eval_duration": 7511036000,
+          "wall_seconds": 8.052876900008414,
+          "ram_after": {
+            "total_bytes": 16873545728,
+            "available_bytes": 980463616
+          },
+          "resident_models": [
+            {
+              "name": "qwen3.5:4b",
+              "model": "qwen3.5:4b",
+              "size": 3629142506,
+              "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+              "details": {
+                "parent_model": "",
+                "format": "gguf",
+                "family": "qwen35",
+                "families": [
+                  "qwen35"
+                ],
+                "parameter_size": "4.2B",
+                "quantization_level": "Q4_K_M"
+              },
+              "expires_at": "2026-10-08T01:20:18.8010738+05:30",
+              "size_vram": 3629142506,
+              "context_length": 16384
+            }
+          ]
+        }
+      ],
+      "stage": "failed",
+      "error": "Documenting model returned invalid output twice. Completed calls are saved; retry after checking the model/context settings."
+    }
+  ],
+  "scope": "Uploaded full AMI audio through genuine Parakeet and both shared-Qwen stages. References excluded from generation. Public corpus pretraining exposure unknown. Semantic grading requires source review.",
+  "asr_checkpoint_reused": {
+    "path": ".cache\\phase5\\gpu-int8-is1000b\\final-profile\\data\\4cf97002-8c09-40be-872e-e5e2ac002cdc\\raw.json",
+    "raw_sha256": "a3b0c262a7d02a131df56fa4236249c066f5b09b57776323a3e3a01b5dfe5347",
+    "created_at": "2026-10-05T19:19:12.857352+00:00",
+    "note": "No new ASR inference in this execution. Saved genuine decode/load timings are historical; runs.wall_seconds measures this resumed execution only."
+  },
+  "meeting": {
+    "id": "5c65fa7f-335b-425c-bd2d-ca9cefda3e1e",
+    "title": "AMI IS1000b",
+    "filename": "IS1000b.Mix-Headset.wav",
+    "source_name": "original.wav",
+    "glossary": "Real Reaction\nremote control\nindustrial designer\nuser interface designer\nmarketing executive\nproject manager\nLCD\ninfrared",
+    "created_at": "2026-10-07T19:35:30.931380+00:00",
+    "updated_at": "2026-10-07T19:45:18.871282+00:00",
+    "stage": "failed",
+    "input_sha256": "0f71e5018a283adf85e949f456a4c360d4fb8d9c195d29ed82b4b38d0d9a724d",
+    "size_bytes": 74997452,
+    "duration_seconds": 2343.6666875,
+    "processed_audio_seconds": 2343.6666875,
+    "prepare_seconds": null,
+    "transcribed_at": "2026-10-05T19:19:12.857352+00:00",
+    "failed_stage": "documenting",
+    "error": "Documenting model returned invalid output twice. Completed calls are saved; retry after checking the model/context settings.",
+    "retryable": true,
+    "target": "complete",
+    "llm_completed_calls": 50,
+    "refined_at": "2026-10-07T19:36:14.370896+00:00",
+    "documented_at": null
+  },
+  "raw": {
+    "schema_version": "1.0",
+    "input_sha256": "0f71e5018a283adf85e949f456a4c360d4fb8d9c195d29ed82b4b38d0d9a724d",
+    "audio_sha256": "0f71e5018a283adf85e949f456a4c360d4fb8d9c195d29ed82b4b38d0d9a724d",
+    "duration_seconds": 2343.6666875,
+    "timing": "audio_window",
+    "segments": [
+      {
+        "id": "s00001",
+        "start": 0.0,
+        "end": 29.5,
+        "text": "Yes, this one is like here are my slides. Yeah. For participant free technical? Yeah. Uncomfortable. Working thanks for wow, what is it? I had to change your name as Kevin."
+      },
+      {
+        "id": "s00002",
+        "start": 29.5,
+        "end": 56.8,
+        "text": "Okay, I didn't get it. I just do it. Well for me. I just save it. Just clean the whiteboard and then put it back."
+      },
+      {
+        "id": "s00003",
+        "start": 56.8,
+        "end": 83.9,
+        "text": "Yeah. Because it's for the previous media between the future. I have to save my file."
+      },
+      {
+        "id": "s00004",
+        "start": 83.9,
+        "end": 112.8,
+        "text": "But I sent you the email. So where are you? Shall I start or remember?"
+      },
+      {
+        "id": "s00005",
+        "start": 112.8,
+        "end": 140.3,
+        "text": "Okay, you oh, I will."
+      },
+      {
+        "id": "s00007",
+        "start": 169.0,
+        "end": 198.1,
+        "text": "Oh, is it run the wrong way? Yes."
+      },
+      {
+        "id": "s00008",
+        "start": 198.1,
+        "end": 228.0,
+        "text": "So I see all everybody's here, okay? And we can start meeting. Okay. What's the agenda for this meeting? The I will uh present the uh agenda with with with with slides to you um as you can see here. Perfect. So first"
+      },
+      {
+        "id": "s00009",
+        "start": 228.0,
+        "end": 257.5,
+        "text": "Just to mention, I will take notes of this meeting and I will try to work them out and give them to you. I've also made notes of the previous meeting and I was about to send them you, but then I had to go to this meeting, so you will get them to get them to get them to you are the secretary also? Yes."
+      },
+      {
+        "id": "s00010",
+        "start": 257.5,
+        "end": 286.6,
+        "text": "Um then I hope you all have uh worked out some presentations about uh about well the the task given to you in the previous meeting. Um we will uh in a minute we will uh start with them um"
+      },
+      {
+        "id": "s00011",
+        "start": 286.6,
+        "end": 314.7,
+        "text": "We will see in which order we'll handle them off. Um then I will uh bring in some some some new requirements I I got uh from the account manager. I try to work them out. They were quite abstract and we can have maybe have come some discussion about it uh um about the functions and well in this meeting we should really uh try to reach a decision about"
+      },
+      {
+        "id": "s00012",
+        "start": 314.7,
+        "end": 342.2,
+        "text": "the target group and the functionality of the you mean the social target group? Yes, I mean yes w who are we going to uh the customers, okay, the customers indeed. Yes. I think that's that's important. Great question, yeah. Uh so the and then uh we will close this meeting uh and after this meeting we'll uh"
+      },
+      {
+        "id": "s00013",
+        "start": 342.2,
+        "end": 370.7,
+        "text": "We'll have a lunch. Good. Maybe. Why, Anna, can you ha do you have a presentation? No, I don't. You don't have a presentation? I wasn't. No. You were not able to. I can talk about it, but I have no slide training. Maybe you can can just talk about it or maybe you can use the whiteboard if necessary. Well, I've just been"
+      },
+      {
+        "id": "s00014",
+        "start": 370.7,
+        "end": 398.4,
+        "text": "presented with some research we've done in a small focus group, so a hundred people just asked them about their remote control usage habits and what they want in a remote control. Um it's probably can't email this to you. I've just got a web page with some data on it. Um basically it's saying that users generally dislike the look and feel of their remote controls. Um seventy five of you seventy five percent of users"
+      },
+      {
+        "id": "s00015",
+        "start": 398.4,
+        "end": 427.5,
+        "text": "find most remote controls ugly. Um eighty percent of users would spend more money when a remote control would look fancy. Um current remote controls do not match well the operating behavior of the user. Uh seventy five percent of users said there's app a lot, so they use the remote control quite frequently while they're watching television. Uh fifty percent of users say that they only use ten percent of the buttons. So they've got a remote control with a lot of functionality but"
+      },
+      {
+        "id": "s00016",
+        "start": 427.5,
+        "end": 456.4,
+        "text": "Really most of the time they only use a small part of that. Do you do you have this uh information on the web page? I have a web page, yes. Maybe maybe you can can send an email to me later uh about it. So basically um there's a breakdown of how much they use the different functions on a remote control. Um power and volume selection are only used a few times within this"
+      },
+      {
+        "id": "s00017",
+        "start": 456.4,
+        "end": 483.9,
+        "text": "per hour. Um channel selection is used one hundred and sixty eight times. Um and then there's things like channel settings, audio settings, which are only used very infrequently. Um teletext is used um fourteen times in the hour. So it is used but not nearly as much as the channel selection is used. Um an interesting thing that this report has brought up is that"
+      },
+      {
+        "id": "s00018",
+        "start": 483.9,
+        "end": 513.8,
+        "text": "Um fifty percent of users report that the remote control gets lost a lot of the time in the room. So some way of locating the remote control would be very useful to a lot of users. Um thirty-four per cent said it takes too long to learn to use a remote control. They want something that's easier to use straight away, more intuitive perhaps. It's easy to learn or what do you say? Thirty-four per cent said it took too much time to learn to use new ones."
+      },
+      {
+        "id": "s00019",
+        "start": 513.8,
+        "end": 542.9,
+        "text": "And 26% said remote controls are bad, but RSI. I don't know how we'd go about combating that. What do you think that for RSI, strain injury? They think that, or do they doctor says that? But it's the opinion of the users, huh? That's what the report says, yeah. And then it's got a demographic breakdown. Maybe you cannot put this web page."
+      },
+      {
+        "id": "s00020",
+        "start": 542.9,
+        "end": 571.8,
+        "text": "Online on the uh I should be able to actually. If I email it to you now, you can maybe just disconnect. Okay, it's a web page on the C yeah it's a file, okay. Otherwise you yeah you can connect this one over to your computer. So these are important numbers that"
+      },
+      {
+        "id": "s00021",
+        "start": 571.8,
+        "end": 600.7,
+        "text": "Matthew and I need to take into account for this. It's probably easier if you put it on yours and now it's the email to you. It's just a web link. Okay. Yeah, these numbers are have to be have to be taken into account for the uh both user interface and functional design."
+      },
+      {
+        "id": "s00022",
+        "start": 600.7,
+        "end": 630.0,
+        "text": "One thing it goes on to talk about, which is interesting, is the because if there are many numbers and we need to select to c to constraint uh our design based on what is more important. Yeah. Um one thing that's interesting is talking about um speech recognition in a remote control. And who would pay more for that and whether people would find it useful."
+      },
+      {
+        "id": "s00023",
+        "start": 630.0,
+        "end": 658.1,
+        "text": "Do you have number file on that? Yes, I'll just get this up. So they wouldn't they would not need any button on speech. So potentially yeah. I think even for interesting idea. Interesting. Yeah, I think that would not work so well. You won't have both options. Okay. Well it would it would"
+      },
+      {
+        "id": "s00024",
+        "start": 658.1,
+        "end": 687.2,
+        "text": "be a solution for uh w when your remote control is lost. I mean when it has pet recognition then then it doesn't matter where it is, m well it's we should be in range. Or maybe it can respond and produce a sound, so say where it is. But th these are all quite fancy futures. I'm not sure whether we will we can make this for for twelve Euro fifty cents."
+      },
+      {
+        "id": "s00025",
+        "start": 687.2,
+        "end": 714.5,
+        "text": "No, you can't and we don't know where the state of the art of speech recognition is. Maybe you know oh well it depends, you know, like there is uh it's a very small vocabulary where you want to do the operations, like you want to say on, off, one, two, but it's quite noisy if there is the T V yeah it's not going to be so easy but"
+      },
+      {
+        "id": "s00026",
+        "start": 714.5,
+        "end": 743.8,
+        "text": "Usually it's going to be more of an isolated do we have some work but I don't know twenty five. To summarize maybe the this is now talking about um who would pay for speech recognition in a remote control, who would pay more for it. Um ninety percent of the fifteen to twenty five year old market said that they would pay more. It goes down from there, seventy six percent for twenty five to thirty five, thirty five percent for thirty five to forty five."
+      },
+      {
+        "id": "s00027",
+        "start": 743.8,
+        "end": 772.7,
+        "text": "Um 22% for forty-five to fifty five and then eight percent for fifty five to sixty five. Big length, okay. Yeah, which yeah it really depends where we're going to be targeting this product, um which we'll be talking about later I think. Yes, we will talk about it later. Did you get the email? Yeah, that one. Just follow that link."
+      },
+      {
+        "id": "s00028",
+        "start": 772.7,
+        "end": 801.8,
+        "text": "It'll be in a different window, yeah. That's left. That one. Yep. Okay, perfect. So that's the figures I was just talking about there, with the different demographics. Another thing it's talking about there is the L C D screen, but there's no figures apparently on that."
+      },
+      {
+        "id": "s00029",
+        "start": 801.8,
+        "end": 829.5,
+        "text": "Uh maybe uh Marl k c can you give uh uh your presentation now I okay I stay now you can move I think, yeah. You can move uh as far as maybe I take your chair."
+      },
+      {
+        "id": "s00030",
+        "start": 829.5,
+        "end": 859.0,
+        "text": "So I think as everybody knows uh I'm the uh industrial designer and uh in this presentation uh this quick presentation um is gonna focus on the working design of the the remote control."
+      },
+      {
+        "id": "s00031",
+        "start": 859.0,
+        "end": 887.5,
+        "text": "And I'd like first to give a quick uh very simple introduction how does it work so that everybody knows, even if you don't have a very uh technical background, uh what is it, because I think in the project it's important. So basically um the basic function of a remote control is to send uh messages to another system that is fixed. And so an energy source feeds an integrated secret, the chip."
+      },
+      {
+        "id": "s00032",
+        "start": 887.5,
+        "end": 917.2,
+        "text": "that can compose messages usually uh through um infrared bits and uh the user interface controls the chip and accordingly the the messages, right. So my method for um designing the yeah, the work design uh yeah, first the the main point is that I would wish to to make a really functional product."
+      },
+      {
+        "id": "s00033",
+        "start": 917.2,
+        "end": 945.9,
+        "text": "I would prefer to have very functional capabilities rather than fancy stuff that in fact is not used and doesn't work. So for that, yeah, as it's important to take into account the user requirements from the marketing expert Anna. And we should agree on what are the technical functions for this remote control."
+      },
+      {
+        "id": "s00034",
+        "start": 945.9,
+        "end": 973.4,
+        "text": "And I'll show you the working design. So basically, here is a really large view of what we want: we want an on-off button, it can be simple, but it's important, and also enabling to browse channels as well as other buttons that come after."
+      },
+      {
+        "id": "s00035",
+        "start": 973.4,
+        "end": 1000.7,
+        "text": "The components I quickly draw here is that in this part you have the remote control, the sender, and on the other part the receiver. So that's my method is will be to well my aim will be to design the and choose the chips and the infrared components to build the remote control, right? So"
+      },
+      {
+        "id": "s00036",
+        "start": 1000.7,
+        "end": 1028.8,
+        "text": "Of course, we need energy sources and the receiver or a receiver. This is a really quick design. You stop me or interrupt me if you don't agree on it, on that. And so what I found and after a lot of work actually, I draw for you this schema that can"
+      },
+      {
+        "id": "s00037",
+        "start": 1028.8,
+        "end": 1056.1,
+        "text": "Be maybe too technical for you, but it's really important for me, you know. Overwhelming. And uh that's it. So I won't go into details about that, but uh these are my preferences to use uh that kind of components. And and why do you want this kind of components? I mean, are they cheap or are they uh reliable? What were your"
+      },
+      {
+        "id": "s00038",
+        "start": 1056.1,
+        "end": 1083.4,
+        "text": "So the main components you see here are the cheapest I found and you have always a compromise with readability and if it's expensive but these ones are also really readable. So yeah that's it for the working design. I hope you get your"
+      },
+      {
+        "id": "s00039",
+        "start": 1083.4,
+        "end": 1112.7,
+        "text": "Clearer view on what a remote control is in terms of technical components, but maybe, yeah, it's more clear now, I think. So, but is it can you just buy it on the market and plug it in, or you want to? No, no, no, we will. This is a preference, but we can always change what I was thinking about this."
+      },
+      {
+        "id": "s00040",
+        "start": 1112.7,
+        "end": 1141.6,
+        "text": "schema uh about uh the sender and the receiver. Um can you can get back to it? Yeah. Uh the receiver is of course already in the television and we are not uh able to change it. Of course, yeah. You must adapt to the receiver. I I suppose there is a standard uh way of communicating to televisions. Uh yeah, we will use uh infrared protocol"
+      },
+      {
+        "id": "s00041",
+        "start": 1141.6,
+        "end": 1169.1,
+        "text": "Using infrared and of course we need to adapt to that protocol that already exists and but we what we can do is adapting the the chips inside choose the best chips and infrared bubbles. Yes, okay."
+      },
+      {
+        "id": "s00042",
+        "start": 1169.1,
+        "end": 1196.4,
+        "text": "Okay. Thank you. Well, it's just you have to change the frequencies. The frequencies? Yeah, yeah. Of course, yeah, in the chip you have yeah. But you should be careful. People are sometimes becoming problem like a guy has recently designed a remote. Yeah. So basically it draws through all the things. So maybe you should think of"
+      },
+      {
+        "id": "s00043",
+        "start": 1196.4,
+        "end": 1224.7,
+        "text": "Of course, yeah, we should take that into the middle of the table. You have the T V in the next apartment's really loud. Everyone's T V and you can just walk away. You don't have to be near the T V at all. I like that idea. These things. Maybe we can go to your presentation as well. I assume you were finished here. Yes. Okay."
+      },
+      {
+        "id": "s00044",
+        "start": 1224.7,
+        "end": 1251.8,
+        "text": "So I can take I think mine over there okay so voila I can take mine it's okay so okay"
+      },
+      {
+        "id": "s00045",
+        "start": 1251.8,
+        "end": 1281.1,
+        "text": "Uh sorry? I know where it is. It's on the desktop. It's technical function. Okay. Like so. Well, so mm I'm going to talk a little bit about the technical function. So w what actually it's about what is the user going to do. As and Maya has presented what is going inside. So what's the user is going to see from the outside and how he's going to use it. So"
+      },
+      {
+        "id": "s00046",
+        "start": 1281.1,
+        "end": 1310.6,
+        "text": "Well the approach was that uh basically the idea is to send a message to the T V set as My has pointed and it will be decoded by the T V. And usually we it is easier to have uh keys or buttons with which people can uh press and then um changing a button will basically uh change the message which is being sent to the T V and uh um"
+      },
+      {
+        "id": "s00047",
+        "start": 1310.6,
+        "end": 1337.7,
+        "text": "And basically it sends an infrared signal and decoded by the receiver. So as Anna has said, that this key people are interested in things which are you don't need to press the keys. People are can have the speech recognition, but this is a question which will we have to see later. But in the present scenario is that you have certain keys and you press it, like your mobile phone."
+      },
+      {
+        "id": "s00048",
+        "start": 1337.7,
+        "end": 1365.8,
+        "text": "and it sends a message to the T V and so generally I don't have some figures, sorry, but um so there are two kinds of uh remote if you popularly in the household. Actually, so you have a standard T V remote where you have just a on/off button and play uh volume change and keys for the number and more than one digit option."
+      },
+      {
+        "id": "s00049",
+        "start": 1365.8,
+        "end": 1394.9,
+        "text": "And if you see for example right now uh even the one uh more than one digit option is for two digit channel, which is like ninety-nine. But tomorrow you might have one fifty channels, you know, to browse or two hundred channels to browse, who knows. But uh uh then there is a this is a standard one with without any fancy thing, you know, like uh it doesn't have to latex option, it can without any it's a very simple thing."
+      },
+      {
+        "id": "s00050",
+        "start": 1394.9,
+        "end": 1422.6,
+        "text": "Um which which you can browse. And then you have a uh what's the video remote p which is like usually it has almost all the keys over there and but it then it has other options like stop uh and then you play the movie or uh or fast forward the movie or something like that. So i it has those so these are the standard uh commonly found"
+      },
+      {
+        "id": "s00051",
+        "start": 1422.6,
+        "end": 1452.5,
+        "text": "remote controls and the market and then which is generally used by the people and then well personal preferences I would basically think of having a kind of aim for the next generation thing where the we could have both the uh the f uh T V and the remote video remote control because uh some of the keys in the video is remote control and the T V"
+      },
+      {
+        "id": "s00052",
+        "start": 1452.5,
+        "end": 1482.2,
+        "text": "They could be integrated together so that uh we could um aim for the like in the f coming future um that type of uh applications how would that work? So you've got say maybe a VCR and a T V which are separate. So on my one at home I've got a V C R remote which then changes the channel on the V C R and doesn't do anything on the T V. So is there going to be like a switch on the remote that says use the T V or use the V C R or does it know which one you want to use?"
+      },
+      {
+        "id": "s00053",
+        "start": 1482.2,
+        "end": 1511.1,
+        "text": "Actually you could think of you can have a key which could tell it could go to the video thing but you still can't in that case when it you use that the function should be able to take up the VCR option and you could play it or you can also think about having like in a few days you will be ha in in"
+      },
+      {
+        "id": "s00054",
+        "start": 1511.1,
+        "end": 1540.0,
+        "text": "few uh coming years you might even have a system where you have a separate uh sitting setup box and uh you have uh um something like uh you don't you don't you suppose you're not able to watch some program and actually it's downloading all the time for you and uh you can just you know uh when you come back you can just switch on that thing and watch the program. In that case, you want to browse fast or browse slow. You want to have those kind of functionalities."
+      },
+      {
+        "id": "s00055",
+        "start": 1540.0,
+        "end": 1567.9,
+        "text": "This is our kind of next generation. It's a next generation thing, but it is going to come in a couple of years. I think it's it it's already there. I mean the hard disk uh recorders, yeah I I've seen them in the show. Yeah, so it's going to record your things and you and you you need basically the functionalities what you need in both uh uh video as well as in the standard T V thing. But I don't think we're trying to make uh universal remote here. No, no, we are not making a universal remote. We are just looking at uh"
+      },
+      {
+        "id": "s00056",
+        "start": 1567.9,
+        "end": 1596.0,
+        "text": "Given a scenario, I have a T V and tomorrow I'm going to have a setup box which is going to sit there and uh it's going to do the job for me. We need to decide on on on and how far we go to in this I mean we can go pretty far I think with with with functions and possible uh future prospects. Yeah, so but it's good to keep in mind. Okay, so that was ends my presentation."
+      },
+      {
+        "id": "s00057",
+        "start": 1596.0,
+        "end": 1624.3,
+        "text": "So we can always discuss about it. For example, the presently the video market actually this demand, video over demand or what we call it as is presently booming up actually. So it i like people are providing like things like movies you can select actually. So you want to watch a movie and then"
+      },
+      {
+        "id": "s00058",
+        "start": 1624.3,
+        "end": 1652.2,
+        "text": "Your provider gives a list of movies and then you select those lists. And it basically you go off, it downloads the movie, it gives for you. And then when you come, you want to watch it on your TV. Or even you don't need to download it, it's streamed online. Yeah, it can be streamed online for you. And you can say what time I want to watch the movie. Yeah. Yeah. So,"
+      },
+      {
+        "id": "s00059",
+        "start": 1652.2,
+        "end": 1680.1,
+        "text": "I have uh received some some s some well points of of thinking over of my account manager and uh I would like to share them with you. Um first thing is uh teletext, it's a well known feature of televisions, but it's it's getting used less and less. That's that's especially because of the internet, of course. So we should think about it. Um"
+      },
+      {
+        "id": "s00060",
+        "start": 1680.1,
+        "end": 1709.4,
+        "text": "Do we include it? And do we give it a prominent uh prominent uh place on on on the on well on the remote motor control itself? Uh as uh Anna indicated it's it's not used well very much, but it's it it is still used. Um further, yes, we must think uh do we stay uh to to television only, the television as we as we all know it with"
+      },
+      {
+        "id": "s00061",
+        "start": 1709.4,
+        "end": 1736.5,
+        "text": "which broadcasting signals and you can't go back, uh or do we uh uh go further as Matthew indicated by supporting uh uh recording uh devices by DVDs and BCRs indeed, indeed, and and and the hardest recorders um furthermore uh w"
+      },
+      {
+        "id": "s00062",
+        "start": 1736.5,
+        "end": 1766.4,
+        "text": "We need really need to interest uh y younger customers and then with younger customers I mean people uh below the age of forty uh our current customers are mainly forty plus uh which fourteen forty okay. So that's that's I mean it is a market but uh they will grow older older and all"
+      },
+      {
+        "id": "s00063",
+        "start": 1766.4,
+        "end": 1794.7,
+        "text": "Always need to have the the future with younger people. Um therefore uh younger people like friendly trendy designs. So that w we should make our our R C as trendy as possible, but it should also be uh have a reliable image. So when it looks too too spacey or too fancy people will think well"
+      },
+      {
+        "id": "s00064",
+        "start": 1794.7,
+        "end": 1823.2,
+        "text": "Does it work at all? Yeah, it's a well you can borrow the ideas how you want to keep the keys. You know, right now if you take it you have like zero, one, two, three like keys separately. But suppose if you take the present trend of mobile phones, there are like big thick keys. You press on the top, it takes one number, you press on the bottom, it takes another number. And basically"
+      },
+      {
+        "id": "s00065",
+        "start": 1823.2,
+        "end": 1850.9,
+        "text": "So the space covered so that you don't see two subtle keys there actually. So it it is like uh it it is like uh maybe you can draw it on the on the boards. But I think taking the idea of getting inspiration from mobile phones is interesting. Yeah. Especially if we're going after a younger market. Yes, yes, mobile phones are really used to the new and the funky things. It's recognizable. Yeah. There's lot there's lots of very pretty mobile phones, not too many."
+      },
+      {
+        "id": "s00066",
+        "start": 1850.9,
+        "end": 1878.2,
+        "text": "Pretty remote controls. And and they're skilled uh by using it. So for example uh okay. It works. Fine. So for example you have uh presently a key is like one, two three like this actually and uh"
+      },
+      {
+        "id": "s00067",
+        "start": 1878.2,
+        "end": 1907.3,
+        "text": "uh four, five, six like that. And uh you can have keys like this form like keys like that. How much longer we got for the meeting by the way? Because we don't talk about demographic at all and that's a very important issue. So you you can have uh keys like uh which are like so uh two sorry."
+      },
+      {
+        "id": "s00068",
+        "start": 1907.3,
+        "end": 1936.0,
+        "text": "So we basically don't change the uh original order of them, but then the keys are more spacious. They don't look uh so there there is a very slight thing. So if you press on the top it takes the one, it takes the three uh four sorry four here or five and six. So the keys can be it looks you know not very much cluttered but it looks nice for"
+      },
+      {
+        "id": "s00069",
+        "start": 1936.0,
+        "end": 1965.7,
+        "text": "You don't have too many keys but you can have a lot of options if you can have that. I think now that the idea is clear. Yeah. Uh we should now uh try to decide um on our target group. Yeah. Which I think is quite tricky. Um basically we're trying to get people to buy a remote control. Wouldn't they already have a remote control with their television when they buy one? Of course they have already one. So our our our remote control has to be better."
+      },
+      {
+        "id": "s00070",
+        "start": 1965.7,
+        "end": 1993.2,
+        "text": "But it's not going to have more functionality because it's only a low market it's a cheap end remote control. We can't beat them on functionality. We might we'll be able to beat them on the the look of it, the the design of it, but that's not a big seller if they're not going to just go and buy a new remote control just'cause it looks pretty. They have to actually need it as well. So I'm not sure how we can get people to buy this thing. Well, I think m many people"
+      },
+      {
+        "id": "s00071",
+        "start": 1993.2,
+        "end": 2021.7,
+        "text": "said uh in your in in your research uh uh uh the appearance of the uh R C is is important when they're buying one. But but why are they buying one in the first place? Indeed. So that will be about functionality. Hmm. But if people are buying your remote control for functionality they'll buy a universal remote. I've got friends who have got so many things they need a universal remote, otherwise they're using"
+      },
+      {
+        "id": "s00072",
+        "start": 2021.7,
+        "end": 2049.8,
+        "text": "five different remotes for their all their things. In that case they wouldn't buy our product because it doesn't give them what they need in terms of functionality. So you you think we should go for a more universal well we can't with the price range. We we're not building a universal remote, we're not building a high-end product. What do you think about five yeah twelve point five euros uh per R R C. And I think uh with this"
+      },
+      {
+        "id": "s00073",
+        "start": 2049.8,
+        "end": 2079.1,
+        "text": "Now you know that chips are very uh cheap and uh we can include in our controls some new features. Yeah. And um but yeah. If we're getting to universal remote territory, we're getting to L C D screens and things like that, which would drive the cost up a lot. I don't know. I don't know whether that's necessary. Is it L C D? I think Universal Remote is not necessary. I think that this could be this could be a market because"
+      },
+      {
+        "id": "s00074",
+        "start": 2079.1,
+        "end": 2108.2,
+        "text": "Universal remote controls tend to be quite expensive. And quite complicated to use, yeah. So we can try to go in between and offer a product which is not as expensive and not as complicated. But still, people have the idea this is more functional than a normal RC because it has more, it is in some kind universal."
+      },
+      {
+        "id": "s00075",
+        "start": 2108.2,
+        "end": 2137.9,
+        "text": "But if we're going for the say fifteen to twenty five age group then not many of them would actually own T V s to use a remote control on. Yes, we we're targeting I think on more on the on the twenty to forty group. Okay. So there people who just have or already have a job and have the money but may not want to spend that much money on a on a universal in your"
+      },
+      {
+        "id": "s00076",
+        "start": 2137.9,
+        "end": 2166.4,
+        "text": "I don't know really what the the price range for remote controls is. Are we going to be at the very bottom of the price range or are we kind of middle to bottom? I don't know. Well I think uh when we think it over I f I think we are trying to offer a kind of universal control for for less money. Yeah. So d well, do you agree?"
+      },
+      {
+        "id": "s00077",
+        "start": 2166.4,
+        "end": 2194.5,
+        "text": "Well, uh it's fine with me, like the price as long as it is uh not too expensive. Yeah, because we have to take into account that we're gonna we're gonna sell uh four around four million. So when we speak about these numbers, uh the price of a chip is uh price of a chip is very cheap. So I'm okay for uh designing uh a less"
+      },
+      {
+        "id": "s00078",
+        "start": 2194.5,
+        "end": 2224.4,
+        "text": "Yeah, a kind of universal uh asking you think it's possible for the twelve Euro fifty yeah. Okay um so then we we decide on on on going to this more universal kind of control. Yeah, that's that's what we needed basically. Okay, that's needed right now. Basically you can look through the standard to get the market really needed that so I guess what I like from a universal might is maybe choosing between"
+      },
+      {
+        "id": "s00079",
+        "start": 2224.4,
+        "end": 2253.9,
+        "text": "Three devices, be able to switch between them. Maybe stereo, VCR and T V. Exactly. And just be able to s use them all from the same remote, but not at the same time. You can also browse through all the standards, you know. There are the limited standards for all of them and you can just browse through them. So given we are going for this uh uh universal type, um maybe it's good when you try to find out which components you therefore need and you will"
+      },
+      {
+        "id": "s00080",
+        "start": 2253.9,
+        "end": 2283.2,
+        "text": "try to get more specific uh user interface uh concept. And maybe you can look on on what trends are in this uh in this type of market. Voila. Hm. So so anyone uh has point to bring in or shall we? Oh I don't have anything right now. You can we'll we'll go and we'll be sure we'll come up with something good."
+      },
+      {
+        "id": "s00081",
+        "start": 2283.2,
+        "end": 2311.3,
+        "text": "Yes, we uh we can have lunch now. So um after lunch you have uh we have uh thirty minutes of work and then we have the next meeting. But you will be uh informed via uh the computer. Okay, okay, cool, okay. Perfect. See you later."
+      }
+    ],
+    "model": {
+      "model_id": "nvidia/parakeet-tdt-0.6b-v2",
+      "package": "sherpa-onnx-nemo-parakeet-tdt-0.6b-v2-int8",
+      "runtime": "sherpa-onnx",
+      "runtime_version": "1.13.8+cuda12.cudnn9",
+      "provider": "cuda",
+      "num_threads": 4,
+      "file_sha256": {
+        "encoder.int8.onnx": "a32b12d17bbbc309d0686fbbcc2987b5e9b8333a7da83fa6b089f0a2acd651ab",
+        "decoder.int8.onnx": "b6bb64963457237b900e496ee9994b59294526439fbcc1fecf705b31a15c6b4e",
+        "joiner.int8.onnx": "7946164367946e7f9f29a122407c3252b680dbae9a51343eb2488d057c3c43d2",
+        "tokens.txt": "ec182b70dd42113aff6c5372c75cac58c952443eb22322f57bbd7f53977d497d"
+      }
+    },
+    "load_seconds": 4.750523800001247,
+    "decode_seconds": 129.71535929990932,
+    "created_at": "2026-10-05T19:19:12.857352+00:00",
+    "warnings": [
+      "Timestamps identify audio windows, not individual word boundaries."
+    ]
+  },
+  "asr_word_errors": {
+    "reference_words": 5784,
+    "hypothesis_words": 4796,
+    "substitutions": 273,
+    "deletions": 1020,
+    "insertions": 32,
+    "wer": 0.2290802213001383,
+    "aligned_start_seconds": 228.0,
+    "aligned_end_seconds": 2283.2,
+    "excluded_leading_seconds": 228.0,
+    "excluded_trailing_seconds": 60.46668750000026,
+    "normalization": "Lowercase; punctuation to separators; apostrophes retained; no number expansion.",
+    "alignment": "Complete ASR windows inside lexical annotation coverage; reference words by midpoint. Overlapping speakers sorted by start and speaker file. Not an official AMI benchmark."
+  },
+  "refined": {
+    "schema_version": "1.0",
+    "source_sha256": "eb5116c942816168ffa883ca9cfa247a26df2124164ffccf6e1f56380e63f275",
+    "policy_sha256": "418986f63c77224b8891478d861dfc8e2a165437137008a4267c8a1321af80cf",
+    "created_at": "2026-10-07T19:36:14.370896+00:00",
+    "segments": [
+      {
+        "id": "s00001",
+        "start": 0.0,
+        "end": 29.5,
+        "text": "Yes, this one is like here are my slides. Yeah. For participant free technical? Yeah. Uncomfortable. Working thanks for wow, what is it? I had to change your name as Kevin."
+      },
+      {
+        "id": "s00002",
+        "start": 29.5,
+        "end": 56.8,
+        "text": "Okay, I didn't get it. I just do it. Well for me. I just save it. Just clean the whiteboard and then put it back."
+      },
+      {
+        "id": "s00003",
+        "start": 56.8,
+        "end": 83.9,
+        "text": "Yeah. Because it's for the previous media between the future. I have to save my file."
+      },
+      {
+        "id": "s00004",
+        "start": 83.9,
+        "end": 112.8,
+        "text": "But I sent you the email. So where are you? Shall I start or remember?"
+      },
+      {
+        "id": "s00005",
+        "start": 112.8,
+        "end": 140.3,
+        "text": "Okay, you oh, I will."
+      },
+      {
+        "id": "s00007",
+        "start": 169.0,
+        "end": 198.1,
+        "text": "Oh, is it run the wrong way? Yes."
+      },
+      {
+        "id": "s00008",
+        "start": 198.1,
+        "end": 228.0,
+        "text": "So I see all everybody's here, okay? And we can start meeting. Okay. What's the agenda for this meeting? The I will uh present the uh agenda with with with with slides to you um as you can see here. Perfect. So first"
+      },
+      {
+        "id": "s00009",
+        "start": 228.0,
+        "end": 257.5,
+        "text": "Just to mention, I will take notes of this meeting and I will try to work them out and give them to you. I've also made notes of the previous meeting and I was about to send them you, but then I had to go to this meeting, so you will get them to get them to get them to you are the secretary also? Yes."
+      },
+      {
+        "id": "s00010",
+        "start": 257.5,
+        "end": 286.6,
+        "text": "Um then I hope you all have uh worked out some presentations about uh about well the the task given to you in the previous meeting. Um we will uh in a minute we will uh start with them um"
+      },
+      {
+        "id": "s00011",
+        "start": 286.6,
+        "end": 314.7,
+        "text": "We will see in which order we'll handle them off. Um then I will uh bring in some some some new requirements I I got uh from the account manager. I try to work them out. They were quite abstract and we can have maybe have come some discussion about it uh um about the functions and well in this meeting we should really uh try to reach a decision about"
+      },
+      {
+        "id": "s00012",
+        "start": 314.7,
+        "end": 342.2,
+        "text": "the target group and the functionality of the you mean the social target group? Yes, I mean yes w who are we going to uh the customers, okay, the customers indeed. Yes. I think that's that's important. Great question, yeah. Uh so the and then uh we will close this meeting uh and after this meeting we'll uh"
+      },
+      {
+        "id": "s00013",
+        "start": 342.2,
+        "end": 370.7,
+        "text": "We'll have a lunch. Good. Maybe. Why, Anna, can you ha do you have a presentation? No, I don't. You don't have a presentation? I wasn't. No. You were not able to. I can talk about it, but I have no slide training. Maybe you can can just talk about it or maybe you can use the whiteboard if necessary. Well, I've just been"
+      },
+      {
+        "id": "s00014",
+        "start": 370.7,
+        "end": 398.4,
+        "text": "presented with some research we've done in a small focus group, so a hundred people just asked them about their remote control usage habits and what they want in a remote control. Um it's probably can't email this to you. I've just got a web page with some data on it. Um basically it's saying that users generally dislike the look and feel of their remote controls. Um seventy five of you seventy five percent of users"
+      },
+      {
+        "id": "s00015",
+        "start": 398.4,
+        "end": 427.5,
+        "text": "find most remote controls ugly. Um eighty percent of users would spend more money when a remote control would look fancy. Um current remote controls do not match well the operating behavior of the user. Uh seventy five percent of users said there's app a lot, so they use the remote control quite frequently while they're watching television. Uh fifty percent of users say that they only use ten percent of the buttons. So they've got a remote control with a lot of functionality but"
+      },
+      {
+        "id": "s00016",
+        "start": 427.5,
+        "end": 456.4,
+        "text": "Really most of the time they only use a small part of that. Do you do you have this uh information on the web page? I have a web page, yes. Maybe maybe you can can send an email to me later uh about it. So basically um there's a breakdown of how much they use the different functions on a remote control. Um power and volume selection are only used a few times within this"
+      },
+      {
+        "id": "s00017",
+        "start": 456.4,
+        "end": 483.9,
+        "text": "per hour. Um channel selection is used one hundred and sixty eight times. Um and then there's things like channel settings, audio settings, which are only used very infrequently. Um teletext is used um fourteen times in the hour. So it is used but not nearly as much as the channel selection is used. Um an interesting thing that this report has brought up is that"
+      },
+      {
+        "id": "s00018",
+        "start": 483.9,
+        "end": 513.8,
+        "text": "Um fifty percent of users report that the remote control gets lost a lot of the time in the room. So some way of locating the remote control would be very useful to a lot of users. Um thirty-four per cent said it takes too long to learn to use a remote control. They want something that's easier to use straight away, more intuitive perhaps. It's easy to learn or what do you say? Thirty-four per cent said it took too much time to learn to use new ones."
+      },
+      {
+        "id": "s00019",
+        "start": 513.8,
+        "end": 542.9,
+        "text": "And 26% said remote controls are bad, but RSI. I don't know how we'd go about combating that. What do you think that for RSI, strain injury? They think that, or do they doctor says that? But it's the opinion of the users, huh? That's what the report says, yeah. And then it's got a demographic breakdown. Maybe you cannot put this web page."
+      },
+      {
+        "id": "s00020",
+        "start": 542.9,
+        "end": 571.8,
+        "text": "Online on the uh I should be able to actually. If I email it to you now, you can maybe just disconnect. Okay, it's a web page on the C yeah it's a file, okay. Otherwise you yeah you can connect this one over to your computer. So these are important numbers that"
+      },
+      {
+        "id": "s00021",
+        "start": 571.8,
+        "end": 600.7,
+        "text": "Matthew and I need to take into account for this. It's probably easier if you put it on yours and now it's the email to you. It's just a web link. Okay. Yeah, these numbers are have to be have to be taken into account for the uh both user interface and functional design."
+      },
+      {
+        "id": "s00022",
+        "start": 600.7,
+        "end": 630.0,
+        "text": "One thing it goes on to talk about, which is interesting, is the because if there are many numbers and we need to select to c to constraint uh our design based on what is more important. Yeah. Um one thing that's interesting is talking about um speech recognition in a remote control. And who would pay more for that and whether people would find it useful."
+      },
+      {
+        "id": "s00023",
+        "start": 630.0,
+        "end": 658.1,
+        "text": "Do you have number file on that? Yes, I'll just get this up. So they wouldn't they would not need any button on speech. So potentially yeah. I think even for interesting idea. Interesting. Yeah, I think that would not work so well. You won't have both options. Okay. Well it would it would"
+      },
+      {
+        "id": "s00024",
+        "start": 658.1,
+        "end": 687.2,
+        "text": "be a solution for uh w when your remote control is lost. I mean when it has pet recognition then then it doesn't matter where it is, m well it's we should be in range. Or maybe it can respond and produce a sound, so say where it is. But th these are all quite fancy futures. I'm not sure whether we will we can make this for for twelve Euro fifty cents."
+      },
+      {
+        "id": "s00025",
+        "start": 687.2,
+        "end": 714.5,
+        "text": "No, you can't and we don't know where the state of the art of speech recognition is. Maybe you know oh well it depends, you know, like there is uh it's a very small vocabulary where you want to do the operations, like you want to say on, off, one, two, but it's quite noisy if there is the T V yeah it's not going to be so easy but"
+      },
+      {
+        "id": "s00026",
+        "start": 714.5,
+        "end": 743.8,
+        "text": "Usually it's going to be more of an isolated do we have some work but I don't know twenty five. To summarize maybe the this is now talking about um who would pay for speech recognition in a remote control, who would pay more for it. Um ninety percent of the fifteen to twenty five year old market said that they would pay more. It goes down from there, seventy six percent for twenty five to thirty five, thirty five percent for thirty five to forty five."
+      },
+      {
+        "id": "s00027",
+        "start": 743.8,
+        "end": 772.7,
+        "text": "Um 22% for forty-five to fifty five and then eight percent for fifty five to sixty five. Big length, okay. Yeah, which yeah it really depends where we're going to be targeting this product, um which we'll be talking about later I think. Yes, we will talk about it later. Did you get the email? Yeah, that one. Just follow that link."
+      },
+      {
+        "id": "s00028",
+        "start": 772.7,
+        "end": 801.8,
+        "text": "It'll be in a different window, yeah. That's left. That one. Yep. Okay, perfect. So that's the figures I was just talking about there, with the different demographics. Another thing it's talking about there is the LCD screen, but there's no figures apparently on that."
+      },
+      {
+        "id": "s00029",
+        "start": 801.8,
+        "end": 829.5,
+        "text": "Uh maybe uh Marl k c can you give uh uh your presentation now I okay I stay now you can move I think, yeah. You can move uh as far as maybe I take your chair."
+      },
+      {
+        "id": "s00030",
+        "start": 829.5,
+        "end": 859.0,
+        "text": "So I think as everybody knows uh I'm the uh industrial designer and uh in this presentation uh this quick presentation um is gonna focus on the working design of the the remote control."
+      },
+      {
+        "id": "s00031",
+        "start": 859.0,
+        "end": 887.5,
+        "text": "And I'd like first to give a quick uh very simple introduction how does it work so that everybody knows, even if you don't have a very uh technical background, uh what is it, because I think in the project it's important. So basically um the basic function of a remote control is to send uh messages to another system that is fixed. And so an energy source feeds an integrated secret, the chip."
+      },
+      {
+        "id": "s00032",
+        "start": 887.5,
+        "end": 917.2,
+        "text": "that can compose messages usually uh through um infrared bits and uh the user interface controls the chip and accordingly the the messages, right. So my method for um designing the yeah, the work design uh yeah, first the the main point is that I would wish to to make a really functional product."
+      },
+      {
+        "id": "s00033",
+        "start": 917.2,
+        "end": 945.9,
+        "text": "I would prefer to have very functional capabilities rather than fancy stuff that in fact is not used and doesn't work. So for that, yeah, as it's important to take into account the user requirements from the marketing expert Anna. And we should agree on what are the technical functions for this remote control."
+      },
+      {
+        "id": "s00034",
+        "start": 945.9,
+        "end": 973.4,
+        "text": "And I'll show you the working design. So basically, here is a really large view of what we want: we want an on-off button, it can be simple, but it's important, and also enabling to browse channels as well as other buttons that come after."
+      },
+      {
+        "id": "s00035",
+        "start": 973.4,
+        "end": 1000.7,
+        "text": "The components I quickly draw here is that in this part you have the remote control, the sender, and on the other part the receiver. So that's my method is will be to well my aim will be to design the and choose the chips and the infrared components to build the remote control, right? So"
+      },
+      {
+        "id": "s00036",
+        "start": 1000.7,
+        "end": 1028.8,
+        "text": "Of course, we need energy sources and the receiver or a receiver. This is a really quick design. You stop me or interrupt me if you don't agree on it, on that. And so what I found and after a lot of work actually, I draw for you this schema that can"
+      },
+      {
+        "id": "s00037",
+        "start": 1028.8,
+        "end": 1056.1,
+        "text": "Be maybe too technical for you, but it's really important for me, you know. Overwhelming. And uh that's it. So I won't go into details about that, but uh these are my preferences to use uh that kind of components. And and why do you want this kind of components? I mean, are they cheap or are they uh reliable? What were your"
+      },
+      {
+        "id": "s00038",
+        "start": 1056.1,
+        "end": 1083.4,
+        "text": "So the main components you see here are the cheapest I found and you have always a compromise with readability and if it's expensive but these ones are also really readable. So yeah that's it for the working design. I hope you get your"
+      },
+      {
+        "id": "s00039",
+        "start": 1083.4,
+        "end": 1112.7,
+        "text": "Clearer view on what a remote control is in terms of technical components, but maybe, yeah, it's more clear now, I think. So, but is it can you just buy it on the market and plug it in, or you want to? No, no, no, we will. This is a preference, but we can always change what I was thinking about this."
+      },
+      {
+        "id": "s00040",
+        "start": 1112.7,
+        "end": 1141.6,
+        "text": "schema uh about uh the sender and the receiver. Um can you can get back to it? Yeah. Uh the receiver is of course already in the television and we are not uh able to change it. Of course, yeah. You must adapt to the receiver. I I suppose there is a standard uh way of communicating to televisions. Uh yeah, we will use uh infrared protocol"
+      },
+      {
+        "id": "s00041",
+        "start": 1141.6,
+        "end": 1169.1,
+        "text": "Using infrared and of course we need to adapt to that protocol that already exists and but we what we can do is adapting the the chips inside choose the best chips and infrared bubbles. Yes, okay."
+      },
+      {
+        "id": "s00042",
+        "start": 1169.1,
+        "end": 1196.4,
+        "text": "Okay. Thank you. Well, it's just you have to change the frequencies. The frequencies? Yeah, yeah. Of course, yeah, in the chip you have yeah. But you should be careful. People are sometimes becoming problem like a guy has recently designed a remote. Yeah. So basically it draws through all the things. So maybe you should think of"
+      },
+      {
+        "id": "s00043",
+        "start": 1196.4,
+        "end": 1224.7,
+        "text": "Of course, yeah, we should take that into the middle of the table. You have the T V in the next apartment's really loud. Everyone's T V and you can just walk away. You don't have to be near the T V at all. I like that idea. These things. Maybe we can go to your presentation as well. I assume you were finished here. Yes. Okay."
+      },
+      {
+        "id": "s00044",
+        "start": 1224.7,
+        "end": 1251.8,
+        "text": "So I can take I think mine over there okay so voila I can take mine it's okay so okay"
+      },
+      {
+        "id": "s00045",
+        "start": 1251.8,
+        "end": 1281.1,
+        "text": "Uh sorry? I know where it is. It's on the desktop. It's technical function. Okay. Like so. Well, so mm I'm going to talk a little bit about the technical function. So w what actually it's about what is the user going to do. As and Maya has presented what is going inside. So what's the user is going to see from the outside and how he's going to use it. So"
+      },
+      {
+        "id": "s00046",
+        "start": 1281.1,
+        "end": 1310.6,
+        "text": "Well the approach was that uh basically the idea is to send a message to the T V set as My has pointed and it will be decoded by the T V. And usually we it is easier to have uh keys or buttons with which people can uh press and then um changing a button will basically uh change the message which is being sent to the T V and uh um"
+      },
+      {
+        "id": "s00047",
+        "start": 1310.6,
+        "end": 1337.7,
+        "text": "And basically it sends an infrared signal and decoded by the receiver. So as Anna has said, that this key people are interested in things which are you don't need to press the keys. People are can have the speech recognition, but this is a question which will we have to see later. But in the present scenario is that you have certain keys and you press it, like your mobile phone."
+      },
+      {
+        "id": "s00048",
+        "start": 1337.7,
+        "end": 1365.8,
+        "text": "and it sends a message to the T V and so generally I don't have some figures, sorry, but um so there are two kinds of uh remote if you popularly in the household. Actually, so you have a standard T V remote where you have just a on/off button and play uh volume change and keys for the number and more than one digit option."
+      },
+      {
+        "id": "s00049",
+        "start": 1365.8,
+        "end": 1394.9,
+        "text": "And if you see for example right now uh even the one uh more than one digit option is for two digit channel, which is like ninety-nine. But tomorrow you might have one fifty channels, you know, to browse or two hundred channels to browse, who knows. But uh uh then there is a this is a standard one with without any fancy thing, you know, like uh it doesn't have to latex option, it can without any it's a very simple thing."
+      },
+      {
+        "id": "s00050",
+        "start": 1394.9,
+        "end": 1422.6,
+        "text": "Um which which you can browse. And then you have a uh what's the video remote p which is like usually it has almost all the keys over there and but it then it has other options like stop uh and then you play the movie or uh or fast forward the movie or something like that. So i it has those so these are the standard uh commonly found"
+      },
+      {
+        "id": "s00051",
+        "start": 1422.6,
+        "end": 1452.5,
+        "text": "remote controls and the market and then which is generally used by the people and then well personal preferences I would basically think of having a kind of aim for the next generation thing where the we could have both the uh the f uh T V and the remote video remote control because uh some of the keys in the video is remote control and the T V"
+      },
+      {
+        "id": "s00052",
+        "start": 1452.5,
+        "end": 1482.2,
+        "text": "They could be integrated together so that uh we could um aim for the like in the f coming future um that type of uh applications how would that work? So you've got say maybe a VCR and a T V which are separate. So on my one at home I've got a V C R remote which then changes the channel on the V C R and doesn't do anything on the T V. So is there going to be like a switch on the remote that says use the T V or use the V C R or does it know which one you want to use?"
+      },
+      {
+        "id": "s00053",
+        "start": 1482.2,
+        "end": 1511.1,
+        "text": "Actually you could think of you can have a key which could tell it could go to the video thing but you still can't in that case when it you use that the function should be able to take up the VCR option and you could play it or you can also think about having like in a few days you will be ha in in"
+      },
+      {
+        "id": "s00054",
+        "start": 1511.1,
+        "end": 1540.0,
+        "text": "few uh coming years you might even have a system where you have a separate uh sitting setup box and uh you have uh um something like uh you don't you don't you suppose you're not able to watch some program and actually it's downloading all the time for you and uh you can just you know uh when you come back you can just switch on that thing and watch the program. In that case, you want to browse fast or browse slow. You want to have those kind of functionalities."
+      },
+      {
+        "id": "s00055",
+        "start": 1540.0,
+        "end": 1567.9,
+        "text": "This is our kind of next generation. It's a next generation thing, but it is going to come in a couple of years. I think it's it it's already there. I mean the hard disk uh recorders, yeah I I've seen them in the show. Yeah, so it's going to record your things and you and you you need basically the functionalities what you need in both uh uh video as well as in the standard T V thing. But I don't think we're trying to make uh universal remote here. No, no, we are not making a universal remote. We are just looking at uh"
+      },
+      {
+        "id": "s00056",
+        "start": 1567.9,
+        "end": 1596.0,
+        "text": "Given a scenario, I have a T V and tomorrow I'm going to have a setup box which is going to sit there and uh it's going to do the job for me. We need to decide on on on and how far we go to in this I mean we can go pretty far I think with with with functions and possible uh future prospects. Yeah, so but it's good to keep in mind. Okay, so that was ends my presentation."
+      },
+      {
+        "id": "s00057",
+        "start": 1596.0,
+        "end": 1624.3,
+        "text": "So we can always discuss about it. For example, the presently the video market actually this demand, video over demand or what we call it as is presently booming up actually. So it i like people are providing like things like movies you can select actually. So you want to watch a movie and then"
+      },
+      {
+        "id": "s00058",
+        "start": 1624.3,
+        "end": 1652.2,
+        "text": "Your provider gives a list of movies and then you select those lists. And it basically you go off, it downloads the movie, it gives for you. And then when you come, you want to watch it on your TV. Or even you don't need to download it, it's streamed online. Yeah, it can be streamed online for you. And you can say what time I want to watch the movie. Yeah. Yeah. So,"
+      },
+      {
+        "id": "s00059",
+        "start": 1652.2,
+        "end": 1680.1,
+        "text": "I have uh received some some s some well points of of thinking over of my account manager and uh I would like to share them with you. Um first thing is uh teletext, it's a well known feature of televisions, but it's it's getting used less and less. That's that's especially because of the internet, of course. So we should think about it. Um"
+      },
+      {
+        "id": "s00060",
+        "start": 1680.1,
+        "end": 1709.4,
+        "text": "Do we include it? And do we give it a prominent uh prominent uh place on on on the on well on the remote motor control itself? Uh as uh Anna indicated it's it's not used well very much, but it's it it is still used. Um further, yes, we must think uh do we stay uh to to television only, the television as we as we all know it with"
+      },
+      {
+        "id": "s00061",
+        "start": 1709.4,
+        "end": 1736.5,
+        "text": "which broadcasting signals and you can't go back, uh or do we uh uh go further as Matthew indicated by supporting uh uh recording uh devices by DVDs and BCRs indeed, indeed, and and and the hardest recorders um furthermore uh w"
+      },
+      {
+        "id": "s00062",
+        "start": 1736.5,
+        "end": 1766.4,
+        "text": "We need really need to interest uh y younger customers and then with younger customers I mean people uh below the age of forty uh our current customers are mainly forty plus uh which fourteen forty okay. So that's that's I mean it is a market but uh they will grow older older and all"
+      },
+      {
+        "id": "s00063",
+        "start": 1766.4,
+        "end": 1794.7,
+        "text": "Always need to have the the future with younger people. Um therefore uh younger people like friendly trendy designs. So that w we should make our our R C as trendy as possible, but it should also be uh have a reliable image. So when it looks too too spacey or too fancy people will think well"
+      },
+      {
+        "id": "s00064",
+        "start": 1794.7,
+        "end": 1823.2,
+        "text": "Does it work at all? Yeah, it's a well you can borrow the ideas how you want to keep the keys. You know, right now if you take it you have like zero, one, two, three like keys separately. But suppose if you take the present trend of mobile phones, there are like big thick keys. You press on the top, it takes one number, you press on the bottom, it takes another number. And basically"
+      },
+      {
+        "id": "s00065",
+        "start": 1823.2,
+        "end": 1850.9,
+        "text": "So the space covered so that you don't see two subtle keys there actually. So it it is like uh it it is like uh maybe you can draw it on the on the boards. But I think taking the idea of getting inspiration from mobile phones is interesting. Yeah. Especially if we're going after a younger market. Yes, yes, mobile phones are really used to the new and the funky things. It's recognizable. Yeah. There's lot there's lots of very pretty mobile phones, not too many."
+      },
+      {
+        "id": "s00066",
+        "start": 1850.9,
+        "end": 1878.2,
+        "text": "Pretty remote controls. And and they're skilled uh by using it. So for example uh okay. It works. Fine. So for example you have uh presently a key is like one, two three like this actually and uh"
+      },
+      {
+        "id": "s00067",
+        "start": 1878.2,
+        "end": 1907.3,
+        "text": "uh four, five, six like that. And uh you can have keys like this form like keys like that. How much longer we got for the meeting by the way? Because we don't talk about demographic at all and that's a very important issue. So you you can have uh keys like uh which are like so uh two sorry."
+      },
+      {
+        "id": "s00068",
+        "start": 1907.3,
+        "end": 1936.0,
+        "text": "So we basically don't change the uh original order of them, but then the keys are more spacious. They don't look uh so there there is a very slight thing. So if you press on the top it takes the one, it takes the three uh four sorry four here or five and six. So the keys can be it looks you know not very much cluttered but it looks nice for"
+      },
+      {
+        "id": "s00069",
+        "start": 1936.0,
+        "end": 1965.7,
+        "text": "You don't have too many keys but you can have a lot of options if you can have that. I think now that the idea is clear. Yeah. Uh we should now uh try to decide um on our target group. Yeah. Which I think is quite tricky. Um basically we're trying to get people to buy a remote control. Wouldn't they already have a remote control with their television when they buy one? Of course they have already one. So our our our remote control has to be better."
+      },
+      {
+        "id": "s00070",
+        "start": 1965.7,
+        "end": 1993.2,
+        "text": "But it's not going to have more functionality because it's only a low market it's a cheap end remote control. We can't beat them on functionality. We might we'll be able to beat them on the the look of it, the the design of it, but that's not a big seller if they're not going to just go and buy a new remote control just'cause it looks pretty. They have to actually need it as well. So I'm not sure how we can get people to buy this thing. Well, I think m many people"
+      },
+      {
+        "id": "s00071",
+        "start": 1993.2,
+        "end": 2021.7,
+        "text": "said uh in your in in your research uh uh uh the appearance of the uh RC is is important when they're buying one. But but why are they buying one in the first place? Indeed. So that will be about functionality. Hmm. But if people are buying your remote control for functionality they'll buy a universal remote. I've got friends who have got so many things they need a universal remote, otherwise they're using"
+      },
+      {
+        "id": "s00072",
+        "start": 2021.7,
+        "end": 2049.8,
+        "text": "five different remotes for their all their things. In that case they wouldn't buy our product because it doesn't give them what they need in terms of functionality. So you you think we should go for a more universal well we can't with the price range. We we're not building a universal remote, we're not building a high-end product. What do you think about five yeah twelve point five euros uh per RC. And I think uh with this"
+      },
+      {
+        "id": "s00073",
+        "start": 2049.8,
+        "end": 2079.1,
+        "text": "Now you know that chips are very uh cheap and uh we can include in our controls some new features. Yeah. And um but yeah. If we're getting to universal remote territory, we're getting to L C D screens and things like that, which would drive the cost up a lot. I don't know. I don't know whether that's necessary. Is it L C D? I think Universal Remote is not necessary. I think that this could be this could be a market because"
+      },
+      {
+        "id": "s00074",
+        "start": 2079.1,
+        "end": 2108.2,
+        "text": "Universal remote controls tend to be quite expensive. And quite complicated to use, yeah. So we can try to go in between and offer a product which is not as expensive and not as complicated. But still, people have the idea this is more functional than a normal RC because it has more, it is in some kind universal."
+      },
+      {
+        "id": "s00075",
+        "start": 2108.2,
+        "end": 2137.9,
+        "text": "But if we're going for the say fifteen to twenty five age group then not many of them would actually own TV s to use a remote control on. Yes, we we're targeting I think on more on the on the twenty to forty group. Okay. So there people who just have or already have a job and have the money but may not want to spend that much money on a on a universal in your"
+      },
+      {
+        "id": "s00076",
+        "start": 2137.9,
+        "end": 2166.4,
+        "text": "I don't know really what the the price range for remote controls is. Are we going to be at the very bottom of the price range or are we kind of middle to bottom? I don't know. Well I think uh when we think it over I f I think we are trying to offer a kind of universal control for for less money. Yeah. So d well, do you agree?"
+      },
+      {
+        "id": "s00077",
+        "start": 2166.4,
+        "end": 2194.5,
+        "text": "Well, uh it's fine with me, like the price as long as it is uh not too expensive. Yeah, because we have to take into account that we're gonna we're gonna sell uh four around four million. So when we speak about these numbers, uh the price of a chip is uh price of a chip is very cheap. So I'm okay for uh designing uh a less"
+      },
+      {
+        "id": "s00078",
+        "start": 2194.5,
+        "end": 2224.4,
+        "text": "Yeah, a kind of universal uh asking you think it's possible for the twelve Euro fifty yeah. Okay um so then we we decide on on on going to this more universal kind of control. Yeah, that's that's what we needed basically. Okay, that's needed right now. Basically you can look through the standard to get the market really needed that so I guess what I like from a universal might is maybe choosing between"
+      },
+      {
+        "id": "s00079",
+        "start": 2224.4,
+        "end": 2253.9,
+        "text": "Three devices, be able to switch between them. Maybe stereo, VCR and TV. Exactly. And just be able to s use them all from the same remote, but not at the same time. You can also browse through all the standards, you know. There are the limited standards for all of them and you can just browse through them. So given we are going for this uh uh universal type, um maybe it's good when you try to find out which components you therefore need and you will"
+      },
+      {
+        "id": "s00080",
+        "start": 2253.9,
+        "end": 2283.2,
+        "text": "try to get more specific uh user interface uh concept. And maybe you can look on on what trends are in this uh in this type of market. Voila. Hm. So so anyone uh has point to bring in or shall we? Oh I don't have anything right now. You can we'll we'll go and we'll be sure we'll come up with something good."
+      },
+      {
+        "id": "s00081",
+        "start": 2283.2,
+        "end": 2311.3,
+        "text": "Yes, we uh we can have lunch now. So um after lunch you have uh we have uh thirty minutes of work and then we have the next meeting. But you will be uh informed via uh the computer. Okay, okay, cool, okay. Perfect. See you later."
+      }
+    ],
+    "accepted": [
+      {
+        "segment_id": "s00028",
+        "start": 214,
+        "end": 219,
+        "original": "L C D",
+        "replacement": "LCD",
+        "reason": "Corrected spacing to match glossary term 'LCD'."
+      },
+      {
+        "segment_id": "s00071",
+        "start": 70,
+        "end": 73,
+        "original": "R C",
+        "replacement": "RC",
+        "reason": "Standardizes capitalization to match common usage and glossary style."
+      },
+      {
+        "segment_id": "s00072",
+        "start": 398,
+        "end": 403,
+        "original": "R R C",
+        "replacement": "RC",
+        "reason": "Corrects typo 'R R C' to 'RC' based on context and glossary."
+      },
+      {
+        "segment_id": "s00075",
+        "start": 105,
+        "end": 108,
+        "original": "T V",
+        "replacement": "TV",
+        "reason": "Standardizes capitalization to match common usage and glossary style."
+      },
+      {
+        "segment_id": "s00079",
+        "start": 69,
+        "end": 72,
+        "original": "T V",
+        "replacement": "TV",
+        "reason": "Corrected transcription error for the term 'TV' found in the glossary."
+      }
+    ],
+    "rejected": [
+      {
+        "edit": {
+          "segment_id": "s00007",
+          "start": 10,
+          "end": 27,
+          "original": "run the wrong way",
+          "replacement": "run the wrong way",
+          "reason": "No correction needed; term is already correct."
+        },
+        "rejection": "Replacement has no canonical glossary entry or independent meeting occurrence"
+      },
+      {
+        "edit": {
+          "segment_id": "s00014",
+          "start": 112,
+          "end": 139,
+          "original": "remote control usage habits",
+          "replacement": "remote control usage habits",
+          "reason": "No correction needed; term is already correct."
+        },
+        "rejection": "Replacement has no canonical glossary entry or independent meeting occurrence"
+      },
+      {
+        "edit": {
+          "segment_id": "s00014",
+          "start": 350,
+          "end": 365,
+          "original": "remote controls",
+          "replacement": "remote controls",
+          "reason": "No correction needed; term is already correct."
+        },
+        "rejection": "No change"
+      },
+      {
+        "edit": {
+          "segment_id": "s00016",
+          "start": 289,
+          "end": 303,
+          "original": "remote control",
+          "replacement": "remote control",
+          "reason": "No correction needed; term is already correct."
+        },
+        "rejection": "No change"
+      },
+      {
+        "edit": {
+          "segment_id": "s00019",
+          "start": 13,
+          "end": 28,
+          "original": "remote controls",
+          "replacement": "remote controls",
+          "reason": "No correction needed; term is already correct."
+        },
+        "rejection": "No change"
+      },
+      {
+        "edit": {
+          "segment_id": "s00021",
+          "start": 234,
+          "end": 248,
+          "original": "user interface",
+          "replacement": "user interface",
+          "reason": "No correction needed; term is already correct."
+        },
+        "rejection": "No change"
+      },
+      {
+        "edit": {
+          "segment_id": "s00022",
+          "start": 245,
+          "end": 263,
+          "original": "speech recognition",
+          "replacement": "speech recognition",
+          "reason": "No correction needed; term is already correct."
+        },
+        "rejection": "No change"
+      },
+      {
+        "edit": {
+          "segment_id": "s00024",
+          "start": 76,
+          "end": 91,
+          "original": "pet recognition",
+          "replacement": "pet recognition",
+          "reason": "No correction needed; term is already correct."
+        },
+        "rejection": "Replacement has no canonical glossary entry or independent meeting occurrence"
+      },
+      {
+        "edit": {
+          "segment_id": "s00026",
+          "start": 166,
+          "end": 184,
+          "original": "speech recognition",
+          "replacement": "speech recognition",
+          "reason": "No correction needed; term is already correct."
+        },
+        "rejection": "No change"
+      },
+      {
+        "edit": {
+          "segment_id": "s00029",
+          "start": 12,
+          "end": 20,
+          "original": "Marl k c",
+          "replacement": "Marl k c",
+          "reason": "No correction needed; term is already correct."
+        },
+        "rejection": "Replacement has no canonical glossary entry or independent meeting occurrence"
+      },
+      {
+        "edit": {
+          "segment_id": "s00030",
+          "start": 44,
+          "end": 63,
+          "original": "industrial designer",
+          "replacement": "industrial designer",
+          "reason": "No correction needed; term is already correct."
+        },
+        "rejection": "No change"
+      },
+      {
+        "edit": {
+          "segment_id": "s00031",
+          "start": 366,
+          "end": 383,
+          "original": "integrated secret",
+          "replacement": "integrated circuit",
+          "reason": "'secret' is a clear phonetic error for 'circuit' in the context of electronics and chips."
+        },
+        "rejection": "Replacement has no canonical glossary entry or independent meeting occurrence"
+      },
+      {
+        "edit": {
+          "segment_id": "s00033",
+          "start": 208,
+          "end": 229,
+          "original": "marketing expert Anna",
+          "replacement": "marketing executive Anna",
+          "reason": "'expert' is a phonetic error for 'executive' given the glossary entry and context of a project manager role."
+        },
+        "rejection": "Replacement has no canonical glossary entry or independent meeting occurrence"
+      },
+      {
+        "edit": {
+          "segment_id": "s00041",
+          "start": 168,
+          "end": 184,
+          "original": "infrared bubbles",
+          "replacement": "infrared bulbs",
+          "reason": "'bubbles' is a clear phonetic error for 'bulbs' when referring to infrared LED components."
+        },
+        "rejection": "Replacement has no canonical glossary entry or independent meeting occurrence"
+      },
+      {
+        "edit": {
+          "segment_id": "s00046",
+          "start": 77,
+          "end": 84,
+          "original": "T V set",
+          "replacement": "TV set",
+          "reason": "Standardized the abbreviation 'T V' to the canonical form 'TV' found elsewhere in the transcript."
+        },
+        "rejection": "Replacement has no canonical glossary entry or independent meeting occurrence"
+      },
+      {
+        "edit": {
+          "segment_id": "s00053",
+          "start": 83,
+          "end": 94,
+          "original": "video thing",
+          "replacement": "video thing",
+          "reason": "No correction needed; 'video thing' is a valid colloquial term used in the transcript."
+        },
+        "rejection": "Replacement has no canonical glossary entry or independent meeting occurrence"
+      },
+      {
+        "edit": {
+          "segment_id": "s00054",
+          "start": 78,
+          "end": 95,
+          "original": "sitting setup box",
+          "replacement": "sitting setup box",
+          "reason": "No correction needed; 'sitting setup box' is a valid descriptive term used in the transcript."
+        },
+        "rejection": "Replacement has no canonical glossary entry or independent meeting occurrence"
+      },
+      {
+        "edit": {
+          "segment_id": "s00059",
+          "start": 155,
+          "end": 163,
+          "original": "teletext",
+          "replacement": "teletext",
+          "reason": "No correction needed; term is correct."
+        },
+        "rejection": "No change"
+      },
+      {
+        "edit": {
+          "segment_id": "s00059",
+          "start": 194,
+          "end": 205,
+          "original": "televisions",
+          "replacement": "televisions",
+          "reason": "No correction needed; term is correct."
+        },
+        "rejection": "No change"
+      },
+      {
+        "edit": {
+          "segment_id": "s00060",
+          "start": 98,
+          "end": 118,
+          "original": "remote motor control",
+          "replacement": "remote control",
+          "reason": "Corrects phonetic error 'motor' to 'control' based on glossary and context."
+        },
+        "rejection": "Deletes a spoken word rather than correcting terminology"
+      },
+      {
+        "edit": {
+          "segment_id": "s00061",
+          "start": 153,
+          "end": 157,
+          "original": "BCRs",
+          "replacement": "BCRs",
+          "reason": "No correction needed; acronym is standard in context."
+        },
+        "rejection": "Replacement has no canonical glossary entry or independent meeting occurrence"
+      },
+      {
+        "edit": {
+          "segment_id": "s00061",
+          "start": 190,
+          "end": 207,
+          "original": "hardest recorders",
+          "replacement": "hard disc recorders",
+          "reason": "Corrects phonetic error 'hardest' to 'hard disc' based on context of recording devices."
+        },
+        "rejection": "Replacement has no canonical glossary entry or independent meeting occurrence"
+      },
+      {
+        "edit": {
+          "segment_id": "s00066",
+          "start": 40,
+          "end": 47,
+          "original": "skilled",
+          "replacement": "skilled",
+          "reason": "No correction needed; context implies 'skilled' as in 'capable'."
+        },
+        "rejection": "Replacement has no canonical glossary entry or independent meeting occurrence"
+      },
+      {
+        "edit": {
+          "segment_id": "s00072",
+          "start": 15,
+          "end": 22,
+          "original": "remotes",
+          "replacement": "remotes",
+          "reason": "No correction needed; plural form is correct."
+        },
+        "rejection": "Replacement has no canonical glossary entry or independent meeting occurrence"
+      },
+      {
+        "edit": {
+          "segment_id": "s00074",
+          "start": 261,
+          "end": 263,
+          "original": "RC",
+          "replacement": "RC",
+          "reason": "No correction needed; term is correct."
+        },
+        "rejection": "Replacement has no canonical glossary entry or independent meeting occurrence"
+      },
+      {
+        "edit": {
+          "segment_id": "s00076",
+          "start": 49,
+          "end": 64,
+          "original": "remote controls",
+          "replacement": "remote controls",
+          "reason": "No correction needed; plural form is correct."
+        },
+        "rejection": "No change"
+      },
+      {
+        "edit": {
+          "segment_id": "s00080",
+          "start": 28,
+          "end": 42,
+          "original": "user interface",
+          "replacement": "user interface designer",
+          "reason": "Corrected the term to match the glossary entry 'user interface designer'."
+        },
+        "rejection": "Adds unsupported speech or completes a role"
+      },
+      {
+        "edit": {
+          "segment_id": "s00001",
+          "original": "Real Reaction",
+          "replacement": "Real reaction",
+          "reason": "Corrected phonetic spelling of 'Real reaction' based on glossary alias 'Real Reaction'."
+        },
+        "rejection": "Original anchor is absent or ambiguous"
+      },
+      {
+        "edit": {
+          "segment_id": "s00014",
+          "original": "remote control",
+          "replacement": "remote control",
+          "reason": "No correction needed; term is already correct."
+        },
+        "rejection": "Original anchor is absent or ambiguous"
+      },
+      {
+        "edit": {
+          "segment_id": "s00015",
+          "original": "remote controls",
+          "replacement": "remote controls",
+          "reason": "No correction needed; term is already correct."
+        },
+        "rejection": "Original anchor is absent or ambiguous"
+      },
+      {
+        "edit": {
+          "segment_id": "s00017",
+          "original": "remote control",
+          "replacement": "remote control",
+          "reason": "No correction needed; term is already correct."
+        },
+        "rejection": "Original anchor is absent or ambiguous"
+      },
+      {
+        "edit": {
+          "segment_id": "s00018",
+          "original": "remote control",
+          "replacement": "remote control",
+          "reason": "No correction needed; term is already correct."
+        },
+        "rejection": "Original anchor is absent or ambiguous"
+      },
+      {
+        "edit": {
+          "segment_id": "s00020",
+          "original": "remote control",
+          "replacement": "remote control",
+          "reason": "No correction needed; term is already correct."
+        },
+        "rejection": "Original anchor is absent or ambiguous"
+      },
+      {
+        "edit": {
+          "segment_id": "s00043",
+          "original": "T V",
+          "replacement": "TV",
+          "reason": "Standardized the abbreviation 'T V' to the canonical form 'TV' found elsewhere in the transcript."
+        },
+        "rejection": "Original anchor is absent or ambiguous"
+      },
+      {
+        "edit": {
+          "segment_id": "s00048",
+          "original": "T V",
+          "replacement": "TV",
+          "reason": "Standardized the abbreviation 'T V' to the canonical form 'TV' found elsewhere in the transcript."
+        },
+        "rejection": "Original anchor is absent or ambiguous"
+      },
+      {
+        "edit": {
+          "segment_id": "s00049",
+          "original": "T V",
+          "replacement": "TV",
+          "reason": "Standardized the abbreviation 'T V' to the canonical form 'TV' found elsewhere in the transcript."
+        },
+        "rejection": "Original anchor is absent or ambiguous"
+      },
+      {
+        "edit": {
+          "segment_id": "s00051",
+          "original": "T V",
+          "replacement": "TV",
+          "reason": "Standardized the abbreviation 'T V' to the canonical form 'TV' found elsewhere in the transcript."
+        },
+        "rejection": "Original anchor is absent or ambiguous"
+      },
+      {
+        "edit": {
+          "segment_id": "s00052",
+          "original": "V C R",
+          "replacement": "VCR",
+          "reason": "Standardized the abbreviation 'V C R' to the canonical form 'VCR' found elsewhere in the transcript."
+        },
+        "rejection": "Original anchor is absent or ambiguous"
+      },
+      {
+        "edit": {
+          "segment_id": "s00052",
+          "original": "V C R",
+          "replacement": "VCR",
+          "reason": "Standardized the abbreviation 'V C R' to the canonical form 'VCR' found elsewhere in the transcript."
+        },
+        "rejection": "Original anchor is absent or ambiguous"
+      },
+      {
+        "edit": {
+          "segment_id": "s00062",
+          "original": "R C",
+          "replacement": "RC",
+          "reason": "Standardizes capitalization to match common usage and glossary style."
+        },
+        "rejection": "Original anchor is absent or ambiguous"
+      },
+      {
+        "edit": {
+          "segment_id": "s00064",
+          "original": "spacey",
+          "replacement": "spacey",
+          "reason": "No correction needed; slang term is acceptable in context."
+        },
+        "rejection": "Original anchor is absent or ambiguous"
+      },
+      {
+        "edit": {
+          "segment_id": "s00065",
+          "original": "R C",
+          "replacement": "RC",
+          "reason": "Standardizes capitalization to match common usage and glossary style."
+        },
+        "rejection": "Original anchor is absent or ambiguous"
+      },
+      {
+        "edit": {
+          "segment_id": "s00070",
+          "original": "remote control",
+          "replacement": "remote control",
+          "reason": "No correction needed; term is correct."
+        },
+        "rejection": "Original anchor is absent or ambiguous"
+      },
+      {
+        "edit": {
+          "segment_id": "s00073",
+          "original": "L C D",
+          "replacement": "LCD",
+          "reason": "Standardizes capitalization to match common usage and glossary style."
+        },
+        "rejection": "Original anchor is absent or ambiguous"
+      }
+    ],
+    "calls": [
+      {
+        "key": "3d29a0d6a539a0066989d0a2f077db4436c74988b235fe5949525e78aa66cbd3",
+        "model": {
+          "tag": "qwen3.5:4b",
+          "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+          "runtime_version": "0.35.1",
+          "parameter_size": "4.2B",
+          "quantization": "Q4_K_M"
+        },
+        "prompt_sha256": "08a76f01e95d5aee0a83fca4c20a58024026d6629e9bec2319bda99b15670668",
+        "input_sha256": "e5b8898de320e0bccd8d5bc2f38b91b24188b9a14208f76ed51fb4ff5e8c2365",
+        "schema_sha256": "44955bcd50f7e9c3d8282e09ce08bc595f0a45cc4ddc6c0e4d32912240c8e7ec",
+        "context": 16384,
+        "output_tokens": 3072,
+        "temperature": 0.0,
+        "seed": 0,
+        "thinking": false,
+        "thinking_level": null,
+        "response_model_version": null,
+        "thought_tokens": null,
+        "presence_penalty": 0.0,
+        "repeat_penalty": 1.0,
+        "elapsed_seconds": 17.965016300033312,
+        "prompt_tokens": 3499,
+        "generated_tokens": 609,
+        "attempts": 1
+      },
+      {
+        "key": "0cccd1bf737b0516fc89c7a4cf826ae1eb6f6fa20f507f804589ecfce18d051a",
+        "model": {
+          "tag": "qwen3.5:4b",
+          "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+          "runtime_version": "0.35.1",
+          "parameter_size": "4.2B",
+          "quantization": "Q4_K_M"
+        },
+        "prompt_sha256": "08a76f01e95d5aee0a83fca4c20a58024026d6629e9bec2319bda99b15670668",
+        "input_sha256": "c53df345f9b7ce84f48e3a8b4d2f8d1342436c7eb50362357e74bcc9a5d14d9c",
+        "schema_sha256": "e65d8e3a0027aa02aaffec2311800e068c1ad12035324d3b41242df355f7042e",
+        "context": 16384,
+        "output_tokens": 3072,
+        "temperature": 0.0,
+        "seed": 0,
+        "thinking": false,
+        "thinking_level": null,
+        "response_model_version": null,
+        "thought_tokens": null,
+        "presence_penalty": 0.0,
+        "repeat_penalty": 1.0,
+        "elapsed_seconds": 9.859026599966455,
+        "prompt_tokens": 3416,
+        "generated_tokens": 552,
+        "attempts": 1
+      },
+      {
+        "key": "90e4a2f76f4caee7944c36ff2e136f2649aa254a5c53f178f9281c8cb254a5cf",
+        "model": {
+          "tag": "qwen3.5:4b",
+          "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+          "runtime_version": "0.35.1",
+          "parameter_size": "4.2B",
+          "quantization": "Q4_K_M"
+        },
+        "prompt_sha256": "08a76f01e95d5aee0a83fca4c20a58024026d6629e9bec2319bda99b15670668",
+        "input_sha256": "3ddaccc7d8ca211f1dbf3f29d97b25154f1f1b64c42cdabddd011fe55a2a7710",
+        "schema_sha256": "cf1bbc33d425078b7176b38d78c52db8d9cf26a6e3cc6bb4a3935f1f87ec14d9",
+        "context": 16384,
+        "output_tokens": 3072,
+        "temperature": 0.0,
+        "seed": 0,
+        "thinking": false,
+        "thinking_level": null,
+        "response_model_version": null,
+        "thought_tokens": null,
+        "presence_penalty": 0.0,
+        "repeat_penalty": 1.0,
+        "elapsed_seconds": 10.694899499998428,
+        "prompt_tokens": 3346,
+        "generated_tokens": 610,
+        "attempts": 1
+      },
+      {
+        "key": "ae63c98032484956ebb7f34ad71e0660b5e9ef15d444de8a49a7d2abeb893b06",
+        "model": {
+          "tag": "qwen3.5:4b",
+          "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+          "runtime_version": "0.35.1",
+          "parameter_size": "4.2B",
+          "quantization": "Q4_K_M"
+        },
+        "prompt_sha256": "08a76f01e95d5aee0a83fca4c20a58024026d6629e9bec2319bda99b15670668",
+        "input_sha256": "391e4b550876de391d9379f153a76ca5cc24ec934abc05db7ff722aa84882e9f",
+        "schema_sha256": "556685342ce0a22c319550153e6b6fbf795fd51426efdcb8cd1602f526433b2d",
+        "context": 16384,
+        "output_tokens": 3072,
+        "temperature": 0.0,
+        "seed": 0,
+        "thinking": false,
+        "thinking_level": null,
+        "response_model_version": null,
+        "thought_tokens": null,
+        "presence_penalty": 0.0,
+        "repeat_penalty": 1.0,
+        "elapsed_seconds": 1.8340280000120401,
+        "prompt_tokens": 851,
+        "generated_tokens": 84,
+        "attempts": 1
+      }
+    ],
+    "warnings": [
+      "Automatic edit guards cannot establish meaning. Review accepted and rejected edits."
+    ]
+  },
+  "finished_at": "2026-10-07T19:45:41.209941+00:00"
+}

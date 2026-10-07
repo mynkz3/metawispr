@@ -1,0 +1,12 @@
+{
+  "current_failed": {
+    "transcript_bytes_match": true,
+    "incomplete_document_exports_unavailable": true
+  },
+  "historical_complete": {
+    "transcript_bytes_match": true,
+    "zip_http_members_match": true,
+    "canonical_record_matches": true,
+    "note": "Saved historical record; no new inference or accuracy assertion."
+  }
+}

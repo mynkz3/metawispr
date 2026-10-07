@@ -1,0 +1,80 @@
+{
+  "meeting": "IS1000b",
+  "evaluation_role": "development; previously inspected",
+  "identity": {
+    "meeting": "IS1000b",
+    "split": "development",
+    "input_sha256": "0f71e5018a283adf85e949f456a4c360d4fb8d9c195d29ed82b4b38d0d9a724d",
+    "manual_sha256": "0dc2dc974cc022cb0671ff16e80d0127761d37808d3f63b9284409af3646d5d8",
+    "reference_sha256": "dd36afbaada143ef109bd67b850d5bdd5ad22ced1204f380477388fbc98c9676",
+    "glossary": "Real Reaction\nremote control\nindustrial designer\nuser interface designer\nmarketing executive\nproject manager\nLCD\ninfrared",
+    "asr_profile": {
+      "requested_provider": "cuda",
+      "precision": "int8",
+      "package": "sherpa-onnx-nemo-parakeet-tdt-0.6b-v2-int8",
+      "runtime_version": "1.13.8+cuda12.cudnn9",
+      "file_sha256": {
+        "encoder.int8.onnx": "a32b12d17bbbc309d0686fbbcc2987b5e9b8333a7da83fa6b089f0a2acd651ab",
+        "decoder.int8.onnx": "b6bb64963457237b900e496ee9994b59294526439fbcc1fecf705b31a15c6b4e",
+        "joiner.int8.onnx": "7946164367946e7f9f29a122407c3252b680dbae9a51343eb2488d057c3c43d2",
+        "tokens.txt": "ec182b70dd42113aff6c5372c75cac58c952443eb22322f57bbd7f53977d497d"
+      }
+    },
+    "models": [
+      {
+        "tag": "qwen3.5:4b",
+        "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+        "runtime_version": "0.35.1",
+        "parameter_size": "4.2B",
+        "quantization": "Q4_K_M"
+      },
+      {
+        "tag": "qwen3.5:4b",
+        "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+        "runtime_version": "0.35.1",
+        "parameter_size": "4.2B",
+        "quantization": "Q4_K_M"
+      }
+    ],
+    "context": 16384,
+    "output_tokens": 3072,
+    "prompts": {
+      "refine": "b09d5b798d1c2425a4f650c6b70f709748fb068bcdf35d94f9bd6c8ae4d4c807",
+      "document": "8885ab788cbf3b009ce8afb83d6343359c66d18bd732e0d8d462d38718889509",
+      "review": "fbf38c8ccb915a45c44f890cd11b35d047d918d6058cbd1a22500f5cca5ea3d6",
+      "notes": "dc00a1c75332a51b9f273194bde8323ecf59f9e4589ce67eeb40db23fb7cb01b",
+      "reconcile": "67f021ddb8638d48a6f3ca24b9a3ad12d85f013f89370b0b51672a193b7b7676",
+      "consolidate": "938e3ac0422737f310ed286a9fdf0b6379e9a1ce1c5c5662de448016baaaf9e4"
+    },
+    "refinement_policy": "418986f63c77224b8891478d861dfc8e2a165437137008a4267c8a1321af80cf",
+    "documentation_policy": "1038509dff07b4cc30ba598f0d3cec3e2ba4fd3bcd9d6e190579815044080831",
+    "source_sha256": {
+      "backend/metawispr/__init__.py": "d06b9ddd4d403ca7fc4ebbbb2d6a4ce2b8953c7b2998ddfb6d6526461734e53a",
+      "backend/metawispr/__main__.py": "3289785c7b5f19fab7757f13f0bc90b17476072f0bde8f1e05cb10f1c2121b0a",
+      "backend/metawispr/api.py": "5ea166f72b9b7a0eed783150d4e54caa85d362869b721705ccf3908d573d9825",
+      "backend/metawispr/audio.py": "b6aed3f2642c664f337e8aa7cb52ad498dbf80b9ff21b3d6ce1c5679370be00b",
+      "backend/metawispr/config.py": "c6799b7f12cbe3e5b9e49c74248f9cbf934732e68f2949452d24631e5b3e6e11",
+      "backend/metawispr/documentation.py": "03fc676bfd42c458349e0006551cf4a8118061b476616de7de56fcba3b0774b7",
+      "backend/metawispr/exports.py": "812dc4deb48906288d40cddc5a0ff3cef1ca475162d460abab29fe10c83d5361",
+      "backend/metawispr/llm.py": "461d793de9e84b0df9f0c7d86feed7921dff6a28e5d94198631e3eb7a8975803",
+      "backend/metawispr/models.py": "4004c537d11bc1bbf5d2dc42607c81da721aa15d1192f5b4c2573204b2ab7ce1",
+      "backend/metawispr/pipeline.py": "3209cc5d80d5aecfacf1b299f56e0512c8e352294a0e1c4ed38940e82e9099d5",
+      "backend/metawispr/prompts/audit.txt": "e3486988439ee43ecc443863ef4c886d0f687b7651db0dd31cbb76b8c3c3ea03",
+      "backend/metawispr/prompts/consolidate.txt": "02fa11a9c7ea612dc931a93905f781fdc6769f3fda1da8447a0ae1ab40b44b2b",
+      "backend/metawispr/prompts/document.txt": "85f06ff4884427fdbbe71b2c54845fe178ab320cb604eedea4cf13469fab3352",
+      "backend/metawispr/prompts/notes.txt": "03a8d7eb440508c8667c41f2618c88ff12d159f2d1d837af5ba1c38e3cd0abf0",
+      "backend/metawispr/prompts/reconcile.txt": "1e0d71ff42145f9e8b7a9c1a52eb328cfecaad3a5634d59567a327ab3c877892",
+      "backend/metawispr/prompts/refine.txt": "08a76f01e95d5aee0a83fca4c20a58024026d6629e9bec2319bda99b15670668",
+      "backend/metawispr/prompts/review.txt": "c26c6260d292e7c4d75d2592802147a5306661fc3a61ea549490d868fc9511c5",
+      "backend/metawispr/schemas.py": "f6d6ce113a9102963e88498de54a9824121b7bd866b9ad18569b06ec1e32e887",
+      "evaluation/ami.py": "acc3da2e99f73b7de66dad436f33b8f02643961692def09c0d22eedd8daedf88",
+      "evaluation/phase5.py": "35b25c1ca4f0092fe17a7359d022173f73c846bf8cd1dc81977009902605fa2c",
+      "evaluation/run.py": "c41061b11d28d04c7881646094112ab42fb7cd55580d4d57970a6397097f4869"
+    }
+  },
+  "identity_sha256": "a2a8b0f93822a37b0d8a4715d864f08f92bababbe9982798294efd32abafce18",
+  "baseline": "evaluation/baseline-es2002a.json",
+  "audio_input": "original; enhancement disabled",
+  "training": "none",
+  "note": "ASR checkpoint reuse is recorded in the execution report; this snapshot does not claim a new decode or semantic acceptance."
+}

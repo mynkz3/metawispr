@@ -1,0 +1,10 @@
+{
+  "real_record": true,
+  "stage": "failed",
+  "failed_stage": "documenting",
+  "retry_visible": true,
+  "raw_preserved": true,
+  "refined_preserved": true,
+  "document_absent": true,
+  "page_errors": []
+}
