@@ -1,9 +1,9 @@
 # Metawispr
 
-**Active profile (6 October 2026):** Parakeet CUDA + Gemini Flash for both ordered
-LLM stages. Qwen is retained as an explicit local alternative. See
-[Gemini setup, transcript data flow and verification](docs/GEMINI_FLASH.md).
-Genuine Gemini evaluation is pending an API key; historical accuracy failures remain open.
+**Active profile (7 October 2026):** Parakeet CUDA + local Qwen3.5 4B for both
+ordered LLM stages. Gemini integration and its private key were removed at the
+owner's request. Historical evaluation reports are retained; accuracy gates
+remain open. See [the shared Qwen profile](docs/SHARED_QWEN4B.md).
 
 A meeting workspace that turns uploaded English recordings into a raw transcript, a terminology-refined transcript, minutes, agreed decisions, and actionable tasks. Claims in the meeting record link back to their source audio.
 

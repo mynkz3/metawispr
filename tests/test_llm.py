@@ -14,6 +14,14 @@ from support import FixtureLLM
 
 
 class LLMTests(unittest.TestCase):
+    def test_environment_defaults_return_to_local_qwen_with_cuda_asr(self):
+        with patch.dict("os.environ", {}, clear=True):
+            settings = Settings.from_env()
+        self.assertEqual(settings.refiner_model, "qwen3.5:4b")
+        self.assertEqual(settings.documenter_model, "qwen3.5:4b")
+        self.assertEqual(settings.asr_provider, "cuda")
+        self.assertFalse(hasattr(settings, "llm_backend"))
+
     def setUp(self):
         self.folder = TemporaryDirectory()
         self.addCleanup(self.folder.cleanup)

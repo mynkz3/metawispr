@@ -40,7 +40,6 @@ class Settings:
     decode_timeout_seconds: int = 180
     max_pending_jobs: int = 3
     ollama_url: str = "http://127.0.0.1:11434"
-    llm_backend: str = "ollama"
     refiner_model: str = "qwen3.5:4b"
     documenter_model: str = "qwen3.5:4b"
     llm_context: int = 16384
@@ -57,12 +56,6 @@ class Settings:
             raise ValueError("ASR threads must be 1–32 and chunk seconds 1–120")
         if self.asr_provider not in {"cpu", "cuda"} or self.asr_precision not in ASR_VARIANTS:
             raise ValueError("ASR provider must be cpu/cuda and precision must be int8/fp16")
-        if self.llm_backend not in {"ollama", "gemini"}:
-            raise ValueError("LLM backend must be ollama or gemini")
-        if self.llm_backend == "gemini" and any(
-                not tag.startswith("gemini-3.") or any(c not in "abcdefghijklmnopqrstuvwxyz0123456789-." for c in tag)
-                for tag in (self.refiner_model, self.documenter_model)):
-            raise ValueError("Gemini requires Gemini 3 model IDs, for example gemini-3.8-flash")
         if self.llm_context < 4096 or self.llm_output_tokens >= self.llm_context // 2:
             raise ValueError("LLM context must be at least 4096; output must be less than half the context")
         endpoint = urlsplit(self.ollama_url)
@@ -79,8 +72,6 @@ class Settings:
             return int(os.getenv(f"METAWISPR_{name}", str(default)))
 
         precision = os.getenv("METAWISPR_ASR_PRECISION", "int8")
-        backend = os.getenv("METAWISPR_LLM_BACKEND", "gemini")
-        model = "gemini-3.8-flash" if backend == "gemini" else "qwen3.5:4b"
         if precision not in ASR_VARIANTS:
             raise ValueError("ASR precision must be int8 or fp16")
         return cls(
@@ -96,9 +87,8 @@ class Settings:
             decode_timeout_seconds=integer("DECODE_TIMEOUT_SECONDS", 180),
             max_pending_jobs=integer("MAX_PENDING_JOBS", 3),
             ollama_url=os.getenv("METAWISPR_OLLAMA_URL", "http://127.0.0.1:11434").rstrip("/"),
-            llm_backend=backend,
-            refiner_model=os.getenv("METAWISPR_REFINER_MODEL", model),
-            documenter_model=os.getenv("METAWISPR_DOCUMENTER_MODEL", model),
+            refiner_model=os.getenv("METAWISPR_REFINER_MODEL", "qwen3.5:4b"),
+            documenter_model=os.getenv("METAWISPR_DOCUMENTER_MODEL", "qwen3.5:4b"),
             llm_context=integer("LLM_CONTEXT", 16384),
             llm_output_tokens=integer("LLM_OUTPUT_TOKENS", 3072),
             llm_timeout_seconds=integer("LLM_TIMEOUT_SECONDS", 300),

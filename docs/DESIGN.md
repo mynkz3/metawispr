@@ -41,13 +41,11 @@ and focused documentation changes are planned work, not current implementation.
 
 ## 3. Model decisions
 
-**Active profile, 6 October 2026:** the owner selected Gemini Flash through
-Google's API for both ordered LLM stages, with Parakeet on CUDA. Environment
-defaults now select `gemini-3.8-flash`; Qwen remains available by explicit
-Ollama configuration. The local Qwen choices and evaluations below are retained
-as historical evidence. No Gemini accuracy improvement has been measured yet.
-See [Gemini setup and verification](GEMINI_FLASH.md). Transcript text goes to
-Google; uploaded audio, checkpoints and exports remain in the local workspace.
+**Active profile, 7 October 2026:** Parakeet CUDA followed by local Qwen3.5 4B
+for both ordered LLM stages. The owner retired Gemini integration and its local
+credential. Evaluation history remains available. Prompting, source context,
+schemas and validation guide the existing Qwen weights; no fine-tuning has been
+performed and accuracy targets remain open.
 
 | Role | Current exact selection | Execution | Decision status |
 | --- | --- | --- | --- |
@@ -86,9 +84,9 @@ flowchart TD
     WORKER --> AUDIO[FFmpeg audio preparation]
     AUDIO --> ASR[Parakeet v2 INT8]
     ASR --> RAW[Immutable raw segments]
-    RAW --> REF[Gemini Flash edit proposals]
+    RAW --> REF[Qwen3.5 4B edit proposals]
     REF --> GUARD[Validate and apply supported edits]
-    GUARD --> DOC[Gemini Flash extraction and consolidation]
+    GUARD --> DOC[Shared Qwen3.5 4B extraction and consolidation]
     DOC --> CHECK[Schema and evidence checks]
     CHECK --> RECORD[Canonical meeting record]
     RECORD --> UI

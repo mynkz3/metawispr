@@ -252,11 +252,8 @@ def source_payload(value, sources, include_text=True):
 
 
 def refinement_policy(settings, glossary):
-    identity = {"version": REFINEMENT_POLICY_VERSION, "prompt": prompt("refine"), "glossary": glossary,
-                "model": settings.refiner_model}
-    if settings.llm_backend != "ollama":
-        identity["backend"] = settings.llm_backend
-    return digest(identity)
+    return digest({"version": REFINEMENT_POLICY_VERSION, "prompt": prompt("refine"), "glossary": glossary,
+                   "model": settings.refiner_model})
 
 
 def selection_input(title, batches, decisions, tasks):
@@ -297,11 +294,8 @@ def expand_selection(selected, catalogue, uncertainties):
 
 
 def documentation_policy(settings):
-    identity = {"version": POLICY_VERSION, "prompts": [prompt("document"), prompt("review"), prompt("notes"), prompt("reconcile"), prompt("consolidate")],
-                "model": settings.documenter_model}
-    if settings.llm_backend != "ollama":
-        identity["backend"] = settings.llm_backend
-    return digest(identity)
+    return digest({"version": POLICY_VERSION, "prompts": [prompt("document"), prompt("review"), prompt("notes"), prompt("reconcile"), prompt("consolidate")],
+                   "model": settings.documenter_model})
 
 
 def candidate_items(batches):

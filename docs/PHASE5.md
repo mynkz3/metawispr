@@ -160,3 +160,26 @@ metadata and rejects changed provenance. 87 tests pass; all eleven existing
 records remain readable without modifying their original artifacts. This is a
 post-benchmark read-compatibility fix, not model/prompt tuning. Benchmark code
 and the final held-out freeze remain identified in their recorded manifests.
+
+
+## Return to local Qwen, 7 October 2026
+
+The owner retired Gemini and requested continued work with Qwen3.5 4B. The
+active pipeline again uses local Ollama for both ordered LLM stages, with
+Parakeet CUDA. The Gemini request adapter, provider selection, private key-file
+reader, cloud setup UI and obsolete run helpers were removed. The private
+repository key file was removed; neither Gemini key name is present in the
+Windows user environment. Historical reports and readable call provenance are
+retained. Removing a local credential does not revoke it at Google.
+
+The Qwen weights were not retrained. Refinement, extraction, review, notes,
+reconciliation and consolidation prompts, JSON schemas, source evidence and
+bounded retries guide inference. Prompting is not proof of correctness; the
+recorded accuracy failures remain open. This change does not claim improved
+meeting quality.
+
+95 backend tests, the production frontend build, five browser fixtures and
+WER/scorer examples pass. The genuine model browser test was skipped. The
+restarted server reports both Qwen roles ready and CUDA ASR ready; all 14
+existing meeting records remain readable. Original checkpoints and other
+agents' uncommitted work were preserved. No push is performed.

@@ -1,10 +1,8 @@
-"""Validated structured generation through local Ollama or the Gemini API."""
+"""Local Ollama structured generation with bounded input and immutable call checkpoints."""
 
 from hashlib import sha256
 from importlib.resources import files
 import json
-import os
-from pathlib import Path
 import time
 
 import httpx
@@ -60,7 +58,6 @@ def prompt(name: str) -> str:
 
 
 class Ollama:
-    thinking = False
     def __init__(self, settings: Settings):
         self.settings = settings
 
@@ -115,9 +112,11 @@ class Ollama:
     def generate(self, model, name, contract, payload, store, meeting_id, stage, validate):
         system = prompt(name)
         schema = generation_schema(contract, payload)
-        options = self.generation_options()
+        options = {"temperature": 0, "seed": 0, "num_ctx": self.settings.llm_context,
+                   "num_predict": self.settings.llm_output_tokens, "presence_penalty": 0,
+                   "repeat_penalty": 1}
         identity = {"model": model.model_dump(), "prompt": system, "schema": schema,
-                    "input": payload, "options": options, "think": self.thinking,
+                    "input": payload, "options": options, "think": False,
                     "policy": 5 if stage == "documenting" else 4}
         key = digest(identity)
         filename = f"{stage}/calls/{key}.json"
@@ -142,7 +141,9 @@ class Ollama:
                         {"role": "user", "content": compact(payload)}]
             if feedback:
                 messages.append({"role": "user", "content": feedback})
-            result = self.chat(model, messages, schema, options)
+            result = self.request("POST", "/api/chat", {"model": model.tag, "messages": messages,
+                                  "format": schema, "stream": False, "think": False,
+                                  "options": options, "keep_alive": "5m"})
             try:
                 if result.get("done") is not True or result.get("done_reason") != "stop":
                     raise ValueError("generation did not finish normally; output may be truncated")
@@ -163,22 +164,9 @@ class Ollama:
                            elapsed_seconds=time.perf_counter() - started,
                            prompt_tokens=result.get("prompt_eval_count", 0),
                            generated_tokens=result.get("eval_count", 0), attempts=attempt,
-                           thinking=self.thinking,
-                           thinking_level=options.get("thinkingConfig", {}).get("thinkingLevel"),
-                           response_model_version=result.get("modelVersion"),
-                           thought_tokens=result.get("thought_tokens"),
-                           presence_penalty=options.get("presence_penalty"), repeat_penalty=options.get("repeat_penalty"))
+                           presence_penalty=options["presence_penalty"], repeat_penalty=options["repeat_penalty"])
             store.write_json(meeting_id, filename, {"output": output.model_dump(), "call": call.model_dump()})
             return output, call
-
-    def generation_options(self):
-        return {"temperature": 0, "seed": 0, "num_ctx": self.settings.llm_context,
-                "num_predict": self.settings.llm_output_tokens, "presence_penalty": 0, "repeat_penalty": 1}
-
-    def chat(self, model, messages, schema, options):
-        return self.request("POST", "/api/chat", {"model": model.tag, "messages": messages,
-                            "format": schema, "stream": False, "think": False,
-                            "options": options, "keep_alive": "5m"})
 
     def unload(self, model):
         # An explicit barrier between model stages, rather than hoping eviction occurs.
@@ -186,103 +174,9 @@ class Ollama:
                                                "keep_alive": 0})
 
 
-def gemini_key():
-    key = os.getenv("GEMINI_API_KEY") or os.getenv("GOOGLE_API_KEY")
-    if key and key.strip():
-        return key.strip()
-    # Only read these credentials; this is not a general dotenv interpreter.
-    path = Path(".env")
-    if not path.is_file():
-        return None
-    try:
-        values = {}
-        for line in path.read_text(encoding="utf-8-sig").splitlines():
-            name, separator, value = line.strip().partition("=")
-            if separator and name.strip() in {"GEMINI_API_KEY", "GOOGLE_API_KEY"}:
-                value = value.strip()
-                if len(value) >= 2 and value[0] == value[-1] and value[0] in "\"'":
-                    value = value[1:-1]
-                values[name.strip()] = value.strip()
-        return values.get("GEMINI_API_KEY") or values.get("GOOGLE_API_KEY")
-    except (OSError, UnicodeError):
-        raise SetupError("Cannot read the private .env key file in the repository directory.") from None
-
-
-class Gemini(Ollama):
-    """Reuse checkpoint/retry validation; send only structured transcript requests."""
-    thinking = True
-
-    def request(self, method, path, body=None, timeout=None):
-        key = gemini_key()
-        if not key or not key.strip():
-            raise SetupError("Set GEMINI_API_KEY in the server environment or private repository .env file. Do not put the key in the browser or Git.")
-        try:
-            with httpx.Client(base_url="https://generativelanguage.googleapis.com/v1beta/",
-                              headers={"x-goog-api-key": key.strip()}, trust_env=False,
-                              timeout=timeout or self.settings.llm_timeout_seconds) as client:
-                response = client.request(method, path, json=body)
-                response.raise_for_status()
-                return response.json()
-        except httpx.HTTPStatusError as exc:
-            # Provider messages can echo request data. Never expose them or credentials.
-            status = exc.response.status_code
-            advice = ("Quota/rate limit reached; check AI Studio and retry later." if status == 429
-                      else "Check the API key and model access." if status in {401, 403, 404}
-                      else "Check Gemini availability and request configuration, then retry.")
-            raise SetupError(f"Gemini returned HTTP {status}. {advice}") from None
-        except (httpx.HTTPError, ValueError) as exc:
-            raise SetupError(f"Gemini request failed ({type(exc).__name__}). Check connectivity and retry.") from None
-
-    def models(self):
-        result, metadata = [], {}
-        for tag in (self.settings.refiner_model, self.settings.documenter_model):
-            if tag not in metadata:
-                entry = self.request("GET", f"models/{tag}", timeout=10)
-                if entry.get("name") != f"models/{tag}" or "generateContent" not in entry.get("supportedGenerationMethods", []):
-                    raise SetupError("Gemini model metadata is incomplete or text generation is unavailable.")
-                if (entry.get("inputTokenLimit", 0) < self.settings.llm_context
-                        or entry.get("outputTokenLimit", 0) < self.settings.llm_output_tokens):
-                    raise SetupError("Configured context/output exceeds the Gemini model limits.")
-                # Cloud weights are undisclosed. This is a labeled metadata hash.
-                metadata[tag] = LLMModel(tag=tag, digest="metadata_sha256:" + digest(entry),
-                                        runtime_version="gemini-api/v1beta; model " + str(entry.get("version", "unknown")),
-                                        parameter_size="not disclosed", quantization="not disclosed")
-            result.append(metadata[tag])
-        return tuple(result)
-
-    def generation_options(self):
-        return {"temperature": 0, "seed": 0, "maxOutputTokens": self.settings.llm_output_tokens,
-                "thinkingConfig": {"thinkingLevel": "LOW", "includeThoughts": False}}
-
-    def chat(self, model, messages, schema, options):
-        result = self.request("POST", f"models/{model.tag}:generateContent", {
-            "systemInstruction": {"parts": [{"text": messages[0]["content"]}]},
-            "contents": [{"role": "user", "parts": [{"text": message["content"]} for message in messages[1:]]}],
-            "generationConfig": {**options, "responseMimeType": "application/json", "responseJsonSchema": schema},
-        })
-        candidates = result.get("candidates", [])
-        candidate = candidates[0] if len(candidates) == 1 else {}
-        content = "".join(part.get("text", "") for part in candidate.get("content", {}).get("parts", [])
-                          if not part.get("thought"))
-        usage = result.get("usageMetadata", {})
-        return {"done": True, "done_reason": "stop" if candidate.get("finishReason") == "STOP" else "invalid",
-                "message": {"content": content}, "modelVersion": result.get("modelVersion"),
-                "prompt_eval_count": usage.get("promptTokenCount"),
-                "eval_count": usage.get("candidatesTokenCount"),
-                "thought_tokens": usage.get("thoughtsTokenCount"), "provider_response": result}
-
-    def unload(self, model):
-        pass  # Remote weights consume no local VRAM and expose no unload operation.
-
-
-def llm_client(settings):
-    return Gemini(settings) if settings.llm_backend == "gemini" else Ollama(settings)
-
-
 def llm_readiness(settings):
-    state = {"llm_backend": settings.llm_backend, "transcript_processing": "google_api" if settings.llm_backend == "gemini" else "local"}
     try:
-        models = llm_client(settings).models()
-        return {**state, "llm_ready": True, "llm_models": [model.model_dump() for model in models], "llm_error": None}
+        models = Ollama(settings).models()
+        return {"llm_ready": True, "llm_models": [model.model_dump() for model in models], "llm_error": None}
     except SetupError as exc:
-        return {**state, "llm_ready": False, "llm_models": [], "llm_error": str(exc)}
+        return {"llm_ready": False, "llm_models": [], "llm_error": str(exc)}

@@ -19,7 +19,7 @@ from types import SimpleNamespace
 
 from metawispr.config import Settings, SetupError
 from metawispr.documentation import Documentation, document_groups
-from metawispr.llm import Gemini, Ollama, digest, prompt
+from metawispr.llm import Ollama, digest, prompt
 from metawispr.pipeline import Store, atomic_write
 from metawispr.schemas import SourceActions, LLMModel, Segment
 
@@ -142,36 +142,6 @@ class MeasuredOllama(Ollama):
             except SetupError as exc:
                 observation["memory_error"] = str(exc)
             self.measurements.append(observation)
-
-
-class MeasuredGemini(Gemini):
-    def __init__(self, settings):
-        super().__init__(settings)
-        self.measurements = []
-
-    def request(self, method, path, body=None, timeout=None):
-        if not path.endswith(":generateContent"):
-            return super().request(method, path, body, timeout)
-        started = time.perf_counter()
-        observation = {"model": path.split(":")[0], "backend": "gemini", "ram_before": available_ram(),
-                       "options": {k: v for k, v in body["generationConfig"].items()
-                                   if k not in {"responseJsonSchema", "responseMimeType"}}}
-        try:
-            response = super().request(method, path, body, timeout)
-            observation.update({"usage": response.get("usageMetadata", {}), "model_version": response.get("modelVersion"),
-                                "finish_reasons": [c.get("finishReason") for c in response.get("candidates", [])]})
-            return response
-        except SetupError as exc:
-            observation["error"] = str(exc)
-            raise
-        finally:
-            observation["wall_seconds"] = time.perf_counter() - started
-            observation["ram_after"] = available_ram()
-            self.measurements.append(observation)
-
-
-def measured_llm(settings):
-    return MeasuredGemini(settings) if settings.llm_backend == "gemini" else MeasuredOllama(settings, cpu=False)
 
 
 def model_metadata(llm, tag):
