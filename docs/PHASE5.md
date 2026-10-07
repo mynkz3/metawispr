@@ -351,3 +351,31 @@ This three-minute result is not directly comparable to the historical 18.7%
 WER measured on a longer interval. The fixed historical baseline remains
 unchanged. Full-meeting performance, clean-speech regressions and downstream
 Qwen benefits are unmeasured; GTCRN is not enabled in production.
+
+
+## DPDFNet-4 comparison, 8 October 2026
+
+One DPDFNet-4 run used the same 450-630 second ES2002a excerpt, source hashes,
+reference words, normalization, 30-second windows and Parakeet INT8 CUDA
+profile as the GTCRN probe. The original control result was reused after
+verifying the reconstructed PCM hash and ASR profile. The official ONNX file
+is 11,707,436 bytes. The maintainer example
+(https://github.com/k2-fsa/sherpa-onnx/blob/master/python-api-examples/offline-speech-enhancement-dpdfnet.py)
+uses a 12 dB attenuation limit; this fixed setting and one CPU thread were
+used without a sweep. No dependency installation, Qwen run or production
+pipeline change was performed. Audio length/sample rate remained unchanged.
+
+WER was 26.37%, versus 28.13% original and
+23.96% GTCRN. DPDFNet-4 therefore improves on original audio but
+is 2.42 percentage points worse
+than GTCRN on this excerpt. Loading/enhancement took
+159.28 seconds, compared with 11.91 seconds for GTCRN.
+GTCRN remains the preferred tested candidate; neither enhancer is enabled in
+production. Full-meeting benefit remains unmeasured and the fixed 18.7%
+historical baseline is unchanged.
+
+The exact result and transcripts are preserved in
+`evaluation/results/dpdfnet4-es2002a-excerpt.json`; reproduction is
+`evaluation/gtcrn_probe.py --dpdfnet4` with the existing CUDA libraries on PATH.
+PCM/profile/alignment and WER arithmetic assertions pass. No tuning or further
+run followed this comparison.

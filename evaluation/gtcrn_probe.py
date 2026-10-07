@@ -2,6 +2,7 @@
 from datetime import datetime, timezone
 from pathlib import Path
 import json
+import argparse
 import time
 import wave
 import xml.etree.ElementTree as ET
@@ -22,7 +23,11 @@ def write_wav(path, samples, rate):
 
 
 def main():
-    root = Path('.cache/gtcrn-probe')
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--dpdfnet4', action='store_true', help='Test DPDFNet-4 once, reusing the original GTCRN control result.')
+    args = parser.parse_args()
+    baseline = json.loads(Path('evaluation/results/gtcrn-es2002a-excerpt.json').read_text()) if args.dpdfnet4 else None
+    root = Path('.cache/dpdfnet4-probe' if args.dpdfnet4 else '.cache/gtcrn-probe')
     root.mkdir(parents=True, exist_ok=True)
     output = root / 'result.json'
     if output.exists():
@@ -30,7 +35,7 @@ def main():
     settings = Settings.from_env()
     assert settings.asr_precision == 'int8' and settings.asr_provider == 'cuda'
     source = Path('.cache/ami/es2002a/prepared.wav')
-    model = Path('models/gtcrn/gtcrn_simple.onnx')
+    model = Path('models/dpdfnet/dpdfnet4.onnx' if args.dpdfnet4 else 'models/gtcrn/gtcrn_simple.onnx')
     start, end = 450, 630
     with wave.open(str(source), 'rb') as audio:
         rate = audio.getframerate()
@@ -42,9 +47,10 @@ def main():
     with wave.open(str(root / 'original.wav'), 'wb') as target:
         target.setparams((1, 2, rate, len(samples), 'NONE', 'not compressed'))
         target.writeframes((samples * 32768).astype('<i2').tobytes())
+    selection = {'dpdfnet': sherpa_onnx.OfflineSpeechDenoiserDpdfNetModelConfig(model=str(model), attenuation_limit_db=12.0)} if args.dpdfnet4 else {
+        'gtcrn': sherpa_onnx.OfflineSpeechDenoiserGtcrnModelConfig(model=str(model))}
     config = sherpa_onnx.OfflineSpeechDenoiserConfig(model=sherpa_onnx.OfflineSpeechDenoiserModelConfig(
-        gtcrn=sherpa_onnx.OfflineSpeechDenoiserGtcrnModelConfig(model=str(model)),
-        num_threads=1, provider='cpu', debug=False))
+        **selection, num_threads=1, provider='cpu', debug=False))
     assert config.validate()
     began = time.perf_counter()
     denoiser = sherpa_onnx.OfflineSpeechDenoiser(config)
@@ -68,14 +74,22 @@ def main():
     report = {'meeting': 'ES2002a', 'scope': 'Single preselected excerpt, not full-meeting WER.',
               'interval_seconds': [start, end], 'duration_seconds': end-start,
               'model_bytes': model.stat().st_size, 'model_sha256': file_sha256(model),
-              'model_url': 'https://github.com/k2-fsa/sherpa-onnx/releases/download/speech-enhancement-models/gtcrn_simple.onnx',
+              'model_url': 'https://github.com/k2-fsa/sherpa-onnx/releases/download/speech-enhancement-models/' + model.name,
               'source_sha256': file_sha256(source), 'annotations_sha256': file_sha256(archive),
               'enhancement_seconds': enhancement_seconds, 'denoiser_provider': 'cpu',
               'normalization': 'Existing Phase 5 lowercase/punctuation/apostrophe tokenization; no number expansion.',
               'alignment': 'Reference word midpoint within excerpt; overlapping speakers sorted by start and speaker file.',
               'chunk_seconds': settings.chunk_seconds, 'reference_words': len(reference), 'arms': {}}
+    if baseline:
+        for field in ('interval_seconds', 'source_sha256', 'annotations_sha256', 'normalization', 'alignment', 'chunk_seconds', 'reference_words'):
+            assert report[field] == baseline[field], f'Baseline mismatch: {field}'
+        assert file_sha256(root / 'original.wav') == baseline['arms']['original']['audio_sha256']
+        report.update(attenuation_limit_db=12.0, original_control_reused=True,
+                      gtcrn_comparison=baseline['arms']['enhanced'])
+        report['arms']['original'] = baseline['arms']['original']
+        print('DPDFNet-4 enhancement seconds:', enhancement_seconds, flush=True)
     asr = Parakeet(settings)
-    for arm in ('original', 'enhanced'):
+    for arm in (('enhanced',) if baseline else ('original', 'enhanced')):
         path = root / (arm + '.wav')
         raw = asr.transcribe(path, file_sha256(path), datetime.now(timezone.utc).isoformat())
         text = ' '.join(s.text for s in raw.segments)
