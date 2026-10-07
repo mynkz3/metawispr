@@ -1,0 +1,783 @@
+{
+  "scope": "Manual-transcript documentation test; no ASR or refinement. Not a controlled audit ablation.",
+  "manual_sha256": "d4f2f04f56f5028c1d944d9b76c692b93eb55761beed07ad8e595543980f7940",
+  "meeting_id": "a1d7829b-679b-4333-826e-1696c7abfe0d",
+  "model": {
+    "tag": "qwen3.5:4b",
+    "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+    "runtime_version": "0.35.1",
+    "parameter_size": "4.2B",
+    "quantization": "Q4_K_M"
+  },
+  "context": 16384,
+  "output_tokens": 3072,
+  "policy": "72188ecbf20253f54e55d748f890c5687eed13869e7a03d68c973d3f1234fb9e",
+  "prompts": {
+    "document": "8885ab788cbf3b009ce8afb83d6343359c66d18bd732e0d8d462d38718889509",
+    "review": "fbf38c8ccb915a45c44f890cd11b35d047d918d6058cbd1a22500f5cca5ea3d6",
+    "notes": "dc00a1c75332a51b9f273194bde8323ecf59f9e4589ce67eeb40db23fb7cb01b",
+    "reconcile": "67f021ddb8638d48a6f3ca24b9a3ad12d85f013f89370b0b51672a193b7b7676",
+    "consolidate": "938e3ac0422737f310ed286a9fdf0b6379e9a1ce1c5c5662de448016baaaf9e4",
+    "audit": "b47d4ba06dc981785263765c9186f0ba24d9050bf710928bc1cb6112fc528a01"
+  },
+  "stage": "failed",
+  "error": "Documenting model returned invalid output twice. Completed calls are saved; retry after checking the model/context settings.",
+  "wall_seconds": 73.65029210000648,
+  "measurements": [
+    {
+      "model": "qwen3.5:4b",
+      "options": {
+        "temperature": 0,
+        "seed": 0,
+        "num_ctx": 16384,
+        "num_predict": 3072,
+        "presence_penalty": 0,
+        "repeat_penalty": 1
+      },
+      "ram_before": {
+        "total_bytes": 16873545728,
+        "available_bytes": 2568450048
+      },
+      "done_reason": "stop",
+      "total_duration": 10798316200,
+      "load_duration": 8437580300,
+      "prompt_eval_count": 4587,
+      "prompt_eval_duration": 2075929000,
+      "eval_count": 13,
+      "eval_duration": 235626000,
+      "wall_seconds": 10.8138476999884,
+      "ram_after": {
+        "total_bytes": 16873545728,
+        "available_bytes": 1835343872
+      },
+      "resident_models": [
+        {
+          "name": "qwen3.5:4b",
+          "model": "qwen3.5:4b",
+          "size": 3629142506,
+          "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+          "details": {
+            "parent_model": "",
+            "format": "gguf",
+            "family": "qwen35",
+            "families": [
+              "qwen35"
+            ],
+            "parameter_size": "4.2B",
+            "quantization_level": "Q4_K_M"
+          },
+          "expires_at": "2026-10-07T21:31:13.4824321+05:30",
+          "size_vram": 3629142506,
+          "context_length": 16384
+        }
+      ]
+    },
+    {
+      "model": "qwen3.5:4b",
+      "options": {
+        "temperature": 0,
+        "seed": 0,
+        "num_ctx": 16384,
+        "num_predict": 3072,
+        "presence_penalty": 0,
+        "repeat_penalty": 1
+      },
+      "ram_before": {
+        "total_bytes": 16873545728,
+        "available_bytes": 1834291200
+      },
+      "done_reason": "stop",
+      "total_duration": 2105550800,
+      "load_duration": 6293000,
+      "prompt_eval_count": 4132,
+      "prompt_eval_duration": 1603365000,
+      "eval_count": 24,
+      "eval_duration": 344426000,
+      "wall_seconds": 2.142130599997472,
+      "ram_after": {
+        "total_bytes": 16873545728,
+        "available_bytes": 1542393856
+      },
+      "resident_models": [
+        {
+          "name": "qwen3.5:4b",
+          "model": "qwen3.5:4b",
+          "size": 3629142506,
+          "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+          "details": {
+            "parent_model": "",
+            "format": "gguf",
+            "family": "qwen35",
+            "families": [
+              "qwen35"
+            ],
+            "parameter_size": "4.2B",
+            "quantization_level": "Q4_K_M"
+          },
+          "expires_at": "2026-10-07T21:31:15.6726313+05:30",
+          "size_vram": 3629142506,
+          "context_length": 16384
+        }
+      ]
+    },
+    {
+      "model": "qwen3.5:4b",
+      "options": {
+        "temperature": 0,
+        "seed": 0,
+        "num_ctx": 16384,
+        "num_predict": 3072,
+        "presence_penalty": 0,
+        "repeat_penalty": 1
+      },
+      "ram_before": {
+        "total_bytes": 16873545728,
+        "available_bytes": 1538580480
+      },
+      "done_reason": "stop",
+      "total_duration": 21504816700,
+      "load_duration": 4083500,
+      "prompt_eval_count": 3410,
+      "prompt_eval_duration": 1343066000,
+      "eval_count": 1345,
+      "eval_duration": 20024691000,
+      "wall_seconds": 21.541681000002427,
+      "ram_after": {
+        "total_bytes": 16873545728,
+        "available_bytes": 1121804288
+      },
+      "resident_models": [
+        {
+          "name": "qwen3.5:4b",
+          "model": "qwen3.5:4b",
+          "size": 3629142506,
+          "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+          "details": {
+            "parent_model": "",
+            "format": "gguf",
+            "family": "qwen35",
+            "families": [
+              "qwen35"
+            ],
+            "parameter_size": "4.2B",
+            "quantization_level": "Q4_K_M"
+          },
+          "expires_at": "2026-10-07T21:31:37.417856+05:30",
+          "size_vram": 3629142506,
+          "context_length": 16384
+        }
+      ]
+    },
+    {
+      "model": "qwen3.5:4b",
+      "options": {
+        "temperature": 0,
+        "seed": 0,
+        "num_ctx": 16384,
+        "num_predict": 3072,
+        "presence_penalty": 0,
+        "repeat_penalty": 1
+      },
+      "ram_before": {
+        "total_bytes": 16873545728,
+        "available_bytes": 1112612864
+      },
+      "done_reason": "stop",
+      "total_duration": 2338858200,
+      "load_duration": 2959300,
+      "prompt_eval_count": 4582,
+      "prompt_eval_duration": 1803327000,
+      "eval_count": 24,
+      "eval_duration": 377042000,
+      "wall_seconds": 2.354424899996957,
+      "ram_after": {
+        "total_bytes": 16873545728,
+        "available_bytes": 753364992
+      },
+      "resident_models": [
+        {
+          "name": "qwen3.5:4b",
+          "model": "qwen3.5:4b",
+          "size": 3629142506,
+          "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+          "details": {
+            "parent_model": "",
+            "format": "gguf",
+            "family": "qwen35",
+            "families": [
+              "qwen35"
+            ],
+            "parameter_size": "4.2B",
+            "quantization_level": "Q4_K_M"
+          },
+          "expires_at": "2026-10-07T21:31:39.7985319+05:30",
+          "size_vram": 3629142506,
+          "context_length": 16384
+        }
+      ]
+    },
+    {
+      "model": "qwen3.5:4b",
+      "options": {
+        "temperature": 0,
+        "seed": 0,
+        "num_ctx": 16384,
+        "num_predict": 3072,
+        "presence_penalty": 0,
+        "repeat_penalty": 1
+      },
+      "ram_before": {
+        "total_bytes": 16873545728,
+        "available_bytes": 738926592
+      },
+      "done_reason": "stop",
+      "total_duration": 7751352800,
+      "load_duration": 3612200,
+      "prompt_eval_count": 4127,
+      "prompt_eval_duration": 1612697000,
+      "eval_count": 366,
+      "eval_duration": 5962923000,
+      "wall_seconds": 7.777418799989391,
+      "ram_after": {
+        "total_bytes": 16873545728,
+        "available_bytes": 565092352
+      },
+      "resident_models": [
+        {
+          "name": "qwen3.5:4b",
+          "model": "qwen3.5:4b",
+          "size": 3629142506,
+          "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+          "details": {
+            "parent_model": "",
+            "format": "gguf",
+            "family": "qwen35",
+            "families": [
+              "qwen35"
+            ],
+            "parameter_size": "4.2B",
+            "quantization_level": "Q4_K_M"
+          },
+          "expires_at": "2026-10-07T21:31:47.60493+05:30",
+          "size_vram": 3629142506,
+          "context_length": 16384
+        }
+      ]
+    },
+    {
+      "model": "qwen3.5:4b",
+      "options": {
+        "temperature": 0,
+        "seed": 0,
+        "num_ctx": 16384,
+        "num_predict": 3072,
+        "presence_penalty": 0,
+        "repeat_penalty": 1
+      },
+      "ram_before": {
+        "total_bytes": 16873545728,
+        "available_bytes": 581050368
+      },
+      "done_reason": "stop",
+      "total_duration": 14100722600,
+      "load_duration": 4911000,
+      "prompt_eval_count": 3663,
+      "prompt_eval_duration": 1605667000,
+      "eval_count": 731,
+      "eval_duration": 12138624000,
+      "wall_seconds": 14.134223200002452,
+      "ram_after": {
+        "total_bytes": 16873545728,
+        "available_bytes": 1092526080
+      },
+      "resident_models": [
+        {
+          "name": "qwen3.5:4b",
+          "model": "qwen3.5:4b",
+          "size": 3629142506,
+          "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+          "details": {
+            "parent_model": "",
+            "format": "gguf",
+            "family": "qwen35",
+            "families": [
+              "qwen35"
+            ],
+            "parameter_size": "4.2B",
+            "quantization_level": "Q4_K_M"
+          },
+          "expires_at": "2026-10-07T21:32:02.1287433+05:30",
+          "size_vram": 3629142506,
+          "context_length": 16384
+        }
+      ]
+    },
+    {
+      "model": "qwen3.5:4b",
+      "options": {
+        "temperature": 0,
+        "seed": 0,
+        "num_ctx": 16384,
+        "num_predict": 3072,
+        "presence_penalty": 0,
+        "repeat_penalty": 1
+      },
+      "ram_before": {
+        "total_bytes": 16873545728,
+        "available_bytes": 1093038080
+      },
+      "done_reason": "stop",
+      "total_duration": 12978510700,
+      "load_duration": 12020200,
+      "prompt_eval_count": 3711,
+      "prompt_eval_duration": 599808000,
+      "eval_count": 746,
+      "eval_duration": 12332326000,
+      "wall_seconds": 13.04034419998061,
+      "ram_after": {
+        "total_bytes": 16873545728,
+        "available_bytes": 1051918336
+      },
+      "resident_models": [
+        {
+          "name": "qwen3.5:4b",
+          "model": "qwen3.5:4b",
+          "size": 3629142506,
+          "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+          "details": {
+            "parent_model": "",
+            "format": "gguf",
+            "family": "qwen35",
+            "families": [
+              "qwen35"
+            ],
+            "parameter_size": "4.2B",
+            "quantization_level": "Q4_K_M"
+          },
+          "expires_at": "2026-10-07T21:32:15.2401923+05:30",
+          "size_vram": 3629142506,
+          "context_length": 16384
+        }
+      ]
+    }
+  ],
+  "saved_calls": [
+    {
+      "output": {
+        "tasks": [],
+        "decisions": [],
+        "revisions": []
+      },
+      "call": {
+        "key": "2b877a37068a214e2fe34206f2721f7e2e9e43f3b91fd0c985fa43c09e0b593c",
+        "model": {
+          "tag": "qwen3.5:4b",
+          "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+          "runtime_version": "0.35.1",
+          "parameter_size": "4.2B",
+          "quantization": "Q4_K_M"
+        },
+        "prompt_sha256": "68e539365b7ed827baf5d88bbccfb655017557be1e8d0481528c4630d831c638",
+        "input_sha256": "9ff95b38fdec0a8a84daaa9fc3271acb797cd119b973d41d6eb8886c6a2d4e23",
+        "schema_sha256": "093d88290f140e3c05c5975ffe6de3a1f018783b0fe2d1e303cf54be78445cf9",
+        "context": 16384,
+        "output_tokens": 3072,
+        "temperature": 0.0,
+        "seed": 0,
+        "thinking": false,
+        "thinking_level": null,
+        "response_model_version": null,
+        "thought_tokens": null,
+        "presence_penalty": 0.0,
+        "repeat_penalty": 1.0,
+        "elapsed_seconds": 2.183783000014955,
+        "prompt_tokens": 4132,
+        "generated_tokens": 24,
+        "attempts": 1
+      }
+    },
+    {
+      "output": {
+        "tasks": [
+          {
+            "text": "Sell remote control for twenty five Euro.",
+            "evidence_ids": [
+              "m0080:u000"
+            ],
+            "owner": null,
+            "deadline": null
+          },
+          {
+            "text": "Make fifty million Euro.",
+            "evidence_ids": [
+              "m0080:u000"
+            ],
+            "owner": null,
+            "deadline": null
+          },
+          {
+            "text": "Sell on an international scale.",
+            "evidence_ids": [
+              "m0080:u001"
+            ],
+            "owner": null,
+            "deadline": null
+          },
+          {
+            "text": "Cost no more than twelve fifty Euros.",
+            "evidence_ids": [
+              "m0080:u002"
+            ],
+            "owner": null,
+            "deadline": null
+          },
+          {
+            "text": "Cost is twelve fifty.",
+            "evidence_ids": [
+              "m0085:u000"
+            ],
+            "owner": null,
+            "deadline": null
+          },
+          {
+            "text": "Sell price is on the shelf.",
+            "evidence_ids": [
+              "m0085:u001"
+            ],
+            "owner": null,
+            "deadline": null
+          }
+        ],
+        "decisions": [],
+        "revisions": []
+      },
+      "call": {
+        "key": "5756ed5174f1cadc5ec51f32ccedf1204760923236cd9f0ea353e4ebd56560e9",
+        "model": {
+          "tag": "qwen3.5:4b",
+          "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+          "runtime_version": "0.35.1",
+          "parameter_size": "4.2B",
+          "quantization": "Q4_K_M"
+        },
+        "prompt_sha256": "68e539365b7ed827baf5d88bbccfb655017557be1e8d0481528c4630d831c638",
+        "input_sha256": "9376594253be8f19d2d54ef762c375badf3f8c893d4cd6cba1f0d33559a64460",
+        "schema_sha256": "52ae94932efb20f3c6c6f4f9ec42464f72991b9e5c8fefb514b727767281409c",
+        "context": 16384,
+        "output_tokens": 3072,
+        "temperature": 0.0,
+        "seed": 0,
+        "thinking": false,
+        "thinking_level": null,
+        "response_model_version": null,
+        "thought_tokens": null,
+        "presence_penalty": 0.0,
+        "repeat_penalty": 1.0,
+        "elapsed_seconds": 7.812812999996822,
+        "prompt_tokens": 4127,
+        "generated_tokens": 366,
+        "attempts": 1
+      }
+    },
+    {
+      "output": {
+        "tasks": [],
+        "decisions": [],
+        "revisions": []
+      },
+      "call": {
+        "key": "8d704461f209356b11be47ffa23a738de243067fc4795a65fab2d6b5b0bf46f8",
+        "model": {
+          "tag": "qwen3.5:4b",
+          "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+          "runtime_version": "0.35.1",
+          "parameter_size": "4.2B",
+          "quantization": "Q4_K_M"
+        },
+        "prompt_sha256": "85f06ff4884427fdbbe71b2c54845fe178ab320cb604eedea4cf13469fab3352",
+        "input_sha256": "b2f04446c676524533224b1e108b4acad534c2e9eb5bb540ee12781c8246f03a",
+        "schema_sha256": "52ae94932efb20f3c6c6f4f9ec42464f72991b9e5c8fefb514b727767281409c",
+        "context": 16384,
+        "output_tokens": 3072,
+        "temperature": 0.0,
+        "seed": 0,
+        "thinking": false,
+        "thinking_level": null,
+        "response_model_version": null,
+        "thought_tokens": null,
+        "presence_penalty": 0.0,
+        "repeat_penalty": 1.0,
+        "elapsed_seconds": 2.3742700000002515,
+        "prompt_tokens": 4582,
+        "generated_tokens": 24,
+        "attempts": 1
+      }
+    },
+    {
+      "output": {
+        "tasks": [],
+        "decisions": [],
+        "revisions": []
+      },
+      "call": {
+        "key": "a68ad47b6faca0d3a9bbf0f06ebb31481b7f521c45cf534ca9af0c7f03180c3b",
+        "model": {
+          "tag": "qwen3.5:4b",
+          "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+          "runtime_version": "0.35.1",
+          "parameter_size": "4.2B",
+          "quantization": "Q4_K_M"
+        },
+        "prompt_sha256": "85f06ff4884427fdbbe71b2c54845fe178ab320cb604eedea4cf13469fab3352",
+        "input_sha256": "5fb52fb22e9491ed6047ebebaa2b81cae3172b34b36d03e20608cdf6dcc810a3",
+        "schema_sha256": "093d88290f140e3c05c5975ffe6de3a1f018783b0fe2d1e303cf54be78445cf9",
+        "context": 16384,
+        "output_tokens": 3072,
+        "temperature": 0.0,
+        "seed": 0,
+        "thinking": false,
+        "thinking_level": null,
+        "response_model_version": null,
+        "thought_tokens": null,
+        "presence_penalty": 0.0,
+        "repeat_penalty": 1.0,
+        "elapsed_seconds": 10.95547610000358,
+        "prompt_tokens": 4587,
+        "generated_tokens": 13,
+        "attempts": 1
+      }
+    },
+    {
+      "output": {
+        "summary": [
+          {
+            "text": "The meeting is a kick-off for a project to design a new remote control, described as original, trendy, and user-friendly.",
+            "evidence_ids": [
+              "m0003:u000",
+              "m0003:u002",
+              "m0011:u003",
+              "m0013:u000",
+              "m0013:u001",
+              "m0013:u002"
+            ]
+          },
+          {
+            "text": "All participants received only the project announcement email regarding the remote control design.",
+            "evidence_ids": [
+              "m0013:u005",
+              "m0014:u000",
+              "m0014:u001",
+              "m0014:u002",
+              "m0014:u003",
+              "m0015:u000",
+              "m0016:u000",
+              "m0017:u000",
+              "m0017:u001",
+              "m0018:u000",
+              "m0018:u001"
+            ]
+          },
+          {
+            "text": "The process involves individual work followed by meetings, repeated three times, starting with a whiteboard exercise.",
+            "evidence_ids": [
+              "m0018:u004",
+              "m0018:u005",
+              "m0018:u006",
+              "m0018:u007",
+              "m0018:u008"
+            ]
+          }
+        ],
+        "topics": [
+          {
+            "title": "Project Overview",
+            "points": [
+              {
+                "text": "The project is to design a new remote control.",
+                "evidence_ids": [
+                  "m0011:u002",
+                  "m0013:u000"
+                ]
+              },
+              {
+                "text": "The design brief requires the product to be original, trendy, and user-friendly.",
+                "evidence_ids": [
+                  "m0013:u001",
+                  "m0013:u002"
+                ]
+              },
+              {
+                "text": "The project has three different design stages.",
+                "evidence_ids": [
+                  "m0013:u003"
+                ]
+              }
+            ]
+          },
+          {
+            "title": "Participant Introductions",
+            "points": [
+              {
+                "text": "Laura is the project manager.",
+                "evidence_ids": [
+                  "m0003:u002"
+                ]
+              },
+              {
+                "text": "David is the industrial designer.",
+                "evidence_ids": [
+                  "m0006:u000"
+                ]
+              },
+              {
+                "text": "Andrew is the marketing expert.",
+                "evidence_ids": [
+                  "m0008:u000"
+                ]
+              }
+            ]
+          },
+          {
+            "title": "Email Communication Status",
+            "points": [
+              {
+                "text": "Participants are unsure if they received additional materials beyond the project announcement.",
+                "evidence_ids": [
+                  "m0013:u005",
+                  "m0013:u001"
+                ]
+              },
+              {
+                "text": "David received only the project announcement about designing a remote control.",
+                "evidence_ids": [
+                  "m0014:u000",
+                  "m0014:u001",
+                  "m0014:u002"
+                ]
+              },
+              {
+                "text": "Laura confirmed that everyone received the same information.",
+                "evidence_ids": [
+                  "m0018:u000",
+                  "m0018:u001"
+                ]
+              }
+            ]
+          },
+          {
+            "title": "Meeting Process and Whiteboard Exercise",
+            "points": [
+              {
+                "text": "The process consists of individual work followed by meetings, repeated three times.",
+                "evidence_ids": [
+                  "m0018:u004"
+                ]
+              },
+              {
+                "text": "The first activity is a whiteboard exercise where participants draw their favorite animal and its characteristics.",
+                "evidence_ids": [
+                  "m0018:u005",
+                  "m0018:u006",
+                  "m0018:u007",
+                  "m0018:u008"
+                ]
+              },
+              {
+                "text": "Participants were given time to complete the exercise without feeling rushed.",
+                "evidence_ids": [
+                  "m0037:u000",
+                  "m0037:u001",
+                  "m0037:u002"
+                ]
+              }
+            ]
+          }
+        ],
+        "uncertainties": [
+          "Laura is unsure what materials participants received in their emails.",
+          "The specific details of the three design stages were not fully explained.",
+          "The exact duration of the individual work phase was not specified."
+        ]
+      },
+      "call": {
+        "key": "af0aed0aca2e8d8a9c49809b67e05272f3e33b44c84b560a9c84779af14c1df7",
+        "model": {
+          "tag": "qwen3.5:4b",
+          "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+          "runtime_version": "0.35.1",
+          "parameter_size": "4.2B",
+          "quantization": "Q4_K_M"
+        },
+        "prompt_sha256": "631b34f0de3b3ccd4c3529931e792d1a1b331f2cec17256e7a1cf2ec3ac42b2c",
+        "input_sha256": "c4506d8b0cf7b89b9a5af87608fd862c893e17d3b1942de297b52dcec955b70c",
+        "schema_sha256": "216ce64b60adbebd9530b81effd7913aa7f98ef57a1f4fc96605e52cec9e524c",
+        "context": 16384,
+        "output_tokens": 3072,
+        "temperature": 0.0,
+        "seed": 0,
+        "thinking": false,
+        "thinking_level": null,
+        "response_model_version": null,
+        "thought_tokens": null,
+        "presence_penalty": 0.0,
+        "repeat_penalty": 1.0,
+        "elapsed_seconds": 21.56229699999676,
+        "prompt_tokens": 3410,
+        "generated_tokens": 1345,
+        "attempts": 1
+      }
+    }
+  ],
+  "failures": [
+    {
+      "error": "Unsupported financial label 'revenue': it is not stated in the cited source. Cite its explicit label or describe the stated financial target without guessing profit/revenue.",
+      "response": {
+        "model": "qwen3.5:4b",
+        "created_at": "2026-10-07T15:57:02.1257282Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"summary\": [\n    {\n      \"text\": \"The group discussed the project finance, confirming the selling price is twenty-five Euro and the production cost is twelve-fifty Euro.\",\n      \"evidence_ids\": [\n        \"m0080:u000\",\n        \"m0080:u002\",\n        \"m0085:u000\"\n      ]\n    },\n    {\n      \"text\": \"The project aims to sell the remote control on an international scale with a revenue target of fifty million Euro.\",\n      \"evidence_ids\": [\n        \"m0080:u000\",\n        \"m0080:u001\"\n      ]\n    },\n    {\n      \"text\": \"The production cost is explicitly stated as twelve-fifty Euro, which represents fifty percent of the selling price.\",\n      \"evidence_ids\": [\n        \"m0080:u002\",\n        \"m0085:u000\"\n      ]\n    }\n  ],\n  \"topics\": [\n    {\n      \"title\": \"Project Finance and Pricing\",\n      \"points\": [\n        {\n          \"text\": \"Selling price is set at twenty-five Euro.\",\n          \"evidence_ids\": [\n            \"m0080:u000\"\n          ]\n        },\n        {\n          \"text\": \"Production cost is fixed at twelve-fifty Euro.\",\n          \"evidence_ids\": [\n            \"m0085:u000\"\n          ]\n        },\n        {\n          \"text\": \"Revenue target is fifty million Euro.\",\n          \"evidence_ids\": [\n            \"m0080:u000\"\n          ]\n        }\n      ]\n    },\n    {\n      \"title\": \"Sales Strategy\",\n      \"points\": [\n        {\n          \"text\": \"Sales will occur on an international scale.\",\n          \"evidence_ids\": [\n            \"m0080:u001\"\n          ]\n        }\n      ]\n    },\n    {\n      \"title\": \"Cost Structure\",\n      \"points\": [\n        {\n          \"text\": \"Production cost is fifty percent of the selling price.\",\n          \"evidence_ids\": [\n            \"m0080:u002\"\n          ]\n        },\n        {\n          \"text\": \"Selling price is defined as the shelf price.\",\n          \"evidence_ids\": [\n            \"m0085:u001\"\n          ]\n        }\n      ]\n    },\n    {\n      \"title\": \"Unclear Details\",\n      \"points\": [\n        {\n          \"text\": \"Whether the selling price is wholesale or retail remains unconfirmed.\",\n          \"evidence_ids\": [\n            \"m0085:u000\"\n          ]\n        }\n      ]\n    }\n  ],\n  \"uncertainties\": [\n    \"Whether the selling price of twenty-five Euro is wholesale or retail.\",\n    \"The specific deadline for the project.\",\n    \"The owner of the tasks regarding sales and production.\"\n  ]\n}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 14100722600,
+        "load_duration": 4911000,
+        "prompt_eval_count": 3663,
+        "prompt_eval_cached_count": 0,
+        "prompt_eval_duration": 1605667000,
+        "eval_count": 731,
+        "eval_duration": 12138624000
+      }
+    },
+    {
+      "error": "Unsupported financial label 'revenue': it is not stated in the cited source. Cite its explicit label or describe the stated financial target without guessing profit/revenue.",
+      "response": {
+        "model": "qwen3.5:4b",
+        "created_at": "2026-10-07T15:57:15.2375668Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"summary\": [\n    {\n      \"text\": \"The group discussed the project finance, aiming to sell a remote control for twenty five Euro while making fifty million Euro.\",\n      \"evidence_ids\": [\n        \"m0080:u000\"\n      ]\n    },\n    {\n      \"text\": \"The production cost is set at twelve fifty Euros, which represents fifty percent of the selling price.\",\n      \"evidence_ids\": [\n        \"m0080:u002\",\n        \"m0085:u000\"\n      ]\n    },\n    {\n      \"text\": \"The selling price is intended to be on the shelf, though the specific label for this price point was not explicitly defined in the source.\",\n      \"evidence_ids\": [\n        \"m0085:u001\"\n      ]\n    }\n  ],\n  \"topics\": [\n    {\n      \"title\": \"Project Finance Targets\",\n      \"points\": [\n        {\n          \"text\": \"The project aims to sell the remote control for twenty five Euro.\",\n          \"evidence_ids\": [\n            \"m0080:u000\"\n          ]\n        },\n        {\n          \"text\": \"The financial target is to make fifty million Euro.\",\n          \"evidence_ids\": [\n            \"m0080:u000\"\n          ]\n        },\n        {\n          \"text\": \"The selling price is intended to be on the shelf.\",\n          \"evidence_ids\": [\n            \"m0085:u001\"\n          ]\n        }\n      ]\n    },\n    {\n      \"title\": \"Production Cost Constraints\",\n      \"points\": [\n        {\n          \"text\": \"The production cost is set at twelve fifty Euros.\",\n          \"evidence_ids\": [\n            \"m0085:u000\"\n          ]\n        },\n        {\n          \"text\": \"The cost must not exceed fifty percent of the selling price.\",\n          \"evidence_ids\": [\n            \"m0080:u002\"\n          ]\n        }\n      ]\n    },\n    {\n      \"title\": \"Sales Strategy\",\n      \"points\": [\n        {\n          \"text\": \"The remote control will be sold on an international scale.\",\n          \"evidence_ids\": [\n            \"m0080:u001\"\n          ]\n        }\n      ]\n    },\n    {\n      \"title\": \"Clarification of Financial Terms\",\n      \"points\": [\n        {\n          \"text\": \"The source distinguishes between production cost and selling price but does not explicitly label the 'on the shelf' price as revenue or profit.\",\n          \"evidence_ids\": [\n            \"m0085:u000\",\n            \"m0085:u001\"\n          ]\n        }\n      ]\n    }\n  ],\n  \"uncertainties\": [\n    \"The source states an aim to make fifty million Euro but does not explicitly label this as profit or revenue.\",\n    \"The source states the selling price is 'on the shelf' but does not provide an explicit financial label for this amount.\"\n  ]\n}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 12978510700,
+        "load_duration": 12020200,
+        "prompt_eval_count": 3711,
+        "prompt_eval_cached_count": 2639,
+        "prompt_eval_duration": 599808000,
+        "eval_count": 746,
+        "eval_duration": 12332326000
+      }
+    }
+  ],
+  "assessment": {
+    "status": "Incomplete single-run diagnostic; no final task precision/recall or notes score.",
+    "completed_calls": 5,
+    "first_failure": "Qwen described an unlabeled financial target as revenue.",
+    "retry_failure": "Validator also rejects a negated mention stating the source does not explicitly label revenue/profit; a validation false positive.",
+    "partial_actions": "One saved extraction draft lists six financial requirements/targets as tasks; not a validated final record.",
+    "comparison": "Older ASR baseline used a different documentation policy without the final claim audit; no controlled percentage improvement can be claimed.",
+    "rerun_after_failure": false,
+    "prompts_changed": false
+  }
+}

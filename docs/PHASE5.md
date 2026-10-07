@@ -278,3 +278,24 @@ configuration and dependency files have no hybrid model/ledger references;
 experimental imports are absent. No prompt changes, training or full-meeting
 rerun were performed. Existing accuracy limitations and the owner/evidence
 validation failure remain open.
+
+
+## Manual-transcript Qwen test, 7 October 2026
+
+One ES2002a documentation execution used the verified manual transcript,
+bypassing ASR and refinement. Current Qwen3.5 4B, 16,384 context, 3,072 output
+tokens, prompts and policy 17 were retained; references were not model input.
+The run stopped after 73.65 seconds and five completed calls. No manual
+retry or prompt changes followed. See `evaluation/results/manual-es2002a.json`
+and `evaluation/manual_transcript_run.py` (refuses accidental repeated runs).
+
+Qwen first introduced an unsupported revenue label. Its built-in retry said
+the source did not explicitly label revenue/profit; the financial-label guard
+also rejected that negated explanation, exposing a validation false positive.
+A saved action draft additionally classified six financial targets/requirements
+as tasks. These are partial outputs, not a canonical final record.
+
+No final accuracy score or improvement percentage is available. The older
+ASR baseline lacks the current claim audit, so this is not a controlled
+transcript-only comparison. Correct transcription alone did not make the
+current documentation pipeline complete. No production code was changed.
