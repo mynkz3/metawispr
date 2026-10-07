@@ -216,3 +216,13 @@ facts, then consolidation; capacity failures remain visible. This prevents
 citation redistribution but does not prove the original extracted fact true.
 The locally tested default is 16,384 context and 3,072 output tokens; this is
 a tested profile, not a minimum hardware guarantee.
+
+
+### Final claim support gate (documentation policy 17)
+
+After consolidation, a bounded Qwen audit selects supported original claims
+without rewriting text or evidence. Each claim is checked with its cited text
+and nearby context; unsupported/uncertain claims are withheld and exact
+duplicates are removed. Saved audit calls retain reasons and candidates.
+This same-model gate does not prove correctness; see the actual checks and
+limitations in [PHASE5.md](PHASE5.md).

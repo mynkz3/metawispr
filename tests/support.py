@@ -72,6 +72,11 @@ class FixtureLLM(Ollama):
         payload = json.loads(body["messages"][1]["content"])
         if refining:
             output = {"edits": []}
+        elif "verdicts" in body["format"]["properties"]:
+            output = {"verdicts": [{"candidate_id": item["candidate_id"], "verdict": "supported",
+                                    "evidence_ids": item["fact"]["evidence_ids"],
+                                    "reason": "Explicit fabricated support judgment for workflow tests"}
+                                   for item in payload["candidates"]]}
         elif "summary_ids" in body["format"]["properties"]:
             output = {"summary_ids": [key for batch in payload["chronological_batches"] for key in batch["summary_ids"]][:3],
                       "topics": [], "uncertainty_ids": []}

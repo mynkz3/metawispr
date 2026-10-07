@@ -183,3 +183,29 @@ WER/scorer examples pass. The genuine model browser test was skipped. The
 restarted server reports both Qwen roles ready and CUDA ASR ready; all 14
 existing meeting records remain readable. Original checkpoints and other
 agents' uncommitted work were preserved. No push is performed.
+
+
+## Bounded claim support audit, 7 October 2026
+
+Documentation policy 17 adds a final same-Qwen support audit after chronological
+reconciliation and notes selection. Each call checks at most six claims with
+immutable cited sources and two neighboring source units on either side. It
+must classify every candidate exactly once and cite that candidate's original
+evidence. Missing, duplicate or foreign judgments fail validation and get the
+existing bounded retry; the stage never silently bypasses the audit.
+
+Only supported whole original facts enter the canonical record. Unsupported
+or uncertain claims are withheld; exact duplicates within each output list
+are removed and empty topics are dropped. Original candidates, judgments and
+reasons remain in call checkpoints; warnings report counts. Existing records
+remain readable and are not rewritten. No training or new dependencies.
+
+96 backend tests pass, including filtering/evidence/coverage regression and
+existing checkpoint, chronological-revision and export checks. A genuine
+Qwen3.5 4B authored component probe kept the explicit Maya/Friday assignment
+and withheld a proposed Bluetooth task and an invented profit label (one
+call). See `evaluation/results/claim-audit-smoke.json`; reproduce with
+`.venv/Scripts/python.exe evaluation/audit_smoke.py`. This small probe is not
+an AMI accuracy result. Same-model judgments can share extraction errors and
+filter out true items; full-meeting precision/recall remain unmeasured for
+policy 17. Audit adds inference latency; ASR and WER are unchanged.

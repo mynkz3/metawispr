@@ -6,13 +6,13 @@ import re
 
 from .config import InputError, SetupError
 from .llm import digest, prompt
-from .schemas import (ConsolidatedNotes, DocumentationBatch, DocumentedMeeting, Edit, EditBatch,
+from .schemas import (ClaimAudit, ConsolidatedNotes, DocumentationBatch, DocumentedMeeting, Edit, EditBatch,
                       Evidence, Fact, MeetingRecord, RefinedTranscript, RejectedEdit, ResolutionBatch,
                       SelectedNotes, SourceActions, SourceBatch, SourceNotes, SourceRecord, SourceResolutions, Task, Topic)
 
 
 REFINEMENT_POLICY_VERSION = 10
-POLICY_VERSION = 16
+POLICY_VERSION = 17
 PROTECTED = re.compile(
     r"(?<!\w)[+-]?\d+(?:[.,:/-]\d+)*(?:%|\b)|\b(?:zero|one|two|three|four|five|six|seven|eight|nine|ten|"
     r"eleven|twelve|thirteen|fourteen|fifteen|sixteen|seventeen|eighteen|nineteen|twenty|thirty|forty|fifty|"
@@ -294,8 +294,55 @@ def expand_selection(selected, catalogue, uncertainties):
 
 
 def documentation_policy(settings):
-    return digest({"version": POLICY_VERSION, "prompts": [prompt("document"), prompt("review"), prompt("notes"), prompt("reconcile"), prompt("consolidate")],
+    return digest({"version": POLICY_VERSION, "prompts": [prompt("document"), prompt("review"), prompt("notes"), prompt("reconcile"), prompt("consolidate"), prompt("audit")],
                    "model": settings.documenter_model})
+
+
+def claim_candidates(record):
+    candidates = []
+    for kind, title, items in [("summary", None, record.summary), ("decision", None, record.decisions),
+                               ("task", None, record.tasks),
+                               *(("topic", topic.title, topic.points) for topic in record.topics)]:
+        for fact in items:
+            candidates.append({"candidate_id": f"c{len(candidates):04d}", "kind": kind,
+                               "topic_title": title, "fact": fact.model_dump()})
+    return candidates
+
+
+def validate_claim_audit(output, candidates):
+    by_id = {item["candidate_id"]: item for item in candidates}
+    if len(output.verdicts) != len(by_id) or {item.candidate_id for item in output.verdicts} != set(by_id):
+        raise ValueError("Audit every candidate_id exactly once")
+    for verdict in output.verdicts:
+        supplied = by_id[verdict.candidate_id]["fact"]["evidence_ids"]
+        if len(set(verdict.evidence_ids)) != len(verdict.evidence_ids) or not set(verdict.evidence_ids) <= set(supplied):
+            raise ValueError("Audit evidence must use distinct original candidate evidence IDs")
+
+
+def publish_supported(record, supported):
+    """Select whole original facts; judgments cannot rewrite text or provenance."""
+    position, duplicates = 0, 0
+    def select(items):
+        nonlocal position, duplicates
+        kept = []
+        for fact in items:
+            identifier = f"c{position:04d}"
+            position += 1
+            if identifier in supported:
+                if fact in kept:
+                    duplicates += 1
+                else:
+                    kept.append(fact.model_copy(deep=True))
+        return kept
+    result = record.model_copy(deep=True)
+    result.summary, result.decisions, result.tasks = (select(items) for items in
+                                                    (record.summary, record.decisions, record.tasks))
+    result.topics = []
+    for topic in record.topics:
+        points = select(topic.points)
+        if points:
+            result.topics.append(Topic(title=topic.title, points=points))
+    return result, duplicates
 
 
 def candidate_items(batches):
@@ -380,6 +427,32 @@ def resolve_candidates(output, candidates, segments, allowed):
 class Documentation:
     def __init__(self, settings, store, llm):
         self.settings, self.store, self.llm = settings, store, llm
+
+    def audit(self, meeting, record, sources, model, progress, calls):
+        candidates = claim_candidates(record)
+        units = list(sources)
+        positions = {identifier: index for index, identifier in enumerate(units)}
+        def payload(items):
+            value = source_payload({"candidates": items}, sources)
+            cited = {item["id"] for item in value["sources"]}
+            neighbors = {units[index] for identifier in cited for index in
+                         range(max(0, positions[identifier] - 2), min(len(units), positions[identifier] + 3))}
+            value["context"] = [{"id": identifier, "text": sources[identifier].quote}
+                                for identifier in units if identifier in neighbors - cited]
+            return value
+        supported, withheld = set(), 0
+        for batch in groups(candidates, payload, lambda value: len(value["candidates"]) <= 6
+                            and self.llm.fits("audit", ClaimAudit, value)):
+            value = payload(batch)
+            result, call = self.llm.generate(model, "audit", ClaimAudit, value, self.store,
+                                             meeting.id, "documenting",
+                                             lambda output: validate_claim_audit(output, value["candidates"]))
+            supported.update(item.candidate_id for item in result.verdicts if item.verdict == "supported")
+            withheld += sum(item.verdict != "supported" for item in result.verdicts)
+            calls.append(call)
+            progress(len(calls))
+        record, duplicates = publish_supported(record, supported)
+        return record, withheld, duplicates
 
     def refine(self, meeting, raw, model, progress):
         payload = lambda items: {"title": meeting.title, "glossary": meeting.glossary,
@@ -562,13 +635,15 @@ class Documentation:
                     output = DocumentationBatch(record=record, revisions=carried)
                     merged.append(output)
                 outputs = merged
+            record, withheld, duplicates = self.audit(meeting, outputs[0].record, sources, model, progress, calls)
         finally:
             self.llm.unload(model)
-        record = outputs[0].record
         validate_record(record, refined.segments)
         return DocumentedMeeting(source_sha256=digest(refined.model_dump()),
                                  policy_sha256=documentation_policy(self.settings), record=record, calls=calls,
                                  revision_audit=outputs[0].revisions,
                                  created_at=datetime.now(timezone.utc).isoformat(),
                                  warnings=["Exact evidence matching verifies provenance, not interpretation. Review decisions, tasks and revisions.",
-                                           f"Excluded {context_repeats} preceding-context-only items. Original proposals remain in saved call checkpoints."])
+                                           f"Excluded {context_repeats} preceding-context-only items. Original proposals remain in saved call checkpoints.",
+                                           f"Support audit withheld {withheld} unsupported or uncertain claims and removed {duplicates} exact duplicates. "
+                                           "Judgments and original candidates remain in saved calls. The same-model audit is not independent verification."])

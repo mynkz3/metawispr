@@ -151,6 +151,17 @@ class SourceActions(Contract):
     revisions: list[SourceFact]
 
 
+class ClaimVerdict(Contract):
+    candidate_id: str
+    verdict: Literal["supported", "unsupported", "uncertain"]
+    evidence_ids: list[str] = Field(min_length=1)
+    reason: str = Field(min_length=1, max_length=240)
+
+
+class ClaimAudit(Contract):
+    verdicts: list[ClaimVerdict]
+
+
 class SourceItem(SourceTask):
     kind: Literal["decision", "task"]
 

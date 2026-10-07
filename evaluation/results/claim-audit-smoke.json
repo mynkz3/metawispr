@@ -1,0 +1,125 @@
+{
+  "scope": "Authored genuine Qwen audit component probe; no ASR or meeting accuracy claim",
+  "passed": true,
+  "withheld": 2,
+  "duplicates": 0,
+  "input": {
+    "segments": [
+      {
+        "id": "s0",
+        "start": 0.0,
+        "end": 10.0,
+        "text": "Maya will send the report by Friday."
+      },
+      {
+        "id": "s1",
+        "start": 10.0,
+        "end": 20.0,
+        "text": "Perhaps we could add Bluetooth. We have not agreed to do that."
+      },
+      {
+        "id": "s2",
+        "start": 20.0,
+        "end": 30.0,
+        "text": "The target selling price is twenty dollars."
+      }
+    ],
+    "record": {
+      "summary": [
+        {
+          "text": "The profit target is twenty dollars.",
+          "evidence": [
+            {
+              "segment_id": "s2",
+              "quote": "The target selling price is twenty dollars.",
+              "start_char": 0,
+              "end_char": 43
+            }
+          ]
+        }
+      ],
+      "topics": [],
+      "decisions": [],
+      "tasks": [
+        {
+          "text": "Send the report",
+          "evidence": [
+            {
+              "segment_id": "s0",
+              "quote": "Maya will send the report by Friday.",
+              "start_char": 0,
+              "end_char": 36
+            }
+          ],
+          "owner": "Maya",
+          "deadline": "Friday"
+        },
+        {
+          "text": "Add Bluetooth",
+          "evidence": [
+            {
+              "segment_id": "s1",
+              "quote": "Perhaps we could add Bluetooth.",
+              "start_char": 0,
+              "end_char": 31
+            }
+          ],
+          "owner": null,
+          "deadline": null
+        }
+      ],
+      "uncertainties": []
+    }
+  },
+  "output": {
+    "summary": [],
+    "topics": [],
+    "decisions": [],
+    "tasks": [
+      {
+        "text": "Send the report",
+        "evidence": [
+          {
+            "segment_id": "s0",
+            "quote": "Maya will send the report by Friday.",
+            "start_char": 0,
+            "end_char": 36
+          }
+        ],
+        "owner": "Maya",
+        "deadline": "Friday"
+      }
+    ],
+    "uncertainties": []
+  },
+  "calls": [
+    {
+      "key": "fc052fa47b14e84eb57392af590722aa2d0b010ebcec8c3b99b750c93aadbe18",
+      "model": {
+        "tag": "qwen3.5:4b",
+        "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+        "runtime_version": "0.35.1",
+        "parameter_size": "4.2B",
+        "quantization": "Q4_K_M"
+      },
+      "prompt_sha256": "e3486988439ee43ecc443863ef4c886d0f687b7651db0dd31cbb76b8c3c3ea03",
+      "input_sha256": "3dc73e3e37c328ddea8a8e57b74670e5ec65c971a233c650fe8f45ae1e0e74a9",
+      "schema_sha256": "fc0f5388c87a88fe6ffbdcf4b98820c43dea0c93a5c3bc5e1d78678f5ae01b24",
+      "context": 16384,
+      "output_tokens": 3072,
+      "temperature": 0.0,
+      "seed": 0,
+      "thinking": false,
+      "thinking_level": null,
+      "response_model_version": null,
+      "thought_tokens": null,
+      "presence_penalty": 0.0,
+      "repeat_penalty": 1.0,
+      "elapsed_seconds": 13.104129999992438,
+      "prompt_tokens": 712,
+      "generated_tokens": 169,
+      "attempts": 1
+    }
+  ],
+  "prompt_sha256": "b47d4ba06dc981785263765c9186f0ba24d9050bf710928bc1cb6112fc528a01"
+}

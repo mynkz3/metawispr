@@ -38,6 +38,8 @@ class Phase3Tests(unittest.TestCase):
         refined = worker.refine(meeting, raw, llm.models()[0], lambda count: None)
         brief_calls = []
         def request(method, path, body=None, timeout=None):
+            if "verdicts" in body["format"]["properties"]:
+                return FixtureLLM.request(llm, method, path, body, timeout)
             payload = json.loads(body["messages"][1]["content"])
             properties = body["format"]["properties"]
             if "segments" in payload:
@@ -114,6 +116,8 @@ class Phase3Tests(unittest.TestCase):
         worker = Documentation(self.settings, runner.store, llm)
         refined = worker.refine(meeting, raw, llm.models()[0], lambda count: None)
         def request(method, path, body=None, timeout=None):
+            if "verdicts" in body["format"]["properties"]:
+                return FixtureLLM.request(llm, method, path, body, timeout)
             payload = json.loads(body["messages"][1]["content"])
             if "segments" in payload:
                 if "tasks" in body["format"]["properties"]:
@@ -347,6 +351,8 @@ class Phase3Tests(unittest.TestCase):
         reconciliation_inputs = []
         attempts = [0]
         def request(method, path, body=None, timeout=None):
+            if "verdicts" in body["format"]["properties"]:
+                return FixtureLLM.request(llm, method, path, body, timeout)
             payload = json.loads(body["messages"][1]["content"])
             value = {"summary": [], "topics": [], "decisions": [], "tasks": [], "uncertainties": []}
             revisions = []
