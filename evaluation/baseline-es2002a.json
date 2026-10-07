@@ -1,0 +1,145 @@
+{
+  "meeting": "ES2002a",
+  "designated_on": "2026-10-07",
+  "designation": "Owner-selected fixed historical baseline for future transcript improvement work.",
+  "baseline": {
+    "profile": "Parakeet v2 INT8 CUDA + shared Qwen3.5 4B; historical documentation policy without final claim audit.",
+    "score_source": {
+      "path": "evaluation/results/phase5/ES2002a-cuda-final-score.json",
+      "sha256": "2b8994fd128ba947d744b0f75be2a6338fb1ef0142ddabdd093b8a08fb52ace7"
+    },
+    "asr_source": {
+      "path": ".cache/phase5/gpu-int8-es2002a/final-profile/results.json",
+      "sha256": "eedb83e97091e891499f6a2f57cef3d32ffa05989dc399c8f53841f36dab06b4"
+    },
+    "metrics": {
+      "tasks": {
+        "predictions": 15,
+        "gold_atoms": 3,
+        "correct_predictions": 2,
+        "matched_atoms": 2,
+        "correct_prediction_indices": [
+          10,
+          13
+        ],
+        "unsupported_predictions": 13,
+        "precision": 0.13333333333333333,
+        "recall": 0.6666666666666666,
+        "missed_gold_ids": [
+          "interface-functions"
+        ]
+      },
+      "decisions": {
+        "predictions": 0,
+        "gold_atoms": 0,
+        "correct_predictions": 0,
+        "matched_atoms": 0,
+        "correct_prediction_indices": [],
+        "unsupported_predictions": 0,
+        "precision": null,
+        "recall": null,
+        "missed_gold_ids": []
+      },
+      "task_metadata": {
+        "owner_correct": 0,
+        "deadline_correct": 0,
+        "evaluated_correct_predictions": 2,
+        "all_predictions": 15,
+        "invented_owners": 0,
+        "invented_deadlines": 0
+      },
+      "notes": {
+        "facts": 24,
+        "unsupported": 9,
+        "unsupported_titles": 2
+      },
+      "key_topics": {
+        "covered": 2,
+        "expected": 5
+      }
+    },
+    "asr_word_errors": {
+      "reference_words": 2565,
+      "hypothesis_words": 2244,
+      "substitutions": 117,
+      "deletions": 342,
+      "insertions": 21,
+      "wer": 0.1871345029239766,
+      "aligned_start_seconds": 55.6,
+      "aligned_end_seconds": 1084.0,
+      "excluded_leading_seconds": 55.6,
+      "excluded_trailing_seconds": 188.6400000000001,
+      "normalization": "Lowercase; punctuation to separators; apostrophes retained; no number expansion.",
+      "alignment": "Complete ASR windows inside lexical annotation coverage; reference words by midpoint. Overlapping speakers sorted by start and speaker file. Not an official AMI benchmark."
+    },
+    "transcription_load_seconds": 5.7227833999932045,
+    "transcription_decode_seconds": 69.22668009999325,
+    "exports_consistent": true
+  },
+  "manual_transcript_comparison": {
+    "score_source": {
+      "path": "evaluation/results/manual-es2002a-score.json",
+      "sha256": "bfddbaaae88cfcf49318741bf33d7bc7496e688a545fd6c9072db93cc0eaaa4f"
+    },
+    "metrics": {
+      "tasks": {
+        "predictions": 5,
+        "gold_atoms": 3,
+        "correct_predictions": 3,
+        "matched_atoms": 3,
+        "correct_prediction_indices": [
+          2,
+          3,
+          4
+        ],
+        "unsupported_predictions": 2,
+        "precision": 0.6,
+        "recall": 1.0,
+        "missed_gold_ids": []
+      },
+      "decisions": {
+        "predictions": 0,
+        "gold_atoms": 0,
+        "correct_predictions": 0,
+        "matched_atoms": 0,
+        "correct_prediction_indices": [],
+        "unsupported_predictions": 0,
+        "precision": null,
+        "recall": null,
+        "missed_gold_ids": []
+      },
+      "task_metadata": {
+        "owner_correct": 0,
+        "deadline_correct": 0,
+        "evaluated_correct_predictions": 3,
+        "all_predictions": 5,
+        "invented_owners": 0,
+        "invented_deadlines": 0
+      },
+      "notes": {
+        "facts": 24,
+        "unsupported": 7,
+        "unsupported_titles": 1
+      },
+      "key_topics": {
+        "covered": 4,
+        "expected": 5
+      }
+    },
+    "timing": {
+      "resume_seconds": 273.51007829999435,
+      "initial_failed_seconds": 73.65029210000648,
+      "total_attempt_seconds": 347.16037040000083,
+      "saved_calls_reused": 5,
+      "new_chat_requests": 36
+    },
+    "profile": "Manual transcript; current Qwen documentation with final audit and financial-label validation repair."
+  },
+  "limitations": [
+    "Both documentation scores are provisional single-agent reviews, not independent human/audio accuracy certification.",
+    "WER applies only to the recorded aligned evaluation interval, not the entire meeting.",
+    "Manual comparison also changes documentation policy; gains cannot be attributed to transcript quality alone.",
+    "Keep this historical baseline fixed. Future original-vs-processed audio tests must use the same audio interval, WER normalization, ASR settings and reference."
+  ],
+  "release_verified": false
+}
