@@ -226,3 +226,13 @@ and nearby context; unsupported/uncertain claims are withheld and exact
 duplicates are removed. Saved audit calls retain reasons and candidates.
 This same-model gate does not prove correctness; see the actual checks and
 limitations in [PHASE5.md](PHASE5.md).
+
+
+### Hybrid profile (documentation policy 18)
+
+GLiNER2 adds source-span extraction hints before Qwen documentation; a separate
+DeBERTa NLI model checks retained claims after Qwen unloads. The canonical
+record includes a chronological task ledger and saved support checks. Neither
+model supplies ground-truth labels. See [HYBRID.md](HYBRID.md) for setup,
+fixed-model choices, context limits, conservative gates and the single-run
+evaluation protocol. Prompts and Qwen weights remain unchanged.

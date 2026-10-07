@@ -209,3 +209,23 @@ call). See `evaluation/results/claim-audit-smoke.json`; reproduce with
 an AMI accuracy result. Same-model judgments can share extraction errors and
 filter out true items; full-meeting precision/recall remain unmeasured for
 policy 17. Audit adds inference latency; ASR and WER are unchanged.
+
+
+## Hybrid profile integration, 7 October 2026
+
+GLiNER2 source-span hints, DeBERTa support gating and a task lifecycle ledger
+are implemented as an explicit hybrid profile. Existing prompts are unchanged.
+99 backend tests pass, including source/cache integrity, later retirement and
+hybrid publication checks. Genuine library imports succeed. Hybrid dependencies
+are installed and locked; encoder execution uses CPU to reserve GPU memory for
+Parakeet/Qwen. No encoder/meeting quality result is claimed.
+
+Initial GLiNER2 weight transfer stalled at zero bytes. One bounded attempt
+with the recommended hf-xet helper also stalled and was stopped. A single
+ES2002a hybrid execution then failed clearly in 1.17 seconds because local
+weights were absent, before hybrid inference. The report is
+`evaluation/results/hybrid-es2002a.json`; existing ASR/refinement were reused
+and historical records were not modified. No prompts or thresholds were
+tuned, and no automatic meeting rerun followed. Qwen-only stays the default
+until model setup and explicit activation. Hybrid readiness, real model
+execution and accuracy remain unverified. See [HYBRID.md](HYBRID.md).

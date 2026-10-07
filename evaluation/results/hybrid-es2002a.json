@@ -1,0 +1,29 @@
+{
+  "scope": "Single development meeting, fixed prompts, genuine Qwen/GLiNER2/DeBERTa. Saved genuine CUDA ASR and refinement reused; no new WER measurement.",
+  "baseline_report": ".cache\\phase5\\gpu-int8-es2002a\\final-profile\\results.json",
+  "baseline_sha256": "47a4fd94ca003f1497fca3fc77e27a9dd738214f41de23798d6704ba4dc54642",
+  "prompt_sha256": {
+    "refine": "b09d5b798d1c2425a4f650c6b70f709748fb068bcdf35d94f9bd6c8ae4d4c807",
+    "document": "8885ab788cbf3b009ce8afb83d6343359c66d18bd732e0d8d462d38718889509",
+    "review": "fbf38c8ccb915a45c44f890cd11b35d047d918d6058cbd1a22500f5cca5ea3d6",
+    "notes": "dc00a1c75332a51b9f273194bde8323ecf59f9e4589ce67eeb40db23fb7cb01b",
+    "reconcile": "67f021ddb8638d48a6f3ca24b9a3ad12d85f013f89370b0b51672a193b7b7676",
+    "consolidate": "938e3ac0422737f310ed286a9fdf0b6379e9a1ce1c5c5662de448016baaaf9e4",
+    "audit": "b47d4ba06dc981785263765c9186f0ba24d9050bf710928bc1cb6112fc528a01"
+  },
+  "meeting_id": "9cffa557-a41f-4f44-8989-993a1fda4e8b",
+  "wall_seconds": 1.1689280999999028,
+  "stage": "failed",
+  "error": "Hybrid models are not installed. Install the hybrid extra and run python -m metawispr.semantic models/hybrid.",
+  "baseline_tasks": 15,
+  "accuracy_status": "Not independently graded; model support scores are not precision or recall.",
+  "hybrid_checkpoints": [],
+  "setup_status": {
+    "dependencies_installed": true,
+    "imports_verified": true,
+    "weights_available": false,
+    "download_attempts": 2,
+    "download_outcome": "GLiNER2 weight transfer remained at zero bytes; both attempts stopped. No additional retries.",
+    "new_hybrid_inference_executed": false
+  }
+}
