@@ -1,112 +1,254 @@
-# Metawispr
+<p align="center">
+  <img src="frontend/public/mark.svg" width="72" height="72" alt="Metawispr logo" />
+</p>
 
-**Active profile (7 October 2026):** Parakeet CUDA + local Qwen3.5 4B for both
-ordered LLM stages. Gemini integration and its private key were removed at the
-owner's request. Historical evaluation reports are retained; accuracy gates
-remain open. See [the shared Qwen profile](docs/SHARED_QWEN4B.md).
+<h1 align="center">Metawispr</h1>
+<p align="center"><strong>Your conversations, turned into a meeting notebook.</strong></p>
+<p align="center">Local audio processing · Traceable notes · Reviewable decisions and tasks</p>
+<p align="center">
+  <a href="#installation">Installation</a> ·
+  <a href="#screenshots">Screenshots</a> ·
+  <a href="docs/DESIGN.md">Architecture</a> ·
+  <a href="docs/PHASE5.md">Evaluation</a>
+</p>
 
-A meeting workspace that turns uploaded English recordings into a raw transcript, a terminology-refined transcript, minutes, agreed decisions, and actionable tasks. Claims in the meeting record link back to their source audio.
+## What it does
 
-**Build status:** the recorded-meeting pipeline and responsive React review workspace are implemented. **74 backend tests pass**; frontend build, browser behavior, accessibility and real model compatibility are documented in the phase logs. See [the design](docs/DESIGN.md), [phase gates](docs/PHASES.md), [Phase 2 verification](docs/PHASE2.md), [Phase 3 verification](docs/PHASE3.md) and [Phase 4 plan/verification](docs/PHASE4.md). Representative meeting-quality evaluation remains Phase 5 work.
+Metawispr turns **uploaded English audio recordings** into a meeting record you can read, review and export. Upload a recording, optionally add a title and terminology glossary, and follow its progress through the local pipeline.
 
-## Architecture
+- **Understand the conversation:** concise summaries and topic minutes.
+- **Find what was agreed:** decisions and tasks, with owners and deadlines only when stated.
+- **Check the source:** supporting quotes linked to playable audio windows.
+- **Compare transcripts:** preserved raw recognition, refined text and accepted/rejected correction history.
+- **Recover from failures:** saved checkpoints and explicit retries; a validated summary can remain available when tasks or decisions are unavailable.
+- **Take your record with you:** Markdown, JSON, text transcripts and a ZIP bundle generated from the saved validated artifacts.
 
-React + TypeScript interface → FastAPI → Parakeet v2 INT8 ONNX → Qwen3.5 4B terminology refinement → Qwen3.5 4B documentation → validation → Markdown / JSON / ZIP.
+The responsive notebook includes a searchable recording library, keyboard navigation, focus mode and accessible motion preferences. Processing uses local models; **no hosted LLM API key is required**.
 
-One Qwen 4B weight set serves both ordered LLM stages with separate prompts, schemas, checkpoints and provenance. This owner-selected default reduces model storage to approximately 4 GB including Parakeet; dependencies and caches are additional. It is not a claim of release-ready meeting accuracy. See the [shared-4B profile and improvement plan](docs/SHARED_QWEN4B.md). Only one ASR runs in the product. Faster-whisper large-v3 is an evaluation baseline.
+**Current status:** a working prototype with an implemented recording/review workflow. Meeting accuracy remains under evaluation. Source matching and validation help review model output; they do not guarantee correct interpretation.
 
-The shared-4B switch passed backend tests, build, readiness and genuine synthetic audio/export checks. Five browser fixture checks passed; the genuine browser test failed its decision-quality assertion because 4B classified a budget fact as an agreed decision. That failure is retained and remains Phase 5 work.
+## Tech stack
 
-The [active workplan](docs/WORKPLAN.md) keeps the remaining work inside the original
-problem statement: source/context reliability, accurate meeting documentation,
-genuine terminology refinement, new-recording evaluation, and review/export delivery.
-It defines acceptance gates and preserves both LLM stages while sharing 4B weights.
+| Layer | Technology | Purpose |
+| --- | --- | --- |
+| Workspace | React, TypeScript, Vite, ordinary CSS | Responsive meeting notebook |
+| Local API | Python, FastAPI, Uvicorn | Uploads, processing status, playback and exports |
+| Audio preparation | FFmpeg / imageio-ffmpeg, NumPy | Decode and normalize recordings |
+| Audio enhancement | GTCRN ONNX | Enhance audio before transcription |
+| Speech recognition | Parakeet TDT 0.6B v2, INT8 ONNX, sherpa-onnx | Generate the raw transcript |
+| Language processing | Qwen3.5 4B through Ollama | Terminology refinement and meeting documentation |
+| Validation | Pydantic and evidence checks | Validate schemas, references and supporting quotes |
+| Storage | Local files and JSON checkpoints | Preserve artifacts and resume completed stages |
+| Verification | Python unittest, Playwright, axe | Backend behavior, browser flows and accessibility |
 
-A [genuine local LLM regression comparison](docs/LLM_EVALUATION.md) covers Qwen 4B, Qwen 9B and Granite H-Micro 3B on fixed authored cases, plus CPU subsets. It identified Qwen 4B as a lightweight candidate; the later shared-4B default is a separate storage decision. The [evaluation runner and actual outputs](evaluation/README.md) are included. These results do not establish representative meeting accuracy.
+```text
+Recording → Prepare + GTCRN → Parakeet INT8 → Raw transcript
+         → Qwen terminology refinement → Qwen meeting documentation
+         → Validation → Review + exports
+```
 
-The [real AMI ES2002a comparison](docs/AMI_ES2002A_EVALUATION.md) now tests the same models on a 21-minute recording and official manual transcript. Qwen 9B produced the strongest validated narrative notes, but omitted the assigned tasks; no model met the complete meeting-record quality requirements. The earlier single-4B preference is not validated by this meeting. Citation handling, action extraction and context budgeting need work before selecting a production winner. Public derived inputs and genuine outputs are included; audio and weights remain outside Git.
+One Qwen model installation serves **two distinct, sequential stages**, each with its own prompts, validation and checkpoints. Model weights are downloaded separately and are **not included in this repository**.
 
-## Development
+## Installation
 
-Use Python 3.11–3.13, uv and a current local Ollama installation supporting Qwen3.5. Model weights are installed separately and are not committed. Use Node.js 22.12+ (24 LTS recommended) and npm to build the frontend.
+### Prerequisites
+
+- Git, Python **3.11–3.13** and [uv](https://docs.astral.sh/uv/getting-started/installation/).
+- Node.js **22.12 or newer** and npm.
+- [Ollama](https://ollama.com/download), running locally with support for `qwen3.5:4b`.
+- Internet access for the initial dependency and model downloads.
+- For GPU transcription: an NVIDIA GPU, a compatible CUDA-enabled sherpa-onnx wheel, and its matching CUDA/cuDNN runtime libraries.
+
+GPU use is the default transcription profile. CPU transcription is also supported, but runtime depends on your hardware and recording. We have not established a universal minimum RAM/VRAM requirement; model files, runtime libraries and context memory are separate costs.
+
+### 1. Clone and install dependencies
 
 ```sh
+git clone https://github.com/mynkz3/metawispr.git
+cd metawispr
 uv sync --locked
-uv run python -m unittest discover -s tests -v
-uv run python -m metawispr download-model
-ollama pull qwen3.5:4b
-uv run python -m metawispr doctor
 cd frontend
 npm ci
 npm run build
 cd ..
-uv run uvicorn metawispr.api:app --host 127.0.0.1 --port 8000 --workers 1
 ```
 
-Start these commands from the repository root. Open **http://127.0.0.1:8000** for the workspace, or `/docs` for the interactive API. The frontend build is served by the same local process; build it before starting/restarting the server. Use one server process; do not run the CLI against the same data directory while the server is processing meetings. During frontend development, `npm run dev` in `frontend/` proxies API requests to the server on port 8000.
+### 2. Download the models
 
-Start Ollama locally before `doctor`/processing; a standalone installation uses `ollama serve`. Dependency installation and initial weight downloads require network access. Reviewed network exceptions resolved the earlier sandbox block. `uv.lock` records the installed dependency set. On Windows, the matching sherpa binary package supplies the correct ONNX Runtime; no system DLL replacement is needed. `.env.example` documents process environment overrides; Python does not automatically load `.env`.
-
-## Process or transcribe a recording
+Install Parakeet and the shared Qwen model:
 
 ```sh
-uv run python -m metawispr process /path/to/meeting.mp3 --title "Project planning" --glossary "Docker"
-uv run python -m metawispr transcribe /path/to/meeting.wav --title "Project planning"
-uv run python -m metawispr document MEETING_UUID
-uv run python -m metawispr retry MEETING_UUID
-uv run python -m metawispr export MEETING_UUID --output ./exports/meeting
+uv run python -m metawispr download-model
+ollama pull qwen3.5:4b
 ```
 
-WAV, MP3, M4A, FLAC, OGG and WEBM are accepted, subject to decoder validation. The default limits are 200 MiB and 120 minutes, with three pending jobs including uploads and one inference worker. Already normalized mono 16 kHz, 16-bit PCM WAV needs no converter. Other inputs use a system FFmpeg or imageio-ffmpeg's bundled executable.
+GTCRN is enabled by default and needs its own small ONNX file. Download
+[gtcrn_simple.onnx](https://github.com/k2-fsa/sherpa-onnx/releases/download/speech-enhancement-models/gtcrn_simple.onnx)
+and save it at **`models/gtcrn/gtcrn_simple.onnx`**.
 
-Each meeting has a generated UUID directory under `data/`, containing metadata, original recording and `prepared.wav`. ASR adds immutable `raw.json` and `raw.txt`, including hashes, runtime, timings and audio-window offsets. Text is preserved exactly; timestamps identify windows and are **not word alignment**. `transcribe` stops at `transcribed`; `process` and API uploads continue to `complete`, adding `refined.json`, its accepted/rejected edit audit, `document.json`, and successful per-call checkpoints. Text/Markdown/JSON/ZIP downloads render from validated artifacts.
+On Windows PowerShell:
 
-Use one canonical glossary term per line, optionally `alias => canonical`. Without a glossary, the refinement model still runs but no terminology edits are accepted. Raw output is always retained. Exact evidence matching helps trace claims; it does not certify a model's interpretation. Review decisions, tasks and revision notes before relying on them.
+```powershell
+New-Item -ItemType Directory -Force models/gtcrn | Out-Null
+curl.exe -fL https://github.com/k2-fsa/sherpa-onnx/releases/download/speech-enhancement-models/gtcrn_simple.onnx -o models/gtcrn/gtcrn_simple.onnx
+```
 
-LLMs run sequentially and unload between roles. Defaults are 8,192 context tokens, 2,048 output tokens, a 300-second request timeout and at most two validation attempts. Bounded chronological groups reconcile every candidate decision/task, then consolidate notes for long meetings. Withdrawn/replaced items retain a separate source-backed revision history. Dense final records or a large individual segment/glossary can exceed the context and fail explicitly; increase `METAWISPR_LLM_CONTEXT` within available memory or submit a shorter recording. The duration ceiling does not guarantee arbitrary information density fits the default context.
-
-For an offline model install, download the [official v2 INT8 archive](https://github.com/k2-fsa/sherpa-onnx/releases/download/asr-models/sherpa-onnx-nemo-parakeet-tdt-0.6b-v2-int8.tar.bz2) on a network-enabled machine, then run:
+On Linux/macOS:
 
 ```sh
-uv run python -m metawispr download-model --archive /path/to/package.tar.bz2
+mkdir -p models/gtcrn
+curl -fL https://github.com/k2-fsa/sherpa-onnx/releases/download/speech-enhancement-models/gtcrn_simple.onnx -o models/gtcrn/gtcrn_simple.onnx
 ```
 
-An optional `--sha256 EXPECTED_HASH` checks a checksum you obtained independently. The installer records archive/file hashes and attribution, rejects unsafe archives, and never overwrites an existing model directory. `doctor` reports prerequisites for both LLM roles, which share one installed model by default; `doctor --asr-only` checks the ASR setup independently. Neither certifies recognition or extraction quality.
+### 3. Select your transcription runtime
 
-## API
+The locked dependency install supplies the CPU package. For GPU transcription, install a compatible GPU wheel **after** `uv sync`.
 
-| Method and path | Behavior |
+<details>
+<summary><strong>Windows GPU setup — Python 3.12, CUDA 12 and cuDNN 9</strong></summary>
+
+Use a Python 3.12 environment for this example (`uv sync --locked --python 3.12` when creating it). Install the matching wheel:
+
+```powershell
+uv pip install --reinstall --no-deps --no-index --find-links https://k2-fsa.github.io/sherpa/onnx/cuda.html "sherpa-onnx==1.13.8+cuda12.cudnn9"
+$env:METAWISPR_ASR_PROVIDER = 'cuda'
+```
+
+Install the wheel's required CUDA 12/cuDNN 9 libraries and ensure their library directories are accessible to the process. Follow the [official Windows CUDA instructions](https://k2-fsa.github.io/sherpa/onnx/install/windows/build-cuda.html). Installing a wheel alone does not install every NVIDIA runtime dependency.
+
+For another operating system, Python version or CUDA runtime, choose the matching package from the [official sherpa-onnx wheel index](https://k2-fsa.github.io/sherpa/onnx/cuda.html) and [Python installation guide](https://k2-fsa.github.io/sherpa/onnx/python/install.html). Keep its sherpa-onnx base version aligned with this project's `1.13.8` pin.
+
+</details>
+
+<details>
+<summary><strong>CPU transcription setup</strong></summary>
+
+Keep the package installed by `uv sync` and set the provider in the terminal that starts the server.
+
+Windows PowerShell:
+
+```powershell
+$env:METAWISPR_ASR_PROVIDER = 'cpu'
+```
+
+Linux/macOS:
+
+```sh
+export METAWISPR_ASR_PROVIDER=cpu
+```
+
+This selects Parakeet's provider. Ollama manages Qwen's own CPU/GPU placement independently. CPU execution can be slower; no fixed meeting-processing time is promised.
+
+</details>
+
+After manually installing a GPU wheel, use **`uv run --no-sync`** as shown below. A later `uv sync` may restore the locked CPU package, requiring the GPU wheel to be reinstalled.
+
+### 4. Start and check the app
+
+Ensure Ollama is running. If its desktop service is not already running, start it in a separate terminal:
+
+```sh
+ollama serve
+```
+
+From the repository root, in the terminal with your provider settings:
+
+```sh
+uv run --no-sync python -m metawispr doctor
+uv run --no-sync uvicorn metawispr.api:app --host 127.0.0.1 --port 8000 --workers 1
+```
+
+Open **[http://127.0.0.1:8000](http://127.0.0.1:8000)**. Interactive API documentation is available at **`/docs`**. Resolve any readiness failures reported by `doctor` before processing.
+
+Use one server process. Do not run CLI inference against the same data directory while the server is processing. Initial downloads require internet; the default inference pipeline does not depend on hosted model APIs.
+
+## Screenshots
+
+These are captures of the implemented notebook, not design mockups. The review screenshot uses **explicit synthetic UI fixture content** to demonstrate sources and missing assignments; it is not a model-quality result. No private recordings are included.
+
+### Upload workspace
+
+![Metawispr upload workspace with recording picker, optional title and glossary](docs/assets/workspace.png)
+
+### Meeting review and source audio
+
+![Metawispr demo review showing tasks, unspecified assignments and supporting source audio](docs/assets/review.png)
+
+### Mobile notebook
+
+<img src="docs/assets/mobile.png" width="360" alt="Metawispr mobile upload notebook with accessible controls" />
+
+## Using Metawispr
+
+1. Choose or drop an English recording: **WAV, MP3, M4A, FLAC, OGG or WEBM**. Default limits are **200 MiB and 120 minutes**; the interface displays configured limits.
+2. Optionally give it a title and add glossary terms, one per line. Aliases use `alias => canonical`.
+3. Create the record and follow **Prepare audio → Transcribe → Refine terminology → Write record**.
+4. Review Overview, Decisions, Tasks and Transcript. Select a source to read its exact quote and seek the corresponding audio window.
+5. Download the available artifacts or retry a failed stage from its saved progress.
+
+Timestamps identify **audio windows, not exact word alignment**. Missing owners and deadlines remain **Unspecified**. Unavailable sections are labeled as unavailable, rather than implying nothing was stated. Raw transcripts remain accessible after downstream failures.
+
+### Command line
+
+```sh
+uv run --no-sync python -m metawispr process /path/to/meeting.mp3 --title "Project planning" --glossary "Docker"
+uv run --no-sync python -m metawispr transcribe /path/to/meeting.wav
+uv run --no-sync python -m metawispr document MEETING_UUID
+uv run --no-sync python -m metawispr retry MEETING_UUID
+uv run --no-sync python -m metawispr export MEETING_UUID --output ./exports/meeting
+```
+
+For an offline Parakeet installation, use `download-model --archive /path/to/package.tar.bz2`. The installer supports an optional independently obtained checksum via `--sha256`.
+
+## Configuration and local data
+
+See [`.env.example`](.env.example) for process environment settings. **Python does not automatically load a `.env` file**; set variables in your shell or process manager.
+
+| Setting | Default / behavior |
 | --- | --- |
-| `GET /api/health` | Dependency/model prerequisites and configured limits |
-| `POST /api/meetings` | Multipart `file`, optional `title` and `glossary`; returns 202 and UUID |
-| `GET /api/meetings` | Recent local recordings |
-| `GET /api/meetings/{id}` | Metadata/status, raw/refined transcripts and validated record |
-| `POST /api/meetings/{id}/retry` | Resume a retryable failure using saved checkpoints |
-| `POST /api/meetings/{id}/document` | Continue an ASR-only meeting through both LLM stages |
-| `GET /api/meetings/{id}/audio` | Prepared WAV with browser byte-range playback |
-| `GET /api/meetings/{id}/export/raw.txt` | Exact raw segment text |
-| `GET /api/meetings/{id}/export/raw.json` | Canonical raw transcript and provenance |
-| `GET /api/meetings/{id}/export/{format}` | `refined.txt`, `refined.json`, `edits.json`, `meeting.md`, `meeting.json`, `provenance.json`, `bundle.zip` |
+| `METAWISPR_DATA_DIR` | `data/` — recordings and meeting checkpoints |
+| `METAWISPR_ASR_PROVIDER` | `cuda`; set `cpu` for the CPU package |
+| `METAWISPR_OLLAMA_URL` | `http://127.0.0.1:11434` |
+| `METAWISPR_REFINER_MODEL` / `METAWISPR_DOCUMENTER_MODEL` | `qwen3.5:4b` for both roles |
+| `METAWISPR_USE_GTCRN` | `1`; `0` disables enhancement for new recordings |
+| `METAWISPR_GTCRN_MODEL` | `models/gtcrn/gtcrn_simple.onnx` |
+| `METAWISPR_LLM_CONTEXT` | `16384` tokens; memory usage depends on context |
 
-A missing runtime/model produces a retryable setup failure with completed stages retained. Successful LLM calls are reused by input/prompt/schema/model digest/runtime/settings identity. Invalid input requires a new upload. Restarting the server marks interrupted jobs as failed and eligible for explicit retry when the original exists. Changing a completed stage's policy requires restoring its settings or submitting a new meeting. Raw downloads remain available after downstream failures. Exports and polling never invoke a model.
+Model weights, recordings, private keys, environments and generated caches are excluded from Git. Each meeting has a UUID directory containing its original audio, transcripts, correction history, validated documentation and provenance. Preserve this directory if you need its record or recovery checkpoints.
 
-## Workspace checks
+## Development and checks
 
-With the built app running on port 8000:
+Backend checks, from the repository root:
+
+```sh
+uv run --no-sync python -m unittest discover -s tests -v
+```
+
+Frontend checks, with the local backend running on port 8000:
 
 ```sh
 cd frontend
 npm run check
+npm run build
 npx playwright install chromium
 npm test
 ```
 
-The five default browser checks use explicitly synthetic API fixtures. The real local-model browser check is opt-in: set `METAWISPR_SMOKE_AUDIO` to a path containing the authored spoken compatibility sample in [PHASE2.md](docs/PHASE2.md) and `METAWISPR_SMOKE_ID` to a complete saved record of that same sample, then run `npm test`. It performs one new genuine upload and checks the sample's expected decision/task, provenance and downloaded JSON. Other arbitrary recordings need their own reviewed expectations. `METAWISPR_UI_URL` can override the test server URL. Screenshots are saved under `.cache/ui-qa/`, outside Git. This is compatibility and UI verification, not a representative model benchmark.
+Default browser tests use labeled synthetic API fixtures. Genuine saved-record checks and new model-backed uploads are opt-in; see [UI verification](docs/UI-VERIFICATION.md). For frontend development, `npm run dev` proxies `/api` to port 8000. Rebuild the frontend after UI changes when using the production server.
 
-The workspace supports file selection/drop, optional glossary, saved progress/retry, source quotes with coarse audio-window navigation, raw/refined transcripts, correction/revision history and canonical downloads. Task fields are read-only; unspecified assignments/dates remain unspecified. Keyboard tabs and narrow layouts are supported. The [earlier static preview](docs/ui-preview.html) remains a labelled design artifact.
+## Accuracy and scope
 
-## Scope and data
+Metawispr currently supports **recorded English audio**, not live capture or speaker identification. The notebook is for reviewing generated records; task editing, approvals, accounts and public hosting are outside this prototype.
 
-The initial release handles uploaded recordings. Live capture, speaker identity recognition, accounts, and public hosting are future work. Audio and transcripts stay in the configured local data directory; the default LLM server is local. Never commit personal recordings, model weights, or secrets.
+Qwen can omit tasks, misclassify decisions or invent context even when a quote matches. GTCRN is an enhancement step, **not a guaranteed WER improvement**; the recorded full ES2002a comparison regressed from 18.71% to 20.66% WER. Long, dense meetings can exceed bounded context or fail validation. Review important claims against the audio before relying on them.
 
-Application code is MIT licensed. Model weights and third-party binaries retain their own licenses; see the design's model attribution section.
+The earlier Qwen 9B/Granite comparisons and Gemini experiments remain documented as history; they are not active dependencies. Accuracy gates remain open. See the [Phase 5 evidence](docs/PHASE5.md), [shared Qwen profile](docs/SHARED_QWEN4B.md), [GTCRN and summary recovery](docs/SUMMARY_RECOVERY_GTCRN.md), and [short-call evaluation](docs/HARPER_SHORT_CALLS.md).
+
+## Project guide
+
+- [Design and requirements](docs/DESIGN.md)
+- [Phase history](docs/PHASES.md) and [remaining workplan](docs/WORKPLAN.md)
+- [Evaluation runner and reports](evaluation/README.md)
+- [Frontend verification](docs/UI-VERIFICATION.md)
+
+Application code is licensed under [MIT](LICENSE). Model weights, datasets, fonts and third-party runtimes retain their respective licenses. Inter's SIL Open Font License is bundled in [the frontend](frontend/public/fonts/OFL.txt).
