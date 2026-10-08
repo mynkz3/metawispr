@@ -53,3 +53,22 @@ The opt-in browser test that uploads audio through installed models was skipped
 for this UI change. No ASR/LLM runs, accuracy evaluations or model-quality claims
 were added. Browser verification used Chromium; other browser engines were not
 tested. Unrelated pre-existing working-tree changes were preserved.
+
+## Minimalist polish
+
+The follow-up uses quieter borders, softer shadows, restrained pastel selections,
+and a compact feature row. The library now searches titles and filenames. A native
+expandable technology section documents the default local stack and points users
+to per-record exported provenance. Short CSS transitions and entry animations
+respect reduced-motion preferences; no animation dependency was added.
+
+All six synthetic UI checks passed again, including search, technology disclosure,
+reduced motion, accessibility and mobile overflow. TypeScript and production build
+passed. Visual captures disable animations to inspect settled layouts. The two
+opt-in model/saved-record checks were skipped for this cosmetic follow-up.
+
+Eleven completed synthetic compatibility records in the local `data/` directory
+were moved to `.cache/archived-ui-fixtures/`, removing them from the visible library
+without deleting their artifacts. The archive is local and excluded from Git.
+AMI and other speech recordings were retained. No title filter was added to the
+application: new real uploads remain visible regardless of their names.

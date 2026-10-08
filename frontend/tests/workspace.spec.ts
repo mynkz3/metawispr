@@ -103,7 +103,7 @@ test('desktop review, null assignments, exact raw text, revisions, keyboard tabs
   await expect(page.locator('blockquote')).toHaveText('Action item: check the logs.');
   await expect.poll(() => page.locator('audio').evaluate((el: HTMLAudioElement) => el.currentTime)).toBeCloseTo(30, 1);
   await expect(page.getByRole('complementary', { name: 'Source audio and evidence' })).toBeFocused();
-  await page.screenshot({ path: resolve(screenshots, 'desktop-review-fixture.png'), fullPage: true });
+  await page.screenshot({ path: resolve(screenshots, 'desktop-review-fixture.png'), fullPage: true, animations: 'disabled' });
   await accessible(page); await noOverflow(page);
   await page.getByRole('tab', { name: 'Tasks' }).focus(); await page.keyboard.press('ArrowRight');
   await expect(page.getByRole('tab', { name: 'Transcript' })).toHaveAttribute('aria-selected', 'true');
@@ -152,7 +152,7 @@ test('phone upload and review remain accessible, fit the viewport and reach sour
   await mock(page);
   await page.goto('/');
   await expect(page.getByRole('heading', { name: 'Start with a recording' })).toBeVisible();
-  await page.screenshot({ path: resolve(screenshots, 'phone-upload.png'), fullPage: true });
+  await page.screenshot({ path: resolve(screenshots, 'phone-upload.png'), fullPage: true, animations: 'disabled' });
   await accessible(page); await noOverflow(page);
   await page.getByRole('button', { name: 'Meeting library', exact: true }).click();
   await page.getByRole('link', { name: /Synthetic planning fixture/ }).click();
@@ -161,7 +161,7 @@ test('phone upload and review remain accessible, fit the viewport and reach sour
   await expect(page.locator('blockquote')).toHaveText('Alex will send the draft by Monday.');
   await expect(page.locator('audio')).toBeInViewport();
   await page.evaluate(() => window.scrollTo(0, 0));
-  await page.screenshot({ path: resolve(screenshots, 'phone-review-fixture.png'), fullPage: true });
+  await page.screenshot({ path: resolve(screenshots, 'phone-review-fixture.png'), fullPage: true, animations: 'disabled' });
   await accessible(page); await noOverflow(page);
   await page.setViewportSize({ width: 360, height: 800 }); await noOverflow(page);
 });
@@ -170,7 +170,7 @@ test('desktop upload visual and accessibility check', async ({ page }) => {
   await mock(page, () => view, false);
   await page.goto('/');
   await expect(page.getByRole('heading', { name: 'Start with a recording' })).toBeVisible();
-  await page.screenshot({ path: resolve(screenshots, 'desktop-upload.png'), fullPage: true });
+  await page.screenshot({ path: resolve(screenshots, 'desktop-upload.png'), fullPage: true, animations: 'disabled' });
   await accessible(page); await noOverflow(page);
 });
 
@@ -193,6 +193,16 @@ test('library, focus mode and partial sections preserve summary and sources', as
   await page.getByRole('button', { name: 'Meeting library', exact: true }).click();
   await page.keyboard.press('Escape');
   await expect(page.getByRole('button', { name: 'Meeting library', exact: true })).toBeFocused();
+  await page.getByRole('button', { name: 'Meeting library', exact: true }).click();
+  await page.getByRole('searchbox', { name: 'Search recordings' }).fill('no match');
+  await expect(page.getByText('No recordings match your search.')).toBeVisible();
+  await page.getByRole('searchbox', { name: 'Search recordings' }).fill('fixture.wav');
+  await expect(page.getByRole('link', { name: /Synthetic planning fixture/ })).toBeVisible();
+  await page.getByText('Under the hood', { exact: false }).click();
+  await expect(page.getByText('Qwen3.5 4B · Ollama', { exact: true })).toBeVisible();
+  await expect(page.getByText('FastAPI · Pydantic', { exact: true })).toBeVisible();
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  expect(await page.locator('.record-panel').evaluate(el => getComputedStyle(el).animationName)).toBe('none');
   await expect.poll(() => page.evaluate(() => document.fonts.check('14px Inter'))).toBe(true);
   await accessible(page); await noOverflow(page);
 });
@@ -206,7 +216,7 @@ test('genuine saved record and browser upload through installed models', async (
   await page.getByRole('tab', { name: 'Tasks' }).click();
   await expect(page.getByText('Maya', { exact: true })).toBeVisible();
   await expect(page.getByText('Friday', { exact: true })).toBeVisible();
-  await page.screenshot({ path: resolve(screenshots, 'desktop-genuine-record.png'), fullPage: true });
+  await page.screenshot({ path: resolve(screenshots, 'desktop-genuine-record.png'), fullPage: true, animations: 'disabled' });
   await accessible(page);
   await page.getByRole('button', { name: 'New recording' }).click();
   await page.getByLabel('Choose recording', { exact: true }).setInputFiles(process.env.METAWISPR_SMOKE_AUDIO!);
@@ -234,7 +244,7 @@ test('genuine saved record and browser upload through installed models', async (
   await page.getByRole('button', { name: 'Open source 1: We agreed to use Docker for the release.' }).click();
   await expect(page.locator('blockquote')).toHaveText('We agreed to use Docker for the release.');
   await expect.poll(() => page.locator('audio').evaluate((el: HTMLAudioElement) => el.readyState)).toBeGreaterThan(0);
-  await page.screenshot({ path: resolve(screenshots, 'desktop-genuine-browser-upload.png'), fullPage: true });
+  await page.screenshot({ path: resolve(screenshots, 'desktop-genuine-browser-upload.png'), fullPage: true, animations: 'disabled' });
   console.log(`Genuine browser-created meeting: ${created}`);
   expect(errors).toEqual([]);
 });
@@ -252,7 +262,7 @@ test('saved pipeline record plays source audio and downloads canonical artifacts
   const segment = (result.refined?.segments ?? result.raw.segments).find((s: { id: string }) => s.id === supporting.segment_id);
   await expect.poll(() => page.locator('audio').evaluate((el: HTMLAudioElement) => el.currentTime)).toBeCloseTo(segment.start, 1);
   await accessible(page); await noOverflow(page);
-  await page.screenshot({ path: resolve(screenshots, `saved-${savedId}.png`), fullPage: true });
+  await page.screenshot({ path: resolve(screenshots, `saved-${savedId}.png`), fullPage: true, animations: 'disabled' });
   for (const format of ['meeting.md', 'meeting.json', 'bundle.zip', 'provenance.json', 'refined.txt', 'refined.json', 'edits.json', 'raw.txt', 'raw.json']) {
     await page.locator('.exports summary').click();
     const pending = page.waitForEvent('download');

@@ -1197,3 +1197,66 @@ button:focus-visible,a:focus-visible,summary:focus-visible {scroll-margin-top:ca
 
 
 blockquote {font-family:Inter,Arial,sans-serif;font-style:normal;font-weight:400;font-size:14px;line-height:1.7}
+/* Quiet surfaces and purposeful motion for the meeting notebook. */
+.app-header {background:#fffef8f5;backdrop-filter:blur(12px);border-bottom-color:#30352f18}
+.brand {font-size:26px}
+.rail {background:#fffef8b3;border-right-color:#30352f12}
+.primary,.new-button {box-shadow:0 2px 0 #30352f;transition:background .18s,box-shadow .18s,transform .18s}
+.primary:hover:not(:disabled),.new-button:hover {box-shadow:0 4px 10px #30352f18;transform:translateY(-1px)}
+.secondary {border-color:#30352f30;background:transparent;transition:background .18s,border-color .18s,transform .18s}
+.secondary:hover {background:#f2eee4;border-color:#30352f65}
+.upload-card,.review-content {border-color:#30352f35;box-shadow:0 4px 24px #30352f08,0 1px 3px #30352f06}
+.upload-card {padding:28px 32px}
+.upload-workspace {max-width:720px}
+.hero h1 {font-size:36px;max-width:650px}
+.feature-strip {display:flex;flex-wrap:wrap;gap:10px 22px;list-style:none;padding:0;margin:0 0 24px;color:var(--muted);font-size:12px}
+.feature-strip li {display:flex;align-items:center;gap:7px}
+.feature-strip svg {width:15px;height:15px;color:var(--accent)}
+.dropzone {background:#fafaf4;border-color:#30352f40;padding:20px;border-radius:16px;transition:background .18s,border-color .18s}
+.dropzone:hover,.dropzone.dragging {background:#f0f5f3;border-color:#35634d80}
+.dropzone .upload-icon {margin-bottom:14px;width:42px;height:42px;background:#fff0c7;border-color:transparent}
+.dropzone .format-hint {margin-bottom:0}
+.library-search {width:100%;min-height:44px;padding:10px 12px;margin:10px 0;border:1px solid #30352f24;background:#fffef8;border-radius:12px;font-size:12px}
+.meeting-link {transition:background .18s,border-color .18s}
+.meeting-link.selected {background:#fff0c7;border-color:#d1bf8c;box-shadow:none}
+.meeting-link:hover {background:#f2f0e8}
+.meeting-link.selected:hover {background:#ffebba}
+.status-card {border-color:#30352f20;background:#fffef8a8}
+.review-content>.small-note {background:#f1ebfa;color:#494454}
+.tabs {background:#fbfaf5;padding:12px 16px;border-bottom-color:#30352f16;gap:6px}
+.tabs button {transition:background .18s,box-shadow .18s,color .18s}
+.tabs button:hover:not([aria-selected=true]) {background:#f0eee6}
+.tabs button[aria-selected=true] {box-shadow:0 1px 3px #30352f10;border-color:#d1bf8c;background:#fff0c7}
+.record-panel {border-left-color:#f3b9a866}
+.record-header h1 {font-size:38px}
+.source-panel {background:#edf4f6;border-color:#30352f20;box-shadow:0 3px 16px #30352f04}
+.source-panel .quote-card {border-color:#30352f20;box-shadow:0 1px 3px #30352f06}
+.review-notes {background:#f1ebfa}
+.source-button {transition:background .18s,color .18s; text-decoration:none}
+.source-button:hover {background:#dceef8}
+.export-menu {border-color:#30352f30;box-shadow:0 8px 30px #30352f16;background:var(--surface)}
+.stack-section {display:flex;align-items:flex-start;justify-content:space-between;gap:28px;border-top:1px solid var(--border);margin-top:42px;padding-top:24px;color:var(--muted);font-size:12px}
+.stack-section .eyebrow {margin-bottom:8px;font-size:9px}
+.stack-section>div>p:last-child {margin:0}
+.stack-section details {width:360px;max-width:100%}
+.stack-section summary {min-height:44px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;list-style:none;color:#30352F;border-bottom:1px solid transparent}
+.stack-section summary::-webkit-details-marker {display:none}
+.stack-section details[open] summary {border-color:var(--border)}
+.stack-section dl {margin:12px 0 0}
+.stack-section dl>div {display:flex;justify-content:space-between;gap:20px;padding:9px 0}
+.stack-section dt {font-size:10px}
+.stack-section dd {margin:0;text-align:right;color:#30352F;font-size:11px}
+.workspace-footer {margin-top:24px;border-top:0;padding-top:0}
+@keyframes settle {from {opacity:0;transform:translateY(5px)} to {opacity:1;transform:translateY(0)}}
+@keyframes drawer-in {from {opacity:0;transform:translateX(-10px)} to {opacity:1;transform:translateX(0)}}
+@media(prefers-reduced-motion:no-preference) {
+  .record-panel,.quote-card,.export-menu {animation:settle .2s ease-out both}
+  .rail:not([hidden]) {animation:drawer-in .18s ease-out both}
+  .upload-workspace {animation:settle .25s ease-out both}
+}
+@media(max-width:760px) {
+  .upload-card {padding:22px 18px}.hero h1 {font-size:30px}
+  .feature-strip {font-size:11px;gap:12px 16px;margin-bottom:20px}
+  .tabs {padding:12px 8px;gap:2px}.record-header h1 {font-size:32px}
+  .stack-section {flex-direction:column;gap:12px;margin-top:30px}.stack-section details {width:100%}
+}

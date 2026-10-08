@@ -41,6 +41,7 @@ export default function App() {
   }, []);
   const [selected, setSelected] = useState(initialSelection);
   const [meetings, setMeetings] = useState<Meeting[]>([]);
+  const [libraryQuery, setLibraryQuery] = useState('');
   const [health, setHealth] = useState<Health | null>(null);
   const [libraryError, setLibraryError] = useState('');
   const [view, setView] = useState<View | null>(null);
@@ -136,6 +137,7 @@ export default function App() {
     return items.length ? <ul className="fact-list">{items.map((fact, i) => <li key={i}><p>{fact.text}</p>{sources(fact.evidence)}</li>)}</ul> : <Empty>{empty}</Empty>;
   }
   const record = view?.document?.record;
+  const visibleMeetings = meetings.filter(m => `${m.title} ${m.filename}`.toLowerCase().includes(libraryQuery.trim().toLowerCase()));
   const ready = !!health?.transcription_ready && !!health?.llm_ready;
   const exports = view ? [
     ...(view.document ? [['meeting.md', 'Meeting notes · Markdown'], ['meeting.json', 'Meeting record · JSON'], ['bundle.zip', 'All artifacts · ZIP'], ['provenance.json', 'Model provenance · JSON']] : []),
@@ -166,7 +168,8 @@ export default function App() {
     {libraryOpen && !focusMode && <button className="library-backdrop" aria-label="Close meeting library" onClick={() => { setLibraryOpen(false); libraryButton.current?.focus(); }} />}
     <aside id="meeting-library" className="rail" aria-label="Meeting library" hidden={!libraryOpen || focusMode}>
       <details className="library" open><summary>YOUR RECORDINGS <span>{meetings.length}</span></summary>
-        {libraryError ? <div className="library-error"><p>{libraryError}</p><button className="text-button" onClick={() => setRefresh(n => n + 1)}>Reload library</button></div> : meetings.length ? <nav aria-label="Recent recordings">{meetings.map(m => <a key={m.id} href={`?meeting=${m.id}`} className={`meeting-link ${selected === m.id ? 'selected' : ''}`} aria-current={selected === m.id ? 'page' : undefined} onClick={e => { e.preventDefault(); choose(m.id); }}><span className="meeting-title">{m.title}</span><span className="meeting-meta"><i className={`dot ${m.stage}`} />{labels[m.stage]}</span></a>)}</nav> : <p className="library-empty">Your recordings will live here.<br />Start with a conversation.</p>}
+        {meetings.length > 0 && <input className="library-search" type="search" aria-label="Search recordings" placeholder="Find a recording…" value={libraryQuery} onChange={e => setLibraryQuery(e.target.value)} />}
+        {libraryError ? <div className="library-error"><p>{libraryError}</p><button className="text-button" onClick={() => setRefresh(n => n + 1)}>Reload library</button></div> : meetings.length ? visibleMeetings.length ? <nav aria-label="Recent recordings">{visibleMeetings.map(m => <a key={m.id} href={`?meeting=${m.id}`} className={`meeting-link ${selected === m.id ? 'selected' : ''}`} aria-current={selected === m.id ? 'page' : undefined} onClick={e => { e.preventDefault(); choose(m.id); }}><span className="meeting-title">{m.title}</span><span className="meeting-meta"><i className={`dot ${m.stage}`} />{labels[m.stage]}</span></a>)}</nav> : <p className="library-empty" role="status">No recordings match your search.</p> : <p className="library-empty">Your recordings will live here.<br />Start with a conversation.</p>}
       </details>
       <div className="rail-footer"><span className="local-indicator" />Local workspace<p>Audio and notes stay on this machine.</p></div>
     </aside>
@@ -191,7 +194,7 @@ export default function App() {
           <div className="review-grid"><section className="review-content" aria-label="Meeting review">
             {!!view.document?.unavailable_sections?.length && <p role="status" className="small-note">Partial record: {view.document.unavailable_sections.join(' and ')} are unavailable because generation or validation failed. The validated summary remains available.</p>}
             <div className="tabs" role="tablist" aria-label="Record views">{tabs.map((name, index) => <button key={name} role="tab" id={`tab-${name}`} aria-controls="record-panel" aria-selected={tab === name} tabIndex={tab === name ? 0 : -1} onKeyDown={e => tabKey(e, index)} onClick={() => setTab(name)}>{name}{name === 'Decisions' && record && !view.document?.unavailable_sections?.includes('decisions') && <span>{record.decisions.length}</span>}{name === 'Tasks' && record && !view.document?.unavailable_sections?.includes('tasks') && <span>{record.tasks.length}</span>}</button>)}</div>
-            <div id="record-panel" role="tabpanel" aria-labelledby={`tab-${tab}`} tabIndex={0} className="record-panel">
+            <div key={tab} id="record-panel" role="tabpanel" aria-labelledby={`tab-${tab}`} tabIndex={0} className="record-panel">
               {tab === 'Transcript' ? <>
                 <div className="section-heading"><div><p className="eyebrow">THE CONVERSATION</p><h2>Transcript</h2></div><div className="toggle" role="group" aria-label="Transcript version"><button aria-pressed={!rawMode} disabled={!view.refined} onClick={() => setRawMode(false)}>Refined</button><button aria-pressed={rawMode || !view.refined} onClick={() => setRawMode(true)}>Raw</button></div></div>
                 <p className="small-note">Raw speech recognition is preserved. Times mark audio windows, not individual words.</p>
@@ -218,7 +221,8 @@ export default function App() {
           </aside></div>
         </>}
       </>}
-      <footer className="workspace-footer"><span>Less recall. More clarity.</span><span>{health ? ready ? 'Local models ready' : 'Setup needs attention' : libraryError ? 'Local service unavailable' : 'Connecting to local service'}</span></footer>
+      <section className="stack-section" aria-label="Technology stack"><div><p className="eyebrow">MADE FOR LOCAL REVIEW</p><p>From recording to a record you can trace.</p></div><details><summary>Under the hood <span aria-hidden="true">↗</span></summary><dl><div><dt>Audio enhancement</dt><dd>GTCRN</dd></div><div><dt>Speech recognition</dt><dd>Parakeet TDT · INT8 ONNX</dd></div><div><dt>Refinement &amp; documentation</dt><dd>Qwen3.5 4B · Ollama</dd></div><div><dt>Workspace</dt><dd>React · TypeScript · Vite</dd></div><div><dt>Local API &amp; validation</dt><dd>FastAPI · Pydantic</dd></div></dl><p className="small-note">Default local pipeline. Exported provenance identifies the models used for each recording.</p></details></section>
+      <footer className="workspace-footer"><span>Metawispr · Your meeting notebook</span><span>{health ? ready ? 'Local models ready' : 'Setup needs attention' : libraryError ? 'Local service unavailable' : 'Connecting to local service'}</span></footer>
     </main>
   </div>;
 }
@@ -256,6 +260,7 @@ function Upload({ health, onUploaded }: { health: Health | null; onUploaded: (me
   }
   const incomplete = health && (!health.transcription_ready || !health.llm_ready || !health.conversion_ready);
   return <div className="upload-workspace"><header className="hero"><p className="eyebrow">YOUR MEETING NOTEBOOK</p><h1>A place for the conversation.</h1><p>Upload an English recording to create notes with sources you can review.</p></header>
+    <ul className="feature-strip" aria-label="Meeting record features"><li><Icon name="source" /> Traceable notes</li><li><Icon name="upload" /> Preserved transcripts</li><li><Icon name="arrow" /> Portable exports</li></ul>
     <div className="upload-grid"><form className="upload-card" onSubmit={e => void submit(e)} aria-label="Upload a meeting recording"><div className="card-heading"><h2>Start with a recording</h2><span>01</span></div>
       <div className={`dropzone ${dragging ? 'dragging' : ''}`} onDragOver={e => { e.preventDefault(); if (!busy) setDragging(true); }} onDragLeave={() => setDragging(false)} onDrop={e => { e.preventDefault(); setDragging(false); if (!busy) { if (e.dataTransfer.files.length !== 1) setError('Choose one recording at a time.'); else pick(e.dataTransfer.files[0]); } }}>
         <span className="upload-icon"><Icon name="upload" /></span><strong>{file ? file.name : 'A conversation starts here.'}</strong><p>{file ? `${(file.size / 1048576).toFixed(1)} MB · ready to upload` : 'Drop your audio file, or choose one below.'}</p><label className={`secondary file-button ${busy ? 'disabled' : ''}`}><input ref={input} type="file" accept=".wav,.mp3,.m4a,.flac,.ogg,.webm" aria-label="Choose recording" disabled={busy} onChange={e => { pick(e.target.files?.[0]); e.target.value = ''; }} />{file ? 'Change recording' : 'Choose recording'}</label>
