@@ -174,10 +174,6 @@ These are captures of the implemented notebook, not design mockups. The review s
 
 ![Metawispr demo review showing tasks, unspecified assignments and supporting source audio](docs/assets/review.png)
 
-### Mobile notebook
-
-<img src="docs/assets/mobile.png" width="360" alt="Metawispr mobile upload notebook with accessible controls" />
-
 ## Using Metawispr
 
 1. Choose or drop an English recording: **WAV, MP3, M4A, FLAC, OGG or WEBM**. Default limits are **200 MiB and 120 minutes**; the interface displays configured limits.
