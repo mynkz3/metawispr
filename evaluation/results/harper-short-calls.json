@@ -1,0 +1,1075 @@
+{
+  "dataset": "Gridspace-Stanford Harper Valley",
+  "repository_revision": "0bd721e877c4a85d8c13ff837e68661ea6200a98",
+  "attribution": "Gridspace and Stanford; CC BY 4.0; https://github.com/cricketclub/gridspace-stanford-harper-valley",
+  "selection": "First two lexically sorted IDs with equal channel file sizes between 960100 and 1919000 bytes; verified complete duration 60-120 seconds before inference. No selection by model results.",
+  "scope": "Two simulated human-spoken banking calls; fast development checks, not real meeting-minutes or held-out meeting acceptance.",
+  "normalization": "Full-call lowercase WER; punctuation to separators, apostrophes retained, non-speech bracket/angle annotations removed from references; no number expansion.",
+  "channel_handling": "Average synchronized channels at original rate; no trimming, cropping or shifts; normal production conversion to mono 16 kHz follows.",
+  "reference_use": "Human transcripts are read only for scoring after generation, never injected into model input. Empty glossary; generic call title.",
+  "git_head": "3d5f93372f7e53fab4e545d08dd7731b4d14997a",
+  "started_at": "2026-10-08T11:05:02.923748+00:00",
+  "documentation_policy": "c06ab12370623c81672dc24e8d2e8ab57b952d9a8d9329c526aea35a1f0f649a",
+  "refinement_policy": "d17d3cbad9080e2f092d4af4f2670cc02fe71dd6cb3c8eee13e19e1298bb2b68",
+  "calls": [
+    {
+      "id": "01cefd6f5c044a6f",
+      "duration_seconds": 63.0,
+      "wall_seconds": 63.936526599980425,
+      "source_hashes": {
+        "agent": "cd6ac7668b8db7eaebfff43725595586c45600dc7da7eb115e27e7bb532d561c",
+        "caller": "0c81fe9a00e8de4beceda4f5f40606c321fdf77aa8acbb14e921292e348e419b"
+      },
+      "mixed_sha256": "01fa89930df433f46e2c2c26c897cd5084f36291fb5c78d0f890376b4b006d4e",
+      "transcript_sha256": "d23ab91776d2e1cdbb434150bbf8eb8ae07d1c76ed95daa00fe1278c4593f88a",
+      "meeting": {
+        "id": "23ca67bf-d815-4ce1-92a6-8ca59ca430e0",
+        "title": "Short banking dialogue",
+        "filename": "short-call.wav",
+        "source_name": "original.wav",
+        "glossary": "",
+        "created_at": "2026-10-08T11:05:02.941246+00:00",
+        "updated_at": "2026-10-08T11:06:06.893954+00:00",
+        "stage": "complete",
+        "input_sha256": "01fa89930df433f46e2c2c26c897cd5084f36291fb5c78d0f890376b4b006d4e",
+        "size_bytes": 1008044,
+        "duration_seconds": 63.0,
+        "processed_audio_seconds": 63.0,
+        "prepare_seconds": 0.27409479999914765,
+        "transcribed_at": "2026-10-08T11:05:07.817486+00:00",
+        "failed_stage": null,
+        "error": null,
+        "retryable": false,
+        "target": "complete",
+        "llm_completed_calls": 6,
+        "refined_at": "2026-10-08T11:05:31.129417+00:00",
+        "documented_at": "2026-10-08T11:06:06.890963+00:00"
+      },
+      "reference_text": "hello this is harper valley national bank my name is michael how can i help you today hi my name is john garcia i would like to reset my password okay can you repeat the reason for your call please i would like to reset my password okay what is your phone number seven one five one three nine zero seven eight seven okay is there anything else i can help you with   no that's all the help i needed today thank you okay thank you for calling have a great day you as well bye okay okay bye bye",
+      "raw": {
+        "enhancement": {
+          "padding_removed_samples": 128,
+          "model": "gtcrn",
+          "model_sha256": "e77603ac0c23dac3227dd2d7135b3a585cbee2679048aecfa886657d3ae1b534",
+          "source_sha256": "46d4c6e7dfaee1adda49a9a679185c24aba682bb5b9559b99856a89c0704812f",
+          "enhanced_sha256": "f8d348a7b8454b0b914c2ade7e517fe173913740eb2b2801b3746f23b09b6da2",
+          "elapsed_seconds": 4.507711699989159,
+          "provider": "cpu"
+        },
+        "schema_version": "1.0",
+        "input_sha256": "01fa89930df433f46e2c2c26c897cd5084f36291fb5c78d0f890376b4b006d4e",
+        "audio_sha256": "f8d348a7b8454b0b914c2ade7e517fe173913740eb2b2801b3746f23b09b6da2",
+        "duration_seconds": 63.0,
+        "timing": "audio_window",
+        "segments": [
+          {
+            "id": "s00001",
+            "start": 0.0,
+            "end": 27.1,
+            "text": "Hello, this is Harper Valley National Bank. My name is Michael. How can I help you today? Hi, my name is John Garcia. I would like to reset my password. Okay, can you repeat the reason for your call, please? I would like to reset my password."
+          },
+          {
+            "id": "s00002",
+            "start": 27.1,
+            "end": 54.2,
+            "text": "Okay, what is your phone number? 715139-0787. Okay, is there anything else I can help you with? No, that's all the help I needed today. Thank you. Okay, thank you for calling. Have a great day."
+          },
+          {
+            "id": "s00003",
+            "start": 54.2,
+            "end": 63.0,
+            "text": "You as well. Okay, bye bye."
+          }
+        ],
+        "model": {
+          "model_id": "nvidia/parakeet-tdt-0.6b-v2",
+          "package": "sherpa-onnx-nemo-parakeet-tdt-0.6b-v2-int8",
+          "runtime": "sherpa-onnx",
+          "runtime_version": "1.13.8+cuda12.cudnn9",
+          "provider": "cuda",
+          "num_threads": 4,
+          "file_sha256": {
+            "encoder.int8.onnx": "a32b12d17bbbc309d0686fbbcc2987b5e9b8333a7da83fa6b089f0a2acd651ab",
+            "decoder.int8.onnx": "b6bb64963457237b900e496ee9994b59294526439fbcc1fecf705b31a15c6b4e",
+            "joiner.int8.onnx": "7946164367946e7f9f29a122407c3252b680dbae9a51343eb2488d057c3c43d2",
+            "tokens.txt": "ec182b70dd42113aff6c5372c75cac58c952443eb22322f57bbd7f53977d497d"
+          }
+        },
+        "load_seconds": 6.489638500032015,
+        "decode_seconds": 4.5196177999605425,
+        "created_at": "2026-10-08T11:05:07.817486+00:00",
+        "warnings": [
+          "Timestamps identify audio windows, not individual word boundaries.",
+          "ASR used GTCRN-enhanced audio; original and normalized audio are preserved. Enhancement does not guarantee lower WER."
+        ]
+      },
+      "refined": {
+        "refinement_available": true,
+        "schema_version": "1.0",
+        "source_sha256": "79921ec394584e5aa181ec59abe6380640d164390382c84475cf9fe8dfc6697a",
+        "policy_sha256": "d17d3cbad9080e2f092d4af4f2670cc02fe71dd6cb3c8eee13e19e1298bb2b68",
+        "created_at": "2026-10-08T11:05:31.129417+00:00",
+        "segments": [
+          {
+            "id": "s00001",
+            "start": 0.0,
+            "end": 27.1,
+            "text": "Hello, this is Harper Valley National Bank. My name is Michael. How can I help you today? Hi, my name is John Garcia. I would like to reset my password. Okay, can you repeat the reason for your call, please? I would like to reset my password."
+          },
+          {
+            "id": "s00002",
+            "start": 27.1,
+            "end": 54.2,
+            "text": "Okay, what is your phone number? 715139-0787. Okay, is there anything else I can help you with? No, that's all the help I needed today. Thank you. Okay, thank you for calling. Have a great day."
+          },
+          {
+            "id": "s00003",
+            "start": 54.2,
+            "end": 63.0,
+            "text": "You as well. Okay, bye bye."
+          }
+        ],
+        "accepted": [],
+        "rejected": [],
+        "calls": [
+          {
+            "key": "92e9b371d8ce97fbb915a19c2556543b04bf5ab5d6fb45bcf71e4a56196812aa",
+            "model": {
+              "tag": "qwen3.5:4b",
+              "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+              "runtime_version": "0.35.1",
+              "parameter_size": "4.2B",
+              "quantization": "Q4_K_M"
+            },
+            "prompt_sha256": "3c85c0dc9163b8bd37e8ee01c3d378b1f04a7cdf288cb76b35debb4ea4930453",
+            "input_sha256": "7b6c7cdaba088a4166cc2b3712c4d2c55c8fd584de3d272d9144405313a664b6",
+            "schema_sha256": "80f247b3ee35aed0bb3a100b5a2c060111b92f9d095d50474478e72556bbcf6f",
+            "context": 16384,
+            "output_tokens": 3072,
+            "temperature": 0.0,
+            "seed": 0,
+            "thinking": false,
+            "thinking_level": null,
+            "response_model_version": null,
+            "thought_tokens": null,
+            "presence_penalty": 0.0,
+            "repeat_penalty": 1.0,
+            "elapsed_seconds": 10.634202699991874,
+            "prompt_tokens": 732,
+            "generated_tokens": 6,
+            "attempts": 1
+          }
+        ],
+        "warnings": [
+          "Automatic edit guards cannot establish meaning. Review accepted and rejected edits."
+        ]
+      },
+      "document": {
+        "unavailable_sections": [],
+        "schema_version": "1.0",
+        "source_sha256": "5fcaa570049f28a2c6ae351f98b268810d84e73ddafaffc7f1ef4f4ab45885d4",
+        "policy_sha256": "c06ab12370623c81672dc24e8d2e8ab57b952d9a8d9329c526aea35a1f0f649a",
+        "created_at": "2026-10-08T11:06:06.890963+00:00",
+        "record": {
+          "summary": [
+            {
+              "text": "The caller requested a password reset for Harper Valley National Bank services.",
+              "evidence": [
+                {
+                  "segment_id": "s00001",
+                  "quote": "I would like to reset my password.",
+                  "start_char": 118,
+                  "end_char": 152
+                },
+                {
+                  "segment_id": "s00001",
+                  "quote": "I would like to reset my password.",
+                  "start_char": 208,
+                  "end_char": 242
+                }
+              ]
+            },
+            {
+              "text": "The agent requested the caller's phone number to proceed with the request.",
+              "evidence": [
+                {
+                  "segment_id": "s00002",
+                  "quote": "Okay, what is your phone number?",
+                  "start_char": 0,
+                  "end_char": 32
+                }
+              ]
+            },
+            {
+              "text": "The caller provided the phone number 715139-0787 and confirmed no further assistance was needed.",
+              "evidence": [
+                {
+                  "segment_id": "s00002",
+                  "quote": "715139-0787.",
+                  "start_char": 33,
+                  "end_char": 45
+                },
+                {
+                  "segment_id": "s00002",
+                  "quote": "No, that's all the help I needed today.",
+                  "start_char": 96,
+                  "end_char": 135
+                }
+              ]
+            }
+          ],
+          "topics": [
+            {
+              "title": "Password Reset Request",
+              "points": [
+                {
+                  "text": "The agent verified the reason for the call by asking the caller to repeat it.",
+                  "evidence": [
+                    {
+                      "segment_id": "s00001",
+                      "quote": "Okay, can you repeat the reason for your call, please?",
+                      "start_char": 153,
+                      "end_char": 207
+                    }
+                  ]
+                },
+                {
+                  "text": "The caller confirmed the purpose was to reset his password.",
+                  "evidence": [
+                    {
+                      "segment_id": "s00001",
+                      "quote": "I would like to reset my password.",
+                      "start_char": 208,
+                      "end_char": 242
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "title": "Contact Information",
+              "points": [
+                {
+                  "text": "The agent requested the caller's phone number to process the request.",
+                  "evidence": [
+                    {
+                      "segment_id": "s00002",
+                      "quote": "Okay, what is your phone number?",
+                      "start_char": 0,
+                      "end_char": 32
+                    }
+                  ]
+                },
+                {
+                  "text": "The caller provided the phone number 715139-0787.",
+                  "evidence": [
+                    {
+                      "segment_id": "s00002",
+                      "quote": "715139-0787.",
+                      "start_char": 33,
+                      "end_char": 45
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "title": "Call Conclusion",
+              "points": [
+                {
+                  "text": "The caller stated that no further help was needed after providing the phone number.",
+                  "evidence": [
+                    {
+                      "segment_id": "s00002",
+                      "quote": "No, that's all the help I needed today.",
+                      "start_char": 96,
+                      "end_char": 135
+                    }
+                  ]
+                },
+                {
+                  "text": "The agent thanked the caller and ended the call with a farewell.",
+                  "evidence": [
+                    {
+                      "segment_id": "s00002",
+                      "quote": "Thank you.",
+                      "start_char": 136,
+                      "end_char": 146
+                    },
+                    {
+                      "segment_id": "s00002",
+                      "quote": "Okay, thank you for calling.",
+                      "start_char": 147,
+                      "end_char": 175
+                    },
+                    {
+                      "segment_id": "s00002",
+                      "quote": "Have a great day.",
+                      "start_char": 176,
+                      "end_char": 193
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "title": "Caller Identity",
+              "points": [
+                {
+                  "text": "The caller identified himself as John Garcia.",
+                  "evidence": [
+                    {
+                      "segment_id": "s00001",
+                      "quote": "Hi, my name is John Garcia.",
+                      "start_char": 90,
+                      "end_char": 117
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "title": "Bank Identity",
+              "points": [
+                {
+                  "text": "The caller contacted Harper Valley National Bank.",
+                  "evidence": [
+                    {
+                      "segment_id": "s00001",
+                      "quote": "Hello, this is Harper Valley National Bank.",
+                      "start_char": 0,
+                      "end_char": 43
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "decisions": [],
+          "tasks": [],
+          "uncertainties": [
+            "The name 'Michael' in s00001:u001 may be an ASR error or refer to a different person, as the caller identified as John Garcia in s00001:u003."
+          ]
+        },
+        "revision_audit": [],
+        "calls": [
+          {
+            "key": "5f6c82ea5614ecf166e8e89d897011a1fb502c9a54266a247ab4ef49d1adfe5f",
+            "model": {
+              "tag": "qwen3.5:4b",
+              "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+              "runtime_version": "0.35.1",
+              "parameter_size": "4.2B",
+              "quantization": "Q4_K_M"
+            },
+            "prompt_sha256": "85f06ff4884427fdbbe71b2c54845fe178ab320cb604eedea4cf13469fab3352",
+            "input_sha256": "859e91c3871963f1dadf280043ffa9e54e3109b44ea0612f98ad1b0f3e2ab43f",
+            "schema_sha256": "107b98eb219749317cd02f023697a61a4cc9e6c0e94c6bbf6ed9b3eeee0f3d7f",
+            "context": 16384,
+            "output_tokens": 3072,
+            "temperature": 0.0,
+            "seed": 0,
+            "thinking": false,
+            "thinking_level": null,
+            "response_model_version": null,
+            "thought_tokens": null,
+            "presence_penalty": 0.0,
+            "repeat_penalty": 1.0,
+            "elapsed_seconds": 13.403913499962073,
+            "prompt_tokens": 1856,
+            "generated_tokens": 13,
+            "attempts": 1
+          },
+          {
+            "key": "0ddade4e1dee0ff6a0014084815a1fdddb74268802ffe07a9b78939685f14b1e",
+            "model": {
+              "tag": "qwen3.5:4b",
+              "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+              "runtime_version": "0.35.1",
+              "parameter_size": "4.2B",
+              "quantization": "Q4_K_M"
+            },
+            "prompt_sha256": "68e539365b7ed827baf5d88bbccfb655017557be1e8d0481528c4630d831c638",
+            "input_sha256": "59f351d7d5f55d13b102eaa233fba1a57fc8a69e1f80b11c9d65c92de8422355",
+            "schema_sha256": "107b98eb219749317cd02f023697a61a4cc9e6c0e94c6bbf6ed9b3eeee0f3d7f",
+            "context": 16384,
+            "output_tokens": 3072,
+            "temperature": 0.0,
+            "seed": 0,
+            "thinking": false,
+            "thinking_level": null,
+            "response_model_version": null,
+            "thought_tokens": null,
+            "presence_penalty": 0.0,
+            "repeat_penalty": 1.0,
+            "elapsed_seconds": 1.079074299952481,
+            "prompt_tokens": 1401,
+            "generated_tokens": 24,
+            "attempts": 1
+          },
+          {
+            "key": "b76448dbdf29fe732f20f9f54ff8bb7d5863e88f0a79365e28b94dcca40f48bc",
+            "model": {
+              "tag": "qwen3.5:4b",
+              "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+              "runtime_version": "0.35.1",
+              "parameter_size": "4.2B",
+              "quantization": "Q4_K_M"
+            },
+            "prompt_sha256": "8446bb4d84b1a264b34286f0ba3be9114d266a79df8a4554069c3396fea50c35",
+            "input_sha256": "d2adfff2dc35278e0e4dc4ce2e7412199037088cbb61c5283c107fe9a68ba4b1",
+            "schema_sha256": "737fb679cf86fed97a33f40397e794d84138bc9eaf0ffdedea4eac49bf9c9e81",
+            "context": 16384,
+            "output_tokens": 3072,
+            "temperature": 0.0,
+            "seed": 0,
+            "thinking": false,
+            "thinking_level": null,
+            "response_model_version": null,
+            "thought_tokens": null,
+            "presence_penalty": 0.0,
+            "repeat_penalty": 1.0,
+            "elapsed_seconds": 9.193996600050014,
+            "prompt_tokens": 1302,
+            "generated_tokens": 587,
+            "attempts": 1
+          },
+          {
+            "key": "ba10983d40098b25658cb97500c52bd92b53ca5001d31621426f760d0bc715e8",
+            "model": {
+              "tag": "qwen3.5:4b",
+              "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+              "runtime_version": "0.35.1",
+              "parameter_size": "4.2B",
+              "quantization": "Q4_K_M"
+            },
+            "prompt_sha256": "e3e0d6af642733bcece44a7492022543654894062013305b5a50ccfdf874a4ee",
+            "input_sha256": "55eda3fdd79b839d13cbf84ec5e7c446af981a4e732faf3bb6300f50598553e3",
+            "schema_sha256": "072e6fbfeb193ba440858ffec223fa372cd597a7a63a9be7f26e92668fad349e",
+            "context": 16384,
+            "output_tokens": 3072,
+            "temperature": 0.0,
+            "seed": 0,
+            "thinking": false,
+            "thinking_level": null,
+            "response_model_version": null,
+            "thought_tokens": null,
+            "presence_penalty": 0.0,
+            "repeat_penalty": 1.0,
+            "elapsed_seconds": 4.842475100012962,
+            "prompt_tokens": 1300,
+            "generated_tokens": 290,
+            "attempts": 1
+          },
+          {
+            "key": "8a9a4f8b69b3597a4bd6e68e8d721c52b18da922239f27a3a44493dbf7e95273",
+            "model": {
+              "tag": "qwen3.5:4b",
+              "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+              "runtime_version": "0.35.1",
+              "parameter_size": "4.2B",
+              "quantization": "Q4_K_M"
+            },
+            "prompt_sha256": "e3e0d6af642733bcece44a7492022543654894062013305b5a50ccfdf874a4ee",
+            "input_sha256": "7c601e76a1abf4cfc59178d1a56b74a548c05c5ea1370f4cc9b2d26c216ed274",
+            "schema_sha256": "8d5fa9c06ea5a0c2942e600bf416f53736c2e5ceda2ebd1d857fdeb4c3a83490",
+            "context": 16384,
+            "output_tokens": 3072,
+            "temperature": 0.0,
+            "seed": 0,
+            "thinking": false,
+            "thinking_level": null,
+            "response_model_version": null,
+            "thought_tokens": null,
+            "presence_penalty": 0.0,
+            "repeat_penalty": 1.0,
+            "elapsed_seconds": 5.721582100028172,
+            "prompt_tokens": 1465,
+            "generated_tokens": 347,
+            "attempts": 1
+          },
+          {
+            "key": "6d9e1b30ccd4a04fc47d51cfbb29cf4894f61eea7194256960cdf1400f424174",
+            "model": {
+              "tag": "qwen3.5:4b",
+              "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+              "runtime_version": "0.35.1",
+              "parameter_size": "4.2B",
+              "quantization": "Q4_K_M"
+            },
+            "prompt_sha256": "e3e0d6af642733bcece44a7492022543654894062013305b5a50ccfdf874a4ee",
+            "input_sha256": "382d94f4bd4f1a16505ac065018fabe35c019924ec591b73f1a8aff8938b0ca7",
+            "schema_sha256": "40dc16ed164fea3fceaca59829519d43a057618a4558360cc452f30ebc8222da",
+            "context": 16384,
+            "output_tokens": 3072,
+            "temperature": 0.0,
+            "seed": 0,
+            "thinking": false,
+            "thinking_level": null,
+            "response_model_version": null,
+            "thought_tokens": null,
+            "presence_penalty": 0.0,
+            "repeat_penalty": 1.0,
+            "elapsed_seconds": 1.199003099987749,
+            "prompt_tokens": 682,
+            "generated_tokens": 51,
+            "attempts": 1
+          }
+        ],
+        "warnings": [
+          "Exact evidence matching verifies provenance, not interpretation. Review decisions, tasks and revisions.",
+          "Excluded 0 preceding-context-only items. Original proposals remain in saved call checkpoints.",
+          "Support audit withheld 2 unsupported or uncertain claims and removed 0 exact duplicates. Judgments and original candidates remain in saved calls. The same-model audit is not independent verification."
+        ]
+      },
+      "raw_wer": {
+        "reference_words": 100,
+        "hypothesis_words": 90,
+        "substitutions": 2,
+        "deletions": 10,
+        "insertions": 0,
+        "wer": 0.12
+      },
+      "refined_wer": {
+        "reference_words": 100,
+        "hypothesis_words": 90,
+        "substitutions": 2,
+        "deletions": 10,
+        "insertions": 0,
+        "wer": 0.12
+      },
+      "exports_consistent": true
+    },
+    {
+      "id": "01f7ec3700424bc0",
+      "duration_seconds": 62.38,
+      "wall_seconds": 67.83030299999518,
+      "source_hashes": {
+        "agent": "2f3e65b394e2c328b56afb2ae7724e7c8e69692587ec660bdb5618ed33224230",
+        "caller": "1fff11fe3c9293cd9aae5c388dd55b612f37f5ee6914dfc5ddce68da6cc5e1f3"
+      },
+      "mixed_sha256": "ec1d59a80316573a5dbce457d0accebcad9ad30d32dc834cb77771a0473f4490",
+      "transcript_sha256": "bceb1d1a1da419374d955a86b4f8c2ae1e108123a44ec1a709bccbf962eea36d",
+      "meeting": {
+        "id": "8d48602a-abfe-45e2-af98-e8a01042f313",
+        "title": "Short banking dialogue",
+        "filename": "short-call.wav",
+        "source_name": "original.wav",
+        "glossary": "",
+        "created_at": "2026-10-08T11:06:07.006586+00:00",
+        "updated_at": "2026-10-08T11:07:14.851296+00:00",
+        "stage": "complete",
+        "input_sha256": "ec1d59a80316573a5dbce457d0accebcad9ad30d32dc834cb77771a0473f4490",
+        "size_bytes": 998124,
+        "duration_seconds": 62.38,
+        "processed_audio_seconds": 62.38,
+        "prepare_seconds": 1.7464271999779157,
+        "transcribed_at": "2026-10-08T11:06:13.431296+00:00",
+        "failed_stage": null,
+        "error": null,
+        "retryable": false,
+        "target": "complete",
+        "llm_completed_calls": 5,
+        "refined_at": "2026-10-08T11:06:34.242497+00:00",
+        "documented_at": "2026-10-08T11:07:14.842289+00:00"
+      },
+      "reference_text": "hello yes hello this is uh robert jones i would like to know uh what your local branch hours are please okay one second please certainly       the branch hours are nine thirty am to five p m okay thank you very much is there anything else i can help you with no i think that will be it thank you very much thank you for calling have a great day you too bye bye",
+      "raw": {
+        "enhancement": {
+          "padding_removed_samples": 64,
+          "model": "gtcrn",
+          "model_sha256": "e77603ac0c23dac3227dd2d7135b3a585cbee2679048aecfa886657d3ae1b534",
+          "source_sha256": "2373f4e911ca58421a345d1e738b2e86a29e6acaf35f579b0b73d9c5ae083502",
+          "enhanced_sha256": "ceeb6839397409f08d96ff009f112c6a6946e2a89eb71f5146f972dc88109df9",
+          "elapsed_seconds": 4.612640899955295,
+          "provider": "cpu"
+        },
+        "schema_version": "1.0",
+        "input_sha256": "ec1d59a80316573a5dbce457d0accebcad9ad30d32dc834cb77771a0473f4490",
+        "audio_sha256": "ceeb6839397409f08d96ff009f112c6a6946e2a89eb71f5146f972dc88109df9",
+        "duration_seconds": 62.38,
+        "timing": "audio_window",
+        "segments": [
+          {
+            "id": "s00001",
+            "start": 0.0,
+            "end": 29.3,
+            "text": "Hello? Yes, hello. This is Robert Jones. I would like to know what your local branch hours are, please. Say one second, please. Certainly."
+          },
+          {
+            "id": "s00002",
+            "start": 29.3,
+            "end": 57.8,
+            "text": "The branch hours are 9:30 a.m. to 5 p.m. Okay, thank you very much. Is there anything else I can help you with? No, I think that'll be it. Thank you very much."
+          },
+          {
+            "id": "s00003",
+            "start": 57.8,
+            "end": 62.38,
+            "text": "Thank you for calling. Have a great day. You too. Bye-bye."
+          }
+        ],
+        "model": {
+          "model_id": "nvidia/parakeet-tdt-0.6b-v2",
+          "package": "sherpa-onnx-nemo-parakeet-tdt-0.6b-v2-int8",
+          "runtime": "sherpa-onnx",
+          "runtime_version": "1.13.8+cuda12.cudnn9",
+          "provider": "cuda",
+          "num_threads": 4,
+          "file_sha256": {
+            "encoder.int8.onnx": "a32b12d17bbbc309d0686fbbcc2987b5e9b8333a7da83fa6b089f0a2acd651ab",
+            "decoder.int8.onnx": "b6bb64963457237b900e496ee9994b59294526439fbcc1fecf705b31a15c6b4e",
+            "joiner.int8.onnx": "7946164367946e7f9f29a122407c3252b680dbae9a51343eb2488d057c3c43d2",
+            "tokens.txt": "ec182b70dd42113aff6c5372c75cac58c952443eb22322f57bbd7f53977d497d"
+          }
+        },
+        "load_seconds": 6.690268900012597,
+        "decode_seconds": 4.9252024999586865,
+        "created_at": "2026-10-08T11:06:13.431296+00:00",
+        "warnings": [
+          "Timestamps identify audio windows, not individual word boundaries.",
+          "ASR used GTCRN-enhanced audio; original and normalized audio are preserved. Enhancement does not guarantee lower WER."
+        ]
+      },
+      "refined": {
+        "refinement_available": true,
+        "schema_version": "1.0",
+        "source_sha256": "c81546043eb747f21a884b897a8334d63c394f64a211839cf0b5ac485aeb543c",
+        "policy_sha256": "d17d3cbad9080e2f092d4af4f2670cc02fe71dd6cb3c8eee13e19e1298bb2b68",
+        "created_at": "2026-10-08T11:06:34.242497+00:00",
+        "segments": [
+          {
+            "id": "s00001",
+            "start": 0.0,
+            "end": 29.3,
+            "text": "Hello? Yes, hello. This is Robert Jones. I would like to know what your local branch hours are, please. Say one second, please. Certainly."
+          },
+          {
+            "id": "s00002",
+            "start": 29.3,
+            "end": 57.8,
+            "text": "The branch hours are 9:30 a.m. to 5 p.m. Okay, thank you very much. Is there anything else I can help you with? No, I think that'll be it. Thank you very much."
+          },
+          {
+            "id": "s00003",
+            "start": 57.8,
+            "end": 62.38,
+            "text": "Thank you for calling. Have a great day. You too. Bye-bye."
+          }
+        ],
+        "accepted": [],
+        "rejected": [],
+        "calls": [
+          {
+            "key": "c44fe305ddc6973294a9ab23748c17c78338cb21275d9543153620b9ab2b0817",
+            "model": {
+              "tag": "qwen3.5:4b",
+              "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+              "runtime_version": "0.35.1",
+              "parameter_size": "4.2B",
+              "quantization": "Q4_K_M"
+            },
+            "prompt_sha256": "3c85c0dc9163b8bd37e8ee01c3d378b1f04a7cdf288cb76b35debb4ea4930453",
+            "input_sha256": "eebd863abda6e655c0b493ca7c17602a52d6c4d45947faeaf91cde8ee32cec1b",
+            "schema_sha256": "80f247b3ee35aed0bb3a100b5a2c060111b92f9d095d50474478e72556bbcf6f",
+            "context": 16384,
+            "output_tokens": 3072,
+            "temperature": 0.0,
+            "seed": 0,
+            "thinking": false,
+            "thinking_level": null,
+            "response_model_version": null,
+            "thought_tokens": null,
+            "presence_penalty": 0.0,
+            "repeat_penalty": 1.0,
+            "elapsed_seconds": 8.711680400010664,
+            "prompt_tokens": 706,
+            "generated_tokens": 6,
+            "attempts": 1
+          }
+        ],
+        "warnings": [
+          "Automatic edit guards cannot establish meaning. Review accepted and rejected edits."
+        ]
+      },
+      "document": {
+        "unavailable_sections": [],
+        "schema_version": "1.0",
+        "source_sha256": "b467fa05a87773954c94cfcc5ffad5fd9a68c5beb98bed6fcfd44b288a5cec46",
+        "policy_sha256": "c06ab12370623c81672dc24e8d2e8ab57b952d9a8d9329c526aea35a1f0f649a",
+        "created_at": "2026-10-08T11:07:14.842289+00:00",
+        "record": {
+          "summary": [
+            {
+              "text": "Robert Jones inquired about local branch hours.",
+              "evidence": [
+                {
+                  "segment_id": "s00001",
+                  "quote": "I would like to know what your local branch hours are, please.",
+                  "start_char": 41,
+                  "end_char": 103
+                }
+              ]
+            },
+            {
+              "text": "Branch hours were confirmed as 9:30 a.m. to 5 p.m.",
+              "evidence": [
+                {
+                  "segment_id": "s00002",
+                  "quote": "The branch hours are 9:30 a.m.",
+                  "start_char": 0,
+                  "end_char": 30
+                },
+                {
+                  "segment_id": "s00002",
+                  "quote": "to 5 p.m.",
+                  "start_char": 31,
+                  "end_char": 40
+                }
+              ]
+            },
+            {
+              "text": "Robert Jones confirmed no further assistance was needed.",
+              "evidence": [
+                {
+                  "segment_id": "s00002",
+                  "quote": "No, I think that'll be it.",
+                  "start_char": 112,
+                  "end_char": 138
+                }
+              ]
+            }
+          ],
+          "topics": [
+            {
+              "title": "Customer Inquiry",
+              "points": [
+                {
+                  "text": "Robert Jones requested local branch hours.",
+                  "evidence": [
+                    {
+                      "segment_id": "s00001",
+                      "quote": "I would like to know what your local branch hours are, please.",
+                      "start_char": 41,
+                      "end_char": 103
+                    }
+                  ]
+                },
+                {
+                  "text": "The agent provided the specific hours of 9:30 a.m. to 5 p.m.",
+                  "evidence": [
+                    {
+                      "segment_id": "s00002",
+                      "quote": "The branch hours are 9:30 a.m.",
+                      "start_char": 0,
+                      "end_char": 30
+                    },
+                    {
+                      "segment_id": "s00002",
+                      "quote": "to 5 p.m.",
+                      "start_char": 31,
+                      "end_char": 40
+                    }
+                  ]
+                },
+                {
+                  "text": "The customer confirmed the information was sufficient.",
+                  "evidence": [
+                    {
+                      "segment_id": "s00002",
+                      "quote": "No, I think that'll be it.",
+                      "start_char": 112,
+                      "end_char": 138
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "title": "Call Flow",
+              "points": [
+                {
+                  "text": "The agent requested a brief pause to retrieve information.",
+                  "evidence": [
+                    {
+                      "segment_id": "s00001",
+                      "quote": "Say one second, please.",
+                      "start_char": 104,
+                      "end_char": 127
+                    }
+                  ]
+                },
+                {
+                  "text": "The agent confirmed readiness after the pause.",
+                  "evidence": [
+                    {
+                      "segment_id": "s00001",
+                      "quote": "Certainly.",
+                      "start_char": 128,
+                      "end_char": 138
+                    }
+                  ]
+                },
+                {
+                  "text": "The call concluded with standard closing remarks.",
+                  "evidence": [
+                    {
+                      "segment_id": "s00003",
+                      "quote": "Thank you for calling.",
+                      "start_char": 0,
+                      "end_char": 22
+                    },
+                    {
+                      "segment_id": "s00003",
+                      "quote": "Have a great day.",
+                      "start_char": 23,
+                      "end_char": 40
+                    },
+                    {
+                      "segment_id": "s00003",
+                      "quote": "You too.",
+                      "start_char": 41,
+                      "end_char": 49
+                    },
+                    {
+                      "segment_id": "s00003",
+                      "quote": "Bye-bye.",
+                      "start_char": 50,
+                      "end_char": 58
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "title": "Customer Satisfaction",
+              "points": [
+                {
+                  "text": "Robert Jones expressed gratitude for the assistance.",
+                  "evidence": [
+                    {
+                      "segment_id": "s00002",
+                      "quote": "Okay, thank you very much.",
+                      "start_char": 41,
+                      "end_char": 67
+                    }
+                  ]
+                },
+                {
+                  "text": "The agent offered further help which was declined.",
+                  "evidence": [
+                    {
+                      "segment_id": "s00002",
+                      "quote": "Is there anything else I can help you with?",
+                      "start_char": 68,
+                      "end_char": 111
+                    },
+                    {
+                      "segment_id": "s00002",
+                      "quote": "No, I think that'll be it.",
+                      "start_char": 112,
+                      "end_char": 138
+                    }
+                  ]
+                },
+                {
+                  "text": "Both parties exchanged polite farewells.",
+                  "evidence": [
+                    {
+                      "segment_id": "s00003",
+                      "quote": "Thank you for calling.",
+                      "start_char": 0,
+                      "end_char": 22
+                    },
+                    {
+                      "segment_id": "s00003",
+                      "quote": "Have a great day.",
+                      "start_char": 23,
+                      "end_char": 40
+                    },
+                    {
+                      "segment_id": "s00003",
+                      "quote": "You too.",
+                      "start_char": 41,
+                      "end_char": 49
+                    },
+                    {
+                      "segment_id": "s00003",
+                      "quote": "Bye-bye.",
+                      "start_char": 50,
+                      "end_char": 58
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "decisions": [],
+          "tasks": [],
+          "uncertainties": []
+        },
+        "revision_audit": [],
+        "calls": [
+          {
+            "key": "7f1e19ef314ceb791062852a77f8ea5380de9c557b77afaad513271eba4ac4e4",
+            "model": {
+              "tag": "qwen3.5:4b",
+              "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+              "runtime_version": "0.35.1",
+              "parameter_size": "4.2B",
+              "quantization": "Q4_K_M"
+            },
+            "prompt_sha256": "85f06ff4884427fdbbe71b2c54845fe178ab320cb604eedea4cf13469fab3352",
+            "input_sha256": "7d63bd08b1e87824c8f5dfb68737abcae901e2777a64fca0bab29d033277fbfc",
+            "schema_sha256": "69efad46104725808c5ae444b9a89865b6142d5f298684a1c7d404ed94334475",
+            "context": 16384,
+            "output_tokens": 3072,
+            "temperature": 0.0,
+            "seed": 0,
+            "thinking": false,
+            "thinking_level": null,
+            "response_model_version": null,
+            "thought_tokens": null,
+            "presence_penalty": 0.0,
+            "repeat_penalty": 1.0,
+            "elapsed_seconds": 7.932328600028995,
+            "prompt_tokens": 1831,
+            "generated_tokens": 13,
+            "attempts": 1
+          },
+          {
+            "key": "6e3299a2ab3adcd704a26adfa5bd8b4b926e31143daf7b126d987f31d8b1f040",
+            "model": {
+              "tag": "qwen3.5:4b",
+              "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+              "runtime_version": "0.35.1",
+              "parameter_size": "4.2B",
+              "quantization": "Q4_K_M"
+            },
+            "prompt_sha256": "68e539365b7ed827baf5d88bbccfb655017557be1e8d0481528c4630d831c638",
+            "input_sha256": "d76f6db4dba8f67da7a5537fbcd1c82636f85990e7aacfe0bf2f744baf79aa11",
+            "schema_sha256": "69efad46104725808c5ae444b9a89865b6142d5f298684a1c7d404ed94334475",
+            "context": 16384,
+            "output_tokens": 3072,
+            "temperature": 0.0,
+            "seed": 0,
+            "thinking": false,
+            "thinking_level": null,
+            "response_model_version": null,
+            "thought_tokens": null,
+            "presence_penalty": 0.0,
+            "repeat_penalty": 1.0,
+            "elapsed_seconds": 1.0646937999990769,
+            "prompt_tokens": 1376,
+            "generated_tokens": 24,
+            "attempts": 1
+          },
+          {
+            "key": "d4053ae7c21af702a7f8005dd91a196cabfd41e2f3fb1d745483289b59afe121",
+            "model": {
+              "tag": "qwen3.5:4b",
+              "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+              "runtime_version": "0.35.1",
+              "parameter_size": "4.2B",
+              "quantization": "Q4_K_M"
+            },
+            "prompt_sha256": "8446bb4d84b1a264b34286f0ba3be9114d266a79df8a4554069c3396fea50c35",
+            "input_sha256": "b9f52ed24bf78626b839209064d50b8d29b06a6cba6a3aa35cde77e7414bb136",
+            "schema_sha256": "411e1788f75b0f11950b562475f1e27d43e5bce5a0ee73eaedc271a9817b517d",
+            "context": 16384,
+            "output_tokens": 3072,
+            "temperature": 0.0,
+            "seed": 0,
+            "thinking": false,
+            "thinking_level": null,
+            "response_model_version": null,
+            "thought_tokens": null,
+            "presence_penalty": 0.0,
+            "repeat_penalty": 1.0,
+            "elapsed_seconds": 18.403291399998125,
+            "prompt_tokens": 1277,
+            "generated_tokens": 817,
+            "attempts": 1
+          },
+          {
+            "key": "743ab09140eb051f4a7d40fb0996fb9c0cbf9e0135a358965d82b1114358e6b7",
+            "model": {
+              "tag": "qwen3.5:4b",
+              "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+              "runtime_version": "0.35.1",
+              "parameter_size": "4.2B",
+              "quantization": "Q4_K_M"
+            },
+            "prompt_sha256": "e3e0d6af642733bcece44a7492022543654894062013305b5a50ccfdf874a4ee",
+            "input_sha256": "b1c5e8aa3cd79d6f72a7f0c35445c4ebbfcddbbe2d0ff7d8b5893abf69184dc2",
+            "schema_sha256": "5c1b003589c1f47090fd9aad5e64b920bde884a3a62c73cc8461786ba52cc37f",
+            "context": 16384,
+            "output_tokens": 3072,
+            "temperature": 0.0,
+            "seed": 0,
+            "thinking": false,
+            "thinking_level": null,
+            "response_model_version": null,
+            "thought_tokens": null,
+            "presence_penalty": 0.0,
+            "repeat_penalty": 1.0,
+            "elapsed_seconds": 6.014906299998984,
+            "prompt_tokens": 1293,
+            "generated_tokens": 289,
+            "attempts": 1
+          },
+          {
+            "key": "1d8446c5f599ea8d5e78a6ad4838c82294b157ed4f7b8d9581e280c8374ba281",
+            "model": {
+              "tag": "qwen3.5:4b",
+              "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+              "runtime_version": "0.35.1",
+              "parameter_size": "4.2B",
+              "quantization": "Q4_K_M"
+            },
+            "prompt_sha256": "e3e0d6af642733bcece44a7492022543654894062013305b5a50ccfdf874a4ee",
+            "input_sha256": "62f5714e4a14cd7d8ef321bbdbec1d2199732c1d27aaafb53a168a36dd3d7a74",
+            "schema_sha256": "2b52e7ea5b78497285d278aeb5d289e365adfe54297bc2fc9f390449ad10d2ec",
+            "context": 16384,
+            "output_tokens": 3072,
+            "temperature": 0.0,
+            "seed": 0,
+            "thinking": false,
+            "thinking_level": null,
+            "response_model_version": null,
+            "thought_tokens": null,
+            "presence_penalty": 0.0,
+            "repeat_penalty": 1.0,
+            "elapsed_seconds": 6.9175426999572664,
+            "prompt_tokens": 1401,
+            "generated_tokens": 347,
+            "attempts": 1
+          }
+        ],
+        "warnings": [
+          "Exact evidence matching verifies provenance, not interpretation. Review decisions, tasks and revisions.",
+          "Excluded 0 preceding-context-only items. Original proposals remain in saved call checkpoints.",
+          "Support audit withheld 0 unsupported or uncertain claims and removed 0 exact duplicates. Judgments and original candidates remain in saved calls. The same-model audit is not independent verification."
+        ]
+      },
+      "raw_wer": {
+        "reference_words": 74,
+        "hypothesis_words": 72,
+        "substitutions": 6,
+        "deletions": 3,
+        "insertions": 1,
+        "wer": 0.13513513513513514
+      },
+      "refined_wer": {
+        "reference_words": 74,
+        "hypothesis_words": 72,
+        "substitutions": 6,
+        "deletions": 3,
+        "insertions": 1,
+        "wer": 0.13513513513513514
+      },
+      "exports_consistent": true
+    }
+  ],
+  "finished_at": "2026-10-08T11:07:15.010933+00:00"
+}

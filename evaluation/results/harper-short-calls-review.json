@@ -1,0 +1,48 @@
+{
+  "review_status": "Provisional agent review after inference against the supplied human transcripts; no LLM judge and no independent human/audio adjudication. Claims must be supported in full, including stated reasons.",
+  "calls": [
+    {
+      "id": "01cefd6f5c044a6f",
+      "summary": [
+        {"index": 0, "support": "fully", "reason": "Caller explicitly requests a password reset; the opening identifies Harper Valley National Bank."},
+        {"index": 1, "support": "partly", "reason": "The agent asks for a phone number, but 'to proceed with the request' adds an unstated purpose."},
+        {"index": 2, "support": "fully", "reason": "Spoken digits are 7151390787; the caller explicitly declines further help. Hyphenation does not change the digits."}
+      ],
+      "summary_fully_supported": 2,
+      "summary_partly_supported": 1,
+      "core_information_preserved": ["password reset request", "provided phone digits", "no further help requested"],
+      "additional_flags": [
+        {"path": "topics/1/0", "reason": "'To process the request' adds a purpose for collecting the number that was not explicitly stated."},
+        {"path": "uncertainties/0", "reason": "The apparent Michael/John confusion is unnecessary: the human transcript attributes Michael's introduction to the agent and John Garcia's to the caller."},
+        {"path": "topics/0/1 and topics/3/0", "reason": "Gendered wording is an inference; the transcript alone does not explicitly establish gender."}
+      ],
+      "numeric_content": {"phone_digits_correct": true},
+      "pending_tasks_or_agreed_meeting_decisions": "No explicit future commitment or meeting decision in this short call; empty generated lists do not test task recall on genuine meetings.",
+      "wer_caveat": "The reference spells out the phone digits while ASR writes 715139-0787; the fixed no-number-expansion WER penalizes this equivalent formatting. Do not change the published scoring rule after seeing results."
+    },
+    {
+      "id": "01f7ec3700424bc0",
+      "summary": [
+        {"index": 0, "support": "fully", "reason": "Robert Jones explicitly asks for local branch hours."},
+        {"index": 1, "support": "fully", "reason": "The agent states nine thirty am to five p m; 9:30 a.m. to 5 p.m. preserves the value."},
+        {"index": 2, "support": "fully", "reason": "The caller explicitly declines further assistance after receiving the hours."}
+      ],
+      "summary_fully_supported": 3,
+      "summary_partly_supported": 0,
+      "core_information_preserved": ["request for local branch hours", "9:30 a.m. to 5 p.m.", "no further help requested"],
+      "additional_flags": [
+        {"path": "topics/1/0", "reason": "The request to wait a second is explicit, but 'to retrieve information' invents its purpose."},
+        {"path": "topics/1/1", "reason": "The agent did not confirm readiness with 'Certainly'; the human transcript attributes 'certainly' to the caller."}
+      ],
+      "numeric_content": {"branch_hours_correct": true},
+      "pending_tasks_or_agreed_meeting_decisions": "No explicit future commitment or meeting decision in this short call; task/decision precision and recall are not useful meeting-quality measures here.",
+      "wer_caveat": "The reference spells out times and has filler words; the fixed scoring rule does not normalize number expressions."
+    }
+  ],
+  "overall": {
+    "summary_claims": 6,
+    "fully_supported_summary_claims": 5,
+    "partly_supported_summary_claims": 1,
+    "note": "These claim counts are a narrow source review, not overall project accuracy. Additional flags are illustrative and not an exhaustive scored minutes rubric. No GTCRN-versus-original control was run."
+  }
+}
