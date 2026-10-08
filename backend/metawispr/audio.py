@@ -13,7 +13,7 @@ import wave
 import numpy as np
 
 from .config import ASR_VARIANTS, MODEL_ID, InputError, Settings, SetupError
-from .schemas import ModelInfo, RawTranscript, Segment
+from .schemas import AudioEnhancement, ModelInfo, RawTranscript, Segment
 
 
 SAMPLE_RATE = 16000
@@ -104,6 +104,65 @@ def prepare_audio(source: Path, destination: Path, settings: Settings) -> float:
         duration = inspect_pcm(temporary, settings.max_audio_seconds)
         temporary.replace(destination)
         return duration
+    finally:
+        temporary.unlink(missing_ok=True)
+
+
+def enhance_prepared_audio(path: Path, settings: Settings) -> AudioEnhancement | None:
+    """Preserve normalized audio; enhance once and record the actual ASR input."""
+    metadata = path.parent / "enhancement.json"
+    normalized = path.parent / "normalized.wav"
+    if metadata.is_file():
+        saved = AudioEnhancement.model_validate_json(metadata.read_text(encoding="utf-8"))
+        if file_sha256(path) != saved.enhanced_sha256 or not normalized.is_file() or file_sha256(normalized) != saved.source_sha256:
+            raise InputError("Saved enhanced/normalized audio changed. Upload the original as a new meeting.")
+        return saved
+    if not settings.use_gtcrn:
+        return None
+    if not settings.gtcrn_model.is_file():
+        raise SetupError("GTCRN weights missing. Set METAWISPR_GTCRN_MODEL or install models/gtcrn/gtcrn_simple.onnx.")
+    temporary = path.parent / "enhanced.partial.wav"
+    if not normalized.exists():
+        shutil.copyfile(path, normalized)
+    duration = inspect_pcm(normalized, settings.max_audio_seconds)
+    try:
+        import sherpa_onnx
+        started = time.perf_counter()
+        config = sherpa_onnx.OfflineSpeechDenoiserConfig(model=sherpa_onnx.OfflineSpeechDenoiserModelConfig(
+            gtcrn=sherpa_onnx.OfflineSpeechDenoiserGtcrnModelConfig(model=str(settings.gtcrn_model)),
+            num_threads=1, provider="cpu", debug=False))
+        if not config.validate():
+            raise SetupError("GTCRN configuration is invalid.")
+        with wave.open(str(normalized), "rb") as source:
+            samples = np.frombuffer(source.readframes(source.getnframes()), dtype="<i2").astype(np.float32) / 32768
+        # Complete the final 256-sample hop instead of losing a short tail.
+        model_input = np.pad(samples, (0, (-len(samples)) % 256))
+        result = sherpa_onnx.OfflineSpeechDenoiser(config)(np.ascontiguousarray(model_input), SAMPLE_RATE)
+        values = np.asarray(result.samples)
+        padding = len(values) - len(samples)
+        if result.sample_rate != SAMPLE_RATE or not 0 <= padding < 512 or not np.isfinite(values).all():
+            raise SetupError("GTCRN changed audio length/rate or returned invalid samples.")
+        # GTCRN may round output up to its frame boundary; retain every input frame.
+        values = values[:len(samples)]
+        with wave.open(str(temporary), "wb") as output:
+            output.setnchannels(1)
+            output.setsampwidth(2)
+            output.setframerate(SAMPLE_RATE)
+            output.writeframes((np.clip(values, -1, 1) * 32767).astype("<i2").tobytes())
+        if inspect_pcm(temporary, settings.max_audio_seconds) != duration:
+            raise SetupError("GTCRN changed recording duration.")
+        saved = AudioEnhancement(model_sha256=file_sha256(settings.gtcrn_model), source_sha256=file_sha256(normalized),
+                                 enhanced_sha256=file_sha256(temporary), elapsed_seconds=time.perf_counter() - started,
+                                 padding_removed_samples=padding)
+        temporary.replace(path)
+        meta_partial = metadata.with_suffix(".partial.json")
+        meta_partial.write_text(saved.model_dump_json(indent=2), encoding="utf-8")
+        meta_partial.replace(metadata)
+        return saved
+    except SetupError:
+        raise
+    except Exception as exc:
+        raise SetupError(f"GTCRN enhancement failed: {type(exc).__name__}") from exc
     finally:
         temporary.unlink(missing_ok=True)
 
@@ -233,7 +292,10 @@ def readiness(settings: Settings) -> dict:
     missing = [name for name in files if not (settings.model_dir / name).is_file()]
     gpu_runtime = runtime and "+cuda" in version("sherpa-onnx")
     return {
-        "transcription_ready": runtime and not missing and (settings.asr_provider != "cuda" or gpu_runtime),
+        "transcription_ready": runtime and not missing and (settings.asr_provider != "cuda" or gpu_runtime)
+                               and (not settings.use_gtcrn or settings.gtcrn_model.is_file()),
+        "gtcrn_enabled": settings.use_gtcrn,
+        "gtcrn_ready": not settings.use_gtcrn or settings.gtcrn_model.is_file(),
         "conversion_ready": conversion_ready,
         "normalized_wav_ready": True,
         "model_id": MODEL_ID,

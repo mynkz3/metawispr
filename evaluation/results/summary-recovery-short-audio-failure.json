@@ -1,0 +1,9 @@
+{
+  "scope": "Authored synthetic compatibility recording; not AMI quality or WER evaluation.",
+  "stage": "failed",
+  "error": "GTCRN changed audio length/rate or returned invalid samples.",
+  "wall_seconds": 0.2875151000334881,
+  "enhancement": null,
+  "meeting_id": "4e0bbc3f-79f0-4999-b349-140de42830cb",
+  "input_sha256": "359e727fbf2a83178fb5e99ba6c42b1583c25acbfed90f7f34ed602163dd4b73"
+}

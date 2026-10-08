@@ -12,7 +12,7 @@ import tempfile
 import time
 import gc
 
-from .audio import Parakeet, asr_profile_matches, file_sha256, inspect_pcm, prepare_audio
+from .audio import Parakeet, asr_profile_matches, enhance_prepared_audio, file_sha256, inspect_pcm, prepare_audio
 from .config import InputError, Settings, SetupError, SUPPORTED_SUFFIXES
 from .schemas import Meeting, RawTranscript, RefinedTranscript, DocumentedMeeting
 from .llm import Ollama, digest
@@ -124,7 +124,8 @@ class Store:
             return None
         result = RefinedTranscript.model_validate(saved)
         raw, meeting = self.raw(meeting_id), self.get(meeting_id)
-        if raw is None or result.source_sha256 != digest(raw.model_dump()):
+        if raw is None or result.source_sha256 not in {
+                digest(raw.model_dump()), digest(self.read_json(meeting_id, "raw.json"))}:
             raise SetupError("Refined checkpoint does not match the raw transcript.")
         segments, accepted, rejected = apply_edits(raw.segments, result.accepted, meeting.glossary)
         if rejected or accepted != result.accepted or segments != result.segments:
@@ -185,6 +186,7 @@ class Runner:
                 else:
                     meeting.duration_seconds = prepare_audio(source, prepared, self.settings)
                     meeting.prepare_seconds = time.perf_counter() - started
+                enhancement = enhance_prepared_audio(prepared, self.settings)
                 meeting.stage = "transcribing"
                 meeting.processed_audio_seconds = 0.0
                 self.store.put(meeting)
@@ -194,6 +196,9 @@ class Runner:
                     self.store.put(meeting)
 
                 raw = self.asr.transcribe(prepared, meeting.input_sha256, now(), progress)
+                raw.enhancement = enhancement
+                if enhancement:
+                    raw.warnings.append("ASR used GTCRN-enhanced audio; original and normalized audio are preserved. Enhancement does not guarantee lower WER.")
                 self.store.save_raw(meeting_id, raw)
                 meeting.stage = "transcribed"
                 meeting.transcribed_at = raw.created_at

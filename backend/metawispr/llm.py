@@ -7,7 +7,7 @@ import time
 
 import httpx
 
-from .config import Settings, SetupError
+from .config import GenerationError, Settings, SetupError
 from .schemas import LLMCall, LLMModel
 
 
@@ -155,7 +155,7 @@ class Ollama:
                 # Small feedback avoids echoing the transcript or enormous validation errors.
                 feedback = repair_feedback(exc)
                 if attempt == 2:
-                    raise SetupError(f"{stage.capitalize()} model returned invalid output twice. "
+                    raise GenerationError(f"{stage.capitalize()} model returned invalid output twice. "
                                      "Completed calls are saved; retry after checking the model/context settings.") from exc
                 continue
             call = LLMCall(key=key, model=model, prompt_sha256=sha256(system.encode()).hexdigest(),

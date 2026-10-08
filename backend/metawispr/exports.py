@@ -38,7 +38,8 @@ def markdown(meeting, refined, document):
     for title, items in (("Summary", record.summary), ("Decisions", record.decisions), ("Tasks", record.tasks)):
         lines.extend([f"## {title}", ""])
         if not items:
-            lines.extend(["None stated.", ""])
+            lines.extend(["Unavailable: generation or validation failed; this section is incomplete."
+                          if title.lower() in document.unavailable_sections else "None stated.", ""])
         for fact in items:
             add_fact(fact, title == "Tasks")
         lines.append("")
@@ -77,6 +78,7 @@ def export_files(meeting, raw=None, refined=None, document=None, include_bundle=
                                              **document.model_dump(mode="json")})
         result["meeting.md"] = markdown(meeting, refined, document).encode("utf-8")
         result["provenance.json"] = json_bytes({"asr": raw.model_dump(mode="json")["model"],
+                                                "enhancement": raw.enhancement.model_dump() if raw.enhancement else None,
                                                 "refinement": [item.model_dump() for item in refined.calls],
                                                 "documentation": [item.model_dump() for item in document.calls],
                                                 "input_sha256": raw.input_sha256})

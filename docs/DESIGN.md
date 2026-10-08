@@ -1,5 +1,11 @@
 # Metawispr design
 
+**8 October 2026 update:** The owner enabled GTCRN for new recordings and
+requested independently validated summary recovery when action sections fail.
+See [summary recovery and enhancement](SUMMARY_RECOVERY_GTCRN.md) for the actual
+recovery limits, partial-record behavior, settings, tests and known WER regression.
+Historical evaluation profiles and previously transcribed checkpoints remain unchanged.
+
 Version 0.4 Â· 5 October 2026 Â· implementation specification
 
 This document separates the problem statement's requirements from our engineering choices. The first release serves the recorded English meeting task. Mainstream open-source distribution is a later release goal; present architecture should be understandable and reproducible without building that future platform now.

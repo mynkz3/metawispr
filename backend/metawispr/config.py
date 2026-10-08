@@ -26,6 +26,10 @@ class SetupError(RuntimeError):
     """A dependency/model is unavailable; the saved recording can be retried."""
 
 
+class GenerationError(SetupError):
+    """Model responses exhausted validation retries; runtime errors stay distinct."""
+
+
 @dataclass(frozen=True)
 class Settings:
     data_dir: Path = Path("data")
@@ -45,6 +49,8 @@ class Settings:
     llm_context: int = 16384
     llm_output_tokens: int = 3072
     llm_timeout_seconds: int = 300
+    use_gtcrn: bool = False
+    gtcrn_model: Path = Path("models/gtcrn/gtcrn_simple.onnx")
 
     def __post_init__(self):
         for name in ("max_upload_bytes", "max_audio_seconds", "asr_threads", "chunk_seconds",
@@ -92,4 +98,6 @@ class Settings:
             llm_context=integer("LLM_CONTEXT", 16384),
             llm_output_tokens=integer("LLM_OUTPUT_TOKENS", 3072),
             llm_timeout_seconds=integer("LLM_TIMEOUT_SECONDS", 300),
+            use_gtcrn=os.getenv("METAWISPR_USE_GTCRN", "1") == "1",
+            gtcrn_model=Path(os.getenv("METAWISPR_GTCRN_MODEL", "models/gtcrn/gtcrn_simple.onnx")).resolve(),
         )

@@ -214,6 +214,7 @@ class RejectedEdit(Contract):
 
 
 class RefinedTranscript(Contract):
+    refinement_available: bool = True
     schema_version: Literal["1.0"] = "1.0"
     source_sha256: str
     policy_sha256: str
@@ -221,11 +222,20 @@ class RefinedTranscript(Contract):
     segments: list[Segment] = Field(min_length=1)
     accepted: list[Edit]
     rejected: list[RejectedEdit]
-    calls: list[LLMCall] = Field(min_length=1)
+    calls: list[LLMCall]
     warnings: list[str]
+
+    @model_validator(mode="after")
+    def valid_refinement_status(self):
+        if self.refinement_available and not self.calls:
+            raise ValueError("Available refinement requires at least one validated model call")
+        if not self.refinement_available and self.accepted:
+            raise ValueError("Unavailable refinement cannot contain accepted edits")
+        return self
 
 
 class DocumentedMeeting(Contract):
+    unavailable_sections: list[Literal["tasks", "decisions"]] = Field(default_factory=list)
     schema_version: Literal["1.0"] = "1.0"
     source_sha256: str
     policy_sha256: str
@@ -251,7 +261,18 @@ class ModelInfo(Contract):
     file_sha256: dict[str, str]
 
 
+class AudioEnhancement(Contract):
+    padding_removed_samples: int = Field(default=0, ge=0, lt=512)
+    model: Literal["gtcrn"] = "gtcrn"
+    model_sha256: str = Field(pattern=r"^[a-f0-9]{64}$")
+    source_sha256: str = Field(pattern=r"^[a-f0-9]{64}$")
+    enhanced_sha256: str = Field(pattern=r"^[a-f0-9]{64}$")
+    elapsed_seconds: float = Field(ge=0)
+    provider: Literal["cpu"] = "cpu"
+
+
 class RawTranscript(Contract):
+    enhancement: AudioEnhancement | None = None
     schema_version: Literal["1.0"] = "1.0"
     input_sha256: str = Field(pattern=r"^[a-f0-9]{64}$")
     audio_sha256: str = Field(pattern=r"^[a-f0-9]{64}$")

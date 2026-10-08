@@ -1,0 +1,221 @@
+{
+  "scope": "Authored synthetic compatibility recording; not AMI quality or WER evaluation.",
+  "stage": "complete",
+  "error": null,
+  "wall_seconds": 51.01147470000433,
+  "enhancement": {
+    "padding_removed_samples": 175,
+    "model": "gtcrn",
+    "model_sha256": "e77603ac0c23dac3227dd2d7135b3a585cbee2679048aecfa886657d3ae1b534",
+    "source_sha256": "53382e8d4913baef840ff22cc99ee24ca8fa9c6bd41954a6de30a152bbefad43",
+    "enhanced_sha256": "59842649c6ff678a86a9c35077d563e9deae784d9eef419d2de9e074816bd836",
+    "elapsed_seconds": 1.1837776000029407,
+    "provider": "cpu"
+  },
+  "meeting_id": "04bc934c-61bf-43a3-9400-a00f45020c53",
+  "input_sha256": "d5e44fa5d2eaeb68b436a21adf8f85c20f9ecbe8d3cffb97f7a6ec7269ab0c99",
+  "summary_only": {
+    "unavailable_sections": [
+      "tasks",
+      "decisions"
+    ],
+    "schema_version": "1.0",
+    "source_sha256": "c4cc3134aa28e1f6346e104f56abfc9ff4875cc7544e72d84cba277fe37f129b",
+    "policy_sha256": "c06ab12370623c81672dc24e8d2e8ab57b952d9a8d9329c526aea35a1f0f649a",
+    "created_at": "2026-10-08T10:48:15.298521+00:00",
+    "record": {
+      "summary": [
+        {
+          "text": "The meeting confirmed the use of Docker for the release.",
+          "evidence": [
+            {
+              "segment_id": "s00001",
+              "quote": "We agreed to use Docker for the release.",
+              "start_char": 41,
+              "end_char": 81
+            }
+          ]
+        },
+        {
+          "text": "The budget was clarified as $15, correcting a previous mention of $50.",
+          "evidence": [
+            {
+              "segment_id": "s00001",
+              "quote": "The budget is$15, not$50.",
+              "start_char": 119,
+              "end_char": 144
+            }
+          ]
+        },
+        {
+          "text": "Maya is assigned to send the report by Friday.",
+          "evidence": [
+            {
+              "segment_id": "s00001",
+              "quote": "Maya will send the report by Friday.",
+              "start_char": 82,
+              "end_char": 118
+            }
+          ]
+        }
+      ],
+      "topics": [
+        {
+          "title": "Release Strategy",
+          "points": [
+            {
+              "text": "Docker is agreed upon for the release.",
+              "evidence": [
+                {
+                  "segment_id": "s00001",
+                  "quote": "We agreed to use Docker for the release.",
+                  "start_char": 41,
+                  "end_char": 81
+                }
+              ]
+            },
+            {
+              "text": "Deployment for tomorrow has not been agreed upon.",
+              "evidence": [
+                {
+                  "segment_id": "s00001",
+                  "quote": "We have not agreed to deploy tomorrow.",
+                  "start_char": 145,
+                  "end_char": 183
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Budget",
+          "points": [
+            {
+              "text": "The budget is $15.",
+              "evidence": [
+                {
+                  "segment_id": "s00001",
+                  "quote": "The budget is$15, not$50.",
+                  "start_char": 119,
+                  "end_char": 144
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Reporting",
+          "points": [
+            {
+              "text": "Maya will send the report by Friday.",
+              "evidence": [
+                {
+                  "segment_id": "s00001",
+                  "quote": "Maya will send the report by Friday.",
+                  "start_char": 82,
+                  "end_char": 118
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "decisions": [],
+      "tasks": [],
+      "uncertainties": [
+        "The transcript is ASR output and may contain errors.",
+        "Partial record: tasks and decisions are unavailable because action/document generation failed. Empty lists do not mean none were stated."
+      ]
+    },
+    "revision_audit": [],
+    "calls": [
+      {
+        "key": "1eabedc7a1d6f818534c029c8e19d0df01edcff3cf445325f11b25c8d860a957",
+        "model": {
+          "tag": "qwen3.5:4b",
+          "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+          "runtime_version": "0.35.1",
+          "parameter_size": "4.2B",
+          "quantization": "Q4_K_M"
+        },
+        "prompt_sha256": "8446bb4d84b1a264b34286f0ba3be9114d266a79df8a4554069c3396fea50c35",
+        "input_sha256": "f3413967ec646614a88889b0e588d06d35266b063b2afede9a0c0763e6f32933",
+        "schema_sha256": "52dbe88767de97da716091f5b1e599971ff92cbc7541b1ec96ba27abfb5f6737",
+        "context": 16384,
+        "output_tokens": 3072,
+        "temperature": 0.0,
+        "seed": 0,
+        "thinking": false,
+        "thinking_level": null,
+        "response_model_version": null,
+        "thought_tokens": null,
+        "presence_penalty": 0.0,
+        "repeat_penalty": 1.0,
+        "elapsed_seconds": 14.070740299997851,
+        "prompt_tokens": 959,
+        "generated_tokens": 457,
+        "attempts": 1
+      },
+      {
+        "key": "57b8f3488808a9db7388ab5ab418c44a9a66e47a545cfcffb315eccd43966b91",
+        "model": {
+          "tag": "qwen3.5:4b",
+          "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+          "runtime_version": "0.35.1",
+          "parameter_size": "4.2B",
+          "quantization": "Q4_K_M"
+        },
+        "prompt_sha256": "e3e0d6af642733bcece44a7492022543654894062013305b5a50ccfdf874a4ee",
+        "input_sha256": "b97ed00f83490b933a59bb8dc56841b727941342a2c8719e0f2fbb3783348c63",
+        "schema_sha256": "c9f6a1ef937bdc0b036a779b8b8448e1534bca6185d360ad7fda2563e6547559",
+        "context": 16384,
+        "output_tokens": 3072,
+        "temperature": 0.0,
+        "seed": 0,
+        "thinking": false,
+        "thinking_level": null,
+        "response_model_version": null,
+        "thought_tokens": null,
+        "presence_penalty": 0.0,
+        "repeat_penalty": 1.0,
+        "elapsed_seconds": 4.279142099956516,
+        "prompt_tokens": 1018,
+        "generated_tokens": 260,
+        "attempts": 1
+      },
+      {
+        "key": "ed504748c7b7b9edc57823800d9202e3af8e1a547c3d0404eb0fc52f58955370",
+        "model": {
+          "tag": "qwen3.5:4b",
+          "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+          "runtime_version": "0.35.1",
+          "parameter_size": "4.2B",
+          "quantization": "Q4_K_M"
+        },
+        "prompt_sha256": "e3e0d6af642733bcece44a7492022543654894062013305b5a50ccfdf874a4ee",
+        "input_sha256": "cfd9ae5137e3cf9a11b4912bab1afe18a4cd5b3fe869773c72e5cea9b32eb293",
+        "schema_sha256": "75454e26be5eecd6838f949f6d1c229874bb780f0061473ca88b67bd7dbc00dd",
+        "context": 16384,
+        "output_tokens": 3072,
+        "temperature": 0.0,
+        "seed": 0,
+        "thinking": false,
+        "thinking_level": null,
+        "response_model_version": null,
+        "thought_tokens": null,
+        "presence_penalty": 0.0,
+        "repeat_penalty": 1.0,
+        "elapsed_seconds": 1.0779395999852568,
+        "prompt_tokens": 765,
+        "generated_tokens": 46,
+        "attempts": 1
+      }
+    ],
+    "warnings": [
+      "Partial record: tasks and decisions are unavailable because action/document generation failed. Empty lists do not mean none were stated.",
+      "Summary is checked against the generated transcript, not ground truth. Same-model support judgments still need human review."
+    ]
+  },
+  "zip_members_match": true,
+  "note": "Genuine end-to-end compatibility succeeded. The summary-only path was deliberately invoked afterward; failure recovery is covered separately by synthetic response tests. No semantic accuracy score or new AMI WER measurement."
+}

@@ -15,3 +15,9 @@ Summarize setup/social exercises briefly; omit incidental conversation details.
 A contrast such as "seven, not seventy" states the current value; it does not
 prove a correction from seventy. Describe history only with explicit source
 statements that the value changed.
+
+Generate a useful summary independently of tasks and decisions. Empty or
+unavailable resolved_current sections do not mean the meeting lacked substance.
+Describe what was discussed using transcript evidence; do not manufacture an
+agreement to fill a missing section. The transcript is ASR output and may contain
+errors: keep ambiguous content in uncertainties rather than guessing a repair.

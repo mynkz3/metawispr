@@ -14,3 +14,7 @@ unsupported. If meaning, commitment or attribution is ambiguous, return uncertai
 Use supported only with sufficient evidence. Give a short source-based reason
 and select evidence_ids from that candidate's original evidence_ids only.
 Do not rewrite, add claims, infer absent details or judge by plausibility.
+Before returning, compare the supplied candidate IDs with your verdict IDs.
+Return every supplied ID exactly once, even when uncertain; never stop after
+the easy candidates. Use a reason of at most 15 words to keep the whole batch
+within the output budget. Missing evidence means uncertain, not omission.

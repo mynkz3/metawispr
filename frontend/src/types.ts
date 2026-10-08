@@ -15,6 +15,7 @@ export type View = {
   raw: { segments: Segment[]; warnings: string[] } | null;
   refined: { segments: Segment[]; accepted: Edit[]; rejected: { edit: Edit; rejection: string }[]; warnings: string[] } | null;
   document: {
+    unavailable_sections?: ('tasks' | 'decisions')[];
     record: { summary: Fact[]; topics: { title: string; points: Fact[] }[]; decisions: Fact[]; tasks: Task[]; uncertainties: string[] };
     revision_audit: Fact[]; warnings: string[];
   } | null;

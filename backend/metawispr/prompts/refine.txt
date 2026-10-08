@@ -14,3 +14,5 @@ Do not complete a role ("user interface" is not "user interface designer"), chan
 singular/plural, or standardize already-valid alternate spelling/hyphenation.
 Give a short reason for each edit. Never propose overlapping edits.
 If a term is already correct, omit it. Never return an original == replacement edit.
+This is generated ASR text, not a verified transcript. If a fragment is unclear,
+leave it unchanged; do not reconstruct missing speech or invent meeting facts.

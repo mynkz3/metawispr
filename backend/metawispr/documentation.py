@@ -4,15 +4,15 @@ from difflib import SequenceMatcher
 from datetime import datetime, timezone
 import re
 
-from .config import InputError, SetupError
+from .config import GenerationError, InputError, SetupError
 from .llm import digest, prompt
 from .schemas import (ClaimAudit, ConsolidatedNotes, DocumentationBatch, DocumentedMeeting, Edit, EditBatch,
                       Evidence, Fact, MeetingRecord, RefinedTranscript, RejectedEdit, ResolutionBatch,
                       SelectedNotes, SourceActions, SourceBatch, SourceNotes, SourceRecord, SourceResolutions, Task, Topic)
 
 
-REFINEMENT_POLICY_VERSION = 10
-POLICY_VERSION = 18
+REFINEMENT_POLICY_VERSION = 11
+POLICY_VERSION = 19
 PROTECTED = re.compile(
     r"(?<!\w)[+-]?\d+(?:[.,:/-]\d+)*(?:%|\b)|\b(?:zero|one|two|three|four|five|six|seven|eight|nine|ten|"
     r"eleven|twelve|thirteen|fourteen|fifteen|sixteen|seventeen|eighteen|nineteen|twenty|thirty|forty|fifty|"
@@ -442,17 +442,38 @@ class Documentation:
                                 for identifier in units if identifier in neighbors - cited]
             return value
         supported, withheld = set(), 0
-        for batch in groups(candidates, payload, lambda value: len(value["candidates"]) <= 6
-                            and self.llm.fits("audit", ClaimAudit, value)):
+        failed = 0
+        def judge(batch):
             value = payload(batch)
             result, call = self.llm.generate(model, "audit", ClaimAudit, value, self.store,
                                              meeting.id, "documenting",
                                              lambda output: validate_claim_audit(output, value["candidates"]))
-            supported.update(item.candidate_id for item in result.verdicts if item.verdict == "supported")
-            withheld += sum(item.verdict != "supported" for item in result.verdicts)
             calls.append(call)
             progress(len(calls))
+            return result
+        for batch in groups(candidates, payload, lambda value: len(value["candidates"]) <= 6
+                            and self.llm.fits("audit", ClaimAudit, value)):
+            try:
+                results = [judge(batch)]
+            except GenerationError:
+                if len(batch) == 1:
+                    failed += 1
+                    withheld += 1
+                    continue
+                # One bounded recovery per candidate; missing verdicts never pass.
+                results = []
+                for candidate in batch:
+                    try:
+                        results.append(judge([candidate]))
+                    except GenerationError:
+                        failed += 1
+                        withheld += 1
+            for result in results:
+                supported.update(item.candidate_id for item in result.verdicts if item.verdict == "supported")
+                withheld += sum(item.verdict != "supported" for item in result.verdicts)
         record, duplicates = publish_supported(record, supported)
+        if failed:
+            record.uncertainties.append(f"Partial record: {failed} claims could not be audited and were withheld; affected sections may be incomplete.")
         return record, withheld, duplicates
 
     def refine(self, meeting, raw, model, progress):
@@ -477,6 +498,14 @@ class Documentation:
                         edits.append(Edit(**proposal.model_dump(), start=start, end=start + len(proposal.original)))
                 calls.append(call)
                 progress(len(calls))
+        except GenerationError:
+            return RefinedTranscript(source_sha256=digest(raw.model_dump()),
+                                     refinement_available=False,
+                                     policy_sha256=refinement_policy(self.settings, meeting.glossary),
+                                     created_at=datetime.now(timezone.utc).isoformat(),
+                                     segments=[item.model_copy(deep=True) for item in raw.segments],
+                                     accepted=[], rejected=[], calls=calls,
+                                     warnings=["Terminology refinement unavailable: model output failed validation. Original ASR text is preserved unchanged; failed responses remain saved."])
         finally:
             self.llm.unload(model)
         segments, accepted, rejected = apply_edits(raw.segments, edits, meeting.glossary)
@@ -488,6 +517,61 @@ class Documentation:
                                  warnings=["Automatic edit guards cannot establish meaning. Review accepted and rejected edits."])
 
     def document(self, meeting, refined, model, progress):
+        try:
+            return self._document(meeting, refined, model, progress)
+        except GenerationError:
+            return self.summary_only(meeting, refined, model, progress)
+
+    def summary_only(self, meeting, refined, model, progress):
+        """Independent evidence-validated notes; never salvage invalid actions."""
+        sources, batches, payload = document_groups(meeting, refined.segments, self.llm)
+        outputs, calls = [], []
+        try:
+            for batch in batches:
+                value = {**payload(batch), "resolved_current": {"tasks": [], "decisions": []}}
+                allowed = {item["id"]: sources[item["id"]] for item in [*value["segments"], *value["context"]]}
+                def validate_notes(result):
+                    notes = attach_evidence(result, ConsolidatedNotes, allowed)
+                    validate_record(MeetingRecord(**notes.model_dump(), decisions=[], tasks=[]), refined.segments)
+                result, call = self.llm.generate(model, "notes", SourceNotes, value, self.store,
+                                                  meeting.id, "documenting", validate_notes)
+                notes = attach_evidence(result, ConsolidatedNotes, allowed)
+                outputs.append(DocumentationBatch(record=MeetingRecord(**notes.model_dump(), decisions=[], tasks=[]), revisions=[]))
+                calls.append(call)
+                progress(len(calls))
+            while len(outputs) > 1:
+                merged = []
+                for index in range(0, len(outputs), 2):
+                    pair = outputs[index:index + 2]
+                    if len(pair) == 1:
+                        merged.extend(pair)
+                        continue
+                    value, catalogue, ambiguities = selection_input(meeting.title, pair, [], [])
+                    def validate_selection(result):
+                        notes = expand_selection(result, catalogue, ambiguities)
+                        validate_record(MeetingRecord(**notes.model_dump(), decisions=[], tasks=[]), refined.segments)
+                    result, call = self.llm.generate(model, "consolidate", SelectedNotes, value, self.store,
+                                                      meeting.id, "documenting", validate_selection)
+                    notes = expand_selection(result, catalogue, ambiguities)
+                    merged.append(DocumentationBatch(record=MeetingRecord(**notes.model_dump(), decisions=[], tasks=[]), revisions=[]))
+                    calls.append(call)
+                    progress(len(calls))
+                outputs = merged
+            record, _, _ = self.audit(meeting, outputs[0].record, sources, model, progress, calls)
+            if not record.summary:
+                raise GenerationError("No summary claims passed validation; rejected summary remains unpublished.")
+            warning = "Partial record: tasks and decisions are unavailable because action/document generation failed. Empty lists do not mean none were stated."
+            record.uncertainties.append(warning)
+            validate_record(record, refined.segments)
+            return DocumentedMeeting(source_sha256=digest(refined.model_dump()),
+                                     unavailable_sections=["tasks", "decisions"],
+                                     policy_sha256=documentation_policy(self.settings), record=record, calls=calls,
+                                     revision_audit=[], created_at=datetime.now(timezone.utc).isoformat(),
+                                     warnings=[warning, "Summary is checked against the generated transcript, not ground truth. Same-model support judgments still need human review."])
+        finally:
+            self.llm.unload(model)
+
+    def _document(self, meeting, refined, model, progress):
         sources, batches, payload = document_groups(meeting, refined.segments, self.llm)
         identifiers = {evidence_key(item): identifier for identifier, item in sources.items()}
         outputs, calls, context_repeats = [], [], 0
