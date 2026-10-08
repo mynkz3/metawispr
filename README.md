@@ -164,15 +164,30 @@ Use one server process. Do not run CLI inference against the same data directory
 
 ## Screenshots
 
-These are captures of the implemented notebook, not design mockups. The review screenshot uses **explicit synthetic UI fixture content** to demonstrate sources and missing assignments; it is not a model-quality result. No private recordings are included.
+Five cropped views from the **public AMI ES2002a recording**, a 21-minute human-spoken design-team scenario meeting. These are actual saved model outputs, not synthetic API fixtures or ground-truth minutes. They show the implemented workspace; extracted claims still require review.
 
-### Upload workspace
+This historical run used **Parakeet v2 INT8 on CPU and Qwen3.5 4B**, before GTCRN was enabled. The current default pipeline is described above. We reused the saved record and checked navigation, transcript/item rendering, source seeking and matching JSON export; no new model inference was run. [Capture details and attribution](docs/assets/CAPTURES.md).
 
-![Metawispr upload workspace with recording picker, optional title and glossary](docs/assets/workspace.png)
+### 1. Meeting overview
 
-### Meeting review and source audio
+![AMI ES2002a meeting summary with supporting transcript sources](docs/assets/overview.png)
 
-![Metawispr demo review showing tasks, unspecified assignments and supporting source audio](docs/assets/review.png)
+### 2. Preserved raw transcript
+
+![Actual Parakeet transcript of AMI ES2002a with audio windows and raw-refined controls](docs/assets/transcript.png)
+
+### 3. Extracted decisions
+
+![Saved Qwen decision proposals from AMI ES2002a with supporting source links](docs/assets/decisions.png)
+
+### 4. Tasks and missing assignments
+
+![Saved AMI ES2002a tasks showing unspecified owners and deadlines](docs/assets/tasks.png)
+
+### 5. Exact source quote and audio playback
+
+<img src="docs/assets/evidence.png" width="320" alt="AMI ES2002a source quote and audio player seeking to the 13:19 audio window" />
+
 
 ## Using Metawispr
 
