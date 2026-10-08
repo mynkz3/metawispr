@@ -154,11 +154,13 @@ test('phone upload and review remain accessible, fit the viewport and reach sour
   await expect(page.getByRole('heading', { name: 'Start with a recording' })).toBeVisible();
   await page.screenshot({ path: resolve(screenshots, 'phone-upload.png'), fullPage: true });
   await accessible(page); await noOverflow(page);
+  await page.getByRole('button', { name: 'Meeting library', exact: true }).click();
   await page.getByRole('link', { name: /Synthetic planning fixture/ }).click();
   await page.getByRole('tab', { name: 'Tasks' }).click();
   await page.getByRole('button', { name: 'Open source 1: Alex will send the draft by Monday.' }).click();
   await expect(page.locator('blockquote')).toHaveText('Alex will send the draft by Monday.');
   await expect(page.locator('audio')).toBeInViewport();
+  await page.evaluate(() => window.scrollTo(0, 0));
   await page.screenshot({ path: resolve(screenshots, 'phone-review-fixture.png'), fullPage: true });
   await accessible(page); await noOverflow(page);
   await page.setViewportSize({ width: 360, height: 800 }); await noOverflow(page);
@@ -169,6 +171,29 @@ test('desktop upload visual and accessibility check', async ({ page }) => {
   await page.goto('/');
   await expect(page.getByRole('heading', { name: 'Start with a recording' })).toBeVisible();
   await page.screenshot({ path: resolve(screenshots, 'desktop-upload.png'), fullPage: true });
+  await accessible(page); await noOverflow(page);
+});
+
+test('library, focus mode and partial sections preserve summary and sources', async ({ page }) => {
+  await mock(page, () => ({ ...view, document: { ...document, unavailable_sections: ['tasks', 'decisions'], record: { ...record, tasks: [], decisions: [] } } }));
+  await page.goto(`/?meeting=${id}`);
+  await expect(page.getByText('Synthetic source-backed meeting summary.')).toBeVisible();
+  await expect(page.getByText(/Partial record: tasks and decisions/)).toBeVisible();
+  await page.getByRole('button', { name: 'Focus mode', exact: true }).click();
+  await expect(page.getByRole('complementary', { name: 'Meeting library', exact: true })).toBeHidden();
+  await page.getByRole('button', { name: 'Open source 1: Action item: check the logs.' }).click();
+  await expect(page.locator('blockquote')).toHaveText('Action item: check the logs.');
+  await page.getByRole('tab', { name: 'Tasks' }).click();
+  await expect(page.getByText('Unavailable: task generation or validation failed.')).toBeVisible();
+  await page.getByRole('tab', { name: 'Decisions' }).click();
+  await expect(page.getByText('Unavailable: decision generation or validation failed.')).toBeVisible();
+  await page.getByRole('button', { name: 'Exit focus mode', exact: true }).click();
+  await page.getByRole('button', { name: 'Meeting library', exact: true }).click();
+  await expect(page.getByRole('complementary', { name: 'Meeting library', exact: true })).toBeHidden();
+  await page.getByRole('button', { name: 'Meeting library', exact: true }).click();
+  await page.keyboard.press('Escape');
+  await expect(page.getByRole('button', { name: 'Meeting library', exact: true })).toBeFocused();
+  await expect.poll(() => page.evaluate(() => document.fonts.check('14px Inter'))).toBe(true);
   await accessible(page); await noOverflow(page);
 });
 
@@ -212,4 +237,36 @@ test('genuine saved record and browser upload through installed models', async (
   await page.screenshot({ path: resolve(screenshots, 'desktop-genuine-browser-upload.png'), fullPage: true });
   console.log(`Genuine browser-created meeting: ${created}`);
   expect(errors).toEqual([]);
+});
+
+test('saved pipeline record plays source audio and downloads canonical artifacts without inference', async ({ page }) => {
+  const savedId = process.env.METAWISPR_REVIEW_ID;
+  test.skip(!savedId, 'Opt-in read-only check of an existing pipeline record.');
+  const result = await (await page.request.get(`/api/meetings/${savedId}`)).json();
+  await page.goto(`/?meeting=${savedId}`);
+  await expect(page.getByRole('heading', { name: 'Ready for review' })).toBeVisible();
+  await expect(page.getByText(result.document.record.summary[0].text, { exact: true })).toBeVisible();
+  await page.getByRole('button', { name: /^Open source/ }).first().click();
+  const supporting = result.document.record.summary[0].evidence[0];
+  await expect(page.locator('blockquote')).toHaveText(supporting.quote);
+  const segment = (result.refined?.segments ?? result.raw.segments).find((s: { id: string }) => s.id === supporting.segment_id);
+  await expect.poll(() => page.locator('audio').evaluate((el: HTMLAudioElement) => el.currentTime)).toBeCloseTo(segment.start, 1);
+  await accessible(page); await noOverflow(page);
+  await page.screenshot({ path: resolve(screenshots, `saved-${savedId}.png`), fullPage: true });
+  for (const format of ['meeting.md', 'meeting.json', 'bundle.zip', 'provenance.json', 'refined.txt', 'refined.json', 'edits.json', 'raw.txt', 'raw.json']) {
+    await page.locator('.exports summary').click();
+    const pending = page.waitForEvent('download');
+    await page.locator(`.export-menu a[href$="/${format}"]`).click();
+    const download = await pending;
+    expect(await download.failure()).toBeNull();
+    const bytes = await readFile((await download.path())!);
+    expect(bytes.length).toBeGreaterThan(0);
+    if (format === 'meeting.json') expect(JSON.parse(bytes.toString()).record).toEqual(result.document.record);
+    if (format === 'bundle.zip') expect(bytes.subarray(0, 2).toString()).toBe('PK');
+  }
+  if (result.document.unavailable_sections?.length) {
+    await expect(page.getByRole('status').filter({ hasText: 'Partial record:' })).toBeVisible();
+    await page.getByRole('tab', { name: 'Tasks' }).click();
+    await expect(page.getByText('Unavailable: task generation or validation failed.')).toBeVisible();
+  }
 });
